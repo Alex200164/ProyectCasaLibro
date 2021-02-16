@@ -38,11 +38,14 @@
         Process.Start("https://www.casadellibro.com/nosotros/tienda/fuencarral-119/15")
     End Sub
 
+    ' Método que se ejecuta la presionar el botón de "Iniciar sesion". Comprueba los datos introducidos y en caso afirmativo
+    ' nos lleva al menu principal.
     Private Sub Button_InicioSesion_Click(sender As Object, e As EventArgs) Handles Button_InicioSesion.Click
         'Donde confirmaremos la veracidad de los datos de inicio de sesion 
 
-        'En caso de que sean correctos
+        ' Ocultamos este formulario (se queda en segundo plano).
         Me.Hide()
-        Form1.Show()
+        ' Mostramos al usuario el menu principal.
+        MenuPrincipal.Show()
     End Sub
 End Class

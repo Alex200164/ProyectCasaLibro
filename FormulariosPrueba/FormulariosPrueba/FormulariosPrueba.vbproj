@@ -86,6 +86,36 @@
     <Compile Include="GestionArticulos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GestionArticulosAltas.Designer.vb">
+      <DependentUpon>GestionArticulosAltas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionArticulosAltas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionArticulosModificaciones.Designer.vb">
+      <DependentUpon>GestionArticulosModificaciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionArticulosModificaciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionEmpleados.Designer.vb">
+      <DependentUpon>GestionEmpleados.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionEmpleados.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionEmpleadosAltas.Designer.vb">
+      <DependentUpon>GestionEmpleadosAltas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionEmpleadosAltas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionEmpleadosModificaciones.Designer.vb">
+      <DependentUpon>GestionEmpleadosModificaciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionEmpleadosModificaciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GestionLibros.Designer.vb">
       <DependentUpon>GestionLibros.vb</DependentUpon>
     </Compile>
@@ -99,22 +129,46 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GestionInternaArticulos.Designer.vb">
-      <DependentUpon>GestionInternaArticulos.vb</DependentUpon>
+    <Compile Include="GestionLibrosAltas.Designer.vb">
+      <DependentUpon>GestionLibrosAltas.vb</DependentUpon>
     </Compile>
-    <Compile Include="GestionInternaArticulos.vb">
+    <Compile Include="GestionLibrosAltas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GestionInternaLibros.Designer.vb">
-      <DependentUpon>GestionInternaLibros.vb</DependentUpon>
+    <Compile Include="GestionLibrosModificaciones.Designer.vb">
+      <DependentUpon>GestionLibrosModificaciones.vb</DependentUpon>
     </Compile>
-    <Compile Include="GestionInternaLibros.vb">
+    <Compile Include="GestionLibrosModificaciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionSocios.Designer.vb">
+      <DependentUpon>GestionSocios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionSocios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionSociosAltas.Designer.vb">
+      <DependentUpon>GestionSociosAltas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionSociosAltas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionSociosModificaciones.Designer.vb">
+      <DependentUpon>GestionSociosModificaciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionSociosModificaciones.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="InicioSesion.Designer.vb">
       <DependentUpon>InicioSesion.vb</DependentUpon>
     </Compile>
     <Compile Include="InicioSesion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuPrincipal.Designer.vb">
+      <DependentUpon>MenuPrincipal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MenuPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -144,20 +198,47 @@
     <EmbeddedResource Include="GestionArticulos.resx">
       <DependentUpon>GestionArticulos.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GestionArticulosAltas.resx">
+      <DependentUpon>GestionArticulosAltas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionArticulosModificaciones.resx">
+      <DependentUpon>GestionArticulosModificaciones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionEmpleados.resx">
+      <DependentUpon>GestionEmpleados.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionEmpleadosAltas.resx">
+      <DependentUpon>GestionEmpleadosAltas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionEmpleadosModificaciones.resx">
+      <DependentUpon>GestionEmpleadosModificaciones.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GestionLibros.resx">
       <DependentUpon>GestionLibros.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GestionInternaArticulos.resx">
-      <DependentUpon>GestionInternaArticulos.vb</DependentUpon>
+    <EmbeddedResource Include="GestionLibrosAltas.resx">
+      <DependentUpon>GestionLibrosAltas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GestionInternaLibros.resx">
-      <DependentUpon>GestionInternaLibros.vb</DependentUpon>
+    <EmbeddedResource Include="GestionLibrosModificaciones.resx">
+      <DependentUpon>GestionLibrosModificaciones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionSocios.resx">
+      <DependentUpon>GestionSocios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionSociosAltas.resx">
+      <DependentUpon>GestionSociosAltas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionSociosModificaciones.resx">
+      <DependentUpon>GestionSociosModificaciones.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InicioSesion.resx">
       <DependentUpon>InicioSesion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuPrincipal.resx">
+      <DependentUpon>MenuPrincipal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -187,6 +268,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\IconoCuadrado.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\empleados1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\books-4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\papel-1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\socios2.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

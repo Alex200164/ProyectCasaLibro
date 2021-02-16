@@ -16,3 +16,30 @@ D:\Users\erick\Documents\CLASES\2_D.A.M\Erick_Cumbal\DI\Desarrollo de las practi
 D:\Users\erick\Documents\CLASES\2_D.A.M\Erick_Cumbal\DI\Desarrollo de las practicas\Desarrollo_practica_di2\Practica ejemplo\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionArticulos.resources
 D:\Users\erick\Documents\CLASES\2_D.A.M\Erick_Cumbal\DI\Desarrollo de las practicas\Desarrollo_practica_di2\Practica ejemplo\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionLibros.resources
 D:\Users\erick\Documents\CLASES\2_D.A.M\Erick_Cumbal\DI\Desarrollo de las practicas\Desarrollo_practica_di2\Practica ejemplo\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionInternaLibros.resources
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\bin\Debug\FormulariosPrueba.exe.config
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\bin\Debug\FormulariosPrueba.exe
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\bin\Debug\FormulariosPrueba.pdb
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\bin\Debug\FormulariosPrueba.xml
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.vbprojAssemblyReference.cache
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionArticulos.resources
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionLibros.resources
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.Form1.resources
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionSocios.resources
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.InicioSesion.resources
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.MenuPrincipal.resources
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.Resources.resources
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.PruebaLayoutpanel.resources
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.vbproj.GenerateResource.cache
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.vbproj.CoreCompileInputs.cache
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.exe
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.xml
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.pdb
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionEmpleados.resources
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionEmpleadosAltas.resources
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionEmpleadosModificaciones.resources
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionLibrosAltas.resources
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionLibrosModificaciones.resources
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionSociosAltas.resources
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionSociosModificaciones.resources
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionArticulosAltas.resources
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionArticulosModificaciones.resources

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class GestionInternaLibros
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class GestionEmpleadosAltas
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,9 +20,18 @@ Partial Class GestionInternaLibros
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionInternaLibros))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionEmpleadosAltas))
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.MenuStripPagPrin = New System.Windows.Forms.MenuStrip()
+        Me.HerramientasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CalculadoraToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BlocNotasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VerLaAyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Button_Guardar_Alta = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox_Formato = New System.Windows.Forms.TextBox()
@@ -32,6 +41,7 @@ Partial Class GestionInternaLibros
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.GruopBox = New System.Windows.Forms.GroupBox()
         Me.TextBox_Traductor = New System.Windows.Forms.TextBox()
         Me.TextBox_Plazaedicion = New System.Windows.Forms.TextBox()
         Me.TextBox_Annoedicion = New System.Windows.Forms.TextBox()
@@ -51,23 +61,92 @@ Partial Class GestionInternaLibros
         Me.Label20 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.MenuStripPagPrin = New System.Windows.Forms.MenuStrip()
-        Me.HerramientasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CalculadoraToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BlocNotasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.VerLaAyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.GruopBox = New System.Windows.Forms.GroupBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.MenuStripPagPrin.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.MenuStripPagPrin.SuspendLayout()
         Me.GruopBox.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(56, Byte), Integer))
+        Me.Panel1.Controls.Add(Me.PictureBox1)
+        Me.Panel1.Location = New System.Drawing.Point(0, 22)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(754, 108)
+        Me.Panel1.TabIndex = 51
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+        Me.PictureBox1.Location = New System.Drawing.Point(12, 6)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(163, 92)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 39
+        Me.PictureBox1.TabStop = False
+        '
+        'MenuStripPagPrin
+        '
+        Me.MenuStripPagPrin.BackColor = System.Drawing.Color.Transparent
+        Me.MenuStripPagPrin.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HerramientasToolStripMenuItem, Me.AyudaToolStripMenuItem})
+        Me.MenuStripPagPrin.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStripPagPrin.Name = "MenuStripPagPrin"
+        Me.MenuStripPagPrin.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
+        Me.MenuStripPagPrin.Size = New System.Drawing.Size(754, 24)
+        Me.MenuStripPagPrin.TabIndex = 50
+        Me.MenuStripPagPrin.TabStop = True
+        Me.MenuStripPagPrin.Text = "MenuStrip1"
+        '
+        'HerramientasToolStripMenuItem
+        '
+        Me.HerramientasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CalculadoraToolStripMenuItem, Me.BlocNotasToolStripMenuItem, Me.SalirToolStripMenuItem})
+        Me.HerramientasToolStripMenuItem.Font = New System.Drawing.Font("Gadugi", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.HerramientasToolStripMenuItem.Name = "HerramientasToolStripMenuItem"
+        Me.HerramientasToolStripMenuItem.Size = New System.Drawing.Size(91, 20)
+        Me.HerramientasToolStripMenuItem.Text = "Herramientas"
+        '
+        'CalculadoraToolStripMenuItem
+        '
+        Me.CalculadoraToolStripMenuItem.Image = CType(resources.GetObject("CalculadoraToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.CalculadoraToolStripMenuItem.Name = "CalculadoraToolStripMenuItem"
+        Me.CalculadoraToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D1), System.Windows.Forms.Keys)
+        Me.CalculadoraToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CalculadoraToolStripMenuItem.Text = "Calculadora"
+        '
+        'BlocNotasToolStripMenuItem
+        '
+        Me.BlocNotasToolStripMenuItem.Image = CType(resources.GetObject("BlocNotasToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.BlocNotasToolStripMenuItem.Name = "BlocNotasToolStripMenuItem"
+        Me.BlocNotasToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D2), System.Windows.Forms.Keys)
+        Me.BlocNotasToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BlocNotasToolStripMenuItem.Text = "Bloc Notas"
+        '
+        'SalirToolStripMenuItem
+        '
+        Me.SalirToolStripMenuItem.Image = CType(resources.GetObject("SalirToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
+        Me.SalirToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
+        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SalirToolStripMenuItem.Text = "Salir..."
+        '
+        'AyudaToolStripMenuItem
+        '
+        Me.AyudaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VerLaAyudaToolStripMenuItem})
+        Me.AyudaToolStripMenuItem.Font = New System.Drawing.Font("Gadugi", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AyudaToolStripMenuItem.Name = "AyudaToolStripMenuItem"
+        Me.AyudaToolStripMenuItem.Size = New System.Drawing.Size(54, 20)
+        Me.AyudaToolStripMenuItem.Text = "Ayuda"
+        '
+        'VerLaAyudaToolStripMenuItem
+        '
+        Me.VerLaAyudaToolStripMenuItem.Image = CType(resources.GetObject("VerLaAyudaToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.VerLaAyudaToolStripMenuItem.Name = "VerLaAyudaToolStripMenuItem"
+        Me.VerLaAyudaToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.F1), System.Windows.Forms.Keys)
+        Me.VerLaAyudaToolStripMenuItem.Size = New System.Drawing.Size(189, 22)
+        Me.VerLaAyudaToolStripMenuItem.Text = "Ver la Ayuda"
         '
         'Button_Guardar_Alta
         '
@@ -159,6 +238,45 @@ Partial Class GestionInternaLibros
         Me.Label3.Size = New System.Drawing.Size(83, 19)
         Me.Label3.TabIndex = 169
         Me.Label3.Text = "Traductor :"
+        '
+        'GruopBox
+        '
+        Me.GruopBox.Controls.Add(Me.Button_Guardar_Alta)
+        Me.GruopBox.Controls.Add(Me.Button1)
+        Me.GruopBox.Controls.Add(Me.TextBox_Formato)
+        Me.GruopBox.Controls.Add(Me.TextBox_Precio)
+        Me.GruopBox.Controls.Add(Me.TextBox_Stock)
+        Me.GruopBox.Controls.Add(Me.Label9)
+        Me.GruopBox.Controls.Add(Me.Label8)
+        Me.GruopBox.Controls.Add(Me.Label7)
+        Me.GruopBox.Controls.Add(Me.Label3)
+        Me.GruopBox.Controls.Add(Me.TextBox_Traductor)
+        Me.GruopBox.Controls.Add(Me.TextBox_Plazaedicion)
+        Me.GruopBox.Controls.Add(Me.TextBox_Annoedicion)
+        Me.GruopBox.Controls.Add(Me.TextBox_Titulo)
+        Me.GruopBox.Controls.Add(Me.TextBox_Autor)
+        Me.GruopBox.Controls.Add(Me.TextBox_Numeropags)
+        Me.GruopBox.Controls.Add(Me.TextBox_Editorial)
+        Me.GruopBox.Controls.Add(Me.TextBox_Encuadrenacion)
+        Me.GruopBox.Controls.Add(Me.TextBox_Idioma)
+        Me.GruopBox.Controls.Add(Me.Label24)
+        Me.GruopBox.Controls.Add(Me.Label5)
+        Me.GruopBox.Controls.Add(Me.Label1)
+        Me.GruopBox.Controls.Add(Me.Label2)
+        Me.GruopBox.Controls.Add(Me.ISBN)
+        Me.GruopBox.Controls.Add(Me.TextBox_ISBN)
+        Me.GruopBox.Controls.Add(Me.Label21)
+        Me.GruopBox.Controls.Add(Me.Label20)
+        Me.GruopBox.Controls.Add(Me.Label19)
+        Me.GruopBox.Controls.Add(Me.Label6)
+        Me.GruopBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GruopBox.ForeColor = System.Drawing.Color.Black
+        Me.GruopBox.Location = New System.Drawing.Point(15, 16)
+        Me.GruopBox.Name = "GruopBox"
+        Me.GruopBox.Size = New System.Drawing.Size(700, 292)
+        Me.GruopBox.TabIndex = 124
+        Me.GruopBox.TabStop = False
+        Me.GruopBox.Text = "Gestión de artículos"
         '
         'TextBox_Traductor
         '
@@ -362,148 +480,31 @@ Partial Class GestionInternaLibros
         Me.Label6.TabIndex = 154
         Me.Label6.Text = "Encuadernación :"
         '
-        'MenuStripPagPrin
-        '
-        Me.MenuStripPagPrin.BackColor = System.Drawing.Color.Transparent
-        Me.MenuStripPagPrin.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HerramientasToolStripMenuItem, Me.AyudaToolStripMenuItem})
-        Me.MenuStripPagPrin.Location = New System.Drawing.Point(0, 0)
-        Me.MenuStripPagPrin.Name = "MenuStripPagPrin"
-        Me.MenuStripPagPrin.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.MenuStripPagPrin.Size = New System.Drawing.Size(754, 24)
-        Me.MenuStripPagPrin.TabIndex = 41
-        Me.MenuStripPagPrin.TabStop = True
-        Me.MenuStripPagPrin.Text = "MenuStrip1"
-        '
-        'HerramientasToolStripMenuItem
-        '
-        Me.HerramientasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CalculadoraToolStripMenuItem, Me.BlocNotasToolStripMenuItem, Me.SalirToolStripMenuItem})
-        Me.HerramientasToolStripMenuItem.Font = New System.Drawing.Font("Gadugi", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.HerramientasToolStripMenuItem.Name = "HerramientasToolStripMenuItem"
-        Me.HerramientasToolStripMenuItem.Size = New System.Drawing.Size(91, 20)
-        Me.HerramientasToolStripMenuItem.Text = "Herramientas"
-        '
-        'CalculadoraToolStripMenuItem
-        '
-        Me.CalculadoraToolStripMenuItem.Image = CType(resources.GetObject("CalculadoraToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.CalculadoraToolStripMenuItem.Name = "CalculadoraToolStripMenuItem"
-        Me.CalculadoraToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D1), System.Windows.Forms.Keys)
-        Me.CalculadoraToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.CalculadoraToolStripMenuItem.Text = "Calculadora"
-        '
-        'BlocNotasToolStripMenuItem
-        '
-        Me.BlocNotasToolStripMenuItem.Image = CType(resources.GetObject("BlocNotasToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.BlocNotasToolStripMenuItem.Name = "BlocNotasToolStripMenuItem"
-        Me.BlocNotasToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D2), System.Windows.Forms.Keys)
-        Me.BlocNotasToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.BlocNotasToolStripMenuItem.Text = "Bloc Notas"
-        '
-        'SalirToolStripMenuItem
-        '
-        Me.SalirToolStripMenuItem.Image = CType(resources.GetObject("SalirToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
-        Me.SalirToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
-        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.SalirToolStripMenuItem.Text = "Salir..."
-        '
-        'AyudaToolStripMenuItem
-        '
-        Me.AyudaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VerLaAyudaToolStripMenuItem})
-        Me.AyudaToolStripMenuItem.Font = New System.Drawing.Font("Gadugi", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AyudaToolStripMenuItem.Name = "AyudaToolStripMenuItem"
-        Me.AyudaToolStripMenuItem.Size = New System.Drawing.Size(54, 20)
-        Me.AyudaToolStripMenuItem.Text = "Ayuda"
-        '
-        'VerLaAyudaToolStripMenuItem
-        '
-        Me.VerLaAyudaToolStripMenuItem.Image = CType(resources.GetObject("VerLaAyudaToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.VerLaAyudaToolStripMenuItem.Name = "VerLaAyudaToolStripMenuItem"
-        Me.VerLaAyudaToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.F1), System.Windows.Forms.Keys)
-        Me.VerLaAyudaToolStripMenuItem.Size = New System.Drawing.Size(189, 22)
-        Me.VerLaAyudaToolStripMenuItem.Text = "Ver la Ayuda"
-        '
-        'Panel1
-        '
-        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(56, Byte), Integer))
-        Me.Panel1.Controls.Add(Me.PictureBox1)
-        Me.Panel1.Location = New System.Drawing.Point(0, 1)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(754, 128)
-        Me.Panel1.TabIndex = 42
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(12, 27)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(163, 92)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 39
-        Me.PictureBox1.TabStop = False
-        '
-        'GruopBox
-        '
-        Me.GruopBox.Controls.Add(Me.Button_Guardar_Alta)
-        Me.GruopBox.Controls.Add(Me.Button1)
-        Me.GruopBox.Controls.Add(Me.TextBox_Formato)
-        Me.GruopBox.Controls.Add(Me.TextBox_Precio)
-        Me.GruopBox.Controls.Add(Me.TextBox_Stock)
-        Me.GruopBox.Controls.Add(Me.Label9)
-        Me.GruopBox.Controls.Add(Me.Label8)
-        Me.GruopBox.Controls.Add(Me.Label7)
-        Me.GruopBox.Controls.Add(Me.Label3)
-        Me.GruopBox.Controls.Add(Me.TextBox_Traductor)
-        Me.GruopBox.Controls.Add(Me.TextBox_Plazaedicion)
-        Me.GruopBox.Controls.Add(Me.TextBox_Annoedicion)
-        Me.GruopBox.Controls.Add(Me.TextBox_Titulo)
-        Me.GruopBox.Controls.Add(Me.TextBox_Autor)
-        Me.GruopBox.Controls.Add(Me.TextBox_Numeropags)
-        Me.GruopBox.Controls.Add(Me.TextBox_Editorial)
-        Me.GruopBox.Controls.Add(Me.TextBox_Encuadrenacion)
-        Me.GruopBox.Controls.Add(Me.TextBox_Idioma)
-        Me.GruopBox.Controls.Add(Me.Label24)
-        Me.GruopBox.Controls.Add(Me.Label5)
-        Me.GruopBox.Controls.Add(Me.Label1)
-        Me.GruopBox.Controls.Add(Me.Label2)
-        Me.GruopBox.Controls.Add(Me.ISBN)
-        Me.GruopBox.Controls.Add(Me.TextBox_ISBN)
-        Me.GruopBox.Controls.Add(Me.Label21)
-        Me.GruopBox.Controls.Add(Me.Label20)
-        Me.GruopBox.Controls.Add(Me.Label19)
-        Me.GruopBox.Controls.Add(Me.Label6)
-        Me.GruopBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GruopBox.ForeColor = System.Drawing.Color.Black
-        Me.GruopBox.Location = New System.Drawing.Point(15, 16)
-        Me.GruopBox.Name = "GruopBox"
-        Me.GruopBox.Size = New System.Drawing.Size(700, 292)
-        Me.GruopBox.TabIndex = 124
-        Me.GruopBox.TabStop = False
-        Me.GruopBox.Text = "Gestión de artículos"
-        '
         'Panel2
         '
         Me.Panel2.Controls.Add(Me.GruopBox)
-        Me.Panel2.Location = New System.Drawing.Point(12, 135)
+        Me.Panel2.Location = New System.Drawing.Point(12, 136)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(730, 324)
-        Me.Panel2.TabIndex = 43
+        Me.Panel2.TabIndex = 52
         '
-        'GestionInternaLibros
+        'GestionEmpleadosAltas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(754, 461)
-        Me.Controls.Add(Me.MenuStripPagPrin)
+        Me.ControlBox = False
         Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.MenuStripPagPrin)
         Me.Controls.Add(Me.Panel2)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "GestionInternaLibros"
-        Me.Text = "Añadir/Modificar Libro"
-        Me.MenuStripPagPrin.ResumeLayout(False)
-        Me.MenuStripPagPrin.PerformLayout()
+        Me.Name = "GestionEmpleadosAltas"
+        Me.Text = "Gestion de Empleados (Altas)"
         Me.Panel1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.MenuStripPagPrin.ResumeLayout(False)
+        Me.MenuStripPagPrin.PerformLayout()
         Me.GruopBox.ResumeLayout(False)
         Me.GruopBox.PerformLayout()
         Me.Panel2.ResumeLayout(False)
@@ -512,6 +513,15 @@ Partial Class GestionInternaLibros
 
     End Sub
 
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents MenuStripPagPrin As MenuStrip
+    Friend WithEvents HerramientasToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CalculadoraToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BlocNotasToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SalirToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AyudaToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents VerLaAyudaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Button_Guardar_Alta As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents TextBox_Formato As TextBox
@@ -521,6 +531,7 @@ Partial Class GestionInternaLibros
     Friend WithEvents Label8 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label3 As Label
+    Friend WithEvents GruopBox As GroupBox
     Friend WithEvents TextBox_Traductor As TextBox
     Friend WithEvents TextBox_Plazaedicion As TextBox
     Friend WithEvents TextBox_Annoedicion As TextBox
@@ -540,15 +551,5 @@ Partial Class GestionInternaLibros
     Friend WithEvents Label20 As Label
     Friend WithEvents Label19 As Label
     Friend WithEvents Label6 As Label
-    Friend WithEvents MenuStripPagPrin As MenuStrip
-    Friend WithEvents HerramientasToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents CalculadoraToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents BlocNotasToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents SalirToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AyudaToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents VerLaAyudaToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents Panel1 As Panel
-    Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents GruopBox As GroupBox
     Friend WithEvents Panel2 As Panel
 End Class

@@ -27,6 +27,7 @@ Partial Class GestionArticulos
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.DataGridView_Articulos = New System.Windows.Forms.DataGridView()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Button_Modificar = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label_Autor = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
@@ -87,6 +88,7 @@ Partial Class GestionArticulos
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.Button_Modificar)
         Me.Panel1.Controls.Add(Me.GroupBox1)
         Me.Panel1.Controls.Add(Me.Button_Eliminar)
         Me.Panel1.Controls.Add(Me.Button_Annadir)
@@ -96,6 +98,15 @@ Partial Class GestionArticulos
         Me.Panel1.Size = New System.Drawing.Size(959, 480)
         Me.Panel1.TabIndex = 47
         Me.Panel1.TabStop = True
+        '
+        'Button_Modificar
+        '
+        Me.Button_Modificar.Location = New System.Drawing.Point(653, 160)
+        Me.Button_Modificar.Name = "Button_Modificar"
+        Me.Button_Modificar.Size = New System.Drawing.Size(86, 29)
+        Me.Button_Modificar.TabIndex = 184
+        Me.Button_Modificar.Text = "Modificar"
+        Me.Button_Modificar.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
@@ -347,4 +358,5 @@ Partial Class GestionArticulos
     Friend WithEvents Label_Nombre As Label
     Friend WithEvents Label_ISBN As Label
     Friend WithEvents TextBox_ISBN As TextBox
+    Friend WithEvents Button_Modificar As Button
 End Class

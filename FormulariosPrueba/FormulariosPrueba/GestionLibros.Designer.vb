@@ -25,6 +25,7 @@ Partial Class GestionLibros
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionLibros))
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Button_Modificar = New System.Windows.Forms.Button()
         Me.Button_Eliminar = New System.Windows.Forms.Button()
         Me.Button_Annadir = New System.Windows.Forms.Button()
         Me.DataGridView_Libros = New System.Windows.Forms.DataGridView()
@@ -58,6 +59,7 @@ Partial Class GestionLibros
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.Button_Modificar)
         Me.Panel1.Controls.Add(Me.Button_Eliminar)
         Me.Panel1.Controls.Add(Me.Button_Annadir)
         Me.Panel1.Controls.Add(Me.DataGridView_Libros)
@@ -67,6 +69,15 @@ Partial Class GestionLibros
         Me.Panel1.Size = New System.Drawing.Size(959, 480)
         Me.Panel1.TabIndex = 53
         Me.Panel1.TabStop = True
+        '
+        'Button_Modificar
+        '
+        Me.Button_Modificar.Location = New System.Drawing.Point(653, 160)
+        Me.Button_Modificar.Name = "Button_Modificar"
+        Me.Button_Modificar.Size = New System.Drawing.Size(86, 29)
+        Me.Button_Modificar.TabIndex = 100
+        Me.Button_Modificar.Text = "Modificar"
+        Me.Button_Modificar.UseVisualStyleBackColor = True
         '
         'Button_Eliminar
         '
@@ -353,4 +364,5 @@ Partial Class GestionLibros
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Label_Autor As Label
     Friend WithEvents TextBox_Autor As TextBox
+    Friend WithEvents Button_Modificar As Button
 End Class
