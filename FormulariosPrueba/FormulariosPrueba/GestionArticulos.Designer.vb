@@ -193,7 +193,7 @@ Partial Class GestionArticulos
         '
         Me.Label_Nombre.AutoSize = True
         Me.Label_Nombre.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label_Nombre.Location = New System.Drawing.Point(329, 29)
+        Me.Label_Nombre.Location = New System.Drawing.Point(313, 29)
         Me.Label_Nombre.Name = "Label_Nombre"
         Me.Label_Nombre.Size = New System.Drawing.Size(74, 19)
         Me.Label_Nombre.TabIndex = 167
