@@ -93,18 +93,18 @@ Partial Class GestionSocios
         '
         Me.Label_Autor.AutoSize = True
         Me.Label_Autor.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label_Autor.Location = New System.Drawing.Point(6, 84)
+        Me.Label_Autor.Location = New System.Drawing.Point(5, 80)
         Me.Label_Autor.Name = "Label_Autor"
-        Me.Label_Autor.Size = New System.Drawing.Size(61, 20)
+        Me.Label_Autor.Size = New System.Drawing.Size(79, 20)
         Me.Label_Autor.TabIndex = 181
-        Me.Label_Autor.Text = "Precio :"
+        Me.Label_Autor.Text = "Teléfono :"
         '
         'TextBox1
         '
         Me.TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(71, 81)
+        Me.TextBox1.Location = New System.Drawing.Point(87, 81)
         Me.TextBox1.MaxLength = 3
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(197, 19)
@@ -133,7 +133,7 @@ Partial Class GestionSocios
         Me.TextBox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox4.Location = New System.Drawing.Point(723, 29)
+        Me.TextBox4.Location = New System.Drawing.Point(709, 26)
         Me.TextBox4.MaxLength = 3
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(197, 19)
@@ -143,18 +143,18 @@ Partial Class GestionSocios
         '
         Me.Label_Genero.AutoSize = True
         Me.Label_Genero.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label_Genero.Location = New System.Drawing.Point(634, 29)
+        Me.Label_Genero.Location = New System.Drawing.Point(620, 25)
         Me.Label_Genero.Name = "Label_Genero"
-        Me.Label_Genero.Size = New System.Drawing.Size(86, 20)
+        Me.Label_Genero.Size = New System.Drawing.Size(81, 20)
         Me.Label_Genero.TabIndex = 169
-        Me.Label_Genero.Text = "Categoría :"
+        Me.Label_Genero.Text = "Apellidos :"
         '
         'TextBox6
         '
         Me.TextBox6.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox6.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox6.Location = New System.Drawing.Point(390, 26)
+        Me.TextBox6.Location = New System.Drawing.Point(392, 26)
         Me.TextBox6.MaxLength = 3
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.Size = New System.Drawing.Size(197, 19)
@@ -189,7 +189,7 @@ Partial Class GestionSocios
         '
         Me.Label_Nombre.AutoSize = True
         Me.Label_Nombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label_Nombre.Location = New System.Drawing.Point(313, 29)
+        Me.Label_Nombre.Location = New System.Drawing.Point(315, 25)
         Me.Label_Nombre.Name = "Label_Nombre"
         Me.Label_Nombre.Size = New System.Drawing.Size(73, 20)
         Me.Label_Nombre.TabIndex = 167
@@ -199,18 +199,18 @@ Partial Class GestionSocios
         '
         Me.Label_ISBN.AutoSize = True
         Me.Label_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label_ISBN.Location = New System.Drawing.Point(15, 29)
+        Me.Label_ISBN.Location = New System.Drawing.Point(11, 25)
         Me.Label_ISBN.Name = "Label_ISBN"
-        Me.Label_ISBN.Size = New System.Drawing.Size(55, 20)
+        Me.Label_ISBN.Size = New System.Drawing.Size(75, 20)
         Me.Label_ISBN.TabIndex = 165
-        Me.Label_ISBN.Text = "ISBN :"
+        Me.Label_ISBN.Text = "Nº socio :"
         '
         'TextBox_ISBN
         '
         Me.TextBox_ISBN.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_ISBN.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_ISBN.Location = New System.Drawing.Point(71, 26)
+        Me.TextBox_ISBN.Location = New System.Drawing.Point(87, 26)
         Me.TextBox_ISBN.MaxLength = 3
         Me.TextBox_ISBN.Name = "TextBox_ISBN"
         Me.TextBox_ISBN.Size = New System.Drawing.Size(197, 19)

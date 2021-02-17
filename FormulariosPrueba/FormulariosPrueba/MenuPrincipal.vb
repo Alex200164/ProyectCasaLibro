@@ -1,4 +1,15 @@
-﻿Public Class MenuPrincipal
+﻿' Necesitamos importar el módelo de base de datos que vamos a utilizar, este es de access.
+Imports System.Data.OleDb
+
+Public Class MenuPrincipal
+
+    ' Especificamos la base de datos a la que nos vamos a conectar.
+    Public conexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=CasaLibroDB.accdb")
+    ' Al adaptador le asignamos la conexion que acabamos de realizar y una consulta
+    Public adaptador As New OleDbDataAdapter("Select * from Socios", conexion)
+
+    ' Aquí alojaremos los datos de la DB
+    Public midataset As New DataSet
 
     ' Método que permite posicionar la ventana en la posición especificada del formulario "GestionSocios".
     ' En este caso para evitar que quede encima del formulario anterior.
@@ -46,38 +57,71 @@
 
     ' Método que se ejecuta si el botón libros es pulsado, mostrando el formulario de gestión de libros
     Private Sub Button_GestionLibros_Click(sender As Object, e As EventArgs) Handles Button_GestionLibros.Click
-        posicionarFormularioLibros()
-        ' Mostramos el formulario de gestión de libros
-        GestionLibros.Show()
-        ' Cerramos el formulario de menú principal
-        Me.Close()
+        ' Comprobación de que la base de datos es accesible obligando a acceder a datos, en caso contrario, error
+        Try
+            ' Cargar la memoria del cache con datos.
+            adaptador.Fill(midataset, "Socios")
+
+            posicionarFormularioLibros()
+            ' Mostramos el formulario de gestión de libros
+            GestionLibros.Show()
+            ' Cerramos el formulario de menú principal
+            Me.Close()
+        Catch ex As System.Data.OleDb.OleDbException
+            MsgBox("Parece que algo ha salido mal. Revise que la base de datos no esté abierta durante la ejecución.", MsgBoxStyle.OkOnly, "Error - Base de datos")
+        End Try
     End Sub
 
     ' Método que se ejecuta si el botón papeleria es pulsado, mostrando el formulario de gestión de papeleria
     Private Sub Button_GestionPapeleria_Click(sender As Object, e As EventArgs) Handles Button_GestionPapeleria.Click
-        posicionarFormularioArticulos()
-        ' Mostramos el formulario de gestión de papeleria
-        GestionArticulos.Show()
-        ' Cerramos el formulario de menú principal
-        Me.Close()
+        ' Comprobación de que la base de datos es accesible obligando a acceder a datos, en caso contrario, error
+        Try
+            ' Cargar la memoria del cache con datos.
+            adaptador.Fill(midataset, "Socios")
+
+            posicionarFormularioArticulos()
+            ' Mostramos el formulario de gestión de papeleria
+            GestionArticulos.Show()
+            ' Cerramos el formulario de menú principal
+            Me.Close()
+        Catch ex As System.Data.OleDb.OleDbException
+            MsgBox("Parece que algo ha salido mal. Revise que la base de datos no esté abierta durante la ejecución.", MsgBoxStyle.OkOnly, "Error - Base de datos")
+        End Try
     End Sub
 
     ' Método que se ejecuta si el botón socios es pulsado, mostrando el formulario de gestión de socios
     Private Sub Button_GestionSocios_Click(sender As Object, e As EventArgs) Handles Button_GestionSocios.Click
-        posicionarFormularioSocios()
-        ' Mostramos el formulario de gestión de socios
-        GestionSocios.Show()
-        ' Cerramos el formulario de menú principal
-        Me.Close()
+        ' Comprobación de que la base de datos es accesible obligando a acceder a datos, en caso contrario, error
+        Try
+            ' Cargar la memoria del cache con datos.
+            adaptador.Fill(midataset, "Socios")
+
+            posicionarFormularioSocios()
+            ' Mostramos el formulario de gestión de socios
+            GestionSocios.Show()
+            ' Cerramos el formulario de menú principal
+            Me.Close()
+
+        Catch ex As System.Data.OleDb.OleDbException
+            MsgBox("Parece que algo ha salido mal. Revise que la base de datos no esté abierta durante la ejecución.", MsgBoxStyle.OkOnly, "Error - Base de datos")
+        End Try
     End Sub
 
     ' Método que se ejecuta si el botón empleados es pulsado, mostrando el formulario de gestión de empleados
     Private Sub Button_GestionEmpleados_Click(sender As Object, e As EventArgs) Handles Button_GestionEmpleados.Click
-        posicionarFormularioEmpleados()
-        ' Mostramos el formulario de gestión de empleados
-        GestionEmpleados.Show()
-        ' Cerramos el formulario de menú principal
-        Me.Close()
+        ' Comprobación de que la base de datos es accesible obligando a acceder a datos, en caso contrario, error
+        Try
+            ' Cargar la memoria del cache con datos.
+            adaptador.Fill(midataset, "Socios")
+
+            posicionarFormularioEmpleados()
+            ' Mostramos el formulario de gestión de empleados
+            GestionEmpleados.Show()
+            ' Cerramos el formulario de menú principal
+            Me.Close()
+        Catch ex As System.Data.OleDb.OleDbException
+            MsgBox("Parece que algo ha salido mal. Revise que la base de datos no esté abierta durante la ejecución.", MsgBoxStyle.OkOnly, "Error - Base de datos")
+        End Try
     End Sub
 
     ' Método que se ejecuta si el botón CerrarSesion es pulsado, mostrando de nuevo el formulario de inicio de sesión
