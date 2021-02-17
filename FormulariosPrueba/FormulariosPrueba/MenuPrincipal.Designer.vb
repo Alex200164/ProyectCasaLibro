@@ -30,6 +30,7 @@ Partial Class MenuPrincipal
         Me.Button_GestionEmpleados = New System.Windows.Forms.Button()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.Button_CerrarSesion = New System.Windows.Forms.Button()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.SuspendLayout()
         '
         'Button_GestionLibros
@@ -41,6 +42,7 @@ Partial Class MenuPrincipal
         Me.Button_GestionLibros.Name = "Button_GestionLibros"
         Me.Button_GestionLibros.Size = New System.Drawing.Size(299, 200)
         Me.Button_GestionLibros.TabIndex = 0
+        Me.ToolTip1.SetToolTip(Me.Button_GestionLibros, "Gestión Libros")
         Me.Button_GestionLibros.UseVisualStyleBackColor = True
         '
         'Button_GestionPapeleria
@@ -51,6 +53,7 @@ Partial Class MenuPrincipal
         Me.Button_GestionPapeleria.Name = "Button_GestionPapeleria"
         Me.Button_GestionPapeleria.Size = New System.Drawing.Size(300, 200)
         Me.Button_GestionPapeleria.TabIndex = 1
+        Me.ToolTip1.SetToolTip(Me.Button_GestionPapeleria, "Gestión Articulos")
         Me.Button_GestionPapeleria.UseVisualStyleBackColor = True
         '
         'Button_GestionSocios
@@ -61,6 +64,7 @@ Partial Class MenuPrincipal
         Me.Button_GestionSocios.Name = "Button_GestionSocios"
         Me.Button_GestionSocios.Size = New System.Drawing.Size(300, 200)
         Me.Button_GestionSocios.TabIndex = 2
+        Me.ToolTip1.SetToolTip(Me.Button_GestionSocios, "Gestión Socios")
         Me.Button_GestionSocios.UseVisualStyleBackColor = True
         '
         'Button_GestionEmpleados
@@ -71,6 +75,7 @@ Partial Class MenuPrincipal
         Me.Button_GestionEmpleados.Name = "Button_GestionEmpleados"
         Me.Button_GestionEmpleados.Size = New System.Drawing.Size(300, 200)
         Me.Button_GestionEmpleados.TabIndex = 3
+        Me.ToolTip1.SetToolTip(Me.Button_GestionEmpleados, "Gestión Empleados")
         Me.Button_GestionEmpleados.UseVisualStyleBackColor = True
         '
         'ImageList1
@@ -116,4 +121,5 @@ Partial Class MenuPrincipal
     Friend WithEvents Button_GestionEmpleados As Button
     Friend WithEvents ImageList1 As ImageList
     Friend WithEvents Button_CerrarSesion As Button
+    Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
 End Class

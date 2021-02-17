@@ -38,6 +38,17 @@
         Process.Start("https://www.casadellibro.com/nosotros/tienda/fuencarral-119/15")
     End Sub
 
+    ' Método que permite posicionar la ventana en la posición especificada del formulario "MenuPrincipal".
+    ' En este caso para evitar que quede encima del formulario anterior.
+    Private Shared Sub posicionarFormularioMenuPrincipal()
+        MenuPrincipal.StartPosition = FormStartPosition.Manual
+        Dim a As Integer
+        a = My.Computer.Screen.Bounds.Size.Width - (My.Computer.Screen.Bounds.Size.Width * 0.97)
+        Dim b As Integer
+        b = My.Computer.Screen.Bounds.Size.Height - (My.Computer.Screen.Bounds.Size.Height * 0.97)
+        MenuPrincipal.Location = New Point(a, b)
+    End Sub
+
     ' Método que se ejecuta la presionar el botón de "Iniciar sesion". Comprueba los datos introducidos y en caso afirmativo
     ' nos lleva al menu principal.
     Private Sub Button_InicioSesion_Click(sender As Object, e As EventArgs) Handles Button_InicioSesion.Click
@@ -45,6 +56,8 @@
 
         ' Ocultamos este formulario (se queda en segundo plano).
         Me.Hide()
+        ' Especificamos la posición en la que queremos que se coloque en pantalla el formualario "MenuPricipal"
+        posicionarFormularioMenuPrincipal()
         ' Mostramos al usuario el menu principal.
         MenuPrincipal.Show()
     End Sub

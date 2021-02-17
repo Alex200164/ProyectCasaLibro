@@ -138,72 +138,72 @@ Partial Class GestionLibrosAltas
         '
         Me.TextBox_Formato.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Formato.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Formato.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Formato.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Formato.Location = New System.Drawing.Point(492, 120)
         Me.TextBox_Formato.MaxLength = 100
         Me.TextBox_Formato.Name = "TextBox_Formato"
-        Me.TextBox_Formato.Size = New System.Drawing.Size(197, 22)
+        Me.TextBox_Formato.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Formato.TabIndex = 11
         '
         'TextBox_Precio
         '
         Me.TextBox_Precio.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Precio.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Precio.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Precio.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Precio.Location = New System.Drawing.Point(492, 148)
         Me.TextBox_Precio.MaxLength = 100
         Me.TextBox_Precio.Name = "TextBox_Precio"
-        Me.TextBox_Precio.Size = New System.Drawing.Size(197, 22)
+        Me.TextBox_Precio.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Precio.TabIndex = 12
         '
         'TextBox_Stock
         '
         Me.TextBox_Stock.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Stock.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Stock.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Stock.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Stock.Location = New System.Drawing.Point(492, 176)
         Me.TextBox_Stock.MaxLength = 100
         Me.TextBox_Stock.Name = "TextBox_Stock"
-        Me.TextBox_Stock.Size = New System.Drawing.Size(197, 22)
+        Me.TextBox_Stock.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Stock.TabIndex = 13
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.Location = New System.Drawing.Point(427, 151)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(59, 19)
+        Me.Label9.Size = New System.Drawing.Size(61, 20)
         Me.Label9.TabIndex = 172
         Me.Label9.Text = "Precio :"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.Location = New System.Drawing.Point(411, 126)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(75, 19)
+        Me.Label8.Size = New System.Drawing.Size(77, 20)
         Me.Label8.TabIndex = 171
         Me.Label8.Text = "Formato :"
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.Location = New System.Drawing.Point(432, 182)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(54, 19)
+        Me.Label7.Size = New System.Drawing.Size(58, 20)
         Me.Label7.TabIndex = 170
         Me.Label7.Text = "Stock :"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(402, 98)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(83, 19)
+        Me.Label3.Size = New System.Drawing.Size(85, 20)
         Me.Label3.TabIndex = 169
         Me.Label3.Text = "Traductor :"
         '
@@ -211,128 +211,128 @@ Partial Class GestionLibrosAltas
         '
         Me.TextBox_Traductor.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Traductor.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Traductor.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Traductor.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Traductor.Location = New System.Drawing.Point(492, 92)
         Me.TextBox_Traductor.MaxLength = 100
         Me.TextBox_Traductor.Name = "TextBox_Traductor"
-        Me.TextBox_Traductor.Size = New System.Drawing.Size(197, 22)
+        Me.TextBox_Traductor.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Traductor.TabIndex = 10
         '
         'TextBox_Plazaedicion
         '
         Me.TextBox_Plazaedicion.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Plazaedicion.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Plazaedicion.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Plazaedicion.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Plazaedicion.Location = New System.Drawing.Point(492, 64)
         Me.TextBox_Plazaedicion.MaxLength = 100
         Me.TextBox_Plazaedicion.Name = "TextBox_Plazaedicion"
-        Me.TextBox_Plazaedicion.Size = New System.Drawing.Size(197, 22)
+        Me.TextBox_Plazaedicion.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Plazaedicion.TabIndex = 9
         '
         'TextBox_Annoedicion
         '
         Me.TextBox_Annoedicion.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Annoedicion.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Annoedicion.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Annoedicion.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Annoedicion.Location = New System.Drawing.Point(492, 36)
         Me.TextBox_Annoedicion.MaxLength = 100
         Me.TextBox_Annoedicion.Name = "TextBox_Annoedicion"
-        Me.TextBox_Annoedicion.Size = New System.Drawing.Size(197, 22)
+        Me.TextBox_Annoedicion.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Annoedicion.TabIndex = 8
         '
         'TextBox_Titulo
         '
         Me.TextBox_Titulo.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Titulo.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Titulo.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Titulo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Titulo.Location = New System.Drawing.Point(139, 64)
         Me.TextBox_Titulo.MaxLength = 100
         Me.TextBox_Titulo.Name = "TextBox_Titulo"
-        Me.TextBox_Titulo.Size = New System.Drawing.Size(197, 22)
+        Me.TextBox_Titulo.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Titulo.TabIndex = 2
         '
         'TextBox_Autor
         '
         Me.TextBox_Autor.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Autor.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Autor.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Autor.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Autor.Location = New System.Drawing.Point(139, 92)
         Me.TextBox_Autor.MaxLength = 100
         Me.TextBox_Autor.Name = "TextBox_Autor"
-        Me.TextBox_Autor.Size = New System.Drawing.Size(197, 22)
+        Me.TextBox_Autor.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Autor.TabIndex = 3
         '
         'TextBox_Numeropags
         '
         Me.TextBox_Numeropags.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Numeropags.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Numeropags.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Numeropags.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Numeropags.Location = New System.Drawing.Point(139, 120)
         Me.TextBox_Numeropags.MaxLength = 100
         Me.TextBox_Numeropags.Name = "TextBox_Numeropags"
-        Me.TextBox_Numeropags.Size = New System.Drawing.Size(197, 22)
+        Me.TextBox_Numeropags.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Numeropags.TabIndex = 4
         '
         'TextBox_Editorial
         '
         Me.TextBox_Editorial.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Editorial.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Editorial.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Editorial.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Editorial.Location = New System.Drawing.Point(139, 148)
         Me.TextBox_Editorial.MaxLength = 100
         Me.TextBox_Editorial.Name = "TextBox_Editorial"
-        Me.TextBox_Editorial.Size = New System.Drawing.Size(197, 22)
+        Me.TextBox_Editorial.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Editorial.TabIndex = 5
         '
         'TextBox_Encuadrenacion
         '
         Me.TextBox_Encuadrenacion.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Encuadrenacion.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Encuadrenacion.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Encuadrenacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Encuadrenacion.Location = New System.Drawing.Point(139, 204)
         Me.TextBox_Encuadrenacion.MaxLength = 100
         Me.TextBox_Encuadrenacion.Name = "TextBox_Encuadrenacion"
-        Me.TextBox_Encuadrenacion.Size = New System.Drawing.Size(197, 22)
+        Me.TextBox_Encuadrenacion.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Encuadrenacion.TabIndex = 7
         '
         'TextBox_Idioma
         '
         Me.TextBox_Idioma.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Idioma.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Idioma.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Idioma.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Idioma.Location = New System.Drawing.Point(139, 176)
         Me.TextBox_Idioma.MaxLength = 100
         Me.TextBox_Idioma.Name = "TextBox_Idioma"
-        Me.TextBox_Idioma.Size = New System.Drawing.Size(197, 22)
+        Me.TextBox_Idioma.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Idioma.TabIndex = 6
         '
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label24.Location = New System.Drawing.Point(69, 179)
         Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(64, 19)
+        Me.Label24.Size = New System.Drawing.Size(65, 20)
         Me.Label24.TabIndex = 158
         Me.Label24.Text = "Idioma :"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.Location = New System.Drawing.Point(78, 67)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(55, 19)
+        Me.Label5.Size = New System.Drawing.Size(55, 20)
         Me.Label5.TabIndex = 157
         Me.Label5.Text = "Título :"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(367, 39)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(119, 19)
+        Me.Label1.Size = New System.Drawing.Size(124, 20)
         Me.Label1.TabIndex = 155
         Me.Label1.Tag = ""
         Me.Label1.Text = "Año de Edición :"
@@ -340,20 +340,20 @@ Partial Class GestionLibrosAltas
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(359, 67)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(127, 19)
+        Me.Label2.Size = New System.Drawing.Size(134, 20)
         Me.Label2.TabIndex = 156
         Me.Label2.Text = "Plaza de Edición :"
         '
         'ISBN
         '
         Me.ISBN.AutoSize = True
-        Me.ISBN.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ISBN.Location = New System.Drawing.Point(83, 36)
         Me.ISBN.Name = "ISBN"
-        Me.ISBN.Size = New System.Drawing.Size(50, 19)
+        Me.ISBN.Size = New System.Drawing.Size(55, 20)
         Me.ISBN.TabIndex = 149
         Me.ISBN.Text = "ISBN :"
         '
@@ -361,40 +361,40 @@ Partial Class GestionLibrosAltas
         '
         Me.TextBox_ISBN.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_ISBN.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_ISBN.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_ISBN.Location = New System.Drawing.Point(139, 33)
         Me.TextBox_ISBN.MaxLength = 100
         Me.TextBox_ISBN.Name = "TextBox_ISBN"
-        Me.TextBox_ISBN.Size = New System.Drawing.Size(197, 22)
+        Me.TextBox_ISBN.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_ISBN.TabIndex = 1
         '
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label21.Location = New System.Drawing.Point(51, 92)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(82, 19)
+        Me.Label21.Size = New System.Drawing.Size(82, 20)
         Me.Label21.TabIndex = 151
         Me.Label21.Text = "Autor/res :"
         '
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label20.Location = New System.Drawing.Point(40, 123)
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(93, 19)
+        Me.Label20.Size = New System.Drawing.Size(95, 20)
         Me.Label20.TabIndex = 152
         Me.Label20.Text = "Nº Páginas :"
         '
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label19.Location = New System.Drawing.Point(60, 151)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(73, 19)
+        Me.Label19.Size = New System.Drawing.Size(74, 20)
         Me.Label19.TabIndex = 153
         Me.Label19.Tag = ""
         Me.Label19.Text = "Editorial :"
@@ -402,10 +402,10 @@ Partial Class GestionLibrosAltas
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.Location = New System.Drawing.Point(7, 204)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(126, 19)
+        Me.Label6.Size = New System.Drawing.Size(133, 20)
         Me.Label6.TabIndex = 154
         Me.Label6.Text = "Encuadernación :"
         '
@@ -433,15 +433,15 @@ Partial Class GestionLibrosAltas
         Me.VerLaAyudaToolStripMenuItem.Image = CType(resources.GetObject("VerLaAyudaToolStripMenuItem.Image"), System.Drawing.Image)
         Me.VerLaAyudaToolStripMenuItem.Name = "VerLaAyudaToolStripMenuItem"
         Me.VerLaAyudaToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.F1), System.Windows.Forms.Keys)
-        Me.VerLaAyudaToolStripMenuItem.Size = New System.Drawing.Size(189, 22)
+        Me.VerLaAyudaToolStripMenuItem.Size = New System.Drawing.Size(187, 22)
         Me.VerLaAyudaToolStripMenuItem.Text = "Ver la Ayuda"
         '
         'AyudaToolStripMenuItem
         '
         Me.AyudaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VerLaAyudaToolStripMenuItem})
-        Me.AyudaToolStripMenuItem.Font = New System.Drawing.Font("Gadugi", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AyudaToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.AyudaToolStripMenuItem.Name = "AyudaToolStripMenuItem"
-        Me.AyudaToolStripMenuItem.Size = New System.Drawing.Size(54, 20)
+        Me.AyudaToolStripMenuItem.Size = New System.Drawing.Size(52, 20)
         Me.AyudaToolStripMenuItem.Text = "Ayuda"
         '
         'SalirToolStripMenuItem
@@ -449,7 +449,7 @@ Partial Class GestionLibrosAltas
         Me.SalirToolStripMenuItem.Image = CType(resources.GetObject("SalirToolStripMenuItem.Image"), System.Drawing.Image)
         Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
         Me.SalirToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
-        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.SalirToolStripMenuItem.Text = "Salir..."
         '
         'BlocNotasToolStripMenuItem
@@ -457,7 +457,7 @@ Partial Class GestionLibrosAltas
         Me.BlocNotasToolStripMenuItem.Image = CType(resources.GetObject("BlocNotasToolStripMenuItem.Image"), System.Drawing.Image)
         Me.BlocNotasToolStripMenuItem.Name = "BlocNotasToolStripMenuItem"
         Me.BlocNotasToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D2), System.Windows.Forms.Keys)
-        Me.BlocNotasToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BlocNotasToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.BlocNotasToolStripMenuItem.Text = "Bloc Notas"
         '
         'CalculadoraToolStripMenuItem
@@ -465,15 +465,15 @@ Partial Class GestionLibrosAltas
         Me.CalculadoraToolStripMenuItem.Image = CType(resources.GetObject("CalculadoraToolStripMenuItem.Image"), System.Drawing.Image)
         Me.CalculadoraToolStripMenuItem.Name = "CalculadoraToolStripMenuItem"
         Me.CalculadoraToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D1), System.Windows.Forms.Keys)
-        Me.CalculadoraToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CalculadoraToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.CalculadoraToolStripMenuItem.Text = "Calculadora"
         '
         'HerramientasToolStripMenuItem
         '
         Me.HerramientasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CalculadoraToolStripMenuItem, Me.BlocNotasToolStripMenuItem, Me.SalirToolStripMenuItem})
-        Me.HerramientasToolStripMenuItem.Font = New System.Drawing.Font("Gadugi", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.HerramientasToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.HerramientasToolStripMenuItem.Name = "HerramientasToolStripMenuItem"
-        Me.HerramientasToolStripMenuItem.Size = New System.Drawing.Size(91, 20)
+        Me.HerramientasToolStripMenuItem.Size = New System.Drawing.Size(94, 20)
         Me.HerramientasToolStripMenuItem.Text = "Herramientas"
         '
         'MenuStripPagPrin

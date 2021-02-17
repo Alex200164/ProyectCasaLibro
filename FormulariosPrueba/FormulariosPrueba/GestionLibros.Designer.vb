@@ -132,10 +132,10 @@ Partial Class GestionLibros
         'Label_Autor
         '
         Me.Label_Autor.AutoSize = True
-        Me.Label_Autor.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label_Autor.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label_Autor.Location = New System.Drawing.Point(15, 84)
         Me.Label_Autor.Name = "Label_Autor"
-        Me.Label_Autor.Size = New System.Drawing.Size(55, 19)
+        Me.Label_Autor.Size = New System.Drawing.Size(56, 20)
         Me.Label_Autor.TabIndex = 181
         Me.Label_Autor.Text = "Autor :"
         '
@@ -143,11 +143,11 @@ Partial Class GestionLibros
         '
         Me.TextBox_Autor.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Autor.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Autor.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Autor.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Autor.Location = New System.Drawing.Point(71, 81)
         Me.TextBox_Autor.MaxLength = 100
         Me.TextBox_Autor.Name = "TextBox_Autor"
-        Me.TextBox_Autor.Size = New System.Drawing.Size(197, 22)
+        Me.TextBox_Autor.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Autor.TabIndex = 4
         Me.TextBox_Autor.Text = "100"
         '
@@ -173,20 +173,20 @@ Partial Class GestionLibros
         '
         Me.TextBox_Genero.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Genero.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Genero.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Genero.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Genero.Location = New System.Drawing.Point(723, 29)
         Me.TextBox_Genero.MaxLength = 100
         Me.TextBox_Genero.Name = "TextBox_Genero"
-        Me.TextBox_Genero.Size = New System.Drawing.Size(197, 22)
+        Me.TextBox_Genero.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Genero.TabIndex = 3
         '
         'Label_Genero
         '
         Me.Label_Genero.AutoSize = True
-        Me.Label_Genero.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label_Genero.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label_Genero.Location = New System.Drawing.Point(634, 29)
         Me.Label_Genero.Name = "Label_Genero"
-        Me.Label_Genero.Size = New System.Drawing.Size(67, 19)
+        Me.Label_Genero.Size = New System.Drawing.Size(71, 20)
         Me.Label_Genero.TabIndex = 169
         Me.Label_Genero.Text = "Género :"
         '
@@ -194,30 +194,30 @@ Partial Class GestionLibros
         '
         Me.TextBox_Titulo.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Titulo.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Titulo.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Titulo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Titulo.Location = New System.Drawing.Point(390, 26)
         Me.TextBox_Titulo.MaxLength = 100
         Me.TextBox_Titulo.Name = "TextBox_Titulo"
-        Me.TextBox_Titulo.Size = New System.Drawing.Size(197, 22)
+        Me.TextBox_Titulo.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Titulo.TabIndex = 2
         '
         'Label_Titulo
         '
         Me.Label_Titulo.AutoSize = True
-        Me.Label_Titulo.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label_Titulo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label_Titulo.Location = New System.Drawing.Point(329, 29)
         Me.Label_Titulo.Name = "Label_Titulo"
-        Me.Label_Titulo.Size = New System.Drawing.Size(55, 19)
+        Me.Label_Titulo.Size = New System.Drawing.Size(55, 20)
         Me.Label_Titulo.TabIndex = 167
         Me.Label_Titulo.Text = "Título :"
         '
         'Label_ISBN
         '
         Me.Label_ISBN.AutoSize = True
-        Me.Label_ISBN.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label_ISBN.Location = New System.Drawing.Point(15, 29)
         Me.Label_ISBN.Name = "Label_ISBN"
-        Me.Label_ISBN.Size = New System.Drawing.Size(50, 19)
+        Me.Label_ISBN.Size = New System.Drawing.Size(55, 20)
         Me.Label_ISBN.TabIndex = 165
         Me.Label_ISBN.Text = "ISBN :"
         '
@@ -225,11 +225,11 @@ Partial Class GestionLibros
         '
         Me.TextBox_ISBN.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_ISBN.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_ISBN.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_ISBN.Location = New System.Drawing.Point(71, 26)
         Me.TextBox_ISBN.MaxLength = 100
         Me.TextBox_ISBN.Name = "TextBox_ISBN"
-        Me.TextBox_ISBN.Size = New System.Drawing.Size(197, 22)
+        Me.TextBox_ISBN.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_ISBN.TabIndex = 1
         '
         'MenuStripPagPrin
@@ -246,9 +246,9 @@ Partial Class GestionLibros
         'HerramientasToolStripMenuItem
         '
         Me.HerramientasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CalculadoraToolStripMenuItem, Me.BlocNotasToolStripMenuItem, Me.SalirToolStripMenuItem})
-        Me.HerramientasToolStripMenuItem.Font = New System.Drawing.Font("Gadugi", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.HerramientasToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.HerramientasToolStripMenuItem.Name = "HerramientasToolStripMenuItem"
-        Me.HerramientasToolStripMenuItem.Size = New System.Drawing.Size(91, 20)
+        Me.HerramientasToolStripMenuItem.Size = New System.Drawing.Size(94, 20)
         Me.HerramientasToolStripMenuItem.Text = "Herramientas"
         '
         'CalculadoraToolStripMenuItem
@@ -256,7 +256,7 @@ Partial Class GestionLibros
         Me.CalculadoraToolStripMenuItem.Image = CType(resources.GetObject("CalculadoraToolStripMenuItem.Image"), System.Drawing.Image)
         Me.CalculadoraToolStripMenuItem.Name = "CalculadoraToolStripMenuItem"
         Me.CalculadoraToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D1), System.Windows.Forms.Keys)
-        Me.CalculadoraToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CalculadoraToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.CalculadoraToolStripMenuItem.Text = "Calculadora"
         '
         'BlocNotasToolStripMenuItem
@@ -264,7 +264,7 @@ Partial Class GestionLibros
         Me.BlocNotasToolStripMenuItem.Image = CType(resources.GetObject("BlocNotasToolStripMenuItem.Image"), System.Drawing.Image)
         Me.BlocNotasToolStripMenuItem.Name = "BlocNotasToolStripMenuItem"
         Me.BlocNotasToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D2), System.Windows.Forms.Keys)
-        Me.BlocNotasToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BlocNotasToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.BlocNotasToolStripMenuItem.Text = "Bloc Notas"
         '
         'SalirToolStripMenuItem
@@ -272,15 +272,15 @@ Partial Class GestionLibros
         Me.SalirToolStripMenuItem.Image = CType(resources.GetObject("SalirToolStripMenuItem.Image"), System.Drawing.Image)
         Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
         Me.SalirToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
-        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.SalirToolStripMenuItem.Text = "Salir..."
         '
         'AyudaToolStripMenuItem
         '
         Me.AyudaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VerLaAyudaToolStripMenuItem})
-        Me.AyudaToolStripMenuItem.Font = New System.Drawing.Font("Gadugi", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AyudaToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.AyudaToolStripMenuItem.Name = "AyudaToolStripMenuItem"
-        Me.AyudaToolStripMenuItem.Size = New System.Drawing.Size(54, 20)
+        Me.AyudaToolStripMenuItem.Size = New System.Drawing.Size(52, 20)
         Me.AyudaToolStripMenuItem.Text = "Ayuda"
         '
         'VerLaAyudaToolStripMenuItem
@@ -288,7 +288,7 @@ Partial Class GestionLibros
         Me.VerLaAyudaToolStripMenuItem.Image = CType(resources.GetObject("VerLaAyudaToolStripMenuItem.Image"), System.Drawing.Image)
         Me.VerLaAyudaToolStripMenuItem.Name = "VerLaAyudaToolStripMenuItem"
         Me.VerLaAyudaToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.F1), System.Windows.Forms.Keys)
-        Me.VerLaAyudaToolStripMenuItem.Size = New System.Drawing.Size(189, 22)
+        Me.VerLaAyudaToolStripMenuItem.Size = New System.Drawing.Size(187, 22)
         Me.VerLaAyudaToolStripMenuItem.Text = "Ver la Ayuda"
         '
         'Panel2
