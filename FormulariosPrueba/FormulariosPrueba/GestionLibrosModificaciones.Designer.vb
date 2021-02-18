@@ -43,7 +43,7 @@ Partial Class GestionLibrosModificaciones
         Me.TextBox_Titulo = New System.Windows.Forms.TextBox()
         Me.TextBox_Numeropags = New System.Windows.Forms.TextBox()
         Me.TextBox_Editorial = New System.Windows.Forms.TextBox()
-        Me.TextBox_Encuadrenacion = New System.Windows.Forms.TextBox()
+        Me.TextBox_Encuadernacion = New System.Windows.Forms.TextBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.CalculadoraToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TextBox_Autor = New System.Windows.Forms.TextBox()
@@ -268,16 +268,16 @@ Partial Class GestionLibrosModificaciones
         Me.TextBox_Editorial.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Editorial.TabIndex = 5
         '
-        'TextBox_Encuadrenacion
+        'TextBox_Encuadernacion
         '
-        Me.TextBox_Encuadrenacion.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_Encuadrenacion.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Encuadrenacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Encuadrenacion.Location = New System.Drawing.Point(139, 204)
-        Me.TextBox_Encuadrenacion.MaxLength = 100
-        Me.TextBox_Encuadrenacion.Name = "TextBox_Encuadrenacion"
-        Me.TextBox_Encuadrenacion.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_Encuadrenacion.TabIndex = 7
+        Me.TextBox_Encuadernacion.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_Encuadernacion.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Encuadernacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Encuadernacion.Location = New System.Drawing.Point(139, 204)
+        Me.TextBox_Encuadernacion.MaxLength = 100
+        Me.TextBox_Encuadernacion.Name = "TextBox_Encuadernacion"
+        Me.TextBox_Encuadernacion.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_Encuadernacion.TabIndex = 7
         '
         'Panel1
         '
@@ -448,7 +448,7 @@ Partial Class GestionLibrosModificaciones
         Me.GruopBox.Controls.Add(Me.TextBox_Autor)
         Me.GruopBox.Controls.Add(Me.TextBox_Numeropags)
         Me.GruopBox.Controls.Add(Me.TextBox_Editorial)
-        Me.GruopBox.Controls.Add(Me.TextBox_Encuadrenacion)
+        Me.GruopBox.Controls.Add(Me.TextBox_Encuadernacion)
         Me.GruopBox.Controls.Add(Me.TextBox_Idioma)
         Me.GruopBox.Controls.Add(Me.Label24)
         Me.GruopBox.Controls.Add(Me.Label5)
@@ -533,7 +533,7 @@ Partial Class GestionLibrosModificaciones
     Friend WithEvents TextBox_Titulo As TextBox
     Friend WithEvents TextBox_Numeropags As TextBox
     Friend WithEvents TextBox_Editorial As TextBox
-    Friend WithEvents TextBox_Encuadrenacion As TextBox
+    Friend WithEvents TextBox_Encuadernacion As TextBox
     Friend WithEvents Panel1 As Panel
     Friend WithEvents CalculadoraToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TextBox_Autor As TextBox

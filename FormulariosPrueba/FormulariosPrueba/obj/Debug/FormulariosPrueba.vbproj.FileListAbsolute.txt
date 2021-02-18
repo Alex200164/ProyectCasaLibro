@@ -68,3 +68,30 @@ F:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROL
 F:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.Resources.resources
 F:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.PruebaLayoutpanel.resources
 F:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.vbproj.GenerateResource.Cache
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\bin\Debug\FormulariosPrueba.exe.config
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\bin\Debug\FormulariosPrueba.exe
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\bin\Debug\FormulariosPrueba.pdb
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\bin\Debug\FormulariosPrueba.xml
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.vbprojAssemblyReference.cache
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionArticulos.resources
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionArticulosAltas.resources
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionArticulosModificaciones.resources
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionEmpleados.resources
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionEmpleadosAltas.resources
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionEmpleadosModificaciones.resources
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionLibros.resources
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.Form1.resources
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionLibrosAltas.resources
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionLibrosModificaciones.resources
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionSocios.resources
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionSociosAltas.resources
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionSociosModificaciones.resources
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.InicioSesion.resources
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.MenuPrincipal.resources
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.Resources.resources
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.PruebaLayoutpanel.resources
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.vbproj.GenerateResource.cache
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.vbproj.CoreCompileInputs.cache
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.exe
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.xml
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.pdb

@@ -75,10 +75,12 @@ Public Class GestionSocios
     Private Sub Button_Modificar_Click(sender As Object, e As EventArgs) Handles Button_Modificar.Click
         ' Posicionamos el formulario que vamos a mostrar.
         posicionarGestionModificaciones()
+
         ' Mostramos el formulario
         GestionSociosModificaciones.Show()
     End Sub
 
+    ' Método que se ejecuta al iniciarse el formulario
     Private Sub GestionSocios_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             ' Cargar la memoria del cache con datos.
@@ -87,14 +89,6 @@ Public Class GestionSocios
             ' cargar en el datagridview, le decimos de donde sacamos los datos
             DataGridView_Socios.DataSource = midataset
             DataGridView_Socios.DataMember = "Socios"
-
-            ' Relacionar los campos de la tabla con los textbox
-            GestionSociosModificaciones.TextBox_NumeroSocio.DataBindings.Add("text", midataset, "Socios.NumeroDeSocio")
-            GestionSociosModificaciones.TextBox_Nombre.DataBindings.Add("text", midataset, "Socios.Nombre")
-            GestionSociosModificaciones.TextBox_Apellidos.DataBindings.Add("text", midataset, "Socios.Apellidos")
-            GestionSociosModificaciones.TextBox_Telefono.DataBindings.Add("text", midataset, "Socios.Telefono")
-            GestionSociosModificaciones.TextBox_Correo.DataBindings.Add("text", midataset, "Socios.Correo")
-
 
         Catch ex As System.Data.OleDb.OleDbException
             MsgBox("Parece que algo ha salido mal. Revise que la base de datos no esté abierta durante la ejecución.", MsgBoxStyle.OkOnly, "Error - Base de datos")

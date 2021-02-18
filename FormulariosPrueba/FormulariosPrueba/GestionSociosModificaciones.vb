@@ -1,5 +1,4 @@
-﻿
-' Necesitamos importar el módelo de base de datos que vamos a utilizar, este es de access.
+﻿' Necesitamos importar el módelo de base de datos que vamos a utilizar, este es de access.
 Imports System.Data.OleDb
 
 Public Class GestionSociosModificaciones
@@ -44,12 +43,29 @@ Public Class GestionSociosModificaciones
         TextBox_Correo.Clear()
     End Sub
 
-    '  Método que se ejecuta al iniciarse el formulario.
+    '  Método que se ejecuta al iniciarse el formulario. El cual nos mostrará los datos de la Seleccion que hemos hecho en el DataGridView_Socios del formulario GestionSocios
+    '  en los textBox correspondientes. Para esto crearemos un nuevo comando, y lo asociaremos al midataset para obtener los datos que queremos
     Private Sub GestionSociosModificaciones_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Cargar la memoria del cache con datos.
-        GestionSocios.midataset.Clear()
-        adaptador.Fill(GestionSocios.midataset, "Socios")
+        'Creamos un comando nuevo con una Query nueva la cual vamos a usar para poder buscar un socio en concreto
+        Dim comando As New OleDbCommand(("select * from Socios where NumeroDeSocio = @numSocio"), conexion)
 
+        'Al adaptador le asignamos este nuevo comando "comando"
+        adaptador.SelectCommand = comando
+        'Al comando le vamos a pasar por parametro @numSocio (valor de tipo Numeric, 8) el cual va a ser cogido de la Fila(currentRow) seleccionada de la Columna 0 (NumeroSocio)
+        'del DataGridView_Socios del formulario GestionSocios. Es decir al seleccionar un elemento detectará cual es la fila y el valor de la columna 0 y lo pasará por parametro.
+        comando.Parameters.Add("@numSocio", OleDbType.Numeric, 8).Value = GestionSocios.DataGridView_Socios.Item(0, GestionSocios.DataGridView_Socios.CurrentRow.Index).Value
+
+        'Limpiamos el midataset para que no haya información residual
+        midataset.Clear() 'de este form 
+        'Asociamos el nuevo adaptador con el nuevo comando al midataset de la tabla Socios 
+        adaptador.Fill(midataset, "Socios")
+
+        'Se relacionan los campos de la tabla con los textbox y se muestran los datos del registro que queremos modificar.
+        Me.TextBox_NumeroSocio.DataBindings.Add("text", midataset, "Socios.NumeroDeSocio")
+        Me.TextBox_Nombre.DataBindings.Add("text", midataset, "Socios.Nombre")
+        Me.TextBox_Apellidos.DataBindings.Add("text", midataset, "Socios.Apellidos")
+        Me.TextBox_Telefono.DataBindings.Add("text", midataset, "Socios.Telefono")
+        Me.TextBox_Correo.DataBindings.Add("text", midataset, "Socios.Correo")
 
     End Sub
 
