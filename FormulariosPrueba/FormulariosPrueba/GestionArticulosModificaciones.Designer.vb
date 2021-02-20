@@ -25,18 +25,18 @@ Partial Class GestionArticulosModificaciones
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionArticulosModificaciones))
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.GruopBox = New System.Windows.Forms.GroupBox()
-        Me.Button_Guardar_Alta = New System.Windows.Forms.Button()
+        Me.TextBox_Precio = New System.Windows.Forms.TextBox()
+        Me.Button_Modificar = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox_Nombre = New System.Windows.Forms.TextBox()
         Me.TextBox_Categoria = New System.Windows.Forms.TextBox()
         Me.TextBox_Stock = New System.Windows.Forms.TextBox()
-        Me.TextBox_Precio = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.ISBN = New System.Windows.Forms.Label()
         Me.TextBox_ISBN = New System.Windows.Forms.TextBox()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Label20 = New System.Windows.Forms.Label()
-        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label_Precio = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -63,18 +63,18 @@ Partial Class GestionArticulosModificaciones
         '
         'GruopBox
         '
-        Me.GruopBox.Controls.Add(Me.Button_Guardar_Alta)
+        Me.GruopBox.Controls.Add(Me.TextBox_Precio)
+        Me.GruopBox.Controls.Add(Me.Button_Modificar)
         Me.GruopBox.Controls.Add(Me.Button1)
         Me.GruopBox.Controls.Add(Me.TextBox_Nombre)
         Me.GruopBox.Controls.Add(Me.TextBox_Categoria)
         Me.GruopBox.Controls.Add(Me.TextBox_Stock)
-        Me.GruopBox.Controls.Add(Me.TextBox_Precio)
         Me.GruopBox.Controls.Add(Me.Label5)
         Me.GruopBox.Controls.Add(Me.ISBN)
         Me.GruopBox.Controls.Add(Me.TextBox_ISBN)
         Me.GruopBox.Controls.Add(Me.Label21)
         Me.GruopBox.Controls.Add(Me.Label20)
-        Me.GruopBox.Controls.Add(Me.Label19)
+        Me.GruopBox.Controls.Add(Me.Label_Precio)
         Me.GruopBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GruopBox.ForeColor = System.Drawing.Color.Black
         Me.GruopBox.Location = New System.Drawing.Point(15, 16)
@@ -84,14 +84,25 @@ Partial Class GestionArticulosModificaciones
         Me.GruopBox.TabStop = False
         Me.GruopBox.Text = "Añadir/Modificar Artículo"
         '
-        'Button_Guardar_Alta
+        'TextBox_Precio
         '
-        Me.Button_Guardar_Alta.Location = New System.Drawing.Point(482, 125)
-        Me.Button_Guardar_Alta.Name = "Button_Guardar_Alta"
-        Me.Button_Guardar_Alta.Size = New System.Drawing.Size(86, 29)
-        Me.Button_Guardar_Alta.TabIndex = 180
-        Me.Button_Guardar_Alta.Text = "Guard/Alta"
-        Me.Button_Guardar_Alta.UseVisualStyleBackColor = True
+        Me.TextBox_Precio.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_Precio.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Precio.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Precio.Location = New System.Drawing.Point(453, 36)
+        Me.TextBox_Precio.MaxLength = 100
+        Me.TextBox_Precio.Name = "TextBox_Precio"
+        Me.TextBox_Precio.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_Precio.TabIndex = 181
+        '
+        'Button_Modificar
+        '
+        Me.Button_Modificar.Location = New System.Drawing.Point(482, 125)
+        Me.Button_Modificar.Name = "Button_Modificar"
+        Me.Button_Modificar.Size = New System.Drawing.Size(86, 29)
+        Me.Button_Modificar.TabIndex = 180
+        Me.Button_Modificar.Text = "Modificar"
+        Me.Button_Modificar.UseVisualStyleBackColor = True
         '
         'Button1
         '
@@ -129,22 +140,11 @@ Partial Class GestionArticulosModificaciones
         Me.TextBox_Stock.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Stock.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Stock.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Stock.Location = New System.Drawing.Point(456, 36)
+        Me.TextBox_Stock.Location = New System.Drawing.Point(453, 63)
         Me.TextBox_Stock.MaxLength = 100
         Me.TextBox_Stock.Name = "TextBox_Stock"
         Me.TextBox_Stock.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Stock.TabIndex = 4
-        '
-        'TextBox_Precio
-        '
-        Me.TextBox_Precio.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_Precio.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Precio.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Precio.Location = New System.Drawing.Point(456, 64)
-        Me.TextBox_Precio.MaxLength = 100
-        Me.TextBox_Precio.Name = "TextBox_Precio"
-        Me.TextBox_Precio.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_Precio.TabIndex = 5
         '
         'Label5
         '
@@ -191,22 +191,22 @@ Partial Class GestionArticulosModificaciones
         '
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.Location = New System.Drawing.Point(395, 36)
+        Me.Label20.Location = New System.Drawing.Point(389, 63)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(58, 20)
         Me.Label20.TabIndex = 152
         Me.Label20.Text = "Stock :"
         '
-        'Label19
+        'Label_Precio
         '
-        Me.Label19.AutoSize = True
-        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(391, 64)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(61, 20)
-        Me.Label19.TabIndex = 153
-        Me.Label19.Tag = ""
-        Me.Label19.Text = "Precio :"
+        Me.Label_Precio.AutoSize = True
+        Me.Label_Precio.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label_Precio.Location = New System.Drawing.Point(389, 36)
+        Me.Label_Precio.Name = "Label_Precio"
+        Me.Label_Precio.Size = New System.Drawing.Size(61, 20)
+        Me.Label_Precio.TabIndex = 153
+        Me.Label_Precio.Tag = ""
+        Me.Label_Precio.Text = "Precio :"
         '
         'PictureBox1
         '
@@ -313,18 +313,17 @@ Partial Class GestionArticulosModificaciones
 
     Friend WithEvents Panel2 As Panel
     Friend WithEvents GruopBox As GroupBox
-    Friend WithEvents Button_Guardar_Alta As Button
+    Friend WithEvents Button_Modificar As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents TextBox_Nombre As TextBox
     Friend WithEvents TextBox_Categoria As TextBox
     Friend WithEvents TextBox_Stock As TextBox
-    Friend WithEvents TextBox_Precio As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents ISBN As Label
     Friend WithEvents TextBox_ISBN As TextBox
     Friend WithEvents Label21 As Label
     Friend WithEvents Label20 As Label
-    Friend WithEvents Label19 As Label
+    Friend WithEvents Label_Precio As Label
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Panel1 As Panel
     Friend WithEvents AyudaToolStripMenuItem As ToolStripMenuItem
@@ -334,4 +333,5 @@ Partial Class GestionArticulosModificaciones
     Friend WithEvents CalculadoraToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents HerramientasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MenuStripPagPrin As MenuStrip
+    Friend WithEvents TextBox_Precio As TextBox
 End Class

@@ -1,5 +1,4 @@
-﻿
-' Necesitamos importar el módelo de base de datos que vamos a utilizar, este es de access.
+﻿' Necesitamos importar el módelo de base de datos que vamos a utilizar, este es de access.
 Imports System.Data.OleDb
 
 Public Class GestionSociosAltas

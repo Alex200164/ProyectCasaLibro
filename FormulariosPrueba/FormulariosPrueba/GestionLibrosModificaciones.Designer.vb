@@ -25,7 +25,7 @@ Partial Class GestionLibrosModificaciones
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionLibrosModificaciones))
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.VerLaAyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Button_Guardar_Alta = New System.Windows.Forms.Button()
+        Me.Button_Modificar = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox_Formato = New System.Windows.Forms.TextBox()
         Me.TextBox_Precio = New System.Windows.Forms.TextBox()
@@ -87,14 +87,14 @@ Partial Class GestionLibrosModificaciones
         Me.VerLaAyudaToolStripMenuItem.Size = New System.Drawing.Size(187, 22)
         Me.VerLaAyudaToolStripMenuItem.Text = "Ver la Ayuda"
         '
-        'Button_Guardar_Alta
+        'Button_Modificar
         '
-        Me.Button_Guardar_Alta.Location = New System.Drawing.Point(506, 241)
-        Me.Button_Guardar_Alta.Name = "Button_Guardar_Alta"
-        Me.Button_Guardar_Alta.Size = New System.Drawing.Size(86, 29)
-        Me.Button_Guardar_Alta.TabIndex = 178
-        Me.Button_Guardar_Alta.Text = "Guard/Alta"
-        Me.Button_Guardar_Alta.UseVisualStyleBackColor = True
+        Me.Button_Modificar.Location = New System.Drawing.Point(506, 241)
+        Me.Button_Modificar.Name = "Button_Modificar"
+        Me.Button_Modificar.Size = New System.Drawing.Size(86, 29)
+        Me.Button_Modificar.TabIndex = 178
+        Me.Button_Modificar.Text = "Modificar"
+        Me.Button_Modificar.UseVisualStyleBackColor = True
         '
         'Button1
         '
@@ -432,7 +432,7 @@ Partial Class GestionLibrosModificaciones
         '
         'GruopBox
         '
-        Me.GruopBox.Controls.Add(Me.Button_Guardar_Alta)
+        Me.GruopBox.Controls.Add(Me.Button_Modificar)
         Me.GruopBox.Controls.Add(Me.Button1)
         Me.GruopBox.Controls.Add(Me.TextBox_Formato)
         Me.GruopBox.Controls.Add(Me.TextBox_Precio)
@@ -515,7 +515,7 @@ Partial Class GestionLibrosModificaciones
 
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents VerLaAyudaToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents Button_Guardar_Alta As Button
+    Friend WithEvents Button_Modificar As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents TextBox_Formato As TextBox
     Friend WithEvents TextBox_Precio As TextBox

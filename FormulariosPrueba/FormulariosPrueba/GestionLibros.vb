@@ -11,6 +11,14 @@ Public Class GestionLibros
     ' Aquí alojaremos los datos de la DB
     Public midataset As New DataSet
 
+    Public posicionDataGridSeleccionada As Integer
+
+
+    ' Método que se ejecuta al pulsar en una de las cajas del DataGridView
+    Private Sub DataGridView_Socios_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView_Libros.CellClick
+        posicionDataGridSeleccionada = BindingContext(midataset, "Libros").Position
+    End Sub
+
     ' Método que se ejecuta cuando el botón "Salir..." del ToolStrip es pulsado y que nos lleva al formulario "MenuPrincipal"
     Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click
         ' Especificamos la posición de la ventana

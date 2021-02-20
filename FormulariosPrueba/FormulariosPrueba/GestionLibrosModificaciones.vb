@@ -51,21 +51,21 @@ Public Class GestionLibrosModificaciones
         TextBox_Stock.Clear()
     End Sub
 
-    '  Método que se ejecuta al iniciarse el formulario. El cual nos mostrará los datos de la Seleccion que hemos hecho en el DataGridView_Socios del formulario GestionSocios
+    '  Método que se ejecuta al iniciarse el formulario. El cual nos mostrará los datos de la Seleccion que hemos hecho en el DataGridView_Libross del formulario GestionLibros
     '  en los textBox correspondientes. Para esto crearemos un nuevo comando, y lo asociaremos al midataset para obtener los datos que queremos
-    Private Sub GestionSociosModificaciones_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'Creamos un comando nuevo con una Query nueva la cual vamos a usar para poder buscar un socio en concreto
+    Private Sub GestionLibrosModificaciones_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Creamos un comando nuevo con una Query nueva la cual vamos a usar para poder buscar un libro en concreto
         Dim comando As New OleDbCommand(("select * from Libros where ISBN = @ISBN"), conexion)
 
         'Al adaptador le asignamos este nuevo comando "comando"
         adaptador.SelectCommand = comando
-        'Al comando le vamos a pasar por parametro @numSocio (valor de tipo Numeric, 8) el cual va a ser cogido de la Fila(currentRow) seleccionada de la Columna 0 (NumeroSocio)
-        'del DataGridView_Socios del formulario GestionSocios. Es decir al seleccionar un elemento detectará cual es la fila y el valor de la columna 0 y lo pasará por parametro.
+        'Al comando le vamos a pasar por parametro @ISBN (valor de tipo Numeric, 8) el cual va a ser cogido de la Fila(currentRow) seleccionada de la Columna 0 (ISBN)
+        'del DataGridView_Libros del formulario GestionLibros. Es decir al seleccionar un elemento detectará cual es la fila y el valor de la columna 0 y lo pasará por parametro.
         comando.Parameters.Add("@ISBN", OleDbType.Numeric, 13).Value = GestionLibros.DataGridView_Libros.Item(0, GestionLibros.DataGridView_Libros.CurrentRow.Index).Value
 
         'Limpiamos el midataset para que no haya información residual
         midataset.Clear() 'de este form 
-        'Asociamos el nuevo adaptador con el nuevo comando al midataset de la tabla Socios 
+        'Asociamos el nuevo adaptador con el nuevo comando al midataset de la tabla Libros
         adaptador.Fill(midataset, "Libros")
 
         'Se relacionan los campos de la tabla con los textbox y se muestran los datos del registro que queremos modificar.
@@ -87,38 +87,48 @@ Public Class GestionLibrosModificaciones
 
     ' Método que se ejecuta al pulsarse el botón "Modificar"
     ' Se encarga de modificar los datos ya existentes en la DB
-    'Private Sub Button_Modificar_Click(sender As Object, e As EventArgs) Handles Button_Modificar.Click
-    '    If TextBox_NumeroSocio.Text = "" Or TextBox_Nombre.Text = "" Or TextBox_Apellidos.Text = "" Or TextBox_Telefono.Text = "" Or TextBox_Correo.Text = "" Then
-    '        MsgBox("Debes seleccionar un registro para actualizarlo y si lo has seleccionado, no debe quedar ningún campo en blanco", MsgBoxStyle.OkOnly, "Error al dar de alta.")
-    '    Else
-    '        Dim cb As New OleDbCommandBuilder(adaptador)
-    '        adaptador.UpdateCommand = cb.GetUpdateCommand
+    Private Sub Button_Modificar_Click(sender As Object, e As EventArgs) Handles Button_Modificar.Click
+        If TextBox_ISBN.Text = "" Or TextBox_Titulo.Text = "" Or TextBox_Autor.Text = "" Or TextBox_Numeropags.Text = "" Or
+            TextBox_Editorial.Text = "" Or TextBox_Idioma.Text = "" Or TextBox_Encuadernacion.Text = "" Or TextBox_Annoedicion.Text = "" Or
+            TextBox_Plazaedicion.Text = "" Or TextBox_Traductor.Text = "" Or TextBox_Formato.Text = "" Or TextBox_Precio.Text = "" Or TextBox_Stock.Text = "" Then
+            MsgBox("Debes seleccionar un registro para actualizarlo y si lo has seleccionado, no debe quedar ningún campo en blanco", MsgBoxStyle.OkOnly, "Error al dar de alta.")
+        Else
+            Dim cb As New OleDbCommandBuilder(adaptador)
+            adaptador.UpdateCommand = cb.GetUpdateCommand
 
-    '        Dim a As Integer = GestionSocios.posicionDataGridSeleccionada
+            Dim a As Integer = GestionLibros.posicionDataGridSeleccionada
 
-    '        Dim fila As DataRow = GestionSocios.midataset.Tables("Socios").Rows(a)
+            Dim fila As DataRow = GestionLibros.midataset.Tables("Libros").Rows(a)
 
-    '        ' Comenzamos la edición
-    '        fila.BeginEdit()
-    '        fila("NumeroDeSocio") = TextBox_NumeroSocio.Text
-    '        fila("Nombre") = TextBox_Nombre.Text
-    '        fila("Apellidos") = TextBox_Apellidos.Text
-    '        fila("Telefono") = TextBox_Telefono.Text
-    '        fila("Correo") = TextBox_Correo.Text
-    '        fila.EndEdit()
-    '        ' Finalizamos la edición
+            ' Comenzamos la edición
+            fila.BeginEdit()
+            fila("ISBN") = TextBox_ISBN.Text
+            fila("Titulo") = TextBox_Titulo.Text
+            fila("Autor/es") = TextBox_Autor.Text
+            fila("Paginas") = TextBox_Numeropags.Text
+            fila("Editorial") = TextBox_Editorial.Text
+            fila("Idioma") = TextBox_Idioma.Text
+            fila("Encuadernacion") = TextBox_Encuadernacion.Text
+            fila("Anno_edicion") = TextBox_Annoedicion.Text
+            fila("Plaza_de_edicion") = TextBox_Plazaedicion.Text
+            fila("Traductor") = TextBox_Traductor.Text
+            fila("Formato") = TextBox_Formato.Text
+            fila("Precio") = TextBox_Precio.Text
+            fila("Stock") = TextBox_Stock.Text
+            fila.EndEdit()
+            ' Finalizamos la edición
 
-    '        ' Ejecutamos la sentencia
-    '        adaptador.Update(GestionSocios.midataset.Tables("Socios"))
+            ' Ejecutamos la sentencia
+            adaptador.Update(GestionLibros.midataset.Tables("Libros"))
 
-    '        ' Actualizamos el dataGridView del formulario de gestión principal
-    '        GestionSocios.midataset.Clear()
-    '        GestionSocios.adaptador.Fill(GestionSocios.midataset, "Socios")
+            ' Actualizamos el dataGridView del formulario de gestión principal
+            GestionLibros.midataset.Clear()
+            GestionLibros.adaptador.Fill(GestionLibros.midataset, "Libros")
 
-    '        ' Cerramos la ventana
-    '        Me.Close()
+            ' Cerramos la ventana
+            Me.Close()
 
 
-    '    End If
-    'End Sub
+        End If
+    End Sub
 End Class

@@ -11,6 +11,14 @@ Public Class GestionArticulos
     ' Aquí alojaremos los datos de la DB
     Public midataset As New DataSet
 
+    Public posicionDataGridSeleccionada As Integer
+
+
+    ' Método que se ejecuta al pulsar en una de las cajas del DataGridView
+    Private Sub DataGridView_Articulos_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView_Articulos.CellClick
+        posicionDataGridSeleccionada = BindingContext(midataset, "Productos").Position
+    End Sub
+
     ' Método que se ejecuta cuando el botón "Salir..." del ToolStrip es pulsado y que nos lleva al formulario "MenuPrincipal"
     Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click
         ' Especificamos la posición de la ventana
@@ -109,5 +117,21 @@ Public Class GestionArticulos
             MsgBox("Ha ocurrido un error, no se pudo iniciar la calculadora.", MsgBoxStyle.OkOnly, "Error (proceso calculadora)")
         End Try
     End Sub
+
+    'Private Sub Form1_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
+    '    ' Preguntamos al usuario si desea salir o no de la aplicación
+    '    If MsgBox("¿Esta seguro de que desea salir de la aplicación?", 36, "Salir") = 6 Then
+    '        ' Especificamos la posición de la ventana
+    '        posicionarFormularioMenuPrincipal()
+
+    '        ' Mostramos el menú principal.
+    '        MenuPrincipal.Show()
+
+    '        ' Cerramos este formulario
+    '        Me.Close()
+    '    End If
+
+
+    ' End Sub
 
 End Class

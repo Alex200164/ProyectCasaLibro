@@ -25,8 +25,8 @@ Partial Class GestionLibrosAltas
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionLibrosAltas))
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.GruopBox = New System.Windows.Forms.GroupBox()
-        Me.Button_Guardar_Alta = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button_Alta = New System.Windows.Forms.Button()
+        Me.Button_Limpiar = New System.Windows.Forms.Button()
         Me.TextBox_Formato = New System.Windows.Forms.TextBox()
         Me.TextBox_Precio = New System.Windows.Forms.TextBox()
         Me.TextBox_Stock = New System.Windows.Forms.TextBox()
@@ -41,7 +41,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Autor = New System.Windows.Forms.TextBox()
         Me.TextBox_Numeropags = New System.Windows.Forms.TextBox()
         Me.TextBox_Editorial = New System.Windows.Forms.TextBox()
-        Me.TextBox_Encuadrenacion = New System.Windows.Forms.TextBox()
+        Me.TextBox_Encuadernacion = New System.Windows.Forms.TextBox()
         Me.TextBox_Idioma = New System.Windows.Forms.TextBox()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -79,8 +79,8 @@ Partial Class GestionLibrosAltas
         '
         'GruopBox
         '
-        Me.GruopBox.Controls.Add(Me.Button_Guardar_Alta)
-        Me.GruopBox.Controls.Add(Me.Button1)
+        Me.GruopBox.Controls.Add(Me.Button_Alta)
+        Me.GruopBox.Controls.Add(Me.Button_Limpiar)
         Me.GruopBox.Controls.Add(Me.TextBox_Formato)
         Me.GruopBox.Controls.Add(Me.TextBox_Precio)
         Me.GruopBox.Controls.Add(Me.TextBox_Stock)
@@ -95,7 +95,7 @@ Partial Class GestionLibrosAltas
         Me.GruopBox.Controls.Add(Me.TextBox_Autor)
         Me.GruopBox.Controls.Add(Me.TextBox_Numeropags)
         Me.GruopBox.Controls.Add(Me.TextBox_Editorial)
-        Me.GruopBox.Controls.Add(Me.TextBox_Encuadrenacion)
+        Me.GruopBox.Controls.Add(Me.TextBox_Encuadernacion)
         Me.GruopBox.Controls.Add(Me.TextBox_Idioma)
         Me.GruopBox.Controls.Add(Me.Label24)
         Me.GruopBox.Controls.Add(Me.Label5)
@@ -116,23 +116,23 @@ Partial Class GestionLibrosAltas
         Me.GruopBox.TabStop = False
         Me.GruopBox.Text = "Gestión de artículos"
         '
-        'Button_Guardar_Alta
+        'Button_Alta
         '
-        Me.Button_Guardar_Alta.Location = New System.Drawing.Point(506, 241)
-        Me.Button_Guardar_Alta.Name = "Button_Guardar_Alta"
-        Me.Button_Guardar_Alta.Size = New System.Drawing.Size(86, 29)
-        Me.Button_Guardar_Alta.TabIndex = 178
-        Me.Button_Guardar_Alta.Text = "Guard/Alta"
-        Me.Button_Guardar_Alta.UseVisualStyleBackColor = True
+        Me.Button_Alta.Location = New System.Drawing.Point(506, 241)
+        Me.Button_Alta.Name = "Button_Alta"
+        Me.Button_Alta.Size = New System.Drawing.Size(86, 29)
+        Me.Button_Alta.TabIndex = 178
+        Me.Button_Alta.Text = "Guard/Alta"
+        Me.Button_Alta.UseVisualStyleBackColor = True
         '
-        'Button1
+        'Button_Limpiar
         '
-        Me.Button1.Location = New System.Drawing.Point(598, 241)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(86, 29)
-        Me.Button1.TabIndex = 176
-        Me.Button1.Text = "Limpiar"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button_Limpiar.Location = New System.Drawing.Point(598, 241)
+        Me.Button_Limpiar.Name = "Button_Limpiar"
+        Me.Button_Limpiar.Size = New System.Drawing.Size(86, 29)
+        Me.Button_Limpiar.TabIndex = 176
+        Me.Button_Limpiar.Text = "Limpiar"
+        Me.Button_Limpiar.UseVisualStyleBackColor = True
         '
         'TextBox_Formato
         '
@@ -284,16 +284,16 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Editorial.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Editorial.TabIndex = 5
         '
-        'TextBox_Encuadrenacion
+        'TextBox_Encuadernacion
         '
-        Me.TextBox_Encuadrenacion.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_Encuadrenacion.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Encuadrenacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Encuadrenacion.Location = New System.Drawing.Point(139, 204)
-        Me.TextBox_Encuadrenacion.MaxLength = 100
-        Me.TextBox_Encuadrenacion.Name = "TextBox_Encuadrenacion"
-        Me.TextBox_Encuadrenacion.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_Encuadrenacion.TabIndex = 7
+        Me.TextBox_Encuadernacion.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_Encuadernacion.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Encuadernacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Encuadernacion.Location = New System.Drawing.Point(139, 204)
+        Me.TextBox_Encuadernacion.MaxLength = 100
+        Me.TextBox_Encuadernacion.Name = "TextBox_Encuadernacion"
+        Me.TextBox_Encuadernacion.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_Encuadernacion.TabIndex = 7
         '
         'TextBox_Idioma
         '
@@ -515,8 +515,8 @@ Partial Class GestionLibrosAltas
 
     Friend WithEvents Panel2 As Panel
     Friend WithEvents GruopBox As GroupBox
-    Friend WithEvents Button_Guardar_Alta As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents Button_Alta As Button
+    Friend WithEvents Button_Limpiar As Button
     Friend WithEvents TextBox_Formato As TextBox
     Friend WithEvents TextBox_Precio As TextBox
     Friend WithEvents TextBox_Stock As TextBox
@@ -531,7 +531,7 @@ Partial Class GestionLibrosAltas
     Friend WithEvents TextBox_Autor As TextBox
     Friend WithEvents TextBox_Numeropags As TextBox
     Friend WithEvents TextBox_Editorial As TextBox
-    Friend WithEvents TextBox_Encuadrenacion As TextBox
+    Friend WithEvents TextBox_Encuadernacion As TextBox
     Friend WithEvents TextBox_Idioma As TextBox
     Friend WithEvents Label24 As Label
     Friend WithEvents Label5 As Label
