@@ -3,6 +3,13 @@ Imports System.Data.OleDb
 
 Public Class GestionArticulos
 
+    'Declaramos el botón  Modificar que será creado dinamicamente junto a los resgistros del DataGridView.
+    Public button_din_modificar As New DataGridViewButtonColumn 'Creamos el botón.
+
+    'Creamos in estilo que aplicaremos a las caracteristicas del botón Modificar.
+    Public style As New DataGridViewCellStyle
+
+
     ' Especificamos la base de datos a la que nos vamos a conectar.
     Public conexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=CasaLibroDB.accdb")
     ' Al adaptador le asignamos la conexion que acabamos de realizar y una consulta
@@ -64,13 +71,6 @@ Public Class GestionArticulos
         MenuPrincipal.Location = New Point(a, b)
     End Sub
 
-    ' Método que se ejecuta cuando el botón "Modificar" es pulsado.
-    Private Sub Button_Modificar_Click(sender As Object, e As EventArgs) Handles Button_Modificar.Click
-        ' Posicionamos el formulario que vamos a mostrar.
-        posicionarGestionModificaciones()
-        ' Mostramos el formulario
-        GestionArticulosModificaciones.Show()
-    End Sub
 
     ' Método que se ejecuta cuando el botón "Añadir" es pulsado.
     Private Sub Button_Annadir_Click(sender As Object, e As EventArgs) Handles Button_Annadir.Click
@@ -91,6 +91,12 @@ Public Class GestionArticulos
             DataGridView_Articulos.DataSource = midataset
             DataGridView_Articulos.DataMember = "Productos"
 
+            'Deshabilita la visibilidad del Item Gestión de articulos, ya que estamos en dicho form.
+            GestiónArticulosToolStripMenuItem.Visible = False
+
+            'Creación en la ultima columna del DataGridView el botón de modificar en cada registro.
+            crearButton()
+
         Catch ex As System.Data.OleDb.OleDbException
             MsgBox("Parece que algo ha salido mal. Revise que la base de datos no esté abierta durante la ejecución.", MsgBoxStyle.OkOnly, "Error - Base de datos")
 
@@ -106,6 +112,49 @@ Public Class GestionArticulos
         End Try
     End Sub
 
+    'Método que crea y da formato al botón de modificar, en cada una de los registros del DataGridView. 
+    'Este bóton abrirá el formulario de GestionArticulos. 
+    Public Sub crearButton()
+        'style.BackColor when the button Is Not selected
+        style.BackColor = Color.White
+
+        'Le asignamos un nombre   
+        button_din_modificar.Name = "Modificar"
+        'Le asignamos un tamaño
+        button_din_modificar.Width = 50
+        'declare a DataGridViewCellStyle
+        button_din_modificar.FlatStyle = FlatStyle.Popup
+
+        'Cargar en la ultima columna del DataGridView, la creación y el estilo del botón interno.
+        DataGridView_Articulos.Columns.Add(button_din_modificar)
+    End Sub
+
+    'Metodo evento que capta la puslación en la celda relativa al botón. 
+    Private Sub DataGridView1_CellContentClick(sender As System.Object, e As DataGridViewCellEventArgs) Handles DataGridView_Articulos.CellContentClick
+
+        'Convierte el objeto en sender
+        Dim senderGrid = DirectCast(sender, DataGridView)
+
+        'Comprueba que es una columna del data gridview que tiene el evento y que tiene indice mayor que 0
+        'Si es correcto se ejecutará el comando de abrir GesitonArticulos
+        If TypeOf senderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso e.RowIndex >= 0 Then
+            ' Posicionamos el formulario que vamos a mostrar.
+            posicionarGestionModificaciones()
+            ' Mostramos el formulario
+            GestionArticulosModificaciones.Show()
+        End If
+    End Sub
+
+    '**********************************************************************245234523452345345**************************TENGO QUE COMENTARLO
+    Private Sub DataGridView1_CellPainting(ByVal sender As Object, ByVal e As DataGridViewCellPaintingEventArgs) Handles DataGridView_Articulos.CellPainting
+        If e.ColumnIndex = 5 AndAlso e.RowIndex >= 0 Then
+            e.Paint(e.CellBounds, DataGridViewPaintParts.All)
+            'Liena de código que calcula la posicion de el dibujo en concreto.
+            e.Graphics.DrawImage(My.Resources.Webp_net_resizeimage_6_, CInt((e.CellBounds.Width / 2) - (My.Resources.Webp_net_resizeimage_6_.Width / 2)) + e.CellBounds.X, CInt((e.CellBounds.Height / 2) - (My.Resources.Webp_net_resizeimage_6_.Height / 2)) + e.CellBounds.Y)
+            e.Handled = True
+        End If
+    End Sub
+
     ' Método que se ejecuta cuando es pulsado el botón "Calculadora" del menuStrip
     Private Sub CalculadoraToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculadoraToolStripMenuItem.Click
         ' Try catch para atrapar el error en caso de que el ordenador del usuario
@@ -117,6 +166,29 @@ Public Class GestionArticulos
             MsgBox("Ha ocurrido un error, no se pudo iniciar la calculadora.", MsgBoxStyle.OkOnly, "Error (proceso calculadora)")
         End Try
     End Sub
+
+    ' Método que se ejecuta cuando es pulsado el botón "Gestion de Libros" del menuStrip
+    Private Sub GestiónLibrosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles GestiónLibrosToolStripMenuItem1.Click
+        If MsgBox("¿Está seguro de que desea cambiar de formulario?", 36, "Salir") = 6 Then
+            GestionLibros.Show()
+        End If
+    End Sub
+
+    ' Método que se ejecuta cuando es pulsado el botón "Gestion de Socios" del menuStrip
+    Private Sub GestiónDeSociosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GestiónDeSociosToolStripMenuItem.Click
+        If MsgBox("¿Está seguro de que desea cambiar de formulario?", 36, "Salir") = 6 Then
+            GestionSocios.Show()
+        End If
+    End Sub
+
+    ' Método que se ejecuta cuando es pulsado el botón "Gestion de Empleados" del menuStrip
+    Private Sub GestiónEmpleadosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles GestiónEmpleadosToolStripMenuItem1.Click
+        If MsgBox("¿Está seguro de que desea cambiar de formulario?", 36, "Salir") = 6 Then
+            GestionEmpleados.Show()
+        End If
+    End Sub
+
+
 
     'Private Sub Form1_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
     '    ' Preguntamos al usuario si desea salir o no de la aplicación

@@ -49,6 +49,14 @@ Partial Class GestionSocios
         Me.DataGridView_Socios = New System.Windows.Forms.DataGridView()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.GestiónLibrosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GestiónLibrosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GestiónArticulosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GestiónDeArticulosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GestiónSociosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GestiónDeSociosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GestiónEmpleadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GestiónEmpleadosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStripPagPrin.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -219,7 +227,7 @@ Partial Class GestionSocios
         'MenuStripPagPrin
         '
         Me.MenuStripPagPrin.BackColor = System.Drawing.Color.Transparent
-        Me.MenuStripPagPrin.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HerramientasToolStripMenuItem, Me.AyudaToolStripMenuItem})
+        Me.MenuStripPagPrin.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HerramientasToolStripMenuItem, Me.GestiónLibrosToolStripMenuItem, Me.GestiónArticulosToolStripMenuItem, Me.GestiónSociosToolStripMenuItem, Me.GestiónEmpleadosToolStripMenuItem, Me.AyudaToolStripMenuItem})
         Me.MenuStripPagPrin.Location = New System.Drawing.Point(0, 0)
         Me.MenuStripPagPrin.Name = "MenuStripPagPrin"
         Me.MenuStripPagPrin.Size = New System.Drawing.Size(984, 24)
@@ -303,10 +311,66 @@ Partial Class GestionSocios
         '
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(56, Byte), Integer))
         Me.Panel2.Controls.Add(Me.PictureBox1)
-        Me.Panel2.Location = New System.Drawing.Point(0, 29)
+        Me.Panel2.Location = New System.Drawing.Point(0, 27)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(984, 94)
         Me.Panel2.TabIndex = 51
+        '
+        'GestiónLibrosToolStripMenuItem
+        '
+        Me.GestiónLibrosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónLibrosToolStripMenuItem1})
+        Me.GestiónLibrosToolStripMenuItem.Name = "GestiónLibrosToolStripMenuItem"
+        Me.GestiónLibrosToolStripMenuItem.Size = New System.Drawing.Size(51, 20)
+        Me.GestiónLibrosToolStripMenuItem.Text = "Libros"
+        '
+        'GestiónLibrosToolStripMenuItem1
+        '
+        Me.GestiónLibrosToolStripMenuItem1.Image = Global.FormulariosPrueba.My.Resources.Resources.libros
+        Me.GestiónLibrosToolStripMenuItem1.Name = "GestiónLibrosToolStripMenuItem1"
+        Me.GestiónLibrosToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.GestiónLibrosToolStripMenuItem1.Text = "Gestión de Libros"
+        '
+        'GestiónArticulosToolStripMenuItem
+        '
+        Me.GestiónArticulosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónDeArticulosToolStripMenuItem})
+        Me.GestiónArticulosToolStripMenuItem.Name = "GestiónArticulosToolStripMenuItem"
+        Me.GestiónArticulosToolStripMenuItem.Size = New System.Drawing.Size(66, 20)
+        Me.GestiónArticulosToolStripMenuItem.Text = "Articulos"
+        '
+        'GestiónDeArticulosToolStripMenuItem
+        '
+        Me.GestiónDeArticulosToolStripMenuItem.Image = Global.FormulariosPrueba.My.Resources.Resources.articulos
+        Me.GestiónDeArticulosToolStripMenuItem.Name = "GestiónDeArticulosToolStripMenuItem"
+        Me.GestiónDeArticulosToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.GestiónDeArticulosToolStripMenuItem.Text = "Gestión de Articulos"
+        '
+        'GestiónSociosToolStripMenuItem
+        '
+        Me.GestiónSociosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónDeSociosToolStripMenuItem})
+        Me.GestiónSociosToolStripMenuItem.Name = "GestiónSociosToolStripMenuItem"
+        Me.GestiónSociosToolStripMenuItem.Size = New System.Drawing.Size(53, 20)
+        Me.GestiónSociosToolStripMenuItem.Text = "Socios"
+        '
+        'GestiónDeSociosToolStripMenuItem
+        '
+        Me.GestiónDeSociosToolStripMenuItem.Image = Global.FormulariosPrueba.My.Resources.Resources.socios
+        Me.GestiónDeSociosToolStripMenuItem.Name = "GestiónDeSociosToolStripMenuItem"
+        Me.GestiónDeSociosToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.GestiónDeSociosToolStripMenuItem.Text = "Gestión de Socios"
+        '
+        'GestiónEmpleadosToolStripMenuItem
+        '
+        Me.GestiónEmpleadosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónEmpleadosToolStripMenuItem1})
+        Me.GestiónEmpleadosToolStripMenuItem.Name = "GestiónEmpleadosToolStripMenuItem"
+        Me.GestiónEmpleadosToolStripMenuItem.Size = New System.Drawing.Size(77, 20)
+        Me.GestiónEmpleadosToolStripMenuItem.Text = "Empleados"
+        '
+        'GestiónEmpleadosToolStripMenuItem1
+        '
+        Me.GestiónEmpleadosToolStripMenuItem1.Image = Global.FormulariosPrueba.My.Resources.Resources.empleados
+        Me.GestiónEmpleadosToolStripMenuItem1.Name = "GestiónEmpleadosToolStripMenuItem1"
+        Me.GestiónEmpleadosToolStripMenuItem1.Size = New System.Drawing.Size(191, 22)
+        Me.GestiónEmpleadosToolStripMenuItem1.Text = "Gestión de Empleados"
         '
         'GestionSocios
         '
@@ -359,4 +423,12 @@ Partial Class GestionSocios
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Button_Modificar As Button
+    Friend WithEvents GestiónLibrosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GestiónLibrosToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents GestiónArticulosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GestiónDeArticulosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GestiónSociosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GestiónDeSociosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GestiónEmpleadosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GestiónEmpleadosToolStripMenuItem1 As ToolStripMenuItem
 End Class

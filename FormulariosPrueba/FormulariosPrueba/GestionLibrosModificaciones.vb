@@ -71,7 +71,7 @@ Public Class GestionLibrosModificaciones
         'Se relacionan los campos de la tabla con los textbox y se muestran los datos del registro que queremos modificar.
         Me.TextBox_ISBN.DataBindings.Add("text", midataset, "Libros.ISBN")
         Me.TextBox_Titulo.DataBindings.Add("text", midataset, "Libros.Titulo")
-        Me.TextBox_Autor.DataBindings.Add("text", midataset, "Libros.Autor/es")
+        Me.TextBox_Autor.DataBindings.Add("text", midataset, "Libros.Autor")
         Me.TextBox_Numeropags.DataBindings.Add("text", midataset, "Libros.Paginas")
         Me.TextBox_Editorial.DataBindings.Add("text", midataset, "Libros.Editorial")
         Me.TextBox_Idioma.DataBindings.Add("text", midataset, "Libros.Idioma")
@@ -104,7 +104,7 @@ Public Class GestionLibrosModificaciones
             fila.BeginEdit()
             fila("ISBN") = TextBox_ISBN.Text
             fila("Titulo") = TextBox_Titulo.Text
-            fila("Autor/es") = TextBox_Autor.Text
+            fila("Autor") = TextBox_Autor.Text
             fila("Paginas") = TextBox_Numeropags.Text
             fila("Editorial") = TextBox_Editorial.Text
             fila("Idioma") = TextBox_Idioma.Text

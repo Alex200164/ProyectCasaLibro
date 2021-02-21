@@ -78,8 +78,6 @@ Public Class GestionSociosAltas
         End If
     End Sub
 
-
-
     '  Método que se ejecuta al iniciarse el formulario.
     Private Sub GestionSociosAltas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Cargar la memoria del cache con datos.

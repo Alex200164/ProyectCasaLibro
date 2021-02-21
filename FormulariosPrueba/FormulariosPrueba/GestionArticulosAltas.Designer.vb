@@ -30,15 +30,15 @@ Partial Class GestionArticulosAltas
         Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VerLaAyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Button_Guardar_Alta = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.Button_Alta = New System.Windows.Forms.Button()
+        Me.Button_Limpiar = New System.Windows.Forms.Button()
+        Me.TextBox_Nombre = New System.Windows.Forms.TextBox()
+        Me.TextBox_Categoria = New System.Windows.Forms.TextBox()
+        Me.TextBox_Stock = New System.Windows.Forms.TextBox()
+        Me.TextBox_Precio = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.ISBN = New System.Windows.Forms.Label()
-        Me.TextBoxID = New System.Windows.Forms.TextBox()
+        Me.TextBox_ISBN = New System.Windows.Forms.TextBox()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label20 = New System.Windows.Forms.Label()
@@ -112,67 +112,67 @@ Partial Class GestionArticulosAltas
         Me.VerLaAyudaToolStripMenuItem.Size = New System.Drawing.Size(187, 22)
         Me.VerLaAyudaToolStripMenuItem.Text = "Ver la Ayuda"
         '
-        'Button_Guardar_Alta
+        'Button_Alta
         '
-        Me.Button_Guardar_Alta.Location = New System.Drawing.Point(482, 125)
-        Me.Button_Guardar_Alta.Name = "Button_Guardar_Alta"
-        Me.Button_Guardar_Alta.Size = New System.Drawing.Size(86, 29)
-        Me.Button_Guardar_Alta.TabIndex = 180
-        Me.Button_Guardar_Alta.Text = "Guard/Alta"
-        Me.Button_Guardar_Alta.UseVisualStyleBackColor = True
+        Me.Button_Alta.Location = New System.Drawing.Point(482, 125)
+        Me.Button_Alta.Name = "Button_Alta"
+        Me.Button_Alta.Size = New System.Drawing.Size(86, 29)
+        Me.Button_Alta.TabIndex = 180
+        Me.Button_Alta.Text = "Guard/Alta"
+        Me.Button_Alta.UseVisualStyleBackColor = True
         '
-        'Button1
+        'Button_Limpiar
         '
-        Me.Button1.Location = New System.Drawing.Point(574, 125)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(86, 29)
-        Me.Button1.TabIndex = 179
-        Me.Button1.Text = "Limpiar"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button_Limpiar.Location = New System.Drawing.Point(574, 125)
+        Me.Button_Limpiar.Name = "Button_Limpiar"
+        Me.Button_Limpiar.Size = New System.Drawing.Size(86, 29)
+        Me.Button_Limpiar.TabIndex = 179
+        Me.Button_Limpiar.Text = "Limpiar"
+        Me.Button_Limpiar.UseVisualStyleBackColor = True
         '
-        'TextBox6
+        'TextBox_Nombre
         '
-        Me.TextBox6.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox6.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox6.Location = New System.Drawing.Point(139, 64)
-        Me.TextBox6.MaxLength = 100
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox6.TabIndex = 2
+        Me.TextBox_Nombre.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_Nombre.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Nombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Nombre.Location = New System.Drawing.Point(139, 64)
+        Me.TextBox_Nombre.MaxLength = 100
+        Me.TextBox_Nombre.Name = "TextBox_Nombre"
+        Me.TextBox_Nombre.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_Nombre.TabIndex = 2
         '
-        'TextBox5
+        'TextBox_Categoria
         '
-        Me.TextBox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox5.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox5.Location = New System.Drawing.Point(139, 92)
-        Me.TextBox5.MaxLength = 100
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox5.TabIndex = 3
+        Me.TextBox_Categoria.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_Categoria.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Categoria.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Categoria.Location = New System.Drawing.Point(139, 92)
+        Me.TextBox_Categoria.MaxLength = 100
+        Me.TextBox_Categoria.Name = "TextBox_Categoria"
+        Me.TextBox_Categoria.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_Categoria.TabIndex = 3
         '
-        'TextBox4
+        'TextBox_Stock
         '
-        Me.TextBox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox4.Location = New System.Drawing.Point(456, 36)
-        Me.TextBox4.MaxLength = 100
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox4.TabIndex = 4
+        Me.TextBox_Stock.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_Stock.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Stock.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Stock.Location = New System.Drawing.Point(456, 62)
+        Me.TextBox_Stock.MaxLength = 100
+        Me.TextBox_Stock.Name = "TextBox_Stock"
+        Me.TextBox_Stock.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_Stock.TabIndex = 5
         '
-        'TextBox3
+        'TextBox_Precio
         '
-        Me.TextBox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox3.Location = New System.Drawing.Point(456, 64)
-        Me.TextBox3.MaxLength = 100
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox3.TabIndex = 5
+        Me.TextBox_Precio.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_Precio.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Precio.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Precio.Location = New System.Drawing.Point(456, 37)
+        Me.TextBox_Precio.MaxLength = 100
+        Me.TextBox_Precio.Name = "TextBox_Precio"
+        Me.TextBox_Precio.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_Precio.TabIndex = 4
         '
         'Label5
         '
@@ -194,16 +194,16 @@ Partial Class GestionArticulosAltas
         Me.ISBN.TabIndex = 149
         Me.ISBN.Text = "ISBN :"
         '
-        'TextBoxID
+        'TextBox_ISBN
         '
-        Me.TextBoxID.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBoxID.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBoxID.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxID.Location = New System.Drawing.Point(139, 33)
-        Me.TextBoxID.MaxLength = 100
-        Me.TextBoxID.Name = "TextBoxID"
-        Me.TextBoxID.Size = New System.Drawing.Size(197, 19)
-        Me.TextBoxID.TabIndex = 1
+        Me.TextBox_ISBN.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_ISBN.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_ISBN.Location = New System.Drawing.Point(139, 33)
+        Me.TextBox_ISBN.MaxLength = 100
+        Me.TextBox_ISBN.Name = "TextBox_ISBN"
+        Me.TextBox_ISBN.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_ISBN.TabIndex = 1
         '
         'Label21
         '
@@ -229,7 +229,7 @@ Partial Class GestionArticulosAltas
         '
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.Location = New System.Drawing.Point(395, 36)
+        Me.Label20.Location = New System.Drawing.Point(392, 63)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(58, 20)
         Me.Label20.TabIndex = 152
@@ -239,7 +239,7 @@ Partial Class GestionArticulosAltas
         '
         Me.Label19.AutoSize = True
         Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(391, 64)
+        Me.Label19.Location = New System.Drawing.Point(389, 36)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(61, 20)
         Me.Label19.TabIndex = 153
@@ -248,15 +248,15 @@ Partial Class GestionArticulosAltas
         '
         'GruopBox
         '
-        Me.GruopBox.Controls.Add(Me.Button_Guardar_Alta)
-        Me.GruopBox.Controls.Add(Me.Button1)
-        Me.GruopBox.Controls.Add(Me.TextBox6)
-        Me.GruopBox.Controls.Add(Me.TextBox5)
-        Me.GruopBox.Controls.Add(Me.TextBox4)
-        Me.GruopBox.Controls.Add(Me.TextBox3)
+        Me.GruopBox.Controls.Add(Me.Button_Alta)
+        Me.GruopBox.Controls.Add(Me.Button_Limpiar)
+        Me.GruopBox.Controls.Add(Me.TextBox_Nombre)
+        Me.GruopBox.Controls.Add(Me.TextBox_Categoria)
+        Me.GruopBox.Controls.Add(Me.TextBox_Stock)
+        Me.GruopBox.Controls.Add(Me.TextBox_Precio)
         Me.GruopBox.Controls.Add(Me.Label5)
         Me.GruopBox.Controls.Add(Me.ISBN)
-        Me.GruopBox.Controls.Add(Me.TextBoxID)
+        Me.GruopBox.Controls.Add(Me.TextBox_ISBN)
         Me.GruopBox.Controls.Add(Me.Label21)
         Me.GruopBox.Controls.Add(Me.Label20)
         Me.GruopBox.Controls.Add(Me.Label19)
@@ -318,15 +318,15 @@ Partial Class GestionArticulosAltas
     Friend WithEvents SalirToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AyudaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents VerLaAyudaToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents Button_Guardar_Alta As Button
-    Friend WithEvents Button1 As Button
-    Friend WithEvents TextBox6 As TextBox
-    Friend WithEvents TextBox5 As TextBox
-    Friend WithEvents TextBox4 As TextBox
-    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents Button_Alta As Button
+    Friend WithEvents Button_Limpiar As Button
+    Friend WithEvents TextBox_Nombre As TextBox
+    Friend WithEvents TextBox_Categoria As TextBox
+    Friend WithEvents TextBox_Stock As TextBox
+    Friend WithEvents TextBox_Precio As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents ISBN As Label
-    Friend WithEvents TextBoxID As TextBox
+    Friend WithEvents TextBox_ISBN As TextBox
     Friend WithEvents Label21 As Label
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Label20 As Label

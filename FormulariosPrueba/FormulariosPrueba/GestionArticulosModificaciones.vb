@@ -20,6 +20,8 @@ Public Class GestionArticulosModificaciones
         Me.Close()
     End Sub
 
+
+
     ' Método que se ejecuta cuando es pulsado el botón "Calculadora" del menuStrip
     Private Sub CalculadoraToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculadoraToolStripMenuItem.Click
         ' Try catch para atrapar el error en caso de que el ordenador del usuario
@@ -71,7 +73,7 @@ Public Class GestionArticulosModificaciones
 
     ' Método que se ejecuta al pulsarse el botón "Modificar"
     ' Se encarga de modificar los datos ya existentes en la DB
-    Private Sub Button_Modificar_Click(sender As Object, e As EventArgs) Handles Button_Modificar.Click
+    Private Sub Button_Modificar_Click(sender As Object, e As EventArgs) Handles Button_ModificarProv.Click
         If TextBox_ISBN.Text = "" Or TextBox_Nombre.Text = "" Or TextBox_Categoria.Text = "" Or TextBox_Precio.Text = "" Or TextBox_Stock.Text = "" Then
             MsgBox("Debes seleccionar un registro para actualizarlo y si lo has seleccionado, no debe quedar ningún campo en blanco", MsgBoxStyle.OkOnly, "Error al dar de alta.")
         Else

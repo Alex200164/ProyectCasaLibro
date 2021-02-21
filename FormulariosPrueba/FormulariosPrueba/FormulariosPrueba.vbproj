@@ -284,5 +284,50 @@
   <ItemGroup>
     <None Include="Resources\socios2.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\articulos.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\empleados.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\libros.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\socios.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\libros1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\articulos1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\socios1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\empleados1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\modificar.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\modificar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\modificarbutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Webp.net-resizeimage%285%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Webp.net-resizeimage%286%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

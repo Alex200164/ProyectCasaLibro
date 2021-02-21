@@ -107,7 +107,7 @@ Public Class GestionLibros
     End Sub
 
     ' Método que se ejecuta cuando es pulsado el botón "Calculadora" del menuStrip
-    Private Sub CalculadoraToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculadoraToolStripMenuItem.Click
+    Private Sub CalculadoraToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles CalculadoraToolStripMenuItem.Click
         ' Try catch para atrapar el error en caso de que el ordenador del usuario
         Try
             Dim program As String
@@ -117,5 +117,4 @@ Public Class GestionLibros
             MsgBox("Ha ocurrido un error, no se pudo iniciar la calculadora.", MsgBoxStyle.OkOnly, "Error (proceso calculadora)")
         End Try
     End Sub
-
 End Class

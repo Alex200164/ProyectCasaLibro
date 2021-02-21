@@ -69,9 +69,8 @@ Public Class GestionLibrosAltas
 
             ' ####################  2º Recogemos los datos y los introducimos ##############################
             Dim drc As DataRowCollection = midataset.Tables("Libros").Rows
-            drc.Add(TextBox_ISBN.Text, TextBox_Titulo.Text, TextBox_Autor.Text, TextBox_Numeropags.Text, TextBox_Editorial.Text,
-                    TextBox_Idioma.Text, TextBox_Encuadernacion.Text, TextBox_Annoedicion.Text, TextBox_Plazaedicion.Text,
-                    TextBox_Traductor.Text, TextBox_Formato.Text, TextBox_Precio.Text, TextBox_Stock.Text)
+            drc.Add(TextBox_ISBN.Text, TextBox_Titulo.Text, TextBox_Autor.Text, TextBox_Numeropags.Text, TextBox_Editorial.Text, TextBox_Idioma.Text, TextBox_Encuadernacion.Text,
+                    TextBox_Annoedicion.Text, TextBox_Plazaedicion.Text, TextBox_Traductor.Text, TextBox_Formato.Text, TextBox_Precio.Text, TextBox_Stock.Text)
 
             adaptador.Update(midataset.Tables("Libros"))
             ' ####################  3º Actualizamos el middataset ##############################
@@ -98,18 +97,19 @@ Public Class GestionLibrosAltas
         adaptador.Fill(midataset, "Libros")
 
         ' Relacionar los campos de la tabla con los textbox
-        Me.TextBox_Titulo.DataBindings.Add("text", midataset, "Libros.Titulo")
-        Me.TextBox_Autor.DataBindings.Add("text", midataset, "Libros.Autor/es")
-        Me.TextBox_Numeropags.DataBindings.Add("text", midataset, "Libros.Paginas")
-        Me.TextBox_Editorial.DataBindings.Add("text", midataset, "Libros.Editorial")
-        Me.TextBox_Idioma.DataBindings.Add("text", midataset, "Libros.Idioma")
-        Me.TextBox_Encuadernacion.DataBindings.Add("text", midataset, "Libros.Encuadernacion")
-        Me.TextBox_Annoedicion.DataBindings.Add("text", midataset, "Libros.Anno_edicion")
-        Me.TextBox_Plazaedicion.DataBindings.Add("text", midataset, "Libros.Plaza_de_edicion")
-        Me.TextBox_Traductor.DataBindings.Add("text", midataset, "Libros.Traductor")
-        Me.TextBox_Formato.DataBindings.Add("text", midataset, "Libros.Formato")
-        Me.TextBox_Precio.DataBindings.Add("text", midataset, "Libros.Precio")
-        Me.TextBox_Stock.DataBindings.Add("text", midataset, "Libros.Stock")
+        TextBox_ISBN.DataBindings.Add("text", midataset, "Libros.ISBN")
+        TextBox_Titulo.DataBindings.Add("text", midataset, "Libros.Titulo")
+        TextBox_Autor.DataBindings.Add("text", midataset, "Libros.Autor")
+        TextBox_Numeropags.DataBindings.Add("text", midataset, "Libros.Paginas")
+        TextBox_Editorial.DataBindings.Add("text", midataset, "Libros.Editorial")
+        TextBox_Idioma.DataBindings.Add("text", midataset, "Libros.Idioma")
+        TextBox_Encuadernacion.DataBindings.Add("text", midataset, "Libros.Encuadernacion")
+        TextBox_Annoedicion.DataBindings.Add("text", midataset, "Libros.Anno_edicion")
+        TextBox_Plazaedicion.DataBindings.Add("text", midataset, "Libros.Plaza_de_edicion")
+        TextBox_Traductor.DataBindings.Add("text", midataset, "Libros.Traductor")
+        TextBox_Formato.DataBindings.Add("text", midataset, "Libros.Formato")
+        TextBox_Precio.DataBindings.Add("text", midataset, "Libros.Precio")
+        TextBox_Stock.DataBindings.Add("text", midataset, "Libros.Stock")
 
         ' Vaciamos cada textBox de forma individual
         limpiar()
