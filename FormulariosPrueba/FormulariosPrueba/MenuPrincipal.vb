@@ -11,58 +11,50 @@ Public Class MenuPrincipal
     ' Aquí alojaremos los datos de la DB
     Public midataset As New DataSet
 
-    ' Método que permite posicionar la ventana en la posición especificada del formulario "GestionSocios".
-    ' En este caso para evitar que quede encima del formulario anterior.
-    Private Shared Sub posicionarFormularioSocios()
-        GestionSocios.StartPosition = FormStartPosition.Manual
-        Dim a As Integer
-        a = My.Computer.Screen.Bounds.Size.Width - (My.Computer.Screen.Bounds.Size.Width * 0.97)
-        Dim b As Integer
-        b = My.Computer.Screen.Bounds.Size.Height - (My.Computer.Screen.Bounds.Size.Height * 0.97)
-        GestionSocios.Location = New Point(a, b)
-    End Sub
 
-    ' Método que permite posicionar la ventana en la posición especificada del formulario "GestionLibros".
-    ' En este caso para evitar que quede encima del formulario anterior.
-    Private Shared Sub posicionarFormularioLibros()
-        GestionLibros.StartPosition = FormStartPosition.Manual
-        Dim a As Integer
-        a = My.Computer.Screen.Bounds.Size.Width - (My.Computer.Screen.Bounds.Size.Width * 0.97)
-        Dim b As Integer
-        b = My.Computer.Screen.Bounds.Size.Height - (My.Computer.Screen.Bounds.Size.Height * 0.97)
-        GestionLibros.Location = New Point(a, b)
-    End Sub
-
-    ' Método que permite posicionar la ventana en la posición especificada del formulario "GestionEmpleados".
-    ' En este caso para evitar que quede encima del formulario anterior.
-    Private Shared Sub posicionarFormularioEmpleados()
-        GestionEmpleados.StartPosition = FormStartPosition.Manual
-        Dim a As Integer
-        a = My.Computer.Screen.Bounds.Size.Width - (My.Computer.Screen.Bounds.Size.Width * 0.97)
-        Dim b As Integer
-        b = My.Computer.Screen.Bounds.Size.Height - (My.Computer.Screen.Bounds.Size.Height * 0.97)
-        GestionEmpleados.Location = New Point(a, b)
-    End Sub
-
-    ' Método que permite posicionar la ventana en la posición especificada del formulario "GestionArticulos".
-    ' En este caso para evitar que quede encima del formulario anterior.
-    Private Shared Sub posicionarFormularioArticulos()
+    'Metodo que detecta que botón se ha pulsado y envia la orden  de posicionar a: 
+    'GestionArticulos/GestionLibros/GestionEmpleados/GestionSocios
+    Private Sub posicionarFormulariosGestiones(ByVal btn_Name As String)
+        'Especifica que el tipo de posicion de arranque será manual para Gestión Articulos
         GestionArticulos.StartPosition = FormStartPosition.Manual
+        'Especifica que el tipo de posicion de arranque será manual para Gestión Libros
+        GestionLibros.StartPosition = FormStartPosition.Manual
+        'Especifica que el tipo de posicion de arranque será manual para Gestión Empleados
+        GestionEmpleados.StartPosition = FormStartPosition.Manual
+        'Especifica que el tipo de posicion de arranque será manual para Gestión Socios
+        GestionSocios.StartPosition = FormStartPosition.Manual
+
+        'Varaible tipo Integer que calculará la posición vertical en la que ubicará el nuevo formulario
         Dim a As Integer
         a = My.Computer.Screen.Bounds.Size.Width - (My.Computer.Screen.Bounds.Size.Width * 0.97)
+
+        'Varaible tipo Integer que calculará la posición horizontal en la que ubicará el nuevo formulario
         Dim b As Integer
-        b = My.Computer.Screen.Bounds.Size.Height - (My.Computer.Screen.Bounds.Size.Height * 0.97)
-        GestionArticulos.Location = New Point(a, b)
+        b = My.Computer.Screen.Bounds.Size.Width - (My.Computer.Screen.Bounds.Size.Width * 0.97)
+
+        'Condición que compará el nombre del botón recibido como parametro con la cadena correspondiente a dicho botón.
+        If btn_Name.Equals("button_gestionlibros") Then
+            GestionLibros.Location = New Point(a, b) 'Posiciona en las coordenadas a y b
+        ElseIf btn_Name.Equals("button_gestionpapeleria") Then
+            GestionArticulos.Location = New Point(a, b) 'Posiciona en las coordenadas a y b
+        ElseIf btn_Name.Equals("button_gestionempleados") Then
+            GestionEmpleados.Location = New Point(a, b) 'Posiciona en las coordenadas a y b
+        ElseIf btn_Name.Equals("button_gestionsocios") Then
+            GestionSocios.Location = New Point(a, b) 'Posiciona en las coordenadas a y b
+        End If
     End Sub
 
     ' Método que se ejecuta si el botón libros es pulsado, mostrando el formulario de gestión de libros
     Private Sub Button_GestionLibros_Click(sender As Object, e As EventArgs) Handles Button_GestionLibros.Click
         ' Comprobación de que la base de datos es accesible obligando a acceder a datos, en caso contrario, error
         Try
+            'Variable que nos dice cual es el Nombre del botón pulsado
+            Dim btn_Name As String = DirectCast(sender, Button).Name.ToLower.Replace("clear", "")
+
             ' Cargar la memoria del cache con datos.
             adaptador.Fill(midataset, "Socios")
 
-            posicionarFormularioLibros()
+            posicionarFormulariosGestiones(btn_Name)
             ' Mostramos el formulario de gestión de libros
             GestionLibros.Show()
             ' Cerramos el formulario de menú principal
@@ -76,10 +68,13 @@ Public Class MenuPrincipal
     Private Sub Button_GestionPapeleria_Click(sender As Object, e As EventArgs) Handles Button_GestionPapeleria.Click
         ' Comprobación de que la base de datos es accesible obligando a acceder a datos, en caso contrario, error
         Try
+            'Variable que nos dice cual es el Nombre del botón pulsado
+            Dim btn_Name As String = DirectCast(sender, Button).Name.ToLower.Replace("clear", "")
+
             ' Cargar la memoria del cache con datos.
             adaptador.Fill(midataset, "Socios")
 
-            posicionarFormularioArticulos()
+            posicionarFormulariosGestiones(btn_Name)
             ' Mostramos el formulario de gestión de papeleria
             GestionArticulos.Show()
             ' Cerramos el formulario de menú principal
@@ -93,10 +88,13 @@ Public Class MenuPrincipal
     Private Sub Button_GestionSocios_Click(sender As Object, e As EventArgs) Handles Button_GestionSocios.Click
         ' Comprobación de que la base de datos es accesible obligando a acceder a datos, en caso contrario, error
         Try
+            'Variable que nos dice cual es el Nombre del botón pulsado
+            Dim btn_Name As String = DirectCast(sender, Button).Name.ToLower.Replace("clear", "")
+
             ' Cargar la memoria del cache con datos.
             adaptador.Fill(midataset, "Socios")
 
-            posicionarFormularioSocios()
+            posicionarFormulariosGestiones(btn_Name)
             ' Mostramos el formulario de gestión de socios
             GestionSocios.Show()
             ' Cerramos el formulario de menú principal
@@ -111,10 +109,13 @@ Public Class MenuPrincipal
     Private Sub Button_GestionEmpleados_Click(sender As Object, e As EventArgs) Handles Button_GestionEmpleados.Click
         ' Comprobación de que la base de datos es accesible obligando a acceder a datos, en caso contrario, error
         Try
+            'Variable que nos dice cual es el Nombre del botón pulsado
+            Dim btn_Name As String = DirectCast(sender, Button).Name.ToLower.Replace("clear", "")
+
             ' Cargar la memoria del cache con datos.
             adaptador.Fill(midataset, "Socios")
 
-            posicionarFormularioEmpleados()
+            posicionarFormulariosGestiones(btn_Name)
             ' Mostramos el formulario de gestión de empleados
             GestionEmpleados.Show()
             ' Cerramos el formulario de menú principal

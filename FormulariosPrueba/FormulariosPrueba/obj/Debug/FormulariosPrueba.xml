@@ -67,16 +67,6 @@ FormulariosPrueba
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
 </member>
-<member name="P:FormulariosPrueba.My.Resources.Resources.modificarbutton">
-<summary>
-  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-</summary>
-</member>
-<member name="P:FormulariosPrueba.My.Resources.Resources.modificarpng">
-<summary>
-  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-</summary>
-</member>
 <member name="P:FormulariosPrueba.My.Resources.Resources.notepad">
 <summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
@@ -93,11 +83,6 @@ FormulariosPrueba
 </summary>
 </member>
 <member name="P:FormulariosPrueba.My.Resources.Resources.socios2">
-<summary>
-  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-</summary>
-</member>
-<member name="P:FormulariosPrueba.My.Resources.Resources.Webp_net_resizeimage_6_">
 <summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>

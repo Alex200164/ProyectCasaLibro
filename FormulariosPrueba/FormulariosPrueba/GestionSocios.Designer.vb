@@ -29,34 +29,31 @@ Partial Class GestionSocios
         Me.BlocNotasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Label_Autor = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Button_Buscar = New System.Windows.Forms.Button()
         Me.Button_Limpiar = New System.Windows.Forms.Button()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.Label_Genero = New System.Windows.Forms.Label()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
         Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VerLaAyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Button_Annadir = New System.Windows.Forms.Button()
         Me.Label_Nombre = New System.Windows.Forms.Label()
         Me.Label_ISBN = New System.Windows.Forms.Label()
-        Me.TextBox_ISBN = New System.Windows.Forms.TextBox()
         Me.MenuStripPagPrin = New System.Windows.Forms.MenuStrip()
+        Me.GestiónLibrosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GestiónLibrosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GestiónArticulosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GestiónArticulosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GestiónEmpleadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GestiónEmpleadosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Button_Modificar = New System.Windows.Forms.Button()
         Me.Button_Eliminar = New System.Windows.Forms.Button()
         Me.DataGridView_Socios = New System.Windows.Forms.DataGridView()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.GestiónLibrosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GestiónLibrosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GestiónArticulosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GestiónDeArticulosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GestiónSociosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GestiónDeSociosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GestiónEmpleadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GestiónEmpleadosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TextBox_Nombre = New System.Windows.Forms.TextBox()
+        Me.TextBox_Apellidos = New System.Windows.Forms.TextBox()
+        Me.TextBox_NumeroSocio = New System.Windows.Forms.TextBox()
+        Me.TextBox_Telefono = New System.Windows.Forms.TextBox()
         Me.MenuStripPagPrin.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -107,66 +104,33 @@ Partial Class GestionSocios
         Me.Label_Autor.TabIndex = 181
         Me.Label_Autor.Text = "Teléfono :"
         '
-        'TextBox1
-        '
-        Me.TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(87, 81)
-        Me.TextBox1.MaxLength = 3
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox1.TabIndex = 182
-        '
         'Button_Buscar
         '
-        Me.Button_Buscar.Location = New System.Drawing.Point(742, 74)
+        Me.Button_Buscar.Location = New System.Drawing.Point(742, 81)
         Me.Button_Buscar.Name = "Button_Buscar"
         Me.Button_Buscar.Size = New System.Drawing.Size(86, 29)
-        Me.Button_Buscar.TabIndex = 180
+        Me.Button_Buscar.TabIndex = 5
         Me.Button_Buscar.Text = "Buscar"
         Me.Button_Buscar.UseVisualStyleBackColor = True
         '
         'Button_Limpiar
         '
-        Me.Button_Limpiar.Location = New System.Drawing.Point(834, 74)
+        Me.Button_Limpiar.Location = New System.Drawing.Point(834, 81)
         Me.Button_Limpiar.Name = "Button_Limpiar"
         Me.Button_Limpiar.Size = New System.Drawing.Size(86, 29)
-        Me.Button_Limpiar.TabIndex = 179
+        Me.Button_Limpiar.TabIndex = 6
         Me.Button_Limpiar.Text = "Limpiar"
         Me.Button_Limpiar.UseVisualStyleBackColor = True
-        '
-        'TextBox4
-        '
-        Me.TextBox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox4.Location = New System.Drawing.Point(709, 26)
-        Me.TextBox4.MaxLength = 3
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox4.TabIndex = 170
         '
         'Label_Genero
         '
         Me.Label_Genero.AutoSize = True
         Me.Label_Genero.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label_Genero.Location = New System.Drawing.Point(620, 25)
+        Me.Label_Genero.Location = New System.Drawing.Point(636, 24)
         Me.Label_Genero.Name = "Label_Genero"
         Me.Label_Genero.Size = New System.Drawing.Size(81, 20)
         Me.Label_Genero.TabIndex = 169
         Me.Label_Genero.Text = "Apellidos :"
-        '
-        'TextBox6
-        '
-        Me.TextBox6.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox6.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox6.Location = New System.Drawing.Point(392, 26)
-        Me.TextBox6.MaxLength = 3
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox6.TabIndex = 168
         '
         'AyudaToolStripMenuItem
         '
@@ -189,7 +153,7 @@ Partial Class GestionSocios
         Me.Button_Annadir.Location = New System.Drawing.Point(745, 160)
         Me.Button_Annadir.Name = "Button_Annadir"
         Me.Button_Annadir.Size = New System.Drawing.Size(86, 29)
-        Me.Button_Annadir.TabIndex = 181
+        Me.Button_Annadir.TabIndex = 7
         Me.Button_Annadir.Text = "Añadir"
         Me.Button_Annadir.UseVisualStyleBackColor = True
         '
@@ -213,21 +177,10 @@ Partial Class GestionSocios
         Me.Label_ISBN.TabIndex = 165
         Me.Label_ISBN.Text = "Nº socio :"
         '
-        'TextBox_ISBN
-        '
-        Me.TextBox_ISBN.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_ISBN.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_ISBN.Location = New System.Drawing.Point(87, 26)
-        Me.TextBox_ISBN.MaxLength = 3
-        Me.TextBox_ISBN.Name = "TextBox_ISBN"
-        Me.TextBox_ISBN.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_ISBN.TabIndex = 166
-        '
         'MenuStripPagPrin
         '
         Me.MenuStripPagPrin.BackColor = System.Drawing.Color.Transparent
-        Me.MenuStripPagPrin.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HerramientasToolStripMenuItem, Me.GestiónLibrosToolStripMenuItem, Me.GestiónArticulosToolStripMenuItem, Me.GestiónSociosToolStripMenuItem, Me.GestiónEmpleadosToolStripMenuItem, Me.AyudaToolStripMenuItem})
+        Me.MenuStripPagPrin.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HerramientasToolStripMenuItem, Me.GestiónLibrosToolStripMenuItem, Me.GestiónArticulosToolStripMenuItem, Me.GestiónEmpleadosToolStripMenuItem, Me.AyudaToolStripMenuItem})
         Me.MenuStripPagPrin.Location = New System.Drawing.Point(0, 0)
         Me.MenuStripPagPrin.Name = "MenuStripPagPrin"
         Me.MenuStripPagPrin.Size = New System.Drawing.Size(984, 24)
@@ -235,20 +188,62 @@ Partial Class GestionSocios
         Me.MenuStripPagPrin.TabStop = True
         Me.MenuStripPagPrin.Text = "MenuStrip1"
         '
+        'GestiónLibrosToolStripMenuItem
+        '
+        Me.GestiónLibrosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónLibrosToolStripMenuItem1})
+        Me.GestiónLibrosToolStripMenuItem.Name = "GestiónLibrosToolStripMenuItem"
+        Me.GestiónLibrosToolStripMenuItem.Size = New System.Drawing.Size(51, 20)
+        Me.GestiónLibrosToolStripMenuItem.Text = "Libros"
+        '
+        'GestiónLibrosToolStripMenuItem1
+        '
+        Me.GestiónLibrosToolStripMenuItem1.Image = Global.FormulariosPrueba.My.Resources.Resources.libros
+        Me.GestiónLibrosToolStripMenuItem1.Name = "GestiónLibrosToolStripMenuItem1"
+        Me.GestiónLibrosToolStripMenuItem1.Size = New System.Drawing.Size(165, 22)
+        Me.GestiónLibrosToolStripMenuItem1.Text = "Gestión de Libros"
+        '
+        'GestiónArticulosToolStripMenuItem
+        '
+        Me.GestiónArticulosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónArticulosToolStripMenuItem1})
+        Me.GestiónArticulosToolStripMenuItem.Name = "GestiónArticulosToolStripMenuItem"
+        Me.GestiónArticulosToolStripMenuItem.Size = New System.Drawing.Size(66, 20)
+        Me.GestiónArticulosToolStripMenuItem.Text = "Articulos"
+        '
+        'GestiónArticulosToolStripMenuItem1
+        '
+        Me.GestiónArticulosToolStripMenuItem1.Image = Global.FormulariosPrueba.My.Resources.Resources.articulos
+        Me.GestiónArticulosToolStripMenuItem1.Name = "GestiónArticulosToolStripMenuItem1"
+        Me.GestiónArticulosToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.GestiónArticulosToolStripMenuItem1.Text = "Gestión de Articulos"
+        '
+        'GestiónEmpleadosToolStripMenuItem
+        '
+        Me.GestiónEmpleadosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónEmpleadosToolStripMenuItem1})
+        Me.GestiónEmpleadosToolStripMenuItem.Name = "GestiónEmpleadosToolStripMenuItem"
+        Me.GestiónEmpleadosToolStripMenuItem.Size = New System.Drawing.Size(77, 20)
+        Me.GestiónEmpleadosToolStripMenuItem.Text = "Empleados"
+        '
+        'GestiónEmpleadosToolStripMenuItem1
+        '
+        Me.GestiónEmpleadosToolStripMenuItem1.Image = Global.FormulariosPrueba.My.Resources.Resources.empleados
+        Me.GestiónEmpleadosToolStripMenuItem1.Name = "GestiónEmpleadosToolStripMenuItem1"
+        Me.GestiónEmpleadosToolStripMenuItem1.Size = New System.Drawing.Size(191, 22)
+        Me.GestiónEmpleadosToolStripMenuItem1.Text = "Gestión de Empleados"
+        '
         'GroupBox1
         '
         Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.TextBox_Telefono)
+        Me.GroupBox1.Controls.Add(Me.TextBox_NumeroSocio)
+        Me.GroupBox1.Controls.Add(Me.TextBox_Apellidos)
+        Me.GroupBox1.Controls.Add(Me.TextBox_Nombre)
         Me.GroupBox1.Controls.Add(Me.Label_Autor)
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
         Me.GroupBox1.Controls.Add(Me.Button_Buscar)
         Me.GroupBox1.Controls.Add(Me.Button_Limpiar)
-        Me.GroupBox1.Controls.Add(Me.TextBox4)
         Me.GroupBox1.Controls.Add(Me.Label_Genero)
-        Me.GroupBox1.Controls.Add(Me.TextBox6)
         Me.GroupBox1.Controls.Add(Me.Label_Nombre)
         Me.GroupBox1.Controls.Add(Me.Label_ISBN)
-        Me.GroupBox1.Controls.Add(Me.TextBox_ISBN)
         Me.GroupBox1.Location = New System.Drawing.Point(3, 16)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(938, 127)
@@ -258,7 +253,6 @@ Partial Class GestionSocios
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.Button_Modificar)
         Me.Panel1.Controls.Add(Me.GroupBox1)
         Me.Panel1.Controls.Add(Me.Button_Eliminar)
         Me.Panel1.Controls.Add(Me.Button_Annadir)
@@ -269,21 +263,12 @@ Partial Class GestionSocios
         Me.Panel1.TabIndex = 50
         Me.Panel1.TabStop = True
         '
-        'Button_Modificar
-        '
-        Me.Button_Modificar.Location = New System.Drawing.Point(653, 160)
-        Me.Button_Modificar.Name = "Button_Modificar"
-        Me.Button_Modificar.Size = New System.Drawing.Size(86, 29)
-        Me.Button_Modificar.TabIndex = 184
-        Me.Button_Modificar.Text = "Modificar"
-        Me.Button_Modificar.UseVisualStyleBackColor = True
-        '
         'Button_Eliminar
         '
         Me.Button_Eliminar.Location = New System.Drawing.Point(837, 160)
         Me.Button_Eliminar.Name = "Button_Eliminar"
         Me.Button_Eliminar.Size = New System.Drawing.Size(86, 29)
-        Me.Button_Eliminar.TabIndex = 182
+        Me.Button_Eliminar.TabIndex = 8
         Me.Button_Eliminar.Text = "Eliminar"
         Me.Button_Eliminar.UseVisualStyleBackColor = True
         '
@@ -316,61 +301,49 @@ Partial Class GestionSocios
         Me.Panel2.Size = New System.Drawing.Size(984, 94)
         Me.Panel2.TabIndex = 51
         '
-        'GestiónLibrosToolStripMenuItem
+        'TextBox_Nombre
         '
-        Me.GestiónLibrosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónLibrosToolStripMenuItem1})
-        Me.GestiónLibrosToolStripMenuItem.Name = "GestiónLibrosToolStripMenuItem"
-        Me.GestiónLibrosToolStripMenuItem.Size = New System.Drawing.Size(51, 20)
-        Me.GestiónLibrosToolStripMenuItem.Text = "Libros"
+        Me.TextBox_Nombre.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_Nombre.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Nombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Nombre.Location = New System.Drawing.Point(394, 26)
+        Me.TextBox_Nombre.MaxLength = 100
+        Me.TextBox_Nombre.Name = "TextBox_Nombre"
+        Me.TextBox_Nombre.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_Nombre.TabIndex = 2
         '
-        'GestiónLibrosToolStripMenuItem1
+        'TextBox_Apellidos
         '
-        Me.GestiónLibrosToolStripMenuItem1.Image = Global.FormulariosPrueba.My.Resources.Resources.libros
-        Me.GestiónLibrosToolStripMenuItem1.Name = "GestiónLibrosToolStripMenuItem1"
-        Me.GestiónLibrosToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
-        Me.GestiónLibrosToolStripMenuItem1.Text = "Gestión de Libros"
+        Me.TextBox_Apellidos.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_Apellidos.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Apellidos.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Apellidos.Location = New System.Drawing.Point(723, 25)
+        Me.TextBox_Apellidos.MaxLength = 100
+        Me.TextBox_Apellidos.Name = "TextBox_Apellidos"
+        Me.TextBox_Apellidos.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_Apellidos.TabIndex = 3
         '
-        'GestiónArticulosToolStripMenuItem
+        'TextBox_NumeroSocio
         '
-        Me.GestiónArticulosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónDeArticulosToolStripMenuItem})
-        Me.GestiónArticulosToolStripMenuItem.Name = "GestiónArticulosToolStripMenuItem"
-        Me.GestiónArticulosToolStripMenuItem.Size = New System.Drawing.Size(66, 20)
-        Me.GestiónArticulosToolStripMenuItem.Text = "Articulos"
+        Me.TextBox_NumeroSocio.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_NumeroSocio.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_NumeroSocio.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_NumeroSocio.Location = New System.Drawing.Point(90, 26)
+        Me.TextBox_NumeroSocio.MaxLength = 100
+        Me.TextBox_NumeroSocio.Name = "TextBox_NumeroSocio"
+        Me.TextBox_NumeroSocio.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_NumeroSocio.TabIndex = 1
         '
-        'GestiónDeArticulosToolStripMenuItem
+        'TextBox_Telefono
         '
-        Me.GestiónDeArticulosToolStripMenuItem.Image = Global.FormulariosPrueba.My.Resources.Resources.articulos
-        Me.GestiónDeArticulosToolStripMenuItem.Name = "GestiónDeArticulosToolStripMenuItem"
-        Me.GestiónDeArticulosToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.GestiónDeArticulosToolStripMenuItem.Text = "Gestión de Articulos"
-        '
-        'GestiónSociosToolStripMenuItem
-        '
-        Me.GestiónSociosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónDeSociosToolStripMenuItem})
-        Me.GestiónSociosToolStripMenuItem.Name = "GestiónSociosToolStripMenuItem"
-        Me.GestiónSociosToolStripMenuItem.Size = New System.Drawing.Size(53, 20)
-        Me.GestiónSociosToolStripMenuItem.Text = "Socios"
-        '
-        'GestiónDeSociosToolStripMenuItem
-        '
-        Me.GestiónDeSociosToolStripMenuItem.Image = Global.FormulariosPrueba.My.Resources.Resources.socios
-        Me.GestiónDeSociosToolStripMenuItem.Name = "GestiónDeSociosToolStripMenuItem"
-        Me.GestiónDeSociosToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
-        Me.GestiónDeSociosToolStripMenuItem.Text = "Gestión de Socios"
-        '
-        'GestiónEmpleadosToolStripMenuItem
-        '
-        Me.GestiónEmpleadosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónEmpleadosToolStripMenuItem1})
-        Me.GestiónEmpleadosToolStripMenuItem.Name = "GestiónEmpleadosToolStripMenuItem"
-        Me.GestiónEmpleadosToolStripMenuItem.Size = New System.Drawing.Size(77, 20)
-        Me.GestiónEmpleadosToolStripMenuItem.Text = "Empleados"
-        '
-        'GestiónEmpleadosToolStripMenuItem1
-        '
-        Me.GestiónEmpleadosToolStripMenuItem1.Image = Global.FormulariosPrueba.My.Resources.Resources.empleados
-        Me.GestiónEmpleadosToolStripMenuItem1.Name = "GestiónEmpleadosToolStripMenuItem1"
-        Me.GestiónEmpleadosToolStripMenuItem1.Size = New System.Drawing.Size(191, 22)
-        Me.GestiónEmpleadosToolStripMenuItem1.Text = "Gestión de Empleados"
+        Me.TextBox_Telefono.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_Telefono.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Telefono.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Telefono.Location = New System.Drawing.Point(90, 84)
+        Me.TextBox_Telefono.MaxLength = 100
+        Me.TextBox_Telefono.Name = "TextBox_Telefono"
+        Me.TextBox_Telefono.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_Telefono.TabIndex = 4
         '
         'GestionSocios
         '
@@ -403,18 +376,14 @@ Partial Class GestionSocios
     Friend WithEvents BlocNotasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SalirToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Label_Autor As Label
-    Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Button_Buscar As Button
     Friend WithEvents Button_Limpiar As Button
-    Friend WithEvents TextBox4 As TextBox
     Friend WithEvents Label_Genero As Label
-    Friend WithEvents TextBox6 As TextBox
     Friend WithEvents AyudaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents VerLaAyudaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Button_Annadir As Button
     Friend WithEvents Label_Nombre As Label
     Friend WithEvents Label_ISBN As Label
-    Friend WithEvents TextBox_ISBN As TextBox
     Friend WithEvents MenuStripPagPrin As MenuStrip
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Panel1 As Panel
@@ -422,13 +391,14 @@ Partial Class GestionSocios
     Friend WithEvents DataGridView_Socios As DataGridView
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents Button_Modificar As Button
     Friend WithEvents GestiónLibrosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GestiónLibrosToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents GestiónArticulosToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents GestiónDeArticulosToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents GestiónSociosToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents GestiónDeSociosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GestiónArticulosToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents GestiónEmpleadosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GestiónEmpleadosToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents TextBox_Telefono As TextBox
+    Friend WithEvents TextBox_NumeroSocio As TextBox
+    Friend WithEvents TextBox_Apellidos As TextBox
+    Friend WithEvents TextBox_Nombre As TextBox
 End Class

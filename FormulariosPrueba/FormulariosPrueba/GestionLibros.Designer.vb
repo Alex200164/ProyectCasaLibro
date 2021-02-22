@@ -25,7 +25,6 @@ Partial Class GestionLibros
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionLibros))
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Button_Modificar = New System.Windows.Forms.Button()
         Me.Button_Eliminar = New System.Windows.Forms.Button()
         Me.Button_Annadir = New System.Windows.Forms.Button()
         Me.DataGridView_Libros = New System.Windows.Forms.DataGridView()
@@ -47,12 +46,10 @@ Partial Class GestionLibros
         Me.CalculadoraToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BlocNotasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GestiónLibrosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GestiónLibrosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestiónArticulosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GestiónDeArticulosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GestiónArticulosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestiónSociosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GestiónDeSociosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GestiónSociosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestiónEmpleadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestiónEmpleadosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -67,7 +64,6 @@ Partial Class GestionLibros
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.Button_Modificar)
         Me.Panel1.Controls.Add(Me.Button_Eliminar)
         Me.Panel1.Controls.Add(Me.Button_Annadir)
         Me.Panel1.Controls.Add(Me.DataGridView_Libros)
@@ -77,15 +73,6 @@ Partial Class GestionLibros
         Me.Panel1.Size = New System.Drawing.Size(959, 480)
         Me.Panel1.TabIndex = 53
         Me.Panel1.TabStop = True
-        '
-        'Button_Modificar
-        '
-        Me.Button_Modificar.Location = New System.Drawing.Point(653, 160)
-        Me.Button_Modificar.Name = "Button_Modificar"
-        Me.Button_Modificar.Size = New System.Drawing.Size(86, 29)
-        Me.Button_Modificar.TabIndex = 100
-        Me.Button_Modificar.Text = "Modificar"
-        Me.Button_Modificar.UseVisualStyleBackColor = True
         '
         'Button_Eliminar
         '
@@ -157,11 +144,10 @@ Partial Class GestionLibros
         Me.TextBox_Autor.Name = "TextBox_Autor"
         Me.TextBox_Autor.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Autor.TabIndex = 4
-        Me.TextBox_Autor.Text = "100"
         '
         'Button_Buscar
         '
-        Me.Button_Buscar.Location = New System.Drawing.Point(742, 74)
+        Me.Button_Buscar.Location = New System.Drawing.Point(742, 81)
         Me.Button_Buscar.Name = "Button_Buscar"
         Me.Button_Buscar.Size = New System.Drawing.Size(86, 29)
         Me.Button_Buscar.TabIndex = 5
@@ -170,7 +156,7 @@ Partial Class GestionLibros
         '
         'Button_Limpiar
         '
-        Me.Button_Limpiar.Location = New System.Drawing.Point(834, 74)
+        Me.Button_Limpiar.Location = New System.Drawing.Point(834, 81)
         Me.Button_Limpiar.Name = "Button_Limpiar"
         Me.Button_Limpiar.Size = New System.Drawing.Size(86, 29)
         Me.Button_Limpiar.TabIndex = 6
@@ -265,7 +251,7 @@ Partial Class GestionLibros
         'MenuStripPagPrin
         '
         Me.MenuStripPagPrin.BackColor = System.Drawing.Color.Transparent
-        Me.MenuStripPagPrin.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HerramientasToolStripMenuItem, Me.GestiónLibrosToolStripMenuItem, Me.GestiónArticulosToolStripMenuItem, Me.GestiónSociosToolStripMenuItem, Me.GestiónEmpleadosToolStripMenuItem, Me.AyudaToolStripMenuItem})
+        Me.MenuStripPagPrin.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HerramientasToolStripMenuItem, Me.GestiónArticulosToolStripMenuItem, Me.GestiónSociosToolStripMenuItem, Me.GestiónEmpleadosToolStripMenuItem, Me.AyudaToolStripMenuItem})
         Me.MenuStripPagPrin.Location = New System.Drawing.Point(0, 0)
         Me.MenuStripPagPrin.Name = "MenuStripPagPrin"
         Me.MenuStripPagPrin.Size = New System.Drawing.Size(984, 24)
@@ -305,47 +291,33 @@ Partial Class GestionLibros
         Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.SalirToolStripMenuItem.Text = "Salir..."
         '
-        'GestiónLibrosToolStripMenuItem
-        '
-        Me.GestiónLibrosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónLibrosToolStripMenuItem1})
-        Me.GestiónLibrosToolStripMenuItem.Name = "GestiónLibrosToolStripMenuItem"
-        Me.GestiónLibrosToolStripMenuItem.Size = New System.Drawing.Size(51, 20)
-        Me.GestiónLibrosToolStripMenuItem.Text = "Libros"
-        '
-        'GestiónLibrosToolStripMenuItem1
-        '
-        Me.GestiónLibrosToolStripMenuItem1.Image = Global.FormulariosPrueba.My.Resources.Resources.libros
-        Me.GestiónLibrosToolStripMenuItem1.Name = "GestiónLibrosToolStripMenuItem1"
-        Me.GestiónLibrosToolStripMenuItem1.Size = New System.Drawing.Size(165, 22)
-        Me.GestiónLibrosToolStripMenuItem1.Text = "Gestión de Libros"
-        '
         'GestiónArticulosToolStripMenuItem
         '
-        Me.GestiónArticulosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónDeArticulosToolStripMenuItem})
+        Me.GestiónArticulosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónArticulosToolStripMenuItem1})
         Me.GestiónArticulosToolStripMenuItem.Name = "GestiónArticulosToolStripMenuItem"
         Me.GestiónArticulosToolStripMenuItem.Size = New System.Drawing.Size(66, 20)
         Me.GestiónArticulosToolStripMenuItem.Text = "Articulos"
         '
-        'GestiónDeArticulosToolStripMenuItem
+        'GestiónArticulosToolStripMenuItem1
         '
-        Me.GestiónDeArticulosToolStripMenuItem.Image = Global.FormulariosPrueba.My.Resources.Resources.articulos
-        Me.GestiónDeArticulosToolStripMenuItem.Name = "GestiónDeArticulosToolStripMenuItem"
-        Me.GestiónDeArticulosToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.GestiónDeArticulosToolStripMenuItem.Text = "Gestión de Articulos"
+        Me.GestiónArticulosToolStripMenuItem1.Image = Global.FormulariosPrueba.My.Resources.Resources.articulos
+        Me.GestiónArticulosToolStripMenuItem1.Name = "GestiónArticulosToolStripMenuItem1"
+        Me.GestiónArticulosToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.GestiónArticulosToolStripMenuItem1.Text = "Gestión de Articulos"
         '
         'GestiónSociosToolStripMenuItem
         '
-        Me.GestiónSociosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónDeSociosToolStripMenuItem})
+        Me.GestiónSociosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónSociosToolStripMenuItem1})
         Me.GestiónSociosToolStripMenuItem.Name = "GestiónSociosToolStripMenuItem"
         Me.GestiónSociosToolStripMenuItem.Size = New System.Drawing.Size(53, 20)
         Me.GestiónSociosToolStripMenuItem.Text = "Socios"
         '
-        'GestiónDeSociosToolStripMenuItem
+        'GestiónSociosToolStripMenuItem1
         '
-        Me.GestiónDeSociosToolStripMenuItem.Image = Global.FormulariosPrueba.My.Resources.Resources.socios
-        Me.GestiónDeSociosToolStripMenuItem.Name = "GestiónDeSociosToolStripMenuItem"
-        Me.GestiónDeSociosToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
-        Me.GestiónDeSociosToolStripMenuItem.Text = "Gestión de Socios"
+        Me.GestiónSociosToolStripMenuItem1.Image = Global.FormulariosPrueba.My.Resources.Resources.socios
+        Me.GestiónSociosToolStripMenuItem1.Name = "GestiónSociosToolStripMenuItem1"
+        Me.GestiónSociosToolStripMenuItem1.Size = New System.Drawing.Size(167, 22)
+        Me.GestiónSociosToolStripMenuItem1.Text = "Gestión de Socios"
         '
         'GestiónEmpleadosToolStripMenuItem
         '
@@ -421,18 +393,15 @@ Partial Class GestionLibros
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Label_Autor As Label
     Friend WithEvents TextBox_Autor As TextBox
-    Friend WithEvents Button_Modificar As Button
     Friend WithEvents MenuStripPagPrin As MenuStrip
     Friend WithEvents HerramientasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CalculadoraToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BlocNotasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SalirToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents GestiónLibrosToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents GestiónLibrosToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents GestiónArticulosToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents GestiónDeArticulosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GestiónArticulosToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents GestiónSociosToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents GestiónDeSociosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GestiónSociosToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents GestiónEmpleadosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GestiónEmpleadosToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents AyudaToolStripMenuItem As ToolStripMenuItem

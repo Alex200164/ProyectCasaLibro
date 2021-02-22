@@ -27,18 +27,13 @@ Partial Class GestionArticulos
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.DataGridView_Articulos = New System.Windows.Forms.DataGridView()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Button_Modificar = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label_Autor = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Button_Buscar = New System.Windows.Forms.Button()
         Me.Button_Limpiar = New System.Windows.Forms.Button()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.Label_Genero = New System.Windows.Forms.Label()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
         Me.Label_Nombre = New System.Windows.Forms.Label()
         Me.Label_ISBN = New System.Windows.Forms.Label()
-        Me.TextBox_ISBN = New System.Windows.Forms.TextBox()
         Me.Button_Eliminar = New System.Windows.Forms.Button()
         Me.Button_Annadir = New System.Windows.Forms.Button()
         Me.VerLaAyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -50,13 +45,15 @@ Partial Class GestionArticulos
         Me.MenuStripPagPrin = New System.Windows.Forms.MenuStrip()
         Me.GestiónLibrosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestiónLibrosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GestiónArticulosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GestiónDeArticulosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestiónSociosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GestiónDeSociosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GestiónSociosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestiónEmpleadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestiónEmpleadosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.TextBox_Nombre = New System.Windows.Forms.TextBox()
+        Me.TextBox_Categoria = New System.Windows.Forms.TextBox()
+        Me.TextBox_ISBN = New System.Windows.Forms.TextBox()
+        Me.TextBox_Precio = New System.Windows.Forms.TextBox()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView_Articulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,7 +97,6 @@ Partial Class GestionArticulos
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.Button_Modificar)
         Me.Panel1.Controls.Add(Me.GroupBox1)
         Me.Panel1.Controls.Add(Me.Button_Eliminar)
         Me.Panel1.Controls.Add(Me.Button_Annadir)
@@ -111,29 +107,20 @@ Partial Class GestionArticulos
         Me.Panel1.TabIndex = 47
         Me.Panel1.TabStop = True
         '
-        'Button_Modificar
-        '
-        Me.Button_Modificar.Location = New System.Drawing.Point(653, 160)
-        Me.Button_Modificar.Name = "Button_Modificar"
-        Me.Button_Modificar.Size = New System.Drawing.Size(86, 29)
-        Me.Button_Modificar.TabIndex = 184
-        Me.Button_Modificar.Text = "Modificar"
-        Me.Button_Modificar.UseVisualStyleBackColor = True
-        '
         'GroupBox1
         '
         Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.TextBox_Precio)
+        Me.GroupBox1.Controls.Add(Me.TextBox_ISBN)
+        Me.GroupBox1.Controls.Add(Me.TextBox_Categoria)
+        Me.GroupBox1.Controls.Add(Me.TextBox_Nombre)
         Me.GroupBox1.Controls.Add(Me.Label_Autor)
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
         Me.GroupBox1.Controls.Add(Me.Button_Buscar)
         Me.GroupBox1.Controls.Add(Me.Button_Limpiar)
-        Me.GroupBox1.Controls.Add(Me.TextBox4)
         Me.GroupBox1.Controls.Add(Me.Label_Genero)
-        Me.GroupBox1.Controls.Add(Me.TextBox6)
         Me.GroupBox1.Controls.Add(Me.Label_Nombre)
         Me.GroupBox1.Controls.Add(Me.Label_ISBN)
-        Me.GroupBox1.Controls.Add(Me.TextBox_ISBN)
         Me.GroupBox1.Location = New System.Drawing.Point(3, 16)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(938, 127)
@@ -151,45 +138,23 @@ Partial Class GestionArticulos
         Me.Label_Autor.TabIndex = 181
         Me.Label_Autor.Text = "Precio :"
         '
-        'TextBox1
-        '
-        Me.TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(71, 81)
-        Me.TextBox1.MaxLength = 3
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox1.TabIndex = 182
-        '
         'Button_Buscar
         '
-        Me.Button_Buscar.Location = New System.Drawing.Point(742, 74)
+        Me.Button_Buscar.Location = New System.Drawing.Point(742, 81)
         Me.Button_Buscar.Name = "Button_Buscar"
         Me.Button_Buscar.Size = New System.Drawing.Size(86, 29)
-        Me.Button_Buscar.TabIndex = 180
+        Me.Button_Buscar.TabIndex = 5
         Me.Button_Buscar.Text = "Buscar"
         Me.Button_Buscar.UseVisualStyleBackColor = True
         '
         'Button_Limpiar
         '
-        Me.Button_Limpiar.Location = New System.Drawing.Point(834, 74)
+        Me.Button_Limpiar.Location = New System.Drawing.Point(834, 81)
         Me.Button_Limpiar.Name = "Button_Limpiar"
         Me.Button_Limpiar.Size = New System.Drawing.Size(86, 29)
-        Me.Button_Limpiar.TabIndex = 179
+        Me.Button_Limpiar.TabIndex = 6
         Me.Button_Limpiar.Text = "Limpiar"
         Me.Button_Limpiar.UseVisualStyleBackColor = True
-        '
-        'TextBox4
-        '
-        Me.TextBox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox4.Location = New System.Drawing.Point(723, 29)
-        Me.TextBox4.MaxLength = 3
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox4.TabIndex = 170
         '
         'Label_Genero
         '
@@ -200,17 +165,6 @@ Partial Class GestionArticulos
         Me.Label_Genero.Size = New System.Drawing.Size(86, 20)
         Me.Label_Genero.TabIndex = 169
         Me.Label_Genero.Text = "Categoría :"
-        '
-        'TextBox6
-        '
-        Me.TextBox6.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox6.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox6.Location = New System.Drawing.Point(390, 26)
-        Me.TextBox6.MaxLength = 3
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox6.TabIndex = 168
         '
         'Label_Nombre
         '
@@ -232,23 +186,12 @@ Partial Class GestionArticulos
         Me.Label_ISBN.TabIndex = 165
         Me.Label_ISBN.Text = "ISBN :"
         '
-        'TextBox_ISBN
-        '
-        Me.TextBox_ISBN.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_ISBN.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_ISBN.Location = New System.Drawing.Point(71, 26)
-        Me.TextBox_ISBN.MaxLength = 3
-        Me.TextBox_ISBN.Name = "TextBox_ISBN"
-        Me.TextBox_ISBN.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_ISBN.TabIndex = 166
-        '
         'Button_Eliminar
         '
         Me.Button_Eliminar.Location = New System.Drawing.Point(837, 160)
         Me.Button_Eliminar.Name = "Button_Eliminar"
         Me.Button_Eliminar.Size = New System.Drawing.Size(86, 29)
-        Me.Button_Eliminar.TabIndex = 182
+        Me.Button_Eliminar.TabIndex = 8
         Me.Button_Eliminar.Text = "Eliminar"
         Me.Button_Eliminar.UseVisualStyleBackColor = True
         '
@@ -257,7 +200,7 @@ Partial Class GestionArticulos
         Me.Button_Annadir.Location = New System.Drawing.Point(745, 160)
         Me.Button_Annadir.Name = "Button_Annadir"
         Me.Button_Annadir.Size = New System.Drawing.Size(86, 29)
-        Me.Button_Annadir.TabIndex = 181
+        Me.Button_Annadir.TabIndex = 7
         Me.Button_Annadir.Text = "Añadir"
         Me.Button_Annadir.UseVisualStyleBackColor = True
         '
@@ -282,7 +225,7 @@ Partial Class GestionArticulos
         Me.SalirToolStripMenuItem.Image = CType(resources.GetObject("SalirToolStripMenuItem.Image"), System.Drawing.Image)
         Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
         Me.SalirToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
-        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.SalirToolStripMenuItem.Text = "Salir..."
         '
         'BlocNotasToolStripMenuItem
@@ -290,7 +233,7 @@ Partial Class GestionArticulos
         Me.BlocNotasToolStripMenuItem.Image = Global.FormulariosPrueba.My.Resources.Resources.notepad
         Me.BlocNotasToolStripMenuItem.Name = "BlocNotasToolStripMenuItem"
         Me.BlocNotasToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D2), System.Windows.Forms.Keys)
-        Me.BlocNotasToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BlocNotasToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.BlocNotasToolStripMenuItem.Text = "Bloc Notas"
         '
         'CalculadoraToolStripMenuItem
@@ -298,7 +241,7 @@ Partial Class GestionArticulos
         Me.CalculadoraToolStripMenuItem.Image = CType(resources.GetObject("CalculadoraToolStripMenuItem.Image"), System.Drawing.Image)
         Me.CalculadoraToolStripMenuItem.Name = "CalculadoraToolStripMenuItem"
         Me.CalculadoraToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D1), System.Windows.Forms.Keys)
-        Me.CalculadoraToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CalculadoraToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.CalculadoraToolStripMenuItem.Text = "Calculadora"
         '
         'HerramientasToolStripMenuItem
@@ -312,7 +255,7 @@ Partial Class GestionArticulos
         'MenuStripPagPrin
         '
         Me.MenuStripPagPrin.BackColor = System.Drawing.Color.Transparent
-        Me.MenuStripPagPrin.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HerramientasToolStripMenuItem, Me.GestiónLibrosToolStripMenuItem, Me.GestiónArticulosToolStripMenuItem, Me.GestiónSociosToolStripMenuItem, Me.GestiónEmpleadosToolStripMenuItem, Me.AyudaToolStripMenuItem})
+        Me.MenuStripPagPrin.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HerramientasToolStripMenuItem, Me.GestiónLibrosToolStripMenuItem, Me.GestiónSociosToolStripMenuItem, Me.GestiónEmpleadosToolStripMenuItem, Me.AyudaToolStripMenuItem})
         Me.MenuStripPagPrin.Location = New System.Drawing.Point(0, 0)
         Me.MenuStripPagPrin.Name = "MenuStripPagPrin"
         Me.MenuStripPagPrin.Size = New System.Drawing.Size(984, 24)
@@ -334,33 +277,19 @@ Partial Class GestionArticulos
         Me.GestiónLibrosToolStripMenuItem1.Size = New System.Drawing.Size(165, 22)
         Me.GestiónLibrosToolStripMenuItem1.Text = "Gestión de Libros"
         '
-        'GestiónArticulosToolStripMenuItem
-        '
-        Me.GestiónArticulosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónDeArticulosToolStripMenuItem})
-        Me.GestiónArticulosToolStripMenuItem.Name = "GestiónArticulosToolStripMenuItem"
-        Me.GestiónArticulosToolStripMenuItem.Size = New System.Drawing.Size(66, 20)
-        Me.GestiónArticulosToolStripMenuItem.Text = "Articulos"
-        '
-        'GestiónDeArticulosToolStripMenuItem
-        '
-        Me.GestiónDeArticulosToolStripMenuItem.Image = Global.FormulariosPrueba.My.Resources.Resources.articulos
-        Me.GestiónDeArticulosToolStripMenuItem.Name = "GestiónDeArticulosToolStripMenuItem"
-        Me.GestiónDeArticulosToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.GestiónDeArticulosToolStripMenuItem.Text = "Gestión de Articulos"
-        '
         'GestiónSociosToolStripMenuItem
         '
-        Me.GestiónSociosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónDeSociosToolStripMenuItem})
+        Me.GestiónSociosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónSociosToolStripMenuItem1})
         Me.GestiónSociosToolStripMenuItem.Name = "GestiónSociosToolStripMenuItem"
         Me.GestiónSociosToolStripMenuItem.Size = New System.Drawing.Size(53, 20)
         Me.GestiónSociosToolStripMenuItem.Text = "Socios"
         '
-        'GestiónDeSociosToolStripMenuItem
+        'GestiónSociosToolStripMenuItem1
         '
-        Me.GestiónDeSociosToolStripMenuItem.Image = Global.FormulariosPrueba.My.Resources.Resources.socios
-        Me.GestiónDeSociosToolStripMenuItem.Name = "GestiónDeSociosToolStripMenuItem"
-        Me.GestiónDeSociosToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
-        Me.GestiónDeSociosToolStripMenuItem.Text = "Gestión de Socios"
+        Me.GestiónSociosToolStripMenuItem1.Image = Global.FormulariosPrueba.My.Resources.Resources.socios
+        Me.GestiónSociosToolStripMenuItem1.Name = "GestiónSociosToolStripMenuItem1"
+        Me.GestiónSociosToolStripMenuItem1.Size = New System.Drawing.Size(167, 22)
+        Me.GestiónSociosToolStripMenuItem1.Text = "Gestión de Socios"
         '
         'GestiónEmpleadosToolStripMenuItem
         '
@@ -375,6 +304,50 @@ Partial Class GestionArticulos
         Me.GestiónEmpleadosToolStripMenuItem1.Name = "GestiónEmpleadosToolStripMenuItem1"
         Me.GestiónEmpleadosToolStripMenuItem1.Size = New System.Drawing.Size(191, 22)
         Me.GestiónEmpleadosToolStripMenuItem1.Text = "Gestión de Empleados"
+        '
+        'TextBox_Nombre
+        '
+        Me.TextBox_Nombre.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_Nombre.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Nombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Nombre.Location = New System.Drawing.Point(392, 30)
+        Me.TextBox_Nombre.MaxLength = 100
+        Me.TextBox_Nombre.Name = "TextBox_Nombre"
+        Me.TextBox_Nombre.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_Nombre.TabIndex = 2
+        '
+        'TextBox_Categoria
+        '
+        Me.TextBox_Categoria.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_Categoria.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Categoria.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Categoria.Location = New System.Drawing.Point(726, 29)
+        Me.TextBox_Categoria.MaxLength = 100
+        Me.TextBox_Categoria.Name = "TextBox_Categoria"
+        Me.TextBox_Categoria.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_Categoria.TabIndex = 3
+        '
+        'TextBox_ISBN
+        '
+        Me.TextBox_ISBN.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_ISBN.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_ISBN.Location = New System.Drawing.Point(76, 29)
+        Me.TextBox_ISBN.MaxLength = 100
+        Me.TextBox_ISBN.Name = "TextBox_ISBN"
+        Me.TextBox_ISBN.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_ISBN.TabIndex = 1
+        '
+        'TextBox_Precio
+        '
+        Me.TextBox_Precio.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_Precio.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Precio.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Precio.Location = New System.Drawing.Point(73, 84)
+        Me.TextBox_Precio.MaxLength = 100
+        Me.TextBox_Precio.Name = "TextBox_Precio"
+        Me.TextBox_Precio.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_Precio.TabIndex = 4
         '
         'GestionArticulos
         '
@@ -417,22 +390,19 @@ Partial Class GestionArticulos
     Friend WithEvents Button_Annadir As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label_Autor As Label
-    Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Button_Buscar As Button
     Friend WithEvents Button_Limpiar As Button
-    Friend WithEvents TextBox4 As TextBox
     Friend WithEvents Label_Genero As Label
-    Friend WithEvents TextBox6 As TextBox
     Friend WithEvents Label_Nombre As Label
     Friend WithEvents Label_ISBN As Label
-    Friend WithEvents TextBox_ISBN As TextBox
-    Friend WithEvents Button_Modificar As Button
     Friend WithEvents GestiónEmpleadosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GestiónEmpleadosToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents GestiónLibrosToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents GestiónArticulosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GestiónSociosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GestiónLibrosToolStripMenuItem1 As ToolStripMenuItem
-    Friend WithEvents GestiónDeArticulosToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents GestiónDeSociosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GestiónSociosToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents TextBox_Precio As TextBox
+    Friend WithEvents TextBox_ISBN As TextBox
+    Friend WithEvents TextBox_Categoria As TextBox
+    Friend WithEvents TextBox_Nombre As TextBox
 End Class

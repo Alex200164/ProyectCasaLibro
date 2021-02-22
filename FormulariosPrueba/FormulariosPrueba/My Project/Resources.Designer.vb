@@ -153,26 +153,6 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property modificarbutton() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("modificarbutton", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property modificarpng() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("modificarpng", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        '''</summary>
         Friend ReadOnly Property notepad() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("notepad", resourceCulture)
@@ -206,16 +186,6 @@ Namespace My.Resources
         Friend ReadOnly Property socios2() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("socios2", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property Webp_net_resizeimage_6_() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("Webp_net_resizeimage_6_", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

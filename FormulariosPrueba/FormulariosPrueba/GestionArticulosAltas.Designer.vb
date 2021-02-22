@@ -40,21 +40,22 @@ Partial Class GestionArticulosAltas
         Me.ISBN = New System.Windows.Forms.Label()
         Me.TextBox_ISBN = New System.Windows.Forms.TextBox()
         Me.Label21 = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.GruopBox = New System.Windows.Forms.GroupBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.MenuStripPagPrin.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GruopBox.SuspendLayout()
         Me.Panel2.SuspendLayout()
-        Me.Panel1.SuspendLayout()
+        Me.Panel3.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStripPagPrin
         '
+        Me.MenuStripPagPrin.BackColor = System.Drawing.Color.Transparent
         Me.MenuStripPagPrin.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HerramientasToolStripMenuItem, Me.AyudaToolStripMenuItem})
         Me.MenuStripPagPrin.Location = New System.Drawing.Point(0, 0)
         Me.MenuStripPagPrin.Name = "MenuStripPagPrin"
@@ -118,7 +119,7 @@ Partial Class GestionArticulosAltas
         Me.Button_Alta.Name = "Button_Alta"
         Me.Button_Alta.Size = New System.Drawing.Size(86, 29)
         Me.Button_Alta.TabIndex = 180
-        Me.Button_Alta.Text = "Guard/Alta"
+        Me.Button_Alta.Text = "Alta"
         Me.Button_Alta.UseVisualStyleBackColor = True
         '
         'Button_Limpiar
@@ -215,16 +216,6 @@ Partial Class GestionArticulosAltas
         Me.Label21.TabIndex = 151
         Me.Label21.Text = "Categoría :"
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(12, 10)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(163, 92)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 39
-        Me.PictureBox1.TabStop = False
-        '
         'Label20
         '
         Me.Label20.AutoSize = True
@@ -277,14 +268,25 @@ Partial Class GestionArticulosAltas
         Me.Panel2.Size = New System.Drawing.Size(730, 205)
         Me.Panel2.TabIndex = 52
         '
-        'Panel1
+        'Panel3
         '
-        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(56, Byte), Integer))
-        Me.Panel1.Controls.Add(Me.PictureBox1)
-        Me.Panel1.Location = New System.Drawing.Point(0, 24)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(754, 116)
-        Me.Panel1.TabIndex = 51
+        Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(56, Byte), Integer))
+        Me.Panel3.Controls.Add(Me.PictureBox2)
+        Me.Panel3.Location = New System.Drawing.Point(0, 27)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(754, 94)
+        Me.Panel3.TabIndex = 53
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
+        Me.PictureBox2.Location = New System.Drawing.Point(12, 2)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(163, 92)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox2.TabIndex = 39
+        Me.PictureBox2.TabStop = False
         '
         'GestionArticulosAltas
         '
@@ -293,19 +295,20 @@ Partial Class GestionArticulosAltas
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(754, 353)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.MenuStripPagPrin)
         Me.Controls.Add(Me.Panel2)
-        Me.Controls.Add(Me.Panel1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "GestionArticulosAltas"
         Me.Text = "Gestion de Articulos (Altas)"
         Me.MenuStripPagPrin.ResumeLayout(False)
         Me.MenuStripPagPrin.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GruopBox.ResumeLayout(False)
         Me.GruopBox.PerformLayout()
         Me.Panel2.ResumeLayout(False)
-        Me.Panel1.ResumeLayout(False)
+        Me.Panel3.ResumeLayout(False)
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -328,10 +331,10 @@ Partial Class GestionArticulosAltas
     Friend WithEvents ISBN As Label
     Friend WithEvents TextBox_ISBN As TextBox
     Friend WithEvents Label21 As Label
-    Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Label20 As Label
     Friend WithEvents Label19 As Label
     Friend WithEvents GruopBox As GroupBox
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents PictureBox2 As PictureBox
 End Class

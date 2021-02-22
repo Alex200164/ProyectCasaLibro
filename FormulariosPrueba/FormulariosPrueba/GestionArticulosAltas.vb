@@ -13,6 +13,8 @@ Public Class GestionArticulosAltas
 
     ' Método que se ejecuta cuando el botón "Salir..." del ToolStrip es pulsado y que nos lleva al formulario "GestionArticulos".
     Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click
+        'Habilita el formulario
+        GestionArticulos.Enabled = True
         ' Mostramos el formulario "GestionArticulos".
         GestionArticulos.Show()
 
@@ -63,8 +65,6 @@ Public Class GestionArticulosAltas
             GestionArticulos.midataset.Clear()
             GestionArticulos.adaptador.Fill(GestionArticulos.midataset, "Productos")
 
-            ' Cerramos la ventana
-            Me.Close()
 
             ' ####################  4º Cambiamos el estado de los botones del menuStrip ##############################
             ' AltaToolStripMenuItem.Enabled = False
