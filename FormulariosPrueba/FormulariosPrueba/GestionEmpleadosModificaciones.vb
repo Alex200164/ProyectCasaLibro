@@ -20,4 +20,8 @@
             MsgBox("Ha ocurrido un error, no se pudo iniciar la calculadora.", MsgBoxStyle.OkOnly, "Error (proceso calculadora)")
         End Try
     End Sub
+
+    Private Sub GestionEmpleadosModificaciones_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

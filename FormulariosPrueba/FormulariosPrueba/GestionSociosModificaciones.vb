@@ -3,6 +3,10 @@ Imports System.Data.OleDb
 
 Public Class GestionSociosModificaciones
 
+    ' Variable para almacenar el número de socio inicial con el que se identificará el registro a modificar.
+    Dim numSocioInicial As String
+
+
     ' Especificamos la base de datos a la que nos vamos a conectar.
     Public conexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=CasaLibroDB.accdb")
     ' Al adaptador le asignamos la conexion que acabamos de realizar y una consulta
@@ -60,14 +64,21 @@ Public Class GestionSociosModificaciones
         'Asociamos el nuevo adaptador con el nuevo comando al midataset de la tabla Socios 
         adaptador.Fill(midataset, "Socios")
 
-        'Se relacionan los campos de la tabla con los textbox y se muestran los datos del registro que queremos modificar.
-        Me.TextBox_NumeroSocio.DataBindings.Add("text", midataset, "Socios.NumeroDeSocio")
-        Me.TextBox_Nombre.DataBindings.Add("text", midataset, "Socios.Nombre")
-        Me.TextBox_Apellidos.DataBindings.Add("text", midataset, "Socios.Apellidos")
-        Me.TextBox_Telefono.DataBindings.Add("text", midataset, "Socios.Telefono")
-        Me.TextBox_Correo.DataBindings.Add("text", midataset, "Socios.Correo")
+        If GestionSocios.numeroDeControlBindingModificaciones = 0 Then
+            'Se relacionan los campos de la tabla con los textbox y se muestran los datos del registro que queremos modificar.
+            Me.TextBox_NumeroSocio.DataBindings.Add("text", midataset, "Socios.NumeroDeSocio")
+            Me.TextBox_Nombre.DataBindings.Add("text", midataset, "Socios.Nombre")
+            Me.TextBox_Apellidos.DataBindings.Add("text", midataset, "Socios.Apellidos")
+            Me.TextBox_Telefono.DataBindings.Add("text", midataset, "Socios.Telefono")
+            Me.TextBox_Correo.DataBindings.Add("text", midataset, "Socios.Correo")
+
+            GestionSocios.numeroDeControlBindingModificaciones = 1
+        End If
 
 
+
+        ' Inicializamos la variable asignandole el número de socio inicial
+        numSocioInicial = TextBox_NumeroSocio.Text
 
     End Sub
 
@@ -79,41 +90,62 @@ Public Class GestionSociosModificaciones
         Else
 
             Try
+                ' Montamos una query parametrizada.
                 Dim queryParametrizada As String = "UPDATE Socios SET NumeroDeSocio=?, Nombre=?, Apellidos=?, Telefono=?, Correo=? WHERE NumeroDeSocio=?"
+                Using cmd = New OleDbCommand(queryParametrizada, conexion)
+
+                    conexion.Open()
+                    cmd.Parameters.AddWithValue("@p1", Convert.ToInt64(TextBox_NumeroSocio.Text))
+                    cmd.Parameters.AddWithValue("@p2", TextBox_Nombre.Text)
+                    cmd.Parameters.AddWithValue("@p3", TextBox_Apellidos.Text)
+                    cmd.Parameters.AddWithValue("@p4", Convert.ToInt64(TextBox_Telefono.Text))
+                    cmd.Parameters.AddWithValue("@p5", TextBox_Correo.Text)
+                    cmd.Parameters.AddWithValue("@p6", Convert.ToInt64(numSocioInicial))
+
+                    cmd.ExecuteNonQuery()
+                End Using
 
 
-
-                Dim cb As New OleDbCommandBuilder(adaptador)
-                adaptador.UpdateCommand = cb.GetUpdateCommand
+                ' Dim cb As New OleDbCommandBuilder(adaptador)
+                ' adaptador.UpdateCommand = cb.GetUpdateCommand
             Catch ex As System.InvalidOperationException
                 ' Avisamos del error por mensaje
                 MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
             End Try
 
-            Dim a As Integer = GestionSocios.posicionDataGridSeleccionada
+            ' Dim a As Integer = GestionSocios.posicionDataGridSeleccionada
 
-            Dim fila As DataRow = GestionSocios.midataset.Tables("Socios").Rows(a)
+            ' Dim fila As DataRow = GestionSocios.midataset.Tables("Socios").Rows(a)
+
+
 
             ' Comenzamos la edición
-            fila.BeginEdit()
-            fila("NumeroDeSocio") = TextBox_NumeroSocio.Text
-            fila("Nombre") = TextBox_Nombre.Text
-            fila("Apellidos") = TextBox_Apellidos.Text
-            fila("Telefono") = TextBox_Telefono.Text
-            fila("Correo") = TextBox_Correo.Text
-            fila.EndEdit()
+            '  fila.BeginEdit()
+            '  fila("NumeroDeSocio") = TextBox_NumeroSocio.Text
+            '  fila("Nombre") = TextBox_Nombre.Text
+            ' fila("Apellidos") = TextBox_Apellidos.Text
+            '  fila("Telefono") = TextBox_Telefono.Text
+            '  fila("Correo") = TextBox_Correo.Text
+            '  fila.EndEdit()
             ' Finalizamos la edición
 
-            Try
-                ' Ejecutamos la sentencia
-                adaptador.Update(GestionSocios.midataset.Tables("Socios"))
-            Catch ex As System.InvalidOperationException
+            '  Try
+            ' ' Ejecutamos la sentencia
+            ' adaptador.Update(GestionSocios.midataset.Tables("Socios"))
+            ' Catch ex As System.InvalidOperationException
 
-            End Try
+            ' End Try
 
             ' Actualizamos el dataGridView del formulario de gestión principal
-            GestionSocios.midataset.Clear()
-            GestionSocios.adaptador.Fill(GestionSocios.midataset, "Socios")
+            ' GestionSocios.midataset.Clear()
+
+            ' Cargamos cache
+            'GestionSocios.adaptador.Fill(GestionSocios.midataset, "Socios")
+
+            ' cargar en el datagridview, le decimos de donde sacamos los datos
+
+            'GestionSocios.DataGridView_Socios.DataSource = GestionSocios.midataset
+            'GestionSocios.DataGridView_Socios.DataMember = "Socios"
 
             ' Cerramos la ventana
             Me.Close()
@@ -123,5 +155,7 @@ Public Class GestionSociosModificaciones
 
         End If
     End Sub
+
+
 
 End Class

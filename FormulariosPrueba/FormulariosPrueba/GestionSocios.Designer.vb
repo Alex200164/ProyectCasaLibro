@@ -45,15 +45,16 @@ Partial Class GestionSocios
         Me.GestiónEmpleadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestiónEmpleadosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TextBox_Telefono = New System.Windows.Forms.TextBox()
+        Me.TextBox_NumeroSocio = New System.Windows.Forms.TextBox()
+        Me.TextBox_Apellidos = New System.Windows.Forms.TextBox()
+        Me.TextBox_Nombre = New System.Windows.Forms.TextBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Button_Eliminar = New System.Windows.Forms.Button()
         Me.DataGridView_Socios = New System.Windows.Forms.DataGridView()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.TextBox_Nombre = New System.Windows.Forms.TextBox()
-        Me.TextBox_Apellidos = New System.Windows.Forms.TextBox()
-        Me.TextBox_NumeroSocio = New System.Windows.Forms.TextBox()
-        Me.TextBox_Telefono = New System.Windows.Forms.TextBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.MenuStripPagPrin.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -251,8 +252,53 @@ Partial Class GestionSocios
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Filtro de Busqueda"
         '
+        'TextBox_Telefono
+        '
+        Me.TextBox_Telefono.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_Telefono.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Telefono.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Telefono.Location = New System.Drawing.Point(90, 84)
+        Me.TextBox_Telefono.MaxLength = 100
+        Me.TextBox_Telefono.Name = "TextBox_Telefono"
+        Me.TextBox_Telefono.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_Telefono.TabIndex = 4
+        '
+        'TextBox_NumeroSocio
+        '
+        Me.TextBox_NumeroSocio.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_NumeroSocio.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_NumeroSocio.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_NumeroSocio.Location = New System.Drawing.Point(90, 26)
+        Me.TextBox_NumeroSocio.MaxLength = 100
+        Me.TextBox_NumeroSocio.Name = "TextBox_NumeroSocio"
+        Me.TextBox_NumeroSocio.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_NumeroSocio.TabIndex = 1
+        '
+        'TextBox_Apellidos
+        '
+        Me.TextBox_Apellidos.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_Apellidos.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Apellidos.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Apellidos.Location = New System.Drawing.Point(723, 25)
+        Me.TextBox_Apellidos.MaxLength = 100
+        Me.TextBox_Apellidos.Name = "TextBox_Apellidos"
+        Me.TextBox_Apellidos.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_Apellidos.TabIndex = 3
+        '
+        'TextBox_Nombre
+        '
+        Me.TextBox_Nombre.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_Nombre.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Nombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Nombre.Location = New System.Drawing.Point(394, 26)
+        Me.TextBox_Nombre.MaxLength = 100
+        Me.TextBox_Nombre.Name = "TextBox_Nombre"
+        Me.TextBox_Nombre.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_Nombre.TabIndex = 2
+        '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Controls.Add(Me.GroupBox1)
         Me.Panel1.Controls.Add(Me.Button_Eliminar)
         Me.Panel1.Controls.Add(Me.Button_Annadir)
@@ -301,49 +347,14 @@ Partial Class GestionSocios
         Me.Panel2.Size = New System.Drawing.Size(984, 94)
         Me.Panel2.TabIndex = 51
         '
-        'TextBox_Nombre
+        'Button1
         '
-        Me.TextBox_Nombre.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_Nombre.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Nombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Nombre.Location = New System.Drawing.Point(394, 26)
-        Me.TextBox_Nombre.MaxLength = 100
-        Me.TextBox_Nombre.Name = "TextBox_Nombre"
-        Me.TextBox_Nombre.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_Nombre.TabIndex = 2
-        '
-        'TextBox_Apellidos
-        '
-        Me.TextBox_Apellidos.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_Apellidos.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Apellidos.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Apellidos.Location = New System.Drawing.Point(723, 25)
-        Me.TextBox_Apellidos.MaxLength = 100
-        Me.TextBox_Apellidos.Name = "TextBox_Apellidos"
-        Me.TextBox_Apellidos.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_Apellidos.TabIndex = 3
-        '
-        'TextBox_NumeroSocio
-        '
-        Me.TextBox_NumeroSocio.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_NumeroSocio.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_NumeroSocio.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_NumeroSocio.Location = New System.Drawing.Point(90, 26)
-        Me.TextBox_NumeroSocio.MaxLength = 100
-        Me.TextBox_NumeroSocio.Name = "TextBox_NumeroSocio"
-        Me.TextBox_NumeroSocio.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_NumeroSocio.TabIndex = 1
-        '
-        'TextBox_Telefono
-        '
-        Me.TextBox_Telefono.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_Telefono.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Telefono.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Telefono.Location = New System.Drawing.Point(90, 84)
-        Me.TextBox_Telefono.MaxLength = 100
-        Me.TextBox_Telefono.Name = "TextBox_Telefono"
-        Me.TextBox_Telefono.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_Telefono.TabIndex = 4
+        Me.Button1.Location = New System.Drawing.Point(646, 161)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(93, 27)
+        Me.Button1.TabIndex = 184
+        Me.Button1.Text = "Actualizar"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'GestionSocios
         '
@@ -401,4 +412,5 @@ Partial Class GestionSocios
     Friend WithEvents TextBox_NumeroSocio As TextBox
     Friend WithEvents TextBox_Apellidos As TextBox
     Friend WithEvents TextBox_Nombre As TextBox
+    Friend WithEvents Button1 As Button
 End Class

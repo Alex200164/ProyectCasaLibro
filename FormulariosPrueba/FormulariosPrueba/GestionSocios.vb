@@ -3,6 +3,9 @@ Imports System.Data.OleDb
 
 Public Class GestionSocios
 
+    ' Número de control para controlar el dataBinding de los text boxes del formulario modificaciones, evitando que se relacionen dos veces.
+    Public numeroDeControlBindingModificaciones As Long
+
     ' Especificamos la base de datos a la que nos vamos a conectar.
     Public conexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=CasaLibroDB.accdb")
     ' Al adaptador le asignamos la conexion que acabamos de realizar y una consulta
@@ -27,6 +30,9 @@ Public Class GestionSocios
             ' cargar en el datagridview, le decimos de donde sacamos los datos
             DataGridView_Socios.DataSource = midataset
             DataGridView_Socios.DataMember = "Socios"
+
+            ' Inicializamos el número de control
+            numeroDeControlBindingModificaciones = 0
 
             'Creación en la ultima columna del DataGridView el botón de modificar en cada registro.
             crearButtonDataGridView()
@@ -123,6 +129,10 @@ Public Class GestionSocios
             posicionarGestionModificaciones()
             ' Mostramos el formulario
             GestionSociosModificaciones.ShowDialog()
+
+            'System.ArgumentException hacer expecion try catch
+
+
         End If
     End Sub
 
@@ -232,7 +242,21 @@ Public Class GestionSocios
         ' Mostramos el menú principal.
         MenuPrincipal.Show()
 
+
         ' Cerramos este formulario
         Me.Close()
+    End Sub
+
+    ' Actualizamos el dataGridView
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        midataset.Clear()
+
+
+        ' Cargar la memoria del cache con datos.
+        adaptador.Fill(midataset, "Socios")
+
+        ' cargar en el datagridview, le decimos de donde sacamos los datos
+        DataGridView_Socios.DataSource = midataset
+        DataGridView_Socios.DataMember = "Socios"
     End Sub
 End Class

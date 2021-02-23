@@ -16,6 +16,8 @@ Public Class GestionEmpleados
     ' Aquí alojaremos los datos de la DB
     Public midataset As New DataSet
 
+    Public posicionDataGridSeleccionada As Integer
+
     Private Sub GestionEmpleados_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Cargar la memoria del cache con datos.
         adaptador.Fill(midataset, "Empleados")
@@ -25,7 +27,7 @@ Public Class GestionEmpleados
         DataGridView_Empleados.DataMember = "Empleados"
 
         'Creación en la ultima columna del DataGridView el botón de modificar en cada registro.
-        crearButtonDataGridView()
+        crearButtonDataGridViewEmpleados()
 
 
     End Sub
@@ -73,7 +75,7 @@ Public Class GestionEmpleados
 
     'Método que crea y da formato al botón de modificar, en cada una de los registros del DataGridView. 
     'Este bóton abrirá el formulario de GestionEmpleadosModificaciones. 
-    Public Sub crearButtonDataGridView()
+    Public Sub crearButtonDataGridViewEmpleados()
         'style.BackColor when the button Is Not selected
         style.BackColor = Color.White
 
@@ -86,22 +88,6 @@ Public Class GestionEmpleados
 
         'Cargar en la ultima columna del DataGridView, la creación y el estilo del botón interno.
         DataGridView_Empleados.Columns.Add(button_din_modificar)
-    End Sub
-
-    'Metodo evento que capta la puslación en la celda relativa al botón. 
-    Private Sub DataGridView1_CellContentClick(sender As System.Object, e As DataGridViewCellEventArgs) Handles DataGridView_Empleados.CellContentClick
-
-        'Convierte el objeto en sender
-        Dim senderGrid = DirectCast(sender, DataGridView)
-
-        'Comprueba que es una columna del data gridview que tiene el evento y que tiene indice mayor que 0
-        'Si es correcto se ejecutará el comando de abrir GestionEmpleadosModificaciones
-        If TypeOf senderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso e.RowIndex >= 0 Then
-            ' Posicionamos el formulario que vamos a mostrar.
-            posicionarGestionModificaciones()
-            ' Mostramos el formulario
-            GestionEmpleadosModificaciones.ShowDialog()
-        End If
     End Sub
 
     'Metodo que pinta el Icono asociado al botón dinámico Modificar, el la ultima Columna del DataGridView
@@ -202,6 +188,47 @@ Public Class GestionEmpleados
         End Try
     End Sub
 
+    ' Método que se ejecuta al pulsar en una de las cajas del DataGridView
+    Private Sub DataGridView_Socios_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView_Empleados.CellClick
+        posicionDataGridSeleccionada = BindingContext(midataset, "Empleados").Position
+    End Sub
+
+    'Metodo evento que capta la puslación en la celda relativa al botón. 
+    Private Sub DataGridView1_CellContentClick(sender As System.Object, e As DataGridViewCellEventArgs) Handles DataGridView_Empleados.CellContentClick
+
+        'Convierte el objeto en sender
+        Dim senderGrid = DirectCast(sender, DataGridView)
+
+        'Comprueba que es una columna del data gridview que tiene el evento y que tiene indice mayor que 0
+        'Si es correcto se ejecutará el comando de abrir GestionSociosModificaciones
+        If TypeOf senderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso e.RowIndex >= 0 Then
+            ' Posicionamos el formulario que vamos a mostrar.
+            posicionarGestionModificaciones()
+            ' Mostramos el formulario
+            GestionEmpleadosModificaciones.ShowDialog()
+
+            'System.ArgumentException hacer expecion try catch
+
+        End If
+    End Sub
+
+    'Método que crea y da formato al botón de modificar, en cada una de los registros del DataGridView. 
+    'Este bóton abrirá el formulario de GestionSociosModificaciones. 
+    Public Sub crearButtonDataGridView()
+        'style.BackColor when the button Is Not selected
+        style.BackColor = Color.White
+
+        'Le asignamos un nombre   
+        button_din_modificar.Name = "Modificar"
+        'Le asignamos un tamaño
+        button_din_modificar.Width = 50
+        'declare a DataGridViewCellStyle
+        button_din_modificar.FlatStyle = FlatStyle.Popup
+
+        'Cargar en la ultima columna del DataGridView, la creación y el estilo del botón interno.
+        DataGridView_Empleados.Columns.Add(button_din_modificar)
+    End Sub
+
 
     ' Método que se ejecuta cuando el botón "Salir..." del ToolStrip es pulsado y que nos lleva al formulario "MenuPrincipal"
     Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click
@@ -213,6 +240,19 @@ Public Class GestionEmpleados
 
         ' Cerramos este formulario
         Me.Close()
+    End Sub
+
+    ' Actualizamos el dataGridView
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        midataset.Clear()
+
+
+        ' Cargar la memoria del cache con datos.
+        adaptador.Fill(midataset, "Empleados")
+
+        ' cargar en el datagridview, le decimos de donde sacamos los datos
+        DataGridView_Empleados.DataSource = midataset
+        DataGridView_Empleados.DataMember = "Empleados"
     End Sub
 
 End Class

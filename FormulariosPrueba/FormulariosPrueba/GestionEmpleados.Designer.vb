@@ -26,6 +26,17 @@ Partial Class GestionEmpleados
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Button_Eliminar = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Titulo = New System.Windows.Forms.TextBox()
+        Me.Label_Autor = New System.Windows.Forms.Label()
+        Me.Button_Buscar = New System.Windows.Forms.Button()
+        Me.Button_Limpiar = New System.Windows.Forms.Button()
+        Me.Label_Genero = New System.Windows.Forms.Label()
+        Me.Label_Nombre = New System.Windows.Forms.Label()
+        Me.Label_ISBN = New System.Windows.Forms.Label()
         Me.Button_Annadir = New System.Windows.Forms.Button()
         Me.DataGridView_Empleados = New System.Windows.Forms.DataGridView()
         Me.MenuStripPagPrin = New System.Windows.Forms.MenuStrip()
@@ -43,23 +54,13 @@ Partial Class GestionEmpleados
         Me.VerLaAyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Label_ISBN = New System.Windows.Forms.Label()
-        Me.Label_Nombre = New System.Windows.Forms.Label()
-        Me.Label_Genero = New System.Windows.Forms.Label()
-        Me.Button_Limpiar = New System.Windows.Forms.Button()
-        Me.Button_Buscar = New System.Windows.Forms.Button()
-        Me.Label_Autor = New System.Windows.Forms.Label()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.TextBox_Titulo = New System.Windows.Forms.TextBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridView_Empleados, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStripPagPrin.SuspendLayout()
         Me.Panel2.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PictureBox1
@@ -84,6 +85,7 @@ Partial Class GestionEmpleados
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Controls.Add(Me.GroupBox1)
         Me.Panel1.Controls.Add(Me.Button_Eliminar)
         Me.Panel1.Controls.Add(Me.Button_Annadir)
@@ -93,6 +95,129 @@ Partial Class GestionEmpleados
         Me.Panel1.Size = New System.Drawing.Size(959, 480)
         Me.Panel1.TabIndex = 53
         Me.Panel1.TabStop = True
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.TextBox3)
+        Me.GroupBox1.Controls.Add(Me.TextBox2)
+        Me.GroupBox1.Controls.Add(Me.TextBox1)
+        Me.GroupBox1.Controls.Add(Me.TextBox_Titulo)
+        Me.GroupBox1.Controls.Add(Me.Label_Autor)
+        Me.GroupBox1.Controls.Add(Me.Button_Buscar)
+        Me.GroupBox1.Controls.Add(Me.Button_Limpiar)
+        Me.GroupBox1.Controls.Add(Me.Label_Genero)
+        Me.GroupBox1.Controls.Add(Me.Label_Nombre)
+        Me.GroupBox1.Controls.Add(Me.Label_ISBN)
+        Me.GroupBox1.Location = New System.Drawing.Point(3, 16)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(938, 127)
+        Me.GroupBox1.TabIndex = 183
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Filtro de Busqueda"
+        '
+        'TextBox3
+        '
+        Me.TextBox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox3.Location = New System.Drawing.Point(723, 30)
+        Me.TextBox3.MaxLength = 100
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox3.TabIndex = 185
+        '
+        'TextBox2
+        '
+        Me.TextBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox2.Location = New System.Drawing.Point(392, 30)
+        Me.TextBox2.MaxLength = 100
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox2.TabIndex = 184
+        '
+        'TextBox1
+        '
+        Me.TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.Location = New System.Drawing.Point(73, 85)
+        Me.TextBox1.MaxLength = 100
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox1.TabIndex = 183
+        '
+        'TextBox_Titulo
+        '
+        Me.TextBox_Titulo.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_Titulo.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Titulo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Titulo.Location = New System.Drawing.Point(76, 30)
+        Me.TextBox_Titulo.MaxLength = 100
+        Me.TextBox_Titulo.Name = "TextBox_Titulo"
+        Me.TextBox_Titulo.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_Titulo.TabIndex = 182
+        '
+        'Label_Autor
+        '
+        Me.Label_Autor.AutoSize = True
+        Me.Label_Autor.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label_Autor.Location = New System.Drawing.Point(6, 84)
+        Me.Label_Autor.Name = "Label_Autor"
+        Me.Label_Autor.Size = New System.Drawing.Size(61, 20)
+        Me.Label_Autor.TabIndex = 181
+        Me.Label_Autor.Text = "Precio :"
+        '
+        'Button_Buscar
+        '
+        Me.Button_Buscar.Location = New System.Drawing.Point(742, 82)
+        Me.Button_Buscar.Name = "Button_Buscar"
+        Me.Button_Buscar.Size = New System.Drawing.Size(86, 29)
+        Me.Button_Buscar.TabIndex = 180
+        Me.Button_Buscar.Text = "Buscar"
+        Me.Button_Buscar.UseVisualStyleBackColor = True
+        '
+        'Button_Limpiar
+        '
+        Me.Button_Limpiar.Location = New System.Drawing.Point(834, 82)
+        Me.Button_Limpiar.Name = "Button_Limpiar"
+        Me.Button_Limpiar.Size = New System.Drawing.Size(86, 29)
+        Me.Button_Limpiar.TabIndex = 179
+        Me.Button_Limpiar.Text = "Limpiar"
+        Me.Button_Limpiar.UseVisualStyleBackColor = True
+        '
+        'Label_Genero
+        '
+        Me.Label_Genero.AutoSize = True
+        Me.Label_Genero.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label_Genero.Location = New System.Drawing.Point(634, 29)
+        Me.Label_Genero.Name = "Label_Genero"
+        Me.Label_Genero.Size = New System.Drawing.Size(86, 20)
+        Me.Label_Genero.TabIndex = 169
+        Me.Label_Genero.Text = "Categoría :"
+        '
+        'Label_Nombre
+        '
+        Me.Label_Nombre.AutoSize = True
+        Me.Label_Nombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label_Nombre.Location = New System.Drawing.Point(313, 29)
+        Me.Label_Nombre.Name = "Label_Nombre"
+        Me.Label_Nombre.Size = New System.Drawing.Size(73, 20)
+        Me.Label_Nombre.TabIndex = 167
+        Me.Label_Nombre.Text = "Nombre :"
+        '
+        'Label_ISBN
+        '
+        Me.Label_ISBN.AutoSize = True
+        Me.Label_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label_ISBN.Location = New System.Drawing.Point(15, 29)
+        Me.Label_ISBN.Name = "Label_ISBN"
+        Me.Label_ISBN.Size = New System.Drawing.Size(55, 20)
+        Me.Label_ISBN.TabIndex = 165
+        Me.Label_ISBN.Text = "ISBN :"
         '
         'Button_Annadir
         '
@@ -222,128 +347,14 @@ Partial Class GestionEmpleados
         Me.Panel2.Size = New System.Drawing.Size(984, 94)
         Me.Panel2.TabIndex = 54
         '
-        'Label_ISBN
+        'Button1
         '
-        Me.Label_ISBN.AutoSize = True
-        Me.Label_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label_ISBN.Location = New System.Drawing.Point(15, 29)
-        Me.Label_ISBN.Name = "Label_ISBN"
-        Me.Label_ISBN.Size = New System.Drawing.Size(55, 20)
-        Me.Label_ISBN.TabIndex = 165
-        Me.Label_ISBN.Text = "ISBN :"
-        '
-        'Label_Nombre
-        '
-        Me.Label_Nombre.AutoSize = True
-        Me.Label_Nombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label_Nombre.Location = New System.Drawing.Point(313, 29)
-        Me.Label_Nombre.Name = "Label_Nombre"
-        Me.Label_Nombre.Size = New System.Drawing.Size(73, 20)
-        Me.Label_Nombre.TabIndex = 167
-        Me.Label_Nombre.Text = "Nombre :"
-        '
-        'Label_Genero
-        '
-        Me.Label_Genero.AutoSize = True
-        Me.Label_Genero.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label_Genero.Location = New System.Drawing.Point(634, 29)
-        Me.Label_Genero.Name = "Label_Genero"
-        Me.Label_Genero.Size = New System.Drawing.Size(86, 20)
-        Me.Label_Genero.TabIndex = 169
-        Me.Label_Genero.Text = "Categoría :"
-        '
-        'Button_Limpiar
-        '
-        Me.Button_Limpiar.Location = New System.Drawing.Point(834, 82)
-        Me.Button_Limpiar.Name = "Button_Limpiar"
-        Me.Button_Limpiar.Size = New System.Drawing.Size(86, 29)
-        Me.Button_Limpiar.TabIndex = 179
-        Me.Button_Limpiar.Text = "Limpiar"
-        Me.Button_Limpiar.UseVisualStyleBackColor = True
-        '
-        'Button_Buscar
-        '
-        Me.Button_Buscar.Location = New System.Drawing.Point(742, 82)
-        Me.Button_Buscar.Name = "Button_Buscar"
-        Me.Button_Buscar.Size = New System.Drawing.Size(86, 29)
-        Me.Button_Buscar.TabIndex = 180
-        Me.Button_Buscar.Text = "Buscar"
-        Me.Button_Buscar.UseVisualStyleBackColor = True
-        '
-        'Label_Autor
-        '
-        Me.Label_Autor.AutoSize = True
-        Me.Label_Autor.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label_Autor.Location = New System.Drawing.Point(6, 84)
-        Me.Label_Autor.Name = "Label_Autor"
-        Me.Label_Autor.Size = New System.Drawing.Size(61, 20)
-        Me.Label_Autor.TabIndex = 181
-        Me.Label_Autor.Text = "Precio :"
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox1.Controls.Add(Me.TextBox3)
-        Me.GroupBox1.Controls.Add(Me.TextBox2)
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
-        Me.GroupBox1.Controls.Add(Me.TextBox_Titulo)
-        Me.GroupBox1.Controls.Add(Me.Label_Autor)
-        Me.GroupBox1.Controls.Add(Me.Button_Buscar)
-        Me.GroupBox1.Controls.Add(Me.Button_Limpiar)
-        Me.GroupBox1.Controls.Add(Me.Label_Genero)
-        Me.GroupBox1.Controls.Add(Me.Label_Nombre)
-        Me.GroupBox1.Controls.Add(Me.Label_ISBN)
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 16)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(938, 127)
-        Me.GroupBox1.TabIndex = 183
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Filtro de Busqueda"
-        '
-        'TextBox_Titulo
-        '
-        Me.TextBox_Titulo.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_Titulo.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Titulo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Titulo.Location = New System.Drawing.Point(76, 30)
-        Me.TextBox_Titulo.MaxLength = 100
-        Me.TextBox_Titulo.Name = "TextBox_Titulo"
-        Me.TextBox_Titulo.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_Titulo.TabIndex = 182
-        '
-        'TextBox1
-        '
-        Me.TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(73, 85)
-        Me.TextBox1.MaxLength = 100
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox1.TabIndex = 183
-        '
-        'TextBox2
-        '
-        Me.TextBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox2.Location = New System.Drawing.Point(392, 30)
-        Me.TextBox2.MaxLength = 100
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox2.TabIndex = 184
-        '
-        'TextBox3
-        '
-        Me.TextBox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox3.Location = New System.Drawing.Point(723, 30)
-        Me.TextBox3.MaxLength = 100
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox3.TabIndex = 185
+        Me.Button1.Location = New System.Drawing.Point(641, 160)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(98, 29)
+        Me.Button1.TabIndex = 185
+        Me.Button1.Text = "Actualizar"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'GestionEmpleados
         '
@@ -359,12 +370,12 @@ Partial Class GestionEmpleados
         Me.Text = "Gestión de Empleados"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         CType(Me.DataGridView_Empleados, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStripPagPrin.ResumeLayout(False)
         Me.MenuStripPagPrin.PerformLayout()
         Me.Panel2.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -401,4 +412,5 @@ Partial Class GestionEmpleados
     Friend WithEvents Label_Genero As Label
     Friend WithEvents Label_Nombre As Label
     Friend WithEvents Label_ISBN As Label
+    Friend WithEvents Button1 As Button
 End Class
