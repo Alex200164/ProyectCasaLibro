@@ -57,8 +57,8 @@ Public Class MenuPrincipal
             posicionarFormulariosGestiones(btn_Name)
             ' Mostramos el formulario de gestión de libros
             GestionLibros.Show()
-            ' Cerramos el formulario de menú principal
-            Me.Close()
+            ' Ocultamos el formulario de menú principal
+            Me.Hide()
         Catch ex As System.Data.OleDb.OleDbException
             MsgBox("Parece que algo ha salido mal. Revise que la base de datos no esté abierta durante la ejecución.", MsgBoxStyle.OkOnly, "Error - Base de datos")
         End Try
@@ -77,8 +77,8 @@ Public Class MenuPrincipal
             posicionarFormulariosGestiones(btn_Name)
             ' Mostramos el formulario de gestión de papeleria
             GestionArticulos.Show()
-            ' Cerramos el formulario de menú principal
-            Me.Close()
+            ' Ocultamos el formulario de menú principal
+            Me.Hide()
         Catch ex As System.Data.OleDb.OleDbException
             MsgBox("Parece que algo ha salido mal. Revise que la base de datos no esté abierta durante la ejecución.", MsgBoxStyle.OkOnly, "Error - Base de datos")
         End Try
@@ -97,8 +97,8 @@ Public Class MenuPrincipal
             posicionarFormulariosGestiones(btn_Name)
             ' Mostramos el formulario de gestión de socios
             GestionSocios.Show()
-            ' Cerramos el formulario de menú principal
-            Me.Close()
+            ' Ocultamos el formulario de menú principal
+            Me.Hide()
 
         Catch ex As System.Data.OleDb.OleDbException
             MsgBox("Parece que algo ha salido mal. Revise que la base de datos no esté abierta durante la ejecución.", MsgBoxStyle.OkOnly, "Error - Base de datos")
@@ -118,8 +118,8 @@ Public Class MenuPrincipal
             posicionarFormulariosGestiones(btn_Name)
             ' Mostramos el formulario de gestión de empleados
             GestionEmpleados.Show()
-            ' Cerramos el formulario de menú principal
-            Me.Close()
+            ' Ocultamos el formulario de menú principal
+            Me.Hide()
         Catch ex As System.Data.OleDb.OleDbException
             MsgBox("Parece que algo ha salido mal. Revise que la base de datos no esté abierta durante la ejecución.", MsgBoxStyle.OkOnly, "Error - Base de datos")
         End Try
@@ -132,4 +132,5 @@ Public Class MenuPrincipal
         ' Cerramos el formulario de menú principal
         Me.Close()
     End Sub
+
 End Class

@@ -67,6 +67,8 @@ Public Class GestionSociosModificaciones
         Me.TextBox_Telefono.DataBindings.Add("text", midataset, "Socios.Telefono")
         Me.TextBox_Correo.DataBindings.Add("text", midataset, "Socios.Correo")
 
+
+
     End Sub
 
     ' Método que se ejecuta al pulsarse el botón "Modificar"
@@ -75,8 +77,18 @@ Public Class GestionSociosModificaciones
         If TextBox_NumeroSocio.Text = "" Or TextBox_Nombre.Text = "" Or TextBox_Apellidos.Text = "" Or TextBox_Telefono.Text = "" Or TextBox_Correo.Text = "" Then
             MsgBox("Debes seleccionar un registro para actualizarlo y si lo has seleccionado, no debe quedar ningún campo en blanco", MsgBoxStyle.OkOnly, "Error al dar de alta.")
         Else
-            Dim cb As New OleDbCommandBuilder(adaptador)
-            adaptador.UpdateCommand = cb.GetUpdateCommand
+
+            Try
+                Dim queryParametrizada As String = "UPDATE Socios SET NumeroDeSocio=?, Nombre=?, Apellidos=?, Telefono=?, Correo=? WHERE NumeroDeSocio=?"
+
+
+
+                Dim cb As New OleDbCommandBuilder(adaptador)
+                adaptador.UpdateCommand = cb.GetUpdateCommand
+            Catch ex As System.InvalidOperationException
+                ' Avisamos del error por mensaje
+                MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+            End Try
 
             Dim a As Integer = GestionSocios.posicionDataGridSeleccionada
 
@@ -92,8 +104,12 @@ Public Class GestionSociosModificaciones
             fila.EndEdit()
             ' Finalizamos la edición
 
-            ' Ejecutamos la sentencia
-            adaptador.Update(GestionSocios.midataset.Tables("Socios"))
+            Try
+                ' Ejecutamos la sentencia
+                adaptador.Update(GestionSocios.midataset.Tables("Socios"))
+            Catch ex As System.InvalidOperationException
+
+            End Try
 
             ' Actualizamos el dataGridView del formulario de gestión principal
             GestionSocios.midataset.Clear()
@@ -102,7 +118,10 @@ Public Class GestionSociosModificaciones
             ' Cerramos la ventana
             Me.Close()
 
+            ' Hacer try-catch
+            ' 
 
         End If
     End Sub
+
 End Class
