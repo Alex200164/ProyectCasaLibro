@@ -16,6 +16,11 @@ Public Class GestionArticulos
     ' Aquí alojaremos los datos de la DB
     Public midataset As New DataSet
 
+    ' Número de control para controlar el dataBinding de los text boxes del formulario modificaciones, evitando que se relacionen dos veces.
+    Public numeroDeControlBindingModificaciones As Long
+
+    Public numeroDeControlBindingAltaArticulos As Long
+
     Public posicionDataGridSeleccionada As Integer
 
     ' Método que se ejecuta al iniciarse el formulario
@@ -24,9 +29,15 @@ Public Class GestionArticulos
             'Cargar la memoria del cache con datos.
             adaptador.Fill(midataset, "Productos")
 
+            Me.TextBox_ISBNOCULTO.DataBindings.Add("text", midataset, "Productos.ISBN")
+
             'Cargar en el datagridview, le decimos de donde sacamos los datos
             DataGridView_Articulos.DataSource = midataset
             DataGridView_Articulos.DataMember = "Productos"
+
+            ' Inicializamos el número de control
+            numeroDeControlBindingModificaciones = 0
+            numeroDeControlBindingAltaArticulos = 0
 
             'Creación en la ultima columna del DataGridView el botón de modificar en cada registro.
             crearButtonDataGridView()
@@ -49,6 +60,7 @@ Public Class GestionArticulos
     ' Método que se ejecuta al pulsar en una de las cajas del DataGridView
     Private Sub DataGridView_Articulos_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView_Articulos.CellClick
         posicionDataGridSeleccionada = BindingContext(midataset, "Productos").Position
+        Button_Eliminar.Enabled = True
     End Sub
 
     ' Método que permite posicionar la ventana en la posición especificada del formulario "GestionArticulosAltas".
@@ -88,7 +100,6 @@ Public Class GestionArticulos
     Private Sub Button_Annadir_Click(sender As Object, e As EventArgs) Handles Button_Annadir.Click
         ' Posicionamos el formulario que vamos a mostrar.
         posicionarGestionAltas()
-
         ' Mostramos el formulario
         GestionArticulosAltas.ShowDialog()
     End Sub
@@ -123,6 +134,10 @@ Public Class GestionArticulos
             posicionarGestionModificaciones()
             ' Mostramos el formulario
             GestionArticulosModificaciones.ShowDialog()
+
+            'System.ArgumentException hacer expecion try catch***************************
+
+
         End If
     End Sub
 
@@ -175,9 +190,9 @@ Public Class GestionArticulos
 
             'Invocamos al método que posiciona el Formulario de Gestion
             posicionarFormulariosGestiones(item_Name)
+
             GestionLibros.Show()
         End If
-        TextBox_ISBN.Text = item_Name
     End Sub
 
     ' Método que se ejecuta cuando es pulsado el botón "Gestion de Socios" del menuStrip
@@ -232,8 +247,419 @@ Public Class GestionArticulos
         ' Mostramos el menú principal.
         MenuPrincipal.Show()
 
+
         ' Cerramos este formulario
         Me.Close()
+    End Sub
+
+
+    ' Método que se ejecuta al pulsar el botón "Eliminar"
+    Private Sub Button_Eliminar_Click(sender As Object, e As EventArgs) Handles Button_Eliminar.Click
+        Try
+            If TextBox_ISBNOCULTO.Text = "" Then
+                MsgBox("Debes seleccionar un registro para eliminarlo")
+            Else
+                ' ####################  1º Informaros a la DB de que vamos a eliminar un registro ##############################
+                Dim cb As New OleDbCommandBuilder(adaptador)
+                adaptador.DeleteCommand = cb.GetDeleteCommand
+
+                ' ####################  2º Cambiamos el estado de los botones del menuStrip ##############################
+                Dim res As Integer
+                res = MsgBox("¿Estás seguro de que quieres eliminar?", MsgBoxStyle.YesNo)
+                If res = vbYes Then
+
+                    If BindingContext(midataset, "Productos").Count > 0 Then
+                        BindingContext(midataset, "Productos").RemoveAt(BindingContext(midataset, "Productos").Position)
+                    End If
+
+                    If BindingContext(midataset, "Productos").Count = 0 Then
+                        Button_Eliminar.Enabled = False
+                    End If
+                End If
+                ' ####################  3º Cambiamos el estado de los botones del menuStrip ##############################
+                adaptador.Update(midataset.Tables("Productos"))
+
+                midataset.Clear()
+                adaptador.Fill(midataset, "Productos")
+
+                DataGridView_Articulos.DataSource = midataset
+                DataGridView_Articulos.DataMember = "Productos"
+                ' registro()
+                ' ####################  4º Cambiamos el estado de los botones del menuStrip ##############################
+                Button_Eliminar.Enabled = False
+
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    ' Método que se ejecuta cuando el botón limpiar es presionado.
+    ' Limpia todos los textBoxes del formulario
+    Private Sub Button_Limpiar_Click(sender As Object, e As EventArgs) Handles Button_Limpiar.Click
+        TextBox_ISBN.Clear()
+        TextBox_Nombre.Clear()
+        TextBox_Categoria.Clear()
+        TextBox_Precio.Clear()
+
+        midataset.Clear()
+
+
+        ' Cargar la memoria del cache con datos.
+        adaptador.Fill(midataset, "Productos")
+
+        ' cargar en el datagridview, le decimos de donde sacamos los datos
+        DataGridView_Articulos.DataSource = midataset
+        DataGridView_Articulos.DataMember = "Productos"
+    End Sub
+
+    ' Método que se ejecuta cuando el botón "Buscar" es pulsado
+    ' Buscará en la DB utilizando los datos introducidos por el usuario en los TextBoxes
+    Private Sub Button_Buscar_Click(sender As Object, e As EventArgs) Handles Button_Buscar.Click
+
+        ' Comprobamos que haya datos en los textBoxes (por lo menos en uno de ellos)
+        If TextBox_ISBN.Text = "" And TextBox_Nombre.Text = "" And TextBox_Categoria.Text = "" And TextBox_Precio.Text = "" Then
+            MsgBox("No se puede buscar , debe rellenar al menos una caja con datos.", MsgBoxStyle.OkOnly, "Error al buscar.")
+        Else
+
+            ' Si se ha introducido todo
+            If TextBox_ISBN.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Categoria.Text <> "" And TextBox_Precio.Text <> "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Productos WHERE ISBN LIKE? and Nombre LIKE? and Categoria LIKE? and Precio LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+                comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = TextBox_Categoria.Text
+                comando.Parameters.Add("@var4", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Precio.Text)
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Productos")
+
+                DataGridView_Articulos.DataSource = midataset
+
+                DataGridView_Articulos.DataMember = "Productos"
+            End If
+
+
+
+            ' ISBN Nombre Categoria
+            If TextBox_ISBN.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Categoria.Text <> "" And TextBox_Precio.Text = "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Productos WHERE ISBN LIKE? and Nombre LIKE? and Categoria LIKE? ", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+                comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = TextBox_Categoria.Text
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Productos")
+
+                DataGridView_Articulos.DataSource = midataset
+
+                DataGridView_Articulos.DataMember = "Productos"
+            End If
+
+            ' Nombre Categoria Precio
+            If TextBox_ISBN.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Categoria.Text <> "" And TextBox_Precio.Text <> "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Productos WHERE Nombre LIKE? and Categoria LIKE? and Precio LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Categoria.Text
+                comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Precio.Text)
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Productos")
+
+                DataGridView_Articulos.DataSource = midataset
+
+                DataGridView_Articulos.DataMember = "Productos"
+            End If
+
+            ' ISBN Categoria Precio
+            If TextBox_ISBN.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Categoria.Text <> "" And TextBox_Precio.Text <> "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Productos WHERE ISBN LIKE? and Categoria LIKE? and Precio LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Categoria.Text
+                comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Precio.Text)
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Productos")
+
+                DataGridView_Articulos.DataSource = midataset
+
+                DataGridView_Articulos.DataMember = "Productos"
+            End If
+
+            ' ISBN Nombre Precio
+            If TextBox_ISBN.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Categoria.Text = "" And TextBox_Precio.Text <> "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Productos WHERE ISBN LIKE? and Nombre LIKE? and Precio LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+                comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Precio.Text)
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Productos")
+
+                DataGridView_Articulos.DataSource = midataset
+
+                DataGridView_Articulos.DataMember = "Productos"
+            End If
+
+            ' ISBN Nombre
+            If TextBox_ISBN.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Categoria.Text = "" And TextBox_Precio.Text = "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Productos WHERE ISBN LIKE? and Nombre LIKE? ", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Productos")
+
+                DataGridView_Articulos.DataSource = midataset
+
+                DataGridView_Articulos.DataMember = "Productos"
+            End If
+
+            ' ISBN Categoria
+            If TextBox_ISBN.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Categoria.Text <> "" And TextBox_Precio.Text = "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Productos WHERE ISBN LIKE? and Categoria LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Categoria.Text
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Productos")
+
+                DataGridView_Articulos.DataSource = midataset
+
+                DataGridView_Articulos.DataMember = "Productos"
+            End If
+
+            ' Nombre Categoria
+            If TextBox_ISBN.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Categoria.Text <> "" And TextBox_Precio.Text = "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Productos WHERE Nombre LIKE? and Categoria LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Categoria.Text
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Productos")
+
+                DataGridView_Articulos.DataSource = midataset
+
+                DataGridView_Articulos.DataMember = "Productos"
+            End If
+
+            ' Categoria Precio
+            If TextBox_ISBN.Text = "" And TextBox_Nombre.Text = "" And TextBox_Categoria.Text <> "" And TextBox_Precio.Text <> "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Productos WHERE Categoria LIKE? and Precio LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Categoria.Text
+                comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Precio.Text)
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Productos")
+
+                DataGridView_Articulos.DataSource = midataset
+
+                DataGridView_Articulos.DataMember = "Productos"
+            End If
+
+            ' ISBN Precio
+            If TextBox_ISBN.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Categoria.Text = "" And TextBox_Precio.Text <> "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Productos WHERE ISBN LIKE? and Precio LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Precio.Text)
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Productos")
+
+                DataGridView_Articulos.DataSource = midataset
+
+                DataGridView_Articulos.DataMember = "Productos"
+            End If
+
+            ' Nombre Precio
+            If TextBox_ISBN.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Categoria.Text = "" And TextBox_Precio.Text <> "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Productos WHERE Nombre LIKE? and Precio LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+                comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Precio.Text)
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Productos")
+
+                DataGridView_Articulos.DataSource = midataset
+
+                DataGridView_Articulos.DataMember = "Productos"
+            End If
+
+            ' ISBN
+            If TextBox_ISBN.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Categoria.Text = "" And TextBox_Precio.Text = "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Productos WHERE ISBN LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Productos")
+
+                DataGridView_Articulos.DataSource = midataset
+
+                DataGridView_Articulos.DataMember = "Productos"
+            End If
+
+            ' Nombre
+            If TextBox_ISBN.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Categoria.Text = "" And TextBox_Precio.Text = "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Productos WHERE Nombre LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Productos")
+
+                DataGridView_Articulos.DataSource = midataset
+
+                DataGridView_Articulos.DataMember = "Productos"
+            End If
+
+            ' Categoria
+            If TextBox_ISBN.Text = "" And TextBox_Nombre.Text = "" And TextBox_Categoria.Text <> "" And TextBox_Precio.Text = "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Productos WHERE Categoria LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Categoria.Text
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Productos")
+
+                DataGridView_Articulos.DataSource = midataset
+
+                DataGridView_Articulos.DataMember = "Productos"
+            End If
+
+            ' Precio
+            If TextBox_ISBN.Text = "" And TextBox_Nombre.Text = "" And TextBox_Categoria.Text = "" And TextBox_Precio.Text <> "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Productos WHERE Precio LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Precio.Text)
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Productos")
+
+                DataGridView_Articulos.DataSource = midataset
+
+                DataGridView_Articulos.DataMember = "Productos"
+            End If
+
+            ' MsgBox("Busqueda fallida...")
+
+        End If ' IF 1
+
     End Sub
 End Class
 

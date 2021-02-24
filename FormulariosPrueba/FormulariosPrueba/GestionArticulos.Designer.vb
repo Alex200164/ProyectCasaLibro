@@ -28,6 +28,10 @@ Partial Class GestionArticulos
         Me.DataGridView_Articulos = New System.Windows.Forms.DataGridView()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TextBox_Precio = New System.Windows.Forms.TextBox()
+        Me.TextBox_ISBN = New System.Windows.Forms.TextBox()
+        Me.TextBox_Categoria = New System.Windows.Forms.TextBox()
+        Me.TextBox_Nombre = New System.Windows.Forms.TextBox()
         Me.Label_Autor = New System.Windows.Forms.Label()
         Me.Button_Buscar = New System.Windows.Forms.Button()
         Me.Button_Limpiar = New System.Windows.Forms.Button()
@@ -50,10 +54,7 @@ Partial Class GestionArticulos
         Me.GestiónEmpleadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestiónEmpleadosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.TextBox_Nombre = New System.Windows.Forms.TextBox()
-        Me.TextBox_Categoria = New System.Windows.Forms.TextBox()
-        Me.TextBox_ISBN = New System.Windows.Forms.TextBox()
-        Me.TextBox_Precio = New System.Windows.Forms.TextBox()
+        Me.TextBox_ISBNOCULTO = New System.Windows.Forms.TextBox()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView_Articulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,6 +98,7 @@ Partial Class GestionArticulos
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.TextBox_ISBNOCULTO)
         Me.Panel1.Controls.Add(Me.GroupBox1)
         Me.Panel1.Controls.Add(Me.Button_Eliminar)
         Me.Panel1.Controls.Add(Me.Button_Annadir)
@@ -127,6 +129,50 @@ Partial Class GestionArticulos
         Me.GroupBox1.TabIndex = 183
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Filtro de Busqueda"
+        '
+        'TextBox_Precio
+        '
+        Me.TextBox_Precio.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_Precio.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Precio.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Precio.Location = New System.Drawing.Point(73, 84)
+        Me.TextBox_Precio.MaxLength = 100
+        Me.TextBox_Precio.Name = "TextBox_Precio"
+        Me.TextBox_Precio.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_Precio.TabIndex = 4
+        '
+        'TextBox_ISBN
+        '
+        Me.TextBox_ISBN.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_ISBN.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_ISBN.Location = New System.Drawing.Point(76, 29)
+        Me.TextBox_ISBN.MaxLength = 100
+        Me.TextBox_ISBN.Name = "TextBox_ISBN"
+        Me.TextBox_ISBN.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_ISBN.TabIndex = 1
+        '
+        'TextBox_Categoria
+        '
+        Me.TextBox_Categoria.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_Categoria.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Categoria.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Categoria.Location = New System.Drawing.Point(726, 29)
+        Me.TextBox_Categoria.MaxLength = 100
+        Me.TextBox_Categoria.Name = "TextBox_Categoria"
+        Me.TextBox_Categoria.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_Categoria.TabIndex = 3
+        '
+        'TextBox_Nombre
+        '
+        Me.TextBox_Nombre.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_Nombre.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Nombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_Nombre.Location = New System.Drawing.Point(392, 30)
+        Me.TextBox_Nombre.MaxLength = 100
+        Me.TextBox_Nombre.Name = "TextBox_Nombre"
+        Me.TextBox_Nombre.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_Nombre.TabIndex = 2
         '
         'Label_Autor
         '
@@ -305,49 +351,17 @@ Partial Class GestionArticulos
         Me.GestiónEmpleadosToolStripMenuItem1.Size = New System.Drawing.Size(191, 22)
         Me.GestiónEmpleadosToolStripMenuItem1.Text = "Gestión de Empleados"
         '
-        'TextBox_Nombre
+        'TextBox_ISBNOCULTO
         '
-        Me.TextBox_Nombre.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_Nombre.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Nombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Nombre.Location = New System.Drawing.Point(392, 30)
-        Me.TextBox_Nombre.MaxLength = 100
-        Me.TextBox_Nombre.Name = "TextBox_Nombre"
-        Me.TextBox_Nombre.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_Nombre.TabIndex = 2
-        '
-        'TextBox_Categoria
-        '
-        Me.TextBox_Categoria.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_Categoria.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Categoria.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Categoria.Location = New System.Drawing.Point(726, 29)
-        Me.TextBox_Categoria.MaxLength = 100
-        Me.TextBox_Categoria.Name = "TextBox_Categoria"
-        Me.TextBox_Categoria.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_Categoria.TabIndex = 3
-        '
-        'TextBox_ISBN
-        '
-        Me.TextBox_ISBN.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_ISBN.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_ISBN.Location = New System.Drawing.Point(76, 29)
-        Me.TextBox_ISBN.MaxLength = 100
-        Me.TextBox_ISBN.Name = "TextBox_ISBN"
-        Me.TextBox_ISBN.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_ISBN.TabIndex = 1
-        '
-        'TextBox_Precio
-        '
-        Me.TextBox_Precio.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_Precio.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Precio.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Precio.Location = New System.Drawing.Point(73, 84)
-        Me.TextBox_Precio.MaxLength = 100
-        Me.TextBox_Precio.Name = "TextBox_Precio"
-        Me.TextBox_Precio.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_Precio.TabIndex = 4
+        Me.TextBox_ISBNOCULTO.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_ISBNOCULTO.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_ISBNOCULTO.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_ISBNOCULTO.Location = New System.Drawing.Point(76, 163)
+        Me.TextBox_ISBNOCULTO.MaxLength = 100
+        Me.TextBox_ISBNOCULTO.Name = "TextBox_ISBNOCULTO"
+        Me.TextBox_ISBNOCULTO.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_ISBNOCULTO.TabIndex = 182
+        Me.TextBox_ISBNOCULTO.Visible = False
         '
         'GestionArticulos
         '
@@ -365,6 +379,7 @@ Partial Class GestionArticulos
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView_Articulos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.MenuStripPagPrin.ResumeLayout(False)
@@ -405,4 +420,5 @@ Partial Class GestionArticulos
     Friend WithEvents TextBox_ISBN As TextBox
     Friend WithEvents TextBox_Categoria As TextBox
     Friend WithEvents TextBox_Nombre As TextBox
+    Friend WithEvents TextBox_ISBNOCULTO As TextBox
 End Class

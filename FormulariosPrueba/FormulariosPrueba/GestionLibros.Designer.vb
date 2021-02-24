@@ -54,6 +54,7 @@ Partial Class GestionLibros
         Me.GestiónEmpleadosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VerLaAyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TextBox_ISBNOCULTO = New System.Windows.Forms.TextBox()
         Me.Panel1.SuspendLayout()
         CType(Me.DataGridView_Libros, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -64,6 +65,7 @@ Partial Class GestionLibros
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.TextBox_ISBNOCULTO)
         Me.Panel1.Controls.Add(Me.Button_Eliminar)
         Me.Panel1.Controls.Add(Me.Button_Annadir)
         Me.Panel1.Controls.Add(Me.DataGridView_Libros)
@@ -272,7 +274,7 @@ Partial Class GestionLibros
         Me.CalculadoraToolStripMenuItem.Image = CType(resources.GetObject("CalculadoraToolStripMenuItem.Image"), System.Drawing.Image)
         Me.CalculadoraToolStripMenuItem.Name = "CalculadoraToolStripMenuItem"
         Me.CalculadoraToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D1), System.Windows.Forms.Keys)
-        Me.CalculadoraToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CalculadoraToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.CalculadoraToolStripMenuItem.Text = "Calculadora"
         '
         'BlocNotasToolStripMenuItem
@@ -280,7 +282,7 @@ Partial Class GestionLibros
         Me.BlocNotasToolStripMenuItem.Image = CType(resources.GetObject("BlocNotasToolStripMenuItem.Image"), System.Drawing.Image)
         Me.BlocNotasToolStripMenuItem.Name = "BlocNotasToolStripMenuItem"
         Me.BlocNotasToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D2), System.Windows.Forms.Keys)
-        Me.BlocNotasToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BlocNotasToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.BlocNotasToolStripMenuItem.Text = "Bloc Notas"
         '
         'SalirToolStripMenuItem
@@ -288,7 +290,7 @@ Partial Class GestionLibros
         Me.SalirToolStripMenuItem.Image = CType(resources.GetObject("SalirToolStripMenuItem.Image"), System.Drawing.Image)
         Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
         Me.SalirToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
-        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.SalirToolStripMenuItem.Text = "Salir..."
         '
         'GestiónArticulosToolStripMenuItem
@@ -349,6 +351,17 @@ Partial Class GestionLibros
         Me.VerLaAyudaToolStripMenuItem.Size = New System.Drawing.Size(187, 22)
         Me.VerLaAyudaToolStripMenuItem.Text = "Ver la Ayuda"
         '
+        'TextBox_ISBNOCULTO
+        '
+        Me.TextBox_ISBNOCULTO.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_ISBNOCULTO.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_ISBNOCULTO.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_ISBNOCULTO.Location = New System.Drawing.Point(74, 163)
+        Me.TextBox_ISBNOCULTO.MaxLength = 100
+        Me.TextBox_ISBNOCULTO.Name = "TextBox_ISBNOCULTO"
+        Me.TextBox_ISBNOCULTO.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_ISBNOCULTO.TabIndex = 100
+        '
         'GestionLibros
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -363,6 +376,7 @@ Partial Class GestionLibros
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Gestión de Libros"
         Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         CType(Me.DataGridView_Libros, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
@@ -406,4 +420,5 @@ Partial Class GestionLibros
     Friend WithEvents GestiónEmpleadosToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents AyudaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents VerLaAyudaToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TextBox_ISBNOCULTO As TextBox
 End Class
