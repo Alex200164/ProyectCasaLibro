@@ -13,8 +13,6 @@ Public Class GestionArticulosAltas
 
     ' Método que se ejecuta cuando el botón "Salir..." del ToolStrip es pulsado y que nos lleva al formulario "GestionArticulos".
     Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click
-        'Habilita el formulario
-        GestionArticulos.Enabled = True
         ' Mostramos el formulario "GestionArticulos".
         GestionArticulos.Show()
 
@@ -51,29 +49,47 @@ Public Class GestionArticulosAltas
         If TextBox_ISBN.Text = "" Or TextBox_Nombre.Text = "" Or TextBox_Categoria.Text = "" Or TextBox_Precio.Text = "" Or TextBox_Stock.Text = "" Then
             MsgBox("No se puede dar de alta , debe rellenar todos los datos.", MsgBoxStyle.OkOnly, "Error al dar de alta.")
         Else
-            ' ####################  1º Preparamos a la base de datos para recibir los datos. ##############################
-            Dim cb As New OleDbCommandBuilder(adaptador)
-            adaptador.InsertCommand = cb.GetInsertCommand
-
-            ' ####################  2º Recogemos los datos y los introducimos ##############################
-            Dim drc As DataRowCollection = midataset.Tables("Productos").Rows
-            drc.Add(TextBox_ISBN.Text, TextBox_Nombre.Text, TextBox_Categoria.Text, TextBox_Precio.Text, TextBox_Stock.Text)
-
-            adaptador.Update(midataset.Tables("Productos"))
-            ' ####################  3º Actualizamos el middataset ##############################
-            ' Actualizamos el dataGridView del formulario de gestión principal
-            GestionArticulos.midataset.Clear()
-            GestionArticulos.adaptador.Fill(GestionArticulos.midataset, "Productos")
 
 
-            ' ####################  4º Cambiamos el estado de los botones del menuStrip ##############################
-            ' AltaToolStripMenuItem.Enabled = False
-            ' NuevoToolStripMenuItem.Enabled = True
+            Dim valor As String
+            Dim control As Integer = 0
 
-            'System.NullReferenceException: 'Referencia a objeto no establecida como instancia de un objeto.'
-            ' System.Data.OleDb.OleDbException: 'Error de sintaxis en la instrucción INSERT INTO.'
+            ' Comprobamos que la clave primaria no se encuentra ya registrada.
+            For contador As Integer = 0 To GestionArticulos.DataGridView_Articulos.RowCount - 1
+                valor = GestionArticulos.DataGridView_Articulos.Item(0, contador).Value
+
+                If valor = TextBox_ISBN.Text Then
+                    MsgBox("No puedes introducir un ISBN que ya existe en la base de datos.", MsgBoxStyle.OkOnly, "Error, clave duplicada")
+                    control = 1
+                End If
+            Next
 
 
+            If control = 0 Then
+                ' ####################  1º Preparamos a la base de datos para recibir los datos. ##############################
+                Dim cb As New OleDbCommandBuilder(adaptador)
+                adaptador.InsertCommand = cb.GetInsertCommand
+
+                ' ####################  2º Recogemos los datos y los introducimos ##############################
+                Dim drc As DataRowCollection = midataset.Tables("Productos").Rows
+                drc.Add(TextBox_ISBN.Text, TextBox_Nombre.Text, TextBox_Categoria.Text, TextBox_Precio.Text, TextBox_Stock.Text)
+
+                adaptador.Update(midataset.Tables("Productos"))
+                ' ####################  3º Actualizamos el middataset ##############################
+                ' Actualizamos el dataGridView del formulario de gestión principal
+                GestionArticulos.midataset.Clear()
+                GestionArticulos.adaptador.Fill(GestionArticulos.midataset, "Productos")
+
+                ' Cerramos la ventana
+                Me.Close()
+
+                ' ####################  4º Cambiamos el estado de los botones del menuStrip ##############################
+                ' AltaToolStripMenuItem.Enabled = False
+                ' NuevoToolStripMenuItem.Enabled = True
+
+                'System.NullReferenceException: 'Referencia a objeto no establecida como instancia de un objeto.'
+                ' System.Data.OleDb.OleDbException: 'Error de sintaxis en la instrucción INSERT INTO.'
+            End If
 
         End If
     End Sub
@@ -84,11 +100,16 @@ Public Class GestionArticulosAltas
         adaptador.Fill(midataset, "Productos")
 
         ' Relacionar los campos de la tabla con los textbox
-        TextBox_ISBN.DataBindings.Add("text", midataset, "Productos.ISBN")
-        TextBox_Nombre.DataBindings.Add("text", midataset, "Productos.Nombre")
-        TextBox_Categoria.DataBindings.Add("text", midataset, "Productos.Categoria")
-        TextBox_Precio.DataBindings.Add("text", midataset, "Productos.Precio")
-        TextBox_Stock.DataBindings.Add("text", midataset, "Productos.Stock")
+        If GestionArticulos.numeroDeControlBindingAltaArticulos = 0 Then
+            Me.TextBox_ISBN.DataBindings.Add("text", midataset, "Productos.ISBN")
+            Me.TextBox_Nombre.DataBindings.Add("text", midataset, "Productos.Nombre")
+            Me.TextBox_Categoria.DataBindings.Add("text", midataset, "Productos.Categoria")
+            Me.TextBox_Precio.DataBindings.Add("text", midataset, "Productos.Precio")
+            Me.TextBox_Stock.DataBindings.Add("text", midataset, "Productos.Stock")
+
+            GestionArticulos.numeroDeControlBindingAltaArticulos = 1
+        End If
+
 
         ' Vaciamos cada textBox de forma individual
         TextBox_ISBN.Clear()

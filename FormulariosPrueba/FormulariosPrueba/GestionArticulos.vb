@@ -102,7 +102,15 @@ Public Class GestionArticulos
         posicionarGestionAltas()
         ' Mostramos el formulario
         GestionArticulosAltas.ShowDialog()
+
+        ' Vaciamos cada textBox de forma individual
+        GestionArticulosAltas.TextBox_ISBN.Clear()
+        GestionArticulosAltas.TextBox_Nombre.Clear()
+        GestionArticulosAltas.TextBox_Categoria.Clear()
+        GestionArticulosAltas.TextBox_Precio.Clear()
+        GestionArticulosAltas.TextBox_Stock.Clear()
     End Sub
+
 
     'Método que crea y da formato al botón de modificar, en cada una de los registros del DataGridView. 
     'Este bóton abrirá el formulario de GestionArticulosModificaciones. 

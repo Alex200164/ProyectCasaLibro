@@ -27,6 +27,7 @@ Partial Class GestionArticulos
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.DataGridView_Articulos = New System.Windows.Forms.DataGridView()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.TextBox_ISBNOCULTO = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TextBox_Precio = New System.Windows.Forms.TextBox()
         Me.TextBox_ISBN = New System.Windows.Forms.TextBox()
@@ -54,7 +55,6 @@ Partial Class GestionArticulos
         Me.GestiónEmpleadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestiónEmpleadosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.TextBox_ISBNOCULTO = New System.Windows.Forms.TextBox()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView_Articulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,13 +86,10 @@ Partial Class GestionArticulos
         'DataGridView_Articulos
         '
         Me.DataGridView_Articulos.AllowUserToAddRows = False
-        Me.DataGridView_Articulos.AllowUserToDeleteRows = False
-        Me.DataGridView_Articulos.AllowUserToOrderColumns = True
         Me.DataGridView_Articulos.BackgroundColor = System.Drawing.Color.White
         Me.DataGridView_Articulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView_Articulos.Location = New System.Drawing.Point(3, 211)
         Me.DataGridView_Articulos.Name = "DataGridView_Articulos"
-        Me.DataGridView_Articulos.ReadOnly = True
         Me.DataGridView_Articulos.Size = New System.Drawing.Size(938, 260)
         Me.DataGridView_Articulos.TabIndex = 99
         '
@@ -108,6 +105,17 @@ Partial Class GestionArticulos
         Me.Panel1.Size = New System.Drawing.Size(959, 480)
         Me.Panel1.TabIndex = 47
         Me.Panel1.TabStop = True
+        '
+        'TextBox_ISBNOCULTO
+        '
+        Me.TextBox_ISBNOCULTO.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_ISBNOCULTO.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_ISBNOCULTO.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_ISBNOCULTO.Location = New System.Drawing.Point(76, 163)
+        Me.TextBox_ISBNOCULTO.MaxLength = 100
+        Me.TextBox_ISBNOCULTO.Name = "TextBox_ISBNOCULTO"
+        Me.TextBox_ISBNOCULTO.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_ISBNOCULTO.TabIndex = 182
         '
         'GroupBox1
         '
@@ -350,18 +358,6 @@ Partial Class GestionArticulos
         Me.GestiónEmpleadosToolStripMenuItem1.Name = "GestiónEmpleadosToolStripMenuItem1"
         Me.GestiónEmpleadosToolStripMenuItem1.Size = New System.Drawing.Size(191, 22)
         Me.GestiónEmpleadosToolStripMenuItem1.Text = "Gestión de Empleados"
-        '
-        'TextBox_ISBNOCULTO
-        '
-        Me.TextBox_ISBNOCULTO.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_ISBNOCULTO.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_ISBNOCULTO.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_ISBNOCULTO.Location = New System.Drawing.Point(76, 163)
-        Me.TextBox_ISBNOCULTO.MaxLength = 100
-        Me.TextBox_ISBNOCULTO.Name = "TextBox_ISBNOCULTO"
-        Me.TextBox_ISBNOCULTO.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_ISBNOCULTO.TabIndex = 182
-        Me.TextBox_ISBNOCULTO.Visible = False
         '
         'GestionArticulos
         '

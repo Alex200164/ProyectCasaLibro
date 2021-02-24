@@ -3,6 +3,12 @@ Imports System.Data.OleDb
 
 Public Class GestionLibrosModificaciones
 
+    ' Variable para almacenar el ISBN inicial con el que se identificará el registro a modificar.
+    Dim ISBNInicial As String
+
+    ' Variable de control que controla que no se recoja más de una vez el valor de la primary key
+    Dim numControlPK As Single = 0
+
     ' Especificamos la base de datos a la que nos vamos a conectar.
     Public conexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=CasaLibroDB.accdb")
     ' Al adaptador le asignamos la conexion que acabamos de realizar y una consulta
@@ -10,6 +16,8 @@ Public Class GestionLibrosModificaciones
 
     ' Aquí alojaremos los datos de la DB
     Public midataset As New DataSet
+
+
 
     ' Método que se ejecuta cuando el botón "Salir..." del ToolStrip es pulsado y que nos lleva al formulario "GestionLibros".
     Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click
@@ -68,20 +76,28 @@ Public Class GestionLibrosModificaciones
         'Asociamos el nuevo adaptador con el nuevo comando al midataset de la tabla Libros
         adaptador.Fill(midataset, "Libros")
 
-        'Se relacionan los campos de la tabla con los textbox y se muestran los datos del registro que queremos modificar.
-        Me.TextBox_ISBN.DataBindings.Add("text", midataset, "Libros.ISBN")
-        Me.TextBox_Titulo.DataBindings.Add("text", midataset, "Libros.Titulo")
-        Me.TextBox_Autor.DataBindings.Add("text", midataset, "Libros.Autor")
-        Me.TextBox_Numeropags.DataBindings.Add("text", midataset, "Libros.Paginas")
-        Me.TextBox_Editorial.DataBindings.Add("text", midataset, "Libros.Editorial")
-        Me.TextBox_Idioma.DataBindings.Add("text", midataset, "Libros.Idioma")
-        Me.TextBox_Encuadernacion.DataBindings.Add("text", midataset, "Libros.Encuadernacion")
-        Me.TextBox_Annoedicion.DataBindings.Add("text", midataset, "Libros.Anno_edicion")
-        Me.TextBox_Plazaedicion.DataBindings.Add("text", midataset, "Libros.Plaza_de_edicion")
-        Me.TextBox_Traductor.DataBindings.Add("text", midataset, "Libros.Traductor")
-        Me.TextBox_Formato.DataBindings.Add("text", midataset, "Libros.Formato")
-        Me.TextBox_Precio.DataBindings.Add("text", midataset, "Libros.Precio")
-        Me.TextBox_Stock.DataBindings.Add("text", midataset, "Libros.Stock")
+        If GestionLibros.numeroDeControlBindingModificaciones = 0 Then
+
+            'Se relacionan los campos de la tabla con los textbox y se muestran los datos del registro que queremos modificar.
+            Me.TextBox_ISBN.DataBindings.Add("text", midataset, "Libros.ISBN")
+            Me.TextBox_Titulo.DataBindings.Add("text", midataset, "Libros.Titulo")
+            Me.TextBox_Autor.DataBindings.Add("text", midataset, "Libros.Autor")
+            Me.TextBox_Numeropags.DataBindings.Add("text", midataset, "Libros.Paginas")
+            Me.TextBox_Editorial.DataBindings.Add("text", midataset, "Libros.Editorial")
+            Me.TextBox_Idioma.DataBindings.Add("text", midataset, "Libros.Idioma")
+            Me.TextBox_Encuadernacion.DataBindings.Add("text", midataset, "Libros.Encuadernacion")
+            Me.TextBox_Annoedicion.DataBindings.Add("text", midataset, "Libros.Anno_edicion")
+            Me.TextBox_Plazaedicion.DataBindings.Add("text", midataset, "Libros.Plaza_de_edicion")
+            Me.TextBox_Traductor.DataBindings.Add("text", midataset, "Libros.Traductor")
+            Me.TextBox_Formato.DataBindings.Add("text", midataset, "Libros.Formato")
+            Me.TextBox_Precio.DataBindings.Add("text", midataset, "Libros.Precio")
+            Me.TextBox_Stock.DataBindings.Add("text", midataset, "Libros.Stock")
+
+            GestionLibros.numeroDeControlBindingModificaciones = 1
+        End If
+
+        ' Inicializamos la variable asignandole el número de socio inicial
+        ISBNInicial = GestionLibros.DataGridView_Libros.Item(0, GestionLibros.DataGridView_Libros.CurrentRow.Index).Value
 
     End Sub
 
@@ -93,42 +109,96 @@ Public Class GestionLibrosModificaciones
             TextBox_Plazaedicion.Text = "" Or TextBox_Traductor.Text = "" Or TextBox_Formato.Text = "" Or TextBox_Precio.Text = "" Or TextBox_Stock.Text = "" Then
             MsgBox("Debes seleccionar un registro para actualizarlo y si lo has seleccionado, no debe quedar ningún campo en blanco", MsgBoxStyle.OkOnly, "Error al dar de alta.")
         Else
-            Dim cb As New OleDbCommandBuilder(adaptador)
-            adaptador.UpdateCommand = cb.GetUpdateCommand
 
-            Dim a As Integer = GestionLibros.posicionDataGridSeleccionada
+            Dim valor As String
+            Dim control As Integer = 0
 
-            Dim fila As DataRow = GestionLibros.midataset.Tables("Libros").Rows(a)
+            ' Comprobamos que la clave primaria no se encuentra ya registrada.
+            For contador As Integer = 0 To GestionLibros.DataGridView_Libros.RowCount - 1
+                valor = GestionLibros.DataGridView_Libros.Item(0, contador).Value
 
-            ' Comenzamos la edición
-            fila.BeginEdit()
-            fila("ISBN") = TextBox_ISBN.Text
-            fila("Titulo") = TextBox_Titulo.Text
-            fila("Autor") = TextBox_Autor.Text
-            fila("Paginas") = TextBox_Numeropags.Text
-            fila("Editorial") = TextBox_Editorial.Text
-            fila("Idioma") = TextBox_Idioma.Text
-            fila("Encuadernacion") = TextBox_Encuadernacion.Text
-            fila("Anno_edicion") = TextBox_Annoedicion.Text
-            fila("Plaza_de_edicion") = TextBox_Plazaedicion.Text
-            fila("Traductor") = TextBox_Traductor.Text
-            fila("Formato") = TextBox_Formato.Text
-            fila("Precio") = TextBox_Precio.Text
-            fila("Stock") = TextBox_Stock.Text
-            fila.EndEdit()
-            ' Finalizamos la edición
+                If valor = TextBox_ISBN.Text And valor <> ISBNInicial Then
+                    MsgBox("No puedes introducir un ISBN que ya existe en la base de datos.", MsgBoxStyle.OkOnly, "Error, clave duplicada")
+                    control = 1
+                End If
+            Next
 
-            ' Ejecutamos la sentencia
-            adaptador.Update(GestionLibros.midataset.Tables("Libros"))
+            If control = 0 Then
+                Try
+                    ' Montamos una query parametrizada.
+                    Dim queryParametrizada As String = "UPDATE Libros SET ISBN=?, Titulo=?, Autor=?, Paginas=?, Editorial=?, Idioma=?, Encuadernacion=?, 
+                                                        Anno_edicion=?, Plaza_edicion=?, Traductor=?, Formato=?, Precio=?, Stock=?,  WHERE ISBN=?"
+                    Using cmd = New OleDbCommand(queryParametrizada, conexion)
 
-            ' Actualizamos el dataGridView del formulario de gestión principal
-            GestionLibros.midataset.Clear()
-            GestionLibros.adaptador.Fill(GestionLibros.midataset, "Libros")
+                        conexion.Open()
+                        cmd.Parameters.AddWithValue("@p1", Convert.ToInt64(TextBox_ISBN.Text))
+                        cmd.Parameters.AddWithValue("@p2", TextBox_Titulo.Text)
+                        cmd.Parameters.AddWithValue("@p3", TextBox_Autor.Text)
+                        cmd.Parameters.AddWithValue("@p4", Convert.ToInt64(TextBox_Numeropags.Text))
+                        cmd.Parameters.AddWithValue("@p5", TextBox_Editorial.Text)
+                        cmd.Parameters.AddWithValue("@p6", TextBox_Idioma.Text)
+                        cmd.Parameters.AddWithValue("@p7", TextBox_Encuadernacion.Text)
+                        cmd.Parameters.AddWithValue("@p8", Convert.ToInt64(TextBox_Annoedicion.Text))
+                        cmd.Parameters.AddWithValue("@p9", TextBox_Plazaedicion.Text)
+                        cmd.Parameters.AddWithValue("@p10", TextBox_Traductor.Text)
+                        cmd.Parameters.AddWithValue("@p11", TextBox_Formato.Text)
+                        cmd.Parameters.AddWithValue("@p12", Convert.ToInt64(TextBox_Precio.Text))
+                        cmd.Parameters.AddWithValue("@p13", Convert.ToInt64(TextBox_Stock.Text))
+                        cmd.Parameters.AddWithValue("@p14", Convert.ToSingle(ISBNInicial))
 
-            ' Cerramos la ventana
-            Me.Close()
+                        cmd.ExecuteNonQuery()
+
+                        ' System.FormatException montar try catch
+
+                        conexion.Close()
+                    End Using
 
 
+                    ' Dim cb As New OleDbCommandBuilder(adaptador)
+                    ' adaptador.UpdateCommand = cb.GetUpdateCommand
+                Catch ex As System.InvalidOperationException
+                    ' Avisamos del error por mensaje
+                    MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                End Try
+
+
+                'Dim cb As New OleDbCommandBuilder(adaptador)
+                'adaptador.UpdateCommand = cb.GetUpdateCommand
+
+                'Dim a As Integer = GestionLibros.posicionDataGridSeleccionada
+
+                'Dim fila As DataRow = GestionLibros.midataset.Tables("Libros").Rows(a)
+
+                '' Comenzamos la edición
+                'fila.BeginEdit()
+                'fila("ISBN") = TextBox_ISBN.Text
+                'fila("Titulo") = TextBox_Titulo.Text
+                'fila("Autor") = TextBox_Autor.Text
+                'fila("Paginas") = TextBox_Numeropags.Text
+                'fila("Editorial") = TextBox_Editorial.Text
+                'fila("Idioma") = TextBox_Idioma.Text
+                'fila("Encuadernacion") = TextBox_Encuadernacion.Text
+                'fila("Anno_edicion") = TextBox_Annoedicion.Text
+                'fila("Plaza_de_edicion") = TextBox_Plazaedicion.Text
+                'fila("Traductor") = TextBox_Traductor.Text
+                'fila("Formato") = TextBox_Formato.Text
+                'fila("Precio") = TextBox_Precio.Text
+                'fila("Stock") = TextBox_Stock.Text
+                'fila.EndEdit()
+                '' Finalizamos la edición
+
+                '' Ejecutamos la sentencia
+                'adaptador.Update(GestionLibros.midataset.Tables("Libros"))
+
+                ' Actualizamos el dataGridView del formulario de gestión principal
+                GestionLibros.midataset.Clear()
+                GestionLibros.adaptador.Fill(GestionLibros.midataset, "Libros")
+
+                ' Cerramos la ventana
+                Me.Close()
+
+
+            End If
         End If
     End Sub
 End Class

@@ -3,6 +3,12 @@ Imports System.Data.OleDb
 
 Public Class GestionArticulosModificaciones
 
+    ' Variable para almacenar el ISBN inicial con el que se identificará el registro a modificar.
+    Dim ISBNInicial As String
+
+    ' Variable de control que controla que no se recoja más de una vez el valor de la primary key
+    Dim numControlPK As Single = 0
+
     ' Especificamos la base de datos a la que nos vamos a conectar.
     Public conexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=CasaLibroDB.accdb")
     ' Al adaptador le asignamos la conexion que acabamos de realizar y una consulta
@@ -11,28 +17,6 @@ Public Class GestionArticulosModificaciones
     ' Aquí alojaremos los datos de la DB
     Public midataset As New DataSet
 
-    ' Método que se ejecuta cuando el botón "Salir..." del ToolStrip es pulsado y que nos lleva al formulario "GestionArticulos".
-    Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click
-        ' Mostramos el formulario "GestionArticulos".
-        GestionArticulos.Show()
-
-        ' Cerramos este formulario
-        Me.Close()
-    End Sub
-
-
-
-    ' Método que se ejecuta cuando es pulsado el botón "Calculadora" del menuStrip
-    Private Sub CalculadoraToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculadoraToolStripMenuItem.Click
-        ' Try catch para atrapar el error en caso de que el ordenador del usuario
-        Try
-            Dim program As String
-            program = "calc.exe"
-            Process.Start(program)
-        Catch ex As System.ComponentModel.Win32Exception '
-            MsgBox("Ha ocurrido un error, no se pudo iniciar la calculadora.", MsgBoxStyle.OkOnly, "Error (proceso calculadora)")
-        End Try
-    End Sub
 
     ' Método que se ejecuta cuando se pulsa el botón "Limpiar".
     ' "Limpia" todos los textBox, dejandolos vacios.
@@ -62,12 +46,20 @@ Public Class GestionArticulosModificaciones
         'Asociamos el nuevo adaptador con el nuevo comando al midataset de la tabla Productos 
         adaptador.Fill(midataset, "Productos")
 
-        'Se relacionan los campos de la tabla con los textbox y se muestran los datos del registro que queremos modificar.
-        Me.TextBox_ISBN.DataBindings.Add("text", midataset, "Productos.ISBN")
-        Me.TextBox_Nombre.DataBindings.Add("text", midataset, "Productos.Nombre")
-        Me.TextBox_Categoria.DataBindings.Add("text", midataset, "Productos.Categoria")
-        Me.TextBox_Precio.DataBindings.Add("text", midataset, "Productos.Precio")
-        Me.TextBox_Stock.DataBindings.Add("text", midataset, "Productos.Stock")
+        If GestionArticulos.numeroDeControlBindingModificaciones = 0 Then
+            'Se relacionan los campos de la tabla con los textbox y se muestran los datos del registro que queremos modificar.
+            Me.TextBox_ISBN.DataBindings.Add("text", midataset, "Productos.ISBN")
+            Me.TextBox_Nombre.DataBindings.Add("text", midataset, "Productos.Nombre")
+            Me.TextBox_Categoria.DataBindings.Add("text", midataset, "Productos.Categoria")
+            Me.TextBox_Precio.DataBindings.Add("text", midataset, "Productos.Precio")
+            Me.TextBox_Stock.DataBindings.Add("text", midataset, "Productos.Stock")
+            GestionArticulos.numeroDeControlBindingModificaciones = 1
+        End If
+
+        ' Inicializamos la variable asignandole el ISBN inicial
+        ISBNInicial = GestionArticulos.DataGridView_Articulos.Item(0, GestionArticulos.DataGridView_Articulos.CurrentRow.Index).Value
+
+
 
     End Sub
 
@@ -77,34 +69,86 @@ Public Class GestionArticulosModificaciones
         If TextBox_ISBN.Text = "" Or TextBox_Nombre.Text = "" Or TextBox_Categoria.Text = "" Or TextBox_Precio.Text = "" Or TextBox_Stock.Text = "" Then
             MsgBox("Debes seleccionar un registro para actualizarlo y si lo has seleccionado, no debe quedar ningún campo en blanco", MsgBoxStyle.OkOnly, "Error al dar de alta.")
         Else
-            Dim cb As New OleDbCommandBuilder(adaptador)
-            adaptador.UpdateCommand = cb.GetUpdateCommand
-
-            Dim a As Integer = GestionArticulos.posicionDataGridSeleccionada
-
-            Dim fila As DataRow = GestionArticulos.midataset.Tables("Productos").Rows(a)
-
-            ' Comenzamos la edición
-            fila.BeginEdit()
-            fila("ISBN") = TextBox_ISBN.Text
-            fila("Nombre") = TextBox_Nombre.Text
-            fila("Categoria") = TextBox_Categoria.Text
-            fila("Precio") = TextBox_Precio.Text
-            fila("Stock") = TextBox_Stock.Text
-            fila.EndEdit()
-            ' Finalizamos la edición
-
-            ' Ejecutamos la sentencia
-            adaptador.Update(GestionArticulos.midataset.Tables("Productos"))
-
-            ' Actualizamos el dataGridView del formulario de gestión principal
-            GestionArticulos.midataset.Clear()
-            GestionArticulos.adaptador.Fill(GestionArticulos.midataset, "Productos")
-
-            ' Cerramos la ventana
-            Me.Close()
 
 
+            Dim valor As String
+            Dim control As Integer = 0
+
+            ' Comprobamos que la clave primaria no se encuentra ya registrada.
+            For contador As Integer = 0 To GestionArticulos.DataGridView_Articulos.RowCount - 1
+                valor = GestionArticulos.DataGridView_Articulos.Item(0, contador).Value
+
+                If valor = TextBox_ISBN.Text And valor <> ISBNInicial Then
+                    MsgBox("No puedes introducir un ISBN que ya existe en la base de datos.", MsgBoxStyle.OkOnly, "Error, clave duplicada")
+                    control = 1
+                End If
+            Next
+
+
+            If control = 0 Then
+                Try
+                    ' Montamos una query parametrizada.
+                    Dim queryParametrizada As String = "UPDATE Productos SET ISBN=?, Nombre=?, Categoria=?, Precio=?, Stock=? WHERE ISBN=?"
+                    Using cmd = New OleDbCommand(queryParametrizada, conexion)
+
+                        conexion.Open()
+                        cmd.Parameters.AddWithValue("@p1", Convert.ToInt64(TextBox_ISBN.Text))
+                        cmd.Parameters.AddWithValue("@p2", TextBox_Nombre.Text)
+                        cmd.Parameters.AddWithValue("@p3", TextBox_Categoria.Text)
+                        cmd.Parameters.AddWithValue("@p4", Convert.ToInt64(TextBox_Precio.Text))
+                        cmd.Parameters.AddWithValue("@p5", Convert.ToInt64(TextBox_Stock.Text))
+                        cmd.Parameters.AddWithValue("@p6", Convert.ToSingle(ISBNInicial))
+
+                        cmd.ExecuteNonQuery()
+
+                        ' System.FormatException montar try catch
+
+                        conexion.Close()
+                    End Using
+
+
+                    ' Dim cb As New OleDbCommandBuilder(adaptador)
+                    ' adaptador.UpdateCommand = cb.GetUpdateCommand
+                Catch ex As System.InvalidOperationException
+                    ' Avisamos del error por mensaje
+                    MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                End Try
+
+                ' Actualizamos el dataGridView del formulario de gestión principal
+                GestionArticulos.midataset.Clear()
+                GestionArticulos.adaptador.Fill(GestionArticulos.midataset, "Productos")
+
+                ' Cerramos la ventana
+                Me.Close()
+
+            End If
         End If
     End Sub
+
+
+    ' #####################################################    Métodos varios    ##########################################################################
+
+
+    ' Método que se ejecuta cuando el botón "Salir..." del ToolStrip es pulsado y que nos lleva al formulario "GestionArticulos".
+    Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click
+        ' Mostramos el formulario "GestionArticulos".
+        GestionArticulos.Show()
+
+        ' Cerramos este formulario
+        Me.Close()
+    End Sub
+
+    ' Método que se ejecuta cuando es pulsado el botón "Calculadora" del menuStrip
+    Private Sub CalculadoraToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculadoraToolStripMenuItem.Click
+        ' Try catch para atrapar el error en caso de que el ordenador del usuario
+        Try
+            Dim program As String
+            program = "calc.exe"
+            Process.Start(program)
+        Catch ex As System.ComponentModel.Win32Exception '
+            MsgBox("Ha ocurrido un error, no se pudo iniciar la calculadora.", MsgBoxStyle.OkOnly, "Error (proceso calculadora)")
+        End Try
+    End Sub
+
+
 End Class
