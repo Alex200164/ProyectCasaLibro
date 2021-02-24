@@ -83,12 +83,17 @@ Public Class GestionSociosAltas
         ' Cargar la memoria del cache con datos.
         adaptador.Fill(midataset, "Socios")
 
+        If GestionSocios.numeroDeControlBindingAltaSocios = 0 Then
+            Me.TextBox_NumeroSocio.DataBindings.Add("text", midataset, "Socios.NumeroDeSocio")
+            Me.TextBox_Nombre.DataBindings.Add("text", midataset, "Socios.Nombre")
+            Me.TextBox_Apellidos.DataBindings.Add("text", midataset, "Socios.Apellidos")
+            Me.TextBox_Telefono.DataBindings.Add("text", midataset, "Socios.Telefono")
+            Me.TextBox_Correo.DataBindings.Add("text", midataset, "Socios.Correo")
+
+            GestionSocios.numeroDeControlBindingAltaSocios = 1
+        End If
         ' Relacionar los campos de la tabla con los textbox
-        TextBox_NumeroSocio.DataBindings.Add("text", midataset, "Socios.NumeroDeSocio")
-        TextBox_Nombre.DataBindings.Add("text", midataset, "Socios.Nombre")
-        TextBox_Apellidos.DataBindings.Add("text", midataset, "Socios.Apellidos")
-        TextBox_Telefono.DataBindings.Add("text", midataset, "Socios.Telefono")
-        TextBox_Correo.DataBindings.Add("text", midataset, "Socios.Correo")
+
 
         ' Vaciamos cada textBox de forma individual
         TextBox_NumeroSocio.Clear()
