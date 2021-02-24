@@ -50,15 +50,19 @@ Public Class GestionEmpleadosAltas
         ' Cargar la memoria del cache con datos.
         adaptador.Fill(midataset, "Empleados")
 
-        ' Relacionar los campos de la tabla con los textbox
-        Me.TextBox_DNI.DataBindings.Add("text", midataset, "Empleados.DNI")
-        Me.TextBox_NOMBRE.DataBindings.Add("text", midataset, "Empleados.Nombre")
-        Me.TextBox_APELLIDOS.DataBindings.Add("text", midataset, "Empleados.Apellidos")
-        Me.TextBox_CORREO.DataBindings.Add("text", midataset, "Empleados.Correo")
-        Me.TextBox_TELEFONO.DataBindings.Add("text", midataset, "Empleados.Telefono")
-        Me.TextBox_USUARIO.DataBindings.Add("text", midataset, "Empleados.Usuario")
-        Me.TextBox_CONTRASENNA.DataBindings.Add("text", midataset, "Empleados.Contrasenna")
-        Me.TextBox_ROL.DataBindings.Add("text", midataset, "Empleados.Rol")
+        If GestionEmpleados.numeroDeControlBindingAltaEmpleados = 0 Then
+            ' Relacionar los campos de la tabla con los textbox
+            Me.TextBox_DNI.DataBindings.Add("text", midataset, "Empleados.DNI")
+            Me.TextBox_NOMBRE.DataBindings.Add("text", midataset, "Empleados.Nombre")
+            Me.TextBox_APELLIDOS.DataBindings.Add("text", midataset, "Empleados.Apellidos")
+            Me.TextBox_CORREO.DataBindings.Add("text", midataset, "Empleados.Correo")
+            Me.TextBox_TELEFONO.DataBindings.Add("text", midataset, "Empleados.Telefono")
+            Me.TextBox_USUARIO.DataBindings.Add("text", midataset, "Empleados.Usuario")
+            Me.TextBox_CONTRASENNA.DataBindings.Add("text", midataset, "Empleados.Contrasenna")
+            Me.TextBox_ROL.DataBindings.Add("text", midataset, "Empleados.Rol")
+
+            GestionEmpleados.numeroDeControlBindingAltaEmpleados = 1
+        End If
 
 
         ' Vaciamos cada textBox de forma individual
@@ -71,6 +75,7 @@ Public Class GestionEmpleadosAltas
         TextBox_CONTRASENNA.Clear()
         TextBox_ROL.Clear()
 
+
     End Sub
 
     ' Método que se ejecuta cuando el botón "Alta" es pulsado. 
@@ -79,32 +84,56 @@ Public Class GestionEmpleadosAltas
         If TextBox_DNI.Text = "" Or TextBox_NOMBRE.Text = "" Or TextBox_APELLIDOS.Text = "" Or TextBox_TELEFONO.Text = "" Or TextBox_CORREO.Text = "" Or TextBox_USUARIO.Text = "" Or TextBox_CONTRASENNA.Text = "" Or TextBox_ROL.Text = "" Then
             MsgBox("No se puede dar de alta , debe rellenar todos los datos.", MsgBoxStyle.OkOnly, "Error al dar de alta.")
         Else
-            ' ####################  1º Preparamos a la base de datos para recibir los datos. ##############################
-            Dim cb As New OleDbCommandBuilder(adaptador)
-            adaptador.InsertCommand = cb.GetInsertCommand
 
-            ' ####################  2º Recogemos los datos y los introducimos ##############################
-            Dim drc As DataRowCollection = midataset.Tables("Empleados").Rows
-            drc.Add(TextBox_DNI.Text, TextBox_NOMBRE.Text, TextBox_APELLIDOS.Text, TextBox_CORREO.Text, TextBox_TELEFONO.Text, TextBox_USUARIO.Text, TextBox_CONTRASENNA.Text, TextBox_ROL.Text)
+            Dim valor As String
+            Dim control As Integer = 0
 
-            adaptador.Update(midataset.Tables("Empleados"))
-            ' ####################  3º Actualizamos el middataset ##############################
-            ' Actualizamos el dataGridView del formulario de gestión principal
-            GestionEmpleados.midataset.Clear()
-            GestionEmpleados.adaptador.Fill(GestionEmpleados.midataset, "Empleados")
+            ' Comprobamos que la clave primaria no se encuentra ya registrada.
+            For contador As Integer = 0 To GestionEmpleados.DataGridView_Empleados.RowCount - 1
+                valor = GestionEmpleados.DataGridView_Empleados.Item(0, contador).Value
 
-            ' Cerramos la ventana
-            Me.Close()
-
-            ' ####################  4º Cambiamos el estado de los botones del menuStrip ##############################
-            ' AltaToolStripMenuItem.Enabled = False
-            ' NuevoToolStripMenuItem.Enabled = True
-
-            'System.NullReferenceException: 'Referencia a objeto no establecida como instancia de un objeto.'
-            ' System.Data.OleDb.OleDbException: 'Error de sintaxis en la instrucción INSERT INTO.'
+                If valor = TextBox_DNI.Text Then
+                    MsgBox("No puedes introducir un DNI que ya existe en la base de datos.", MsgBoxStyle.OkOnly, "Error, clave duplicada")
+                    control = 1
+                End If
+            Next
 
 
+            If control = 0 Then
+
+                ' Try
+                ' ####################  1º Preparamos a la base de datos para recibir los datos. ##############################
+                Dim cb As New OleDbCommandBuilder(adaptador)
+                adaptador.InsertCommand = cb.GetInsertCommand
+
+                ' ####################  2º Recogemos los datos y los introducimos ##############################
+                Dim drc As DataRowCollection = midataset.Tables("Empleados").Rows
+                drc.Add(TextBox_DNI.Text, TextBox_NOMBRE.Text, TextBox_APELLIDOS.Text, TextBox_CORREO.Text, TextBox_TELEFONO.Text, TextBox_USUARIO.Text, TextBox_CONTRASENNA.Text, TextBox_ROL.Text)
+
+                adaptador.Update(midataset.Tables("Empleados"))
+                ' ####################  3º Actualizamos el middataset ##############################
+                ' Actualizamos el dataGridView del formulario de gestión principal
+                GestionEmpleados.midataset.Clear()
+                GestionEmpleados.adaptador.Fill(GestionEmpleados.midataset, "Empleados")
+
+
+                ' Catch ex As System.Data.OleDb.OleDbException
+                '    MsgBox("No puedes introducir un DNI que ya existe en la base de datos.", MsgBoxStyle.OkOnly, "Error, clave duplicada")
+                ' End Try
+
+                ' Cerramos la ventana
+                Me.Close()
+
+                ' ####################  4º Cambiamos el estado de los botones del menuStrip ##############################
+                ' AltaToolStripMenuItem.Enabled = False
+                ' NuevoToolStripMenuItem.Enabled = True
+
+                'System.NullReferenceException: 'Referencia a objeto no establecida como instancia de un objeto.'
+                ' System.Data.OleDb.OleDbException: 'Error de sintaxis en la instrucción INSERT INTO.'
+
+            End If
 
         End If
     End Sub
+
 End Class

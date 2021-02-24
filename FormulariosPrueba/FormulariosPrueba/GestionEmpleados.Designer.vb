@@ -27,8 +27,8 @@ Partial Class GestionEmpleados
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Button_Eliminar = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TextBox_DNI = New System.Windows.Forms.TextBox()
         Me.TextBox_APELLIDOS = New System.Windows.Forms.TextBox()
         Me.TextBox_NOMBRE = New System.Windows.Forms.TextBox()
         Me.TextBox_CORREO = New System.Windows.Forms.TextBox()
@@ -57,7 +57,6 @@ Partial Class GestionEmpleados
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.TextBox_DNI = New System.Windows.Forms.TextBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -88,7 +87,6 @@ Partial Class GestionEmpleados
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Controls.Add(Me.GroupBox1)
         Me.Panel1.Controls.Add(Me.Button_Eliminar)
         Me.Panel1.Controls.Add(Me.Button_Annadir)
@@ -98,15 +96,6 @@ Partial Class GestionEmpleados
         Me.Panel1.Size = New System.Drawing.Size(959, 480)
         Me.Panel1.TabIndex = 53
         Me.Panel1.TabStop = True
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(641, 160)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(98, 29)
-        Me.Button1.TabIndex = 185
-        Me.Button1.Text = "Actualizar"
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
@@ -129,6 +118,17 @@ Partial Class GestionEmpleados
         Me.GroupBox1.TabIndex = 183
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Filtro de Busqueda"
+        '
+        'TextBox_DNI
+        '
+        Me.TextBox_DNI.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_DNI.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_DNI.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_DNI.Location = New System.Drawing.Point(76, 30)
+        Me.TextBox_DNI.MaxLength = 100
+        Me.TextBox_DNI.Name = "TextBox_DNI"
+        Me.TextBox_DNI.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_DNI.TabIndex = 186
         '
         'TextBox_APELLIDOS
         '
@@ -365,17 +365,6 @@ Partial Class GestionEmpleados
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         Me.ContextMenuStrip1.Size = New System.Drawing.Size(61, 4)
         '
-        'TextBox_DNI
-        '
-        Me.TextBox_DNI.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_DNI.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_DNI.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_DNI.Location = New System.Drawing.Point(76, 30)
-        Me.TextBox_DNI.MaxLength = 100
-        Me.TextBox_DNI.Name = "TextBox_DNI"
-        Me.TextBox_DNI.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_DNI.TabIndex = 186
-        '
         'GestionEmpleados
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -432,7 +421,6 @@ Partial Class GestionEmpleados
     Friend WithEvents Label_Apellidos As Label
     Friend WithEvents Label_Nombre As Label
     Friend WithEvents Label_DNI As Label
-    Friend WithEvents Button1 As Button
     Friend WithEvents TextBox_DNI As TextBox
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
 End Class

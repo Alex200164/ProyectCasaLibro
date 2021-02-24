@@ -255,19 +255,6 @@ Public Class GestionSocios
         Me.Close()
     End Sub
 
-    ' Actualizamos el dataGridView
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        midataset.Clear()
-
-
-        ' Cargar la memoria del cache con datos.
-        adaptador.Fill(midataset, "Socios")
-
-        ' cargar en el datagridview, le decimos de donde sacamos los datos
-        DataGridView_Socios.DataSource = midataset
-        DataGridView_Socios.DataMember = "Socios"
-    End Sub
-
     ' Método que se ejecuta al pulsar el botón "Eliminar"
     Private Sub Button_Eliminar_Click(sender As Object, e As EventArgs) Handles Button_Eliminar.Click
         Try
@@ -316,6 +303,17 @@ Public Class GestionSocios
         TextBox_Nombre.Clear()
         TextBox_Apellidos.Clear()
         TextBox_Telefono.Clear()
+
+        ' Actualizamos el datagriview
+        midataset.Clear()
+
+        ' Cargar la memoria del cache con datos.
+        adaptador.Fill(midataset, "Socios")
+
+        ' cargar en el datagridview, le decimos de donde sacamos los datos
+        DataGridView_Socios.DataSource = midataset
+        DataGridView_Socios.DataMember = "Socios"
+
     End Sub
 
     ' Método que se ejecuta cuando el botón "Buscar" es pulsado
@@ -666,4 +664,5 @@ Public Class GestionSocios
         End If ' IF 1
 
     End Sub
+
 End Class

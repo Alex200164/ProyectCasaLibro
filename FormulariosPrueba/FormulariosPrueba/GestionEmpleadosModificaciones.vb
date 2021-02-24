@@ -98,81 +98,92 @@ Public Class GestionEmpleadosModificaciones
             MsgBox("Debes seleccionar un registro para actualizarlo y si lo has seleccionado, no debe quedar ningún campo en blanco", MsgBoxStyle.OkOnly, "Error al dar de alta.")
         Else
 
-            ' Try
-            ' Montamos una query parametrizada.
-            Dim queryParametrizada As String = "UPDATE Empleados SET DNI=?, Nombre=?, Apellidos=?, Correo=? WHERE DNI=?"
-            Using cmd = New OleDbCommand(queryParametrizada, conexion)
-                conexion.Open()
 
-                cmd.Parameters.AddWithValue("@p1", Convert.ToInt64(TextBox_DNI.Text))
-                cmd.Parameters.AddWithValue("@p2", TextBox_NOMBRE.Text)
-                cmd.Parameters.AddWithValue("@p3", TextBox_APELLIDOS.Text)
-                cmd.Parameters.AddWithValue("@p4", TextBox_CORREO.Text)
+            Dim valor As String
+            Dim control As Integer = 0
 
-                cmd.Parameters.AddWithValue("@p5", Convert.ToInt64(numDniInicial))
+            ' Comprobamos que la clave primaria no se encuentra ya registrada.
+            For contador As Integer = 0 To GestionEmpleados.DataGridView_Empleados.RowCount - 1
+                valor = GestionEmpleados.DataGridView_Empleados.Item(0, contador).Value
 
-                ' System.FormatException montar try catch System.Data.OleDb.OleDbException
+                If valor = TextBox_DNI.Text And valor <> numDniInicial Then
+                    MsgBox("No puedes introducir un DNI que ya existe en la base de datos.", MsgBoxStyle.OkOnly, "Error, clave duplicada")
+                    control = 1
+                End If
+            Next
 
-                cmd.ExecuteNonQuery()
+            If control = 0 Then
+                ' Try
+                ' Montamos una query parametrizada.
+                Dim queryParametrizada As String = "UPDATE Empleados SET DNI=?, Nombre=?, Apellidos=?, Correo=? WHERE DNI=?"
+                Using cmd = New OleDbCommand(queryParametrizada, conexion)
+                    conexion.Open()
+
+                    cmd.Parameters.AddWithValue("@p1", TextBox_DNI.Text)
+                    cmd.Parameters.AddWithValue("@p2", TextBox_NOMBRE.Text)
+                    cmd.Parameters.AddWithValue("@p3", TextBox_APELLIDOS.Text)
+                    cmd.Parameters.AddWithValue("@p4", TextBox_CORREO.Text)
+
+                    cmd.Parameters.AddWithValue("@p5", numDniInicial)
+
+                    ' System.FormatException montar try catch System.Data.OleDb.OleDbException
+
+                    cmd.ExecuteNonQuery()
+
+                    conexion.Close()
+
+                End Using
+
+                Dim queryParametrizada2 As String = "UPDATE Empleados SET Telefono=?, Usuario=? WHERE DNI=?"
+                Using cmd2 = New OleDbCommand(queryParametrizada2, conexion)
+
+                    conexion.Open()
+
+                    cmd2.Parameters.AddWithValue("@p1", Convert.ToSingle(TextBox_TELEFONO.Text))
+                    cmd2.Parameters.AddWithValue("@p2", TextBox_USUARIO.Text)
+                    cmd2.Parameters.AddWithValue("@p3", numDniInicial)
+
+                    cmd2.ExecuteNonQuery()
+
+                    conexion.Close()
+
+                End Using
+
+                Dim queryParametrizada3 As String = "UPDATE Empleados SET Contrasenna=?, Rol=? WHERE DNI=?"
+                Using cmd3 = New OleDbCommand(queryParametrizada3, conexion)
+
+                    conexion.Open()
+
+                    cmd3.Parameters.AddWithValue("@p1", Convert.ToSingle(TextBox_CONTRASENNA.Text))
+                    cmd3.Parameters.AddWithValue("@p2", TextBox_ROL)
+                    cmd3.Parameters.AddWithValue("@p3", numDniInicial)
+                    Try
+                        cmd3.ExecuteNonQuery()
+                    Catch ex As System.Data.OleDb.OleDbException
+
+                    End Try
+
+                    conexion.Close()
+
+                End Using
 
 
-                conexion.Close()
+                ' Dim cb As New OleDbCommandBuilder(adaptador)
+                ' adaptador.UpdateCommand = cb.GetUpdateCommand
+                'Catch ex As System.InvalidOperationException
+                ' Avisamos del error por mensaje
+                '  MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                'End Try
 
-            End Using
+                ' Actualizamos el dataGridView del formulario de gestión principal
+                GestionEmpleados.midataset.Clear()
+                GestionEmpleados.adaptador.Fill(GestionEmpleados.midataset, "Empleados")
 
-            Dim queryParametrizada2 As String = "UPDATE Empleados SET Telefono=?, Usuario=? WHERE DNI=?"
-            Using cmd2 = New OleDbCommand(queryParametrizada2, conexion)
+                ' Cerramos la ventana
+                Me.Close()
 
-                conexion.Open()
-
-                cmd2.Parameters.AddWithValue("@p1", Convert.ToSingle(TextBox_TELEFONO.Text))
-                cmd2.Parameters.AddWithValue("@p2", TextBox_USUARIO.Text)
-                cmd2.Parameters.AddWithValue("@p3", Convert.ToInt64(numDniInicial))
-
-                cmd2.ExecuteNonQuery()
-
-                conexion.Close()
-
-            End Using
-
-            Dim queryParametrizada3 As String = "UPDATE Empleados SET Contrasenna=?, Rol=? WHERE DNI=?"
-            Using cmd3 = New OleDbCommand(queryParametrizada3, conexion)
-
-                conexion.Open()
-
-                cmd3.Parameters.AddWithValue("@p1", Convert.ToSingle(TextBox_CONTRASENNA.Text))
-                cmd3.Parameters.AddWithValue("@p2", TextBox_ROL)
-                cmd3.Parameters.AddWithValue("@p3", Convert.ToInt64(numDniInicial))
-                Try
-                    cmd3.ExecuteNonQuery()
-                Catch ex As System.Data.OleDb.OleDbException
-
-                End Try
-
-
-
-                conexion.Close()
-
-            End Using
-
-
-            ' Dim cb As New OleDbCommandBuilder(adaptador)
-            ' adaptador.UpdateCommand = cb.GetUpdateCommand
-            'Catch ex As System.InvalidOperationException
-            ' Avisamos del error por mensaje
-            '  MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
-            'End Try
-
-            ' Actualizamos el dataGridView del formulario de gestión principal
-            GestionEmpleados.midataset.Clear()
-            GestionEmpleados.adaptador.Fill(GestionEmpleados.midataset, "Empleados")
-
-            ' Cerramos la ventana
-            Me.Close()
-
-            ' Hacer try-catch
-            ' 
-
+                ' Hacer try-catch
+            End If
         End If
     End Sub
 
