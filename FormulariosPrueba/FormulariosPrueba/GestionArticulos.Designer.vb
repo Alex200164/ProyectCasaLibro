@@ -55,6 +55,7 @@ Partial Class GestionArticulos
         Me.GestiónEmpleadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestiónEmpleadosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView_Articulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -95,6 +96,7 @@ Partial Class GestionArticulos
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.ComboBox1)
         Me.Panel1.Controls.Add(Me.TextBox_ISBNOCULTO)
         Me.Panel1.Controls.Add(Me.GroupBox1)
         Me.Panel1.Controls.Add(Me.Button_Eliminar)
@@ -102,7 +104,7 @@ Partial Class GestionArticulos
         Me.Panel1.Controls.Add(Me.DataGridView_Articulos)
         Me.Panel1.Location = New System.Drawing.Point(12, 127)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(959, 480)
+        Me.Panel1.Size = New System.Drawing.Size(961, 491)
         Me.Panel1.TabIndex = 47
         Me.Panel1.TabStop = True
         '
@@ -133,7 +135,7 @@ Partial Class GestionArticulos
         Me.GroupBox1.Controls.Add(Me.Label_ISBN)
         Me.GroupBox1.Location = New System.Drawing.Point(3, 16)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(938, 127)
+        Me.GroupBox1.Size = New System.Drawing.Size(940, 127)
         Me.GroupBox1.TabIndex = 183
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Filtro de Busqueda"
@@ -359,12 +361,20 @@ Partial Class GestionArticulos
         Me.GestiónEmpleadosToolStripMenuItem1.Size = New System.Drawing.Size(191, 22)
         Me.GestiónEmpleadosToolStripMenuItem1.Text = "Gestión de Empleados"
         '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(395, 160)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBox1.TabIndex = 184
+        '
         'GestionArticulos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(984, 611)
+        Me.ClientSize = New System.Drawing.Size(984, 618)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.MenuStripPagPrin)
@@ -417,4 +427,5 @@ Partial Class GestionArticulos
     Friend WithEvents TextBox_Categoria As TextBox
     Friend WithEvents TextBox_Nombre As TextBox
     Friend WithEvents TextBox_ISBNOCULTO As TextBox
+    Friend WithEvents ComboBox1 As ComboBox
 End Class

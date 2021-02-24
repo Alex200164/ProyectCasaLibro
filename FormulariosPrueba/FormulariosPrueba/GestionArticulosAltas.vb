@@ -46,6 +46,14 @@ Public Class GestionArticulosAltas
     ' Método que se ejecuta cuando el botón "Alta" es pulsado. 
     ' Introduce los datos escritos por el usuario en los textBox en la DB.
     Private Sub Button_Alta_Click(sender As Object, e As EventArgs) Handles Button_Alta.Click
+        'Para subir la imagen lo que tenemos que hacer es 
+        Dim mstream As New System.IO.MemoryStream()
+        PictureBoxProducto.Image.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
+        arrImage = mstream.GetBuffer()
+        Dim FileSize As UInt64
+        FileSize = mstream.Length
+        mstream.Close()
+
         If TextBox_ISBN.Text = "" Or TextBox_Nombre.Text = "" Or TextBox_Categoria.Text = "" Or TextBox_Precio.Text = "" Or TextBox_Stock.Text = "" Then
             MsgBox("No se puede dar de alta , debe rellenar todos los datos.", MsgBoxStyle.OkOnly, "Error al dar de alta.")
         Else
@@ -72,7 +80,8 @@ Public Class GestionArticulosAltas
 
                 ' ####################  2º Recogemos los datos y los introducimos ##############################
                 Dim drc As DataRowCollection = midataset.Tables("Productos").Rows
-                drc.Add(TextBox_ISBN.Text, TextBox_Nombre.Text, TextBox_Categoria.Text, TextBox_Precio.Text, TextBox_Stock.Text)
+                drc.Add(TextBox_ISBN.Text, TextBox_Nombre.Text, TextBox_Categoria.Text, TextBox_Precio.Text, TextBox_Stock.Text, arrImage)
+
 
                 adaptador.Update(midataset.Tables("Productos"))
                 ' ####################  3º Actualizamos el middataset ##############################
@@ -119,4 +128,50 @@ Public Class GestionArticulosAltas
         TextBox_Stock.Clear()
 
     End Sub
+
+    Dim imgpath As String
+    Dim arrImage() As Byte
+
+    Private Sub ButtonExaminar_Click(sender As Object, e As EventArgs) Handles ButtonExaminar.Click
+        Try
+            'objeto de openfiledialog
+            Dim odf As New OpenFileDialog()
+            odf.Title = "Seleccione una imagen del producto"
+            'tipo de fichiero
+            odf.Filter = "JPG Files|*.jpg"
+            'inicio de la ruta
+            odf.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+
+            If odf.ShowDialog() = DialogResult.OK Then
+                imgpath = odf.FileName
+                PictureBoxProducto.ImageLocation = imgpath
+
+                'Abremos fichiero
+                'Dim fs As FileStream = File.Open(odf.FileName, FileMode.Open)
+                'cogemos el imagen obj bmp
+                '  Dim bmp As New Bitmap()
+                'fs.Close()
+                'cargamos la foto en el picturebox
+                'PictureBoxProducto.Image = Image.FromFile(odf.FileName)
+            End If
+            odf = Nothing
+
+
+        Catch ex As Exception
+            'aqui buscamos el Error en GestionErrores
+            '  Dim buscarError As Boolean = gestionError.mostrarError(Err.Number)
+
+            'guardamos el Exception
+            ' errores.guardarError("Excepción nº" & Err.Number & " : " & ex.Message)
+
+            'si no ecuentramos el error mostrar mensaje del exepcion capturada
+            ' If buscarError = False Then
+            'MsgBox("Error : " & ex.Message, MsgBoxStyle.Exclamation)
+            '  End If
+
+        End Try
+    End Sub
+
+
+
 End Class

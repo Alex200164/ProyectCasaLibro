@@ -46,11 +46,16 @@ Partial Class GestionArticulosAltas
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.ButtonExaminar = New System.Windows.Forms.Button()
+        Me.PictureBoxProducto = New System.Windows.Forms.PictureBox()
         Me.MenuStripPagPrin.SuspendLayout()
         Me.GruopBox.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
+        CType(Me.PictureBoxProducto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStripPagPrin
@@ -288,17 +293,47 @@ Partial Class GestionArticulosAltas
         Me.PictureBox2.TabIndex = 39
         Me.PictureBox2.TabStop = False
         '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.ButtonExaminar)
+        Me.Panel1.Controls.Add(Me.PictureBoxProducto)
+        Me.Panel1.Location = New System.Drawing.Point(27, 370)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(700, 239)
+        Me.Panel1.TabIndex = 54
+        '
+        'ButtonExaminar
+        '
+        Me.ButtonExaminar.BackColor = System.Drawing.Color.LightBlue
+        Me.ButtonExaminar.Font = New System.Drawing.Font("Gadugi", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonExaminar.Location = New System.Drawing.Point(317, 83)
+        Me.ButtonExaminar.Name = "ButtonExaminar"
+        Me.ButtonExaminar.Size = New System.Drawing.Size(133, 59)
+        Me.ButtonExaminar.TabIndex = 119
+        Me.ButtonExaminar.Text = "Examinar"
+        Me.ButtonExaminar.UseVisualStyleBackColor = False
+        '
+        'PictureBoxProducto
+        '
+        Me.PictureBoxProducto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBoxProducto.Location = New System.Drawing.Point(51, 23)
+        Me.PictureBoxProducto.Name = "PictureBoxProducto"
+        Me.PictureBoxProducto.Size = New System.Drawing.Size(225, 186)
+        Me.PictureBoxProducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBoxProducto.TabIndex = 120
+        Me.PictureBoxProducto.TabStop = False
+        '
         'GestionArticulosAltas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(754, 353)
+        Me.ClientSize = New System.Drawing.Size(754, 621)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.MenuStripPagPrin)
         Me.Controls.Add(Me.Panel2)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "GestionArticulosAltas"
         Me.Text = "Gestion de Articulos (Altas)"
@@ -309,6 +344,8 @@ Partial Class GestionArticulosAltas
         Me.Panel2.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
+        CType(Me.PictureBoxProducto, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -337,4 +374,7 @@ Partial Class GestionArticulosAltas
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Panel3 As Panel
     Friend WithEvents PictureBox2 As PictureBox
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents ButtonExaminar As Button
+    Friend WithEvents PictureBoxProducto As PictureBox
 End Class

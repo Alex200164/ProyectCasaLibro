@@ -53,6 +53,7 @@ Public Class GestionArticulosModificaciones
             Me.TextBox_Categoria.DataBindings.Add("text", midataset, "Productos.Categoria")
             Me.TextBox_Precio.DataBindings.Add("text", midataset, "Productos.Precio")
             Me.TextBox_Stock.DataBindings.Add("text", midataset, "Productos.Stock")
+
             GestionArticulos.numeroDeControlBindingModificaciones = 1
         End If
 
@@ -95,7 +96,7 @@ Public Class GestionArticulosModificaciones
                         cmd.Parameters.AddWithValue("@p1", Convert.ToInt64(TextBox_ISBN.Text))
                         cmd.Parameters.AddWithValue("@p2", TextBox_Nombre.Text)
                         cmd.Parameters.AddWithValue("@p3", TextBox_Categoria.Text)
-                        cmd.Parameters.AddWithValue("@p4", Convert.ToInt64(TextBox_Precio.Text))
+                        cmd.Parameters.AddWithValue("@p4", Convert.ToDouble(TextBox_Precio.Text))
                         cmd.Parameters.AddWithValue("@p5", Convert.ToInt64(TextBox_Stock.Text))
                         cmd.Parameters.AddWithValue("@p6", Convert.ToSingle(ISBNInicial))
 

@@ -142,7 +142,7 @@ Public Class GestionLibrosModificaciones
                         cmd.Parameters.AddWithValue("@p9", TextBox_Plazaedicion.Text)
                         cmd.Parameters.AddWithValue("@p10", TextBox_Traductor.Text)
                         cmd.Parameters.AddWithValue("@p11", TextBox_Formato.Text)
-                        cmd.Parameters.AddWithValue("@p12", Convert.ToInt64(TextBox_Precio.Text))
+                        cmd.Parameters.AddWithValue("@p12", Convert.ToDouble(TextBox_Precio.Text))
                         cmd.Parameters.AddWithValue("@p13", Convert.ToInt64(TextBox_Stock.Text))
                         cmd.Parameters.AddWithValue("@p14", Convert.ToSingle(ISBNInicial))
 

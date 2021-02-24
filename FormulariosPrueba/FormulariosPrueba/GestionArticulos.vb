@@ -1,7 +1,12 @@
 ﻿' Necesitamos importar el módelo de base de datos que vamos a utilizar, este es de access.
 Imports System.Data.OleDb
 
+' No hace falta hacer imports libValidaciones para instanciar sus clases porque está incluida en el proyecto.
+Imports System.IO
+
 Public Class GestionArticulos
+
+
 
     ' Especificamos la base de datos a la que nos vamos a conectar.
     Public conexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=CasaLibroDB.accdb")
@@ -102,13 +107,6 @@ Public Class GestionArticulos
         posicionarGestionAltas()
         ' Mostramos el formulario
         GestionArticulosAltas.ShowDialog()
-
-        ' Vaciamos cada textBox de forma individual
-        GestionArticulosAltas.TextBox_ISBN.Clear()
-        GestionArticulosAltas.TextBox_Nombre.Clear()
-        GestionArticulosAltas.TextBox_Categoria.Clear()
-        GestionArticulosAltas.TextBox_Precio.Clear()
-        GestionArticulosAltas.TextBox_Stock.Clear()
     End Sub
 
 
@@ -151,7 +149,7 @@ Public Class GestionArticulos
 
     'Metodo que pinta el Icono asociado al botón dinámico Modificar, el la ultima Columna del DataGridView
     Private Sub DataGridView1_CellPainting(ByVal sender As Object, ByVal e As DataGridViewCellPaintingEventArgs) Handles DataGridView_Articulos.CellPainting
-        If e.ColumnIndex = 5 AndAlso e.RowIndex >= 0 Then
+        If e.ColumnIndex = 6 AndAlso e.RowIndex >= 0 Then
             e.Paint(e.CellBounds, DataGridViewPaintParts.All)
             'Liena de código que calcula la posicion de el dibujo en concreto.
             e.Graphics.DrawImage(My.Resources.modificar_ico, CInt((e.CellBounds.Width / 2) - (My.Resources.modificar_ico.Width / 2)) + e.CellBounds.X, CInt((e.CellBounds.Height / 2) - (My.Resources.modificar_ico.Height / 2)) + e.CellBounds.Y)
@@ -260,7 +258,6 @@ Public Class GestionArticulos
         Me.Close()
     End Sub
 
-
     ' Método que se ejecuta al pulsar el botón "Eliminar"
     Private Sub Button_Eliminar_Click(sender As Object, e As EventArgs) Handles Button_Eliminar.Click
         Try
@@ -310,6 +307,7 @@ Public Class GestionArticulos
         TextBox_Categoria.Clear()
         TextBox_Precio.Clear()
 
+        ' Actualizamos el datagriview
         midataset.Clear()
 
 
@@ -669,6 +667,7 @@ Public Class GestionArticulos
         End If ' IF 1
 
     End Sub
+
 End Class
 
 'Private Sub Form1_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
