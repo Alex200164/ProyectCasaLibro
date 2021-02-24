@@ -55,6 +55,9 @@
     <ApplicationIcon>Resources\IconoCuadrado.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="libreriaValidacion">
+      <HintPath>..\LibreriaValidacion\libValidacionDatos\bin\Debug\libreriaValidacion.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />

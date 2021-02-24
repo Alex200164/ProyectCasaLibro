@@ -1,6 +1,9 @@
 ﻿' Necesitamos importar el módelo de base de datos que vamos a utilizar, este es de access.
 Imports System.Data.OleDb
 
+' No hace falta hacer imports libValidaciones para instanciar sus clases porque está incluida en el proyecto.
+Imports System.IO
+
 Public Class GestionSocios
 
 
@@ -325,344 +328,398 @@ Public Class GestionSocios
             MsgBox("No se puede buscar , debe rellenar al menos una caja con datos.", MsgBoxStyle.OkOnly, "Error al buscar.")
         Else
 
+            ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
+            ' Instanciamos la clase
+            Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+            Dim resultado1 As Boolean = validarNumeroSocio.validarNumeroSocio(TextBox_NumeroSocio.Text, 2)
+            Dim resultado2 As Boolean = validarNumeroSocio.validarTelefono(TextBox_Telefono.Text)
+            Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_Nombre.Text, 1)
+            Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_Apellidos.Text, 2)
+
+            If resultado1 = False Then
+                'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                Exit Sub
+            ElseIf resultado2 = False Then
+                'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                Exit Sub
+            ElseIf resultado3 = False Then
+                'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                Exit Sub
+            ElseIf resultado4 = False Then
+                'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                Exit Sub
+            End If
+
             ' Si se ha introducido todo
             If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text <> "" Then
-                Dim ds As New DataSet
+                    Dim ds As New DataSet
 
-                Dim cb As New OleDbDataAdapter
+                    Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Nombre LIKE? and Apellidos LIKE? and Telefono LIKE?", conexion)
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Nombre LIKE? and Apellidos LIKE? and Telefono LIKE?", conexion)
 
-                cb.SelectCommand = comando
+                    cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
-                comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
-                comando.Parameters.Add("@var4", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+                    comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
+                    comando.Parameters.Add("@var4", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
 
-                midataset.Clear()
+                    midataset.Clear()
 
-                cb.Fill(midataset, "Socios")
+                    cb.Fill(midataset, "Socios")
 
-                DataGridView_Socios.DataSource = midataset
+                    DataGridView_Socios.DataSource = midataset
 
-                DataGridView_Socios.DataMember = "Socios"
-            End If
+                    DataGridView_Socios.DataMember = "Socios"
+                End If
 
 
 
-            ' Numero Nombre Apellido
-            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text = "" Then
-                Dim ds As New DataSet
+                ' Numero Nombre Apellido
+                If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text = "" Then
+                    Dim ds As New DataSet
 
-                Dim cb As New OleDbDataAdapter
+                    Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Nombre LIKE? and Apellidos LIKE? ", conexion)
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Nombre LIKE? and Apellidos LIKE? ", conexion)
 
-                cb.SelectCommand = comando
+                    cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
-                comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+                    comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
 
-                midataset.Clear()
+                    midataset.Clear()
 
-                cb.Fill(midataset, "Socios")
+                    cb.Fill(midataset, "Socios")
 
-                DataGridView_Socios.DataSource = midataset
+                    DataGridView_Socios.DataSource = midataset
 
-                DataGridView_Socios.DataMember = "Socios"
-            End If
+                    DataGridView_Socios.DataMember = "Socios"
+                End If
 
-            ' Nombre Apellidos Telefono
-            If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text <> "" Then
-                Dim ds As New DataSet
+                ' Nombre Apellidos Telefono
+                If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text <> "" Then
+                    Dim ds As New DataSet
 
-                Dim cb As New OleDbDataAdapter
+                    Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE Nombre LIKE? and Apellidos LIKE? and Telefono LIKE?", conexion)
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE Nombre LIKE? and Apellidos LIKE? and Telefono LIKE?", conexion)
 
-                cb.SelectCommand = comando
+                    cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
-                comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
+                    comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
 
-                midataset.Clear()
+                    midataset.Clear()
 
-                cb.Fill(midataset, "Socios")
+                    cb.Fill(midataset, "Socios")
 
-                DataGridView_Socios.DataSource = midataset
+                    DataGridView_Socios.DataSource = midataset
 
-                DataGridView_Socios.DataMember = "Socios"
-            End If
+                    DataGridView_Socios.DataMember = "Socios"
+                End If
 
-            ' Numero Apellidos Telefono
-            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text <> "" Then
-                Dim ds As New DataSet
+                ' Numero Apellidos Telefono
+                If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text <> "" Then
+                    Dim ds As New DataSet
 
-                Dim cb As New OleDbDataAdapter
+                    Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Apellidos LIKE? and Telefono LIKE?", conexion)
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Apellidos LIKE? and Telefono LIKE?", conexion)
 
-                cb.SelectCommand = comando
+                    cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
-                comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
+                    comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
 
-                midataset.Clear()
+                    midataset.Clear()
 
-                cb.Fill(midataset, "Socios")
+                    cb.Fill(midataset, "Socios")
 
-                DataGridView_Socios.DataSource = midataset
+                    DataGridView_Socios.DataSource = midataset
 
-                DataGridView_Socios.DataMember = "Socios"
-            End If
+                    DataGridView_Socios.DataMember = "Socios"
+                End If
 
-            ' Numero Nombre Telefono
-            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text <> "" Then
-                Dim ds As New DataSet
+                ' Numero Nombre Telefono
+                If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text <> "" Then
+                    Dim ds As New DataSet
 
-                Dim cb As New OleDbDataAdapter
+                    Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Nombre LIKE? and Telefono LIKE?", conexion)
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Nombre LIKE? and Telefono LIKE?", conexion)
 
-                cb.SelectCommand = comando
+                    cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
-                comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+                    comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
 
-                midataset.Clear()
+                    midataset.Clear()
 
-                cb.Fill(midataset, "Socios")
+                    cb.Fill(midataset, "Socios")
 
-                DataGridView_Socios.DataSource = midataset
+                    DataGridView_Socios.DataSource = midataset
 
-                DataGridView_Socios.DataMember = "Socios"
-            End If
+                    DataGridView_Socios.DataMember = "Socios"
+                End If
 
-            ' Numero Nombre
-            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text = "" Then
-                Dim ds As New DataSet
+                ' Numero Nombre
+                If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text = "" Then
+                    Dim ds As New DataSet
 
-                Dim cb As New OleDbDataAdapter
+                    Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Nombre LIKE? ", conexion)
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Nombre LIKE? ", conexion)
 
-                cb.SelectCommand = comando
+                    cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
 
-                midataset.Clear()
+                    midataset.Clear()
 
-                cb.Fill(midataset, "Socios")
+                    cb.Fill(midataset, "Socios")
 
-                DataGridView_Socios.DataSource = midataset
+                    DataGridView_Socios.DataSource = midataset
 
-                DataGridView_Socios.DataMember = "Socios"
-            End If
+                    DataGridView_Socios.DataMember = "Socios"
+                End If
 
-            ' Numero Apellidos
-            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text = "" Then
-                Dim ds As New DataSet
+                ' Numero Apellidos
+                If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text = "" Then
+                    Dim ds As New DataSet
 
-                Dim cb As New OleDbDataAdapter
+                    Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Apellidos LIKE?", conexion)
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Apellidos LIKE?", conexion)
 
-                cb.SelectCommand = comando
+                    cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
 
-                midataset.Clear()
+                    midataset.Clear()
 
-                cb.Fill(midataset, "Socios")
+                    cb.Fill(midataset, "Socios")
 
-                DataGridView_Socios.DataSource = midataset
+                    DataGridView_Socios.DataSource = midataset
 
-                DataGridView_Socios.DataMember = "Socios"
-            End If
+                    DataGridView_Socios.DataMember = "Socios"
+                End If
 
-            ' Nombre Apellidos
-            If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text = "" Then
-                Dim ds As New DataSet
+                ' Nombre Apellidos
+                If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text = "" Then
+                    Dim ds As New DataSet
 
-                Dim cb As New OleDbDataAdapter
+                    Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE Nombre LIKE? and Apellidos LIKE?", conexion)
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE Nombre LIKE? and Apellidos LIKE?", conexion)
 
-                cb.SelectCommand = comando
+                    cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
 
-                midataset.Clear()
+                    midataset.Clear()
 
-                cb.Fill(midataset, "Socios")
+                    cb.Fill(midataset, "Socios")
 
-                DataGridView_Socios.DataSource = midataset
+                    DataGridView_Socios.DataSource = midataset
 
-                DataGridView_Socios.DataMember = "Socios"
-            End If
+                    DataGridView_Socios.DataMember = "Socios"
+                End If
 
-            ' Apellidos Telefono
-            If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text <> "" Then
-                Dim ds As New DataSet
+                ' Apellidos Telefono
+                If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text <> "" Then
+                    Dim ds As New DataSet
 
-                Dim cb As New OleDbDataAdapter
+                    Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE Apellidos LIKE? and Telefono LIKE?", conexion)
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE Apellidos LIKE? and Telefono LIKE?", conexion)
 
-                cb.SelectCommand = comando
+                    cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
-                comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
+                    comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
 
-                midataset.Clear()
+                    midataset.Clear()
 
-                cb.Fill(midataset, "Socios")
+                    cb.Fill(midataset, "Socios")
 
-                DataGridView_Socios.DataSource = midataset
+                    DataGridView_Socios.DataSource = midataset
 
-                DataGridView_Socios.DataMember = "Socios"
-            End If
+                    DataGridView_Socios.DataMember = "Socios"
+                End If
 
-            ' Numero telefono
-            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text <> "" Then
-                Dim ds As New DataSet
+                ' Numero telefono
+                If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text <> "" Then
+                    Dim ds As New DataSet
 
-                Dim cb As New OleDbDataAdapter
+                    Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Telefono LIKE?", conexion)
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Telefono LIKE?", conexion)
 
-                cb.SelectCommand = comando
+                    cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
-                comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
+                    comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
 
-                midataset.Clear()
+                    midataset.Clear()
 
-                cb.Fill(midataset, "Socios")
+                    cb.Fill(midataset, "Socios")
 
-                DataGridView_Socios.DataSource = midataset
+                    DataGridView_Socios.DataSource = midataset
 
-                DataGridView_Socios.DataMember = "Socios"
-            End If
+                    DataGridView_Socios.DataMember = "Socios"
+                End If
 
-            ' Nombre Telefono
-            If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text <> "" Then
-                Dim ds As New DataSet
+                ' Nombre Telefono
+                If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text <> "" Then
+                    Dim ds As New DataSet
 
-                Dim cb As New OleDbDataAdapter
+                    Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE Nombre LIKE? and Telefono LIKE?", conexion)
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE Nombre LIKE? and Telefono LIKE?", conexion)
 
-                cb.SelectCommand = comando
+                    cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
-                comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+                    comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
 
-                midataset.Clear()
+                    midataset.Clear()
 
-                cb.Fill(midataset, "Socios")
+                    cb.Fill(midataset, "Socios")
 
-                DataGridView_Socios.DataSource = midataset
+                    DataGridView_Socios.DataSource = midataset
 
-                DataGridView_Socios.DataMember = "Socios"
-            End If
+                    DataGridView_Socios.DataMember = "Socios"
+                End If
 
-            ' Numero
-            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text = "" Then
-                Dim ds As New DataSet
+                ' Numero
+                If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text = "" Then
+                    Dim ds As New DataSet
 
-                Dim cb As New OleDbDataAdapter
+                    Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE?", conexion)
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE?", conexion)
 
-                cb.SelectCommand = comando
+                    cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
 
-                midataset.Clear()
+                    midataset.Clear()
 
-                cb.Fill(midataset, "Socios")
+                    cb.Fill(midataset, "Socios")
 
-                DataGridView_Socios.DataSource = midataset
+                    DataGridView_Socios.DataSource = midataset
 
-                DataGridView_Socios.DataMember = "Socios"
-            End If
+                    DataGridView_Socios.DataMember = "Socios"
+                End If
 
-            ' Nombre
-            If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text = "" Then
-                Dim ds As New DataSet
+                ' Nombre
+                If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text = "" Then
+                    Dim ds As New DataSet
 
-                Dim cb As New OleDbDataAdapter
+                    Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE Nombre LIKE?", conexion)
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE Nombre LIKE?", conexion)
 
-                cb.SelectCommand = comando
+                    cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
 
-                midataset.Clear()
+                    midataset.Clear()
 
-                cb.Fill(midataset, "Socios")
+                    cb.Fill(midataset, "Socios")
 
-                DataGridView_Socios.DataSource = midataset
+                    DataGridView_Socios.DataSource = midataset
 
-                DataGridView_Socios.DataMember = "Socios"
-            End If
+                    DataGridView_Socios.DataMember = "Socios"
+                End If
 
-            ' Apellido
-            If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text = "" Then
-                Dim ds As New DataSet
+                ' Apellido
+                If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text = "" Then
+                    Dim ds As New DataSet
 
-                Dim cb As New OleDbDataAdapter
+                    Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE Apellidos LIKE?", conexion)
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE Apellidos LIKE?", conexion)
 
-                cb.SelectCommand = comando
+                    cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
 
-                midataset.Clear()
+                    midataset.Clear()
 
-                cb.Fill(midataset, "Socios")
+                    cb.Fill(midataset, "Socios")
 
-                DataGridView_Socios.DataSource = midataset
+                    DataGridView_Socios.DataSource = midataset
 
-                DataGridView_Socios.DataMember = "Socios"
-            End If
+                    DataGridView_Socios.DataMember = "Socios"
+                End If
 
-            ' Telefono
-            If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text <> "" Then
-                Dim ds As New DataSet
+                ' Telefono
+                If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text <> "" Then
+                    Dim ds As New DataSet
 
-                Dim cb As New OleDbDataAdapter
+                    Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE Telefono LIKE?", conexion)
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE Telefono LIKE?", conexion)
 
-                cb.SelectCommand = comando
+                    cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
 
-                midataset.Clear()
+                    midataset.Clear()
 
-                cb.Fill(midataset, "Socios")
+                    cb.Fill(midataset, "Socios")
 
-                DataGridView_Socios.DataSource = midataset
+                    DataGridView_Socios.DataSource = midataset
 
-                DataGridView_Socios.DataMember = "Socios"
-            End If
+                    DataGridView_Socios.DataMember = "Socios"
+                End If
 
-            ' MsgBox("Busqueda fallida...")
+                ' MsgBox("Busqueda fallida...")
 
-        End If ' IF 1
+            End If ' IF 1
 
     End Sub
 
+    ' Validamos este campo evitando que tenga caracteres que no sean númericos y que tenga una longitud de más de 8 caracteres.
+    Private Sub TextBox_NumeroSocio_TextChanged(sender As Object, e As EventArgs) Handles TextBox_NumeroSocio.TextChanged
+        ' Instanciamos la clase
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarNumeroSocio(TextBox_NumeroSocio.Text, 1)
+
+    End Sub
+
+    ' Validamos este campo evitando que tenga caracteres que no sean númericos y que tenga una longitud de más de 9 caracteres.
+    Private Sub TextBox_Telefono_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Telefono.TextChanged
+        ' Instanciamos la clase        
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarTelefono(TextBox_Telefono.Text)
+    End Sub
+
+    ' Validamos este campo evitando que tenga caracteres que no sean númericos y que tenga una longitud de más de 50 caracteres.
+    Private Sub TextBox_Nombre_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Nombre.TextChanged
+        ' Instanciamos la clase        
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarNombre(TextBox_Nombre.Text, 1)
+    End Sub
+
+    Private Sub TextBox_Apellidos_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Apellidos.TextChanged
+        ' Instanciamos la clase
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarNombre(TextBox_Apellidos.Text, 2)
+    End Sub
 End Class

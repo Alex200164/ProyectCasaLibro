@@ -1,6 +1,9 @@
 ﻿' Necesitamos importar el módelo de base de datos que vamos a utilizar, este es de access.
 Imports System.Data.OleDb
 
+' No hace falta hacer imports libValidaciones para instanciar sus clases porque está incluida en el proyecto.
+Imports System.IO
+
 Public Class GestionEmpleados
 
 
@@ -686,4 +689,43 @@ Public Class GestionEmpleados
         End If ' IF 1
 
     End Sub
+
+    ' Validamos este campo evitando que tenga caracteres que no sean númericos y que tenga una longitud de más de 8 caracteres.
+    Private Sub TextBox_NumeroSocio_TextChanged(sender As Object, e As EventArgs) Handles TextBox_DNI.TextChanged
+        ' Instanciamos la clase
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validardDNI(TextBox_DNI.Text, 1)
+
+    End Sub
+
+    ' Validamos este campo evitando que tenga caracteres que no sean númericos y que tenga una longitud de más de 9 caracteres.
+    Private Sub TextBox_Telefono_TextChanged(sender As Object, e As EventArgs) Handles TextBox_CORREO.TextChanged
+        ' Instanciamos la clase        
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarTelefono(TextBox_CORREO.Text)
+    End Sub
+
+    ' Validamos este campo evitando que tenga caracteres que no sean númericos y que tenga una longitud de más de 50 caracteres.
+    Private Sub TextBox_Nombre_TextChanged(sender As Object, e As EventArgs) Handles TextBox_NOMBRE.TextChanged
+        ' Instanciamos la clase        
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
+    End Sub
+
+    Private Sub TextBox_Apellidos_TextChanged(sender As Object, e As EventArgs) Handles TextBox_APELLIDOS.TextChanged
+        ' Instanciamos la clase
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
+    End Sub
+
+
+
+
+
+
+
 End Class
