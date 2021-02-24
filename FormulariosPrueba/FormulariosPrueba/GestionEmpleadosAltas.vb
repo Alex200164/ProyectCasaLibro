@@ -1,6 +1,9 @@
 ﻿' Necesitamos importar el módelo de base de datos que vamos a utilizar, este es de access.
 Imports System.Data.OleDb
 
+' No hace falta hacer imports libValidaciones para instanciar sus clases porque está incluida en el proyecto.
+Imports System.IO
+
 Public Class GestionEmpleadosAltas
 
     ' Especificamos la base de datos a la que nos vamos a conectar.
@@ -85,6 +88,52 @@ Public Class GestionEmpleadosAltas
             MsgBox("No se puede dar de alta , debe rellenar todos los datos.", MsgBoxStyle.OkOnly, "Error al dar de alta.")
         Else
 
+            ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
+            ' Instanciamos la clase
+            Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+            Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
+            Dim resultado2 As Boolean = validarNumeroSocio.validarTelefono(TextBox_TELEFONO.Text, 2)
+            Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
+            Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
+            Dim resultado5 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
+            Dim resultado6 As Boolean = validarNumeroSocio.validarUsuario(TextBox_USUARIO.Text, 1)
+            Dim resultado7 As Boolean = validarNumeroSocio.validarContra(TextBox_CONTRASENNA.Text, 2)
+            Dim resultado8 As Boolean = validarNumeroSocio.validarROL(TextBox_ROL.Text, 1)
+
+            If resultado1 = False Then
+                Exit Sub
+            ElseIf resultado2 = False Then
+                Exit Sub
+            ElseIf resultado3 = False Then
+                Exit Sub
+            ElseIf resultado4 = False Then
+                Exit Sub
+            ElseIf resultado5 = False Then
+                Exit Sub
+            ElseIf resultado6 = False Then
+                Exit Sub
+            ElseIf resultado7 = False Then
+                Exit Sub
+            ElseIf resultado8 = False Then
+                Exit Sub
+            End If
+
+            Dim testComp As Integer = StrComp(TextBox_ROL.Text, "Admin", CompareMethod.Text)
+            Dim testComp2 As Integer = StrComp(TextBox_ROL.Text, "Encargado", CompareMethod.Text)
+            Dim testComp3 As Integer = StrComp(TextBox_ROL.Text, "Empleado", CompareMethod.Text)
+
+
+            If testComp <> 0 Then
+                If testComp2 <> 0 Then
+                    If testComp3 <> 0 Then
+                        MsgBox(" El rol debe ser uno de los siguientes: Admin, Encargado o Empleado.", MsgBoxStyle.OkOnly, "Error - Rol incorrecto")
+                        Exit Sub
+                    End If
+                End If
+            End If
+
+
             Dim valor As String
             Dim control As Integer = 0
 
@@ -136,4 +185,68 @@ Public Class GestionEmpleadosAltas
         End If
     End Sub
 
+    ' Validamos este campo evitando que tenga caracteres que no sean númericos y que tenga una longitud de más de 8 caracteres.
+    Private Sub TextBox_DNI_TextChanged(sender As Object, e As EventArgs) Handles TextBox_DNI.TextChanged
+        ' Instanciamos la clase
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarDNI(TextBox_DNI.Text, 1)
+
+    End Sub
+
+    ' Validamos este campo evitando que tenga caracteres que no sean númericos y que tenga una longitud de más de 9 caracteres.
+    Private Sub TextBox_Telefono_TextChanged(sender As Object, e As EventArgs) Handles TextBox_TELEFONO.TextChanged
+        ' Instanciamos la clase        
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarTelefono(TextBox_TELEFONO.Text, 1)
+    End Sub
+
+    ' Validamos este campo evitando que tenga caracteres que no sean númericos y que tenga una longitud de no más de 50 caracteres.
+    Private Sub TextBox_Nombre_TextChanged(sender As Object, e As EventArgs) Handles TextBox_NOMBRE.TextChanged
+        ' Instanciamos la clase        
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
+    End Sub
+
+    ' Validamos este campo evitando que tenga caracteres que no sean númericos y que tenga una longitud de no más de 50 caracteres.
+    Private Sub TextBox_Apellidos_TextChanged(sender As Object, e As EventArgs) Handles TextBox_APELLIDOS.TextChanged
+        ' Instanciamos la clase
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
+    End Sub
+
+    ' Validamos este campo evitando que tenga caracteres prohibidos en un e-mail y que tenga una longitud de no más de 120 caracteres.
+    Private Sub TextBox_Correo_TextChanged(sender As Object, e As EventArgs) Handles TextBox_CORREO.TextChanged
+        ' Instanciamos la clase
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
+    End Sub
+
+    ' Validación del usuario
+    Private Sub TextBox_USUARIO_TextChanged(sender As Object, e As EventArgs) Handles TextBox_USUARIO.TextChanged
+        ' Instanciamos la clase
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarUsuario(TextBox_USUARIO.Text)
+    End Sub
+
+    ' Validación de la contraseña
+    Private Sub TextBox_CONTRASENNA_TextChanged(sender As Object, e As EventArgs) Handles TextBox_CONTRASENNA.TextChanged
+        ' Instanciamos la clase
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarContra(TextBox_CONTRASENNA.Text, 1)
+    End Sub
+
+    ' Validación del rol
+    Private Sub TextBox_ROL_TextChanged(sender As Object, e As EventArgs) Handles TextBox_ROL.TextChanged
+        ' Instanciamos la clase
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarROL(TextBox_ROL.Text, 1)
+    End Sub
 End Class

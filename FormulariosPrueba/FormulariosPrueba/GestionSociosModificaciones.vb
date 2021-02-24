@@ -86,10 +86,10 @@ Public Class GestionSociosModificaciones
             Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
             Dim resultado1 As Boolean = validarNumeroSocio.validarNumeroSocio(TextBox_NumeroSocio.Text, 2)
-            Dim resultado2 As Boolean = validarNumeroSocio.validarTelefono(TextBox_Telefono.Text)
+            Dim resultado2 As Boolean = validarNumeroSocio.validarTelefono(TextBox_Telefono.Text, 2)
             Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_Nombre.Text, 1)
             Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_Apellidos.Text, 2)
-            Dim resultado5 As Boolean = validarNumeroSocio.validarCorreo(TextBox_Correo.Text)
+            Dim resultado5 As Boolean = validarNumeroSocio.validarCorreo(TextBox_Correo.Text, 1)
 
             If resultado1 = False Then
                 'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
@@ -245,7 +245,7 @@ Public Class GestionSociosModificaciones
         ' Instanciamos la clase        
         Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
-        validarNumeroSocio.validarTelefono(TextBox_Telefono.Text)
+        validarNumeroSocio.validarTelefono(TextBox_Telefono.Text, 1)
     End Sub
 
     ' Validamos este campo evitando que tenga caracteres que no sean númericos y que tenga una longitud de no más de 50 caracteres.
@@ -270,7 +270,7 @@ Public Class GestionSociosModificaciones
             ' Instanciamos la clase
             Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
-            validarNumeroSocio.validarCorreo(TextBox_Correo.Text)
+            validarNumeroSocio.validarCorreo(TextBox_Correo.Text, 1)
         Else
             validacionControlCorreo = 1
         End If

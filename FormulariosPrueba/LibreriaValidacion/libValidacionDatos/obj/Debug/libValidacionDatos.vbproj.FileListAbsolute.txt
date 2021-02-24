@@ -37,3 +37,4 @@ E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROL
 E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libreriaValidacion.dll
 E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libreriaValidacion.xml
 E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libreriaValidacion.pdb
+E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libValidacionDatos.vbprojAssemblyReference.cache

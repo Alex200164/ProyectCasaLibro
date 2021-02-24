@@ -35,7 +35,6 @@ Partial Class GestionEmpleadosAltas
         Me.Button_Guardar_Alta = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.GruopBox = New System.Windows.Forms.GroupBox()
-        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.TextBox_ROL = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -52,6 +51,7 @@ Partial Class GestionEmpleadosAltas
         Me.TextBox_DNI = New System.Windows.Forms.TextBox()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Label20 = New System.Windows.Forms.Label()
+        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStripPagPrin.SuspendLayout()
@@ -184,14 +184,6 @@ Partial Class GestionEmpleadosAltas
         Me.GruopBox.TabIndex = 124
         Me.GruopBox.TabStop = False
         Me.GruopBox.Text = "Alta Empleado"
-        '
-        'Panel2
-        '
-        Me.Panel2.Controls.Add(Me.GruopBox)
-        Me.Panel2.Location = New System.Drawing.Point(12, 136)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(730, 324)
-        Me.Panel2.TabIndex = 52
         '
         'TextBox_ROL
         '
@@ -361,6 +353,14 @@ Partial Class GestionEmpleadosAltas
         Me.Label20.Size = New System.Drawing.Size(65, 20)
         Me.Label20.TabIndex = 189
         Me.Label20.Text = "Correo :"
+        '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.GruopBox)
+        Me.Panel2.Location = New System.Drawing.Point(12, 136)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(730, 324)
+        Me.Panel2.TabIndex = 52
         '
         'GestionEmpleadosAltas
         '
