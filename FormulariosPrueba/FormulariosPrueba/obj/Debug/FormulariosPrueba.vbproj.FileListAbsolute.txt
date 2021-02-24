@@ -79,7 +79,6 @@ D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPr
 D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionEmpleadosAltas.resources
 D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionEmpleadosModificaciones.resources
 D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionLibros.resources
-D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.Form1.resources
 D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionLibrosAltas.resources
 D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionLibrosModificaciones.resources
 D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionSocios.resources
