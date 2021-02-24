@@ -6,6 +6,8 @@ Public Class GestionSociosModificaciones
     ' Variable para almacenar el número de socio inicial con el que se identificará el registro a modificar.
     Dim numSocioInicial As String
 
+    ' Variable de control que controla que no se recoja más de una vez el valor de la primary key
+    Dim numControlPK As Single = 0
 
     ' Especificamos la base de datos a la que nos vamos a conectar.
     Public conexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=CasaLibroDB.accdb")
@@ -15,26 +17,7 @@ Public Class GestionSociosModificaciones
     ' Aquí alojaremos los datos de la DB
     Public midataset As New DataSet
 
-    ' Método que se ejecuta cuando el botón "Salir..." del ToolStrip es pulsado y que nos lleva al formulario "GestionSocios".
-    Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click
-        ' Mostramos el formulario "GestionSocios".
-        GestionSocios.Show()
 
-        ' Cerramos este formulario
-        Me.Close()
-    End Sub
-
-    ' Método que se ejecuta cuando es pulsado el botón "Calculadora" del menuStrip
-    Private Sub CalculadoraToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculadoraToolStripMenuItem.Click
-        ' Try catch para atrapar el error en caso de que el ordenador del usuario
-        Try
-            Dim program As String
-            program = "calc.exe"
-            Process.Start(program)
-        Catch ex As System.ComponentModel.Win32Exception '
-            MsgBox("Ha ocurrido un error, no se pudo iniciar la calculadora.", MsgBoxStyle.OkOnly, "Error (proceso calculadora)")
-        End Try
-    End Sub
 
     ' Método que se ejecuta cuando se pulsa el botón "Limpiar".
     ' "Limpia" todos los textBox, dejandolos vacios.
@@ -76,11 +59,13 @@ Public Class GestionSociosModificaciones
         End If
 
 
-
         ' Inicializamos la variable asignandole el número de socio inicial
-        numSocioInicial = TextBox_NumeroSocio.Text
+        numSocioInicial = GestionSocios.DataGridView_Socios.Item(0, GestionSocios.DataGridView_Socios.CurrentRow.Index).Value
+
 
     End Sub
+
+
 
     ' Método que se ejecuta al pulsarse el botón "Modificar"
     ' Se encarga de modificar los datos ya existentes en la DB
@@ -100,9 +85,13 @@ Public Class GestionSociosModificaciones
                     cmd.Parameters.AddWithValue("@p3", TextBox_Apellidos.Text)
                     cmd.Parameters.AddWithValue("@p4", Convert.ToInt64(TextBox_Telefono.Text))
                     cmd.Parameters.AddWithValue("@p5", TextBox_Correo.Text)
-                    cmd.Parameters.AddWithValue("@p6", Convert.ToInt64(numSocioInicial))
+                    cmd.Parameters.AddWithValue("@p6", Convert.ToSingle(numSocioInicial))
 
                     cmd.ExecuteNonQuery()
+
+                    ' System.FormatException montar try catch
+
+                    conexion.Close()
                 End Using
 
 
@@ -147,6 +136,10 @@ Public Class GestionSociosModificaciones
             'GestionSocios.DataGridView_Socios.DataSource = GestionSocios.midataset
             'GestionSocios.DataGridView_Socios.DataMember = "Socios"
 
+            ' Actualizamos el dataGridView del formulario de gestión principal
+            GestionSocios.midataset.Clear()
+            GestionSocios.adaptador.Fill(GestionSocios.midataset, "Socios")
+
             ' Cerramos la ventana
             Me.Close()
 
@@ -156,6 +149,30 @@ Public Class GestionSociosModificaciones
         End If
     End Sub
 
+
+    ' #####################################################    Métodos varios    ##########################################################################
+
+
+    ' Método que se ejecuta cuando el botón "Salir..." del ToolStrip es pulsado y que nos lleva al formulario "GestionSocios".
+    Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click
+        ' Mostramos el formulario "GestionSocios".
+        GestionSocios.Show()
+
+        ' Cerramos este formulario
+        Me.Close()
+    End Sub
+
+    ' Método que se ejecuta cuando es pulsado el botón "Calculadora" del menuStrip
+    Private Sub CalculadoraToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculadoraToolStripMenuItem.Click
+        ' Try catch para atrapar el error en caso de que el ordenador del usuario
+        Try
+            Dim program As String
+            program = "calc.exe"
+            Process.Start(program)
+        Catch ex As System.ComponentModel.Win32Exception '
+            MsgBox("Ha ocurrido un error, no se pudo iniciar la calculadora.", MsgBoxStyle.OkOnly, "Error (proceso calculadora)")
+        End Try
+    End Sub
 
 
 End Class

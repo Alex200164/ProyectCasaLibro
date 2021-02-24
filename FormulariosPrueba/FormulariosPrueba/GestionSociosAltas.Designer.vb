@@ -142,7 +142,7 @@ Partial Class GestionSociosAltas
         Me.GruopBox.Size = New System.Drawing.Size(700, 174)
         Me.GruopBox.TabIndex = 124
         Me.GruopBox.TabStop = False
-        Me.GruopBox.Text = "Añadir/Modificar Artículo"
+        Me.GruopBox.Text = "Alta Socio"
         '
         'Button_Limpiar
         '

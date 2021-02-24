@@ -3,6 +3,13 @@ Imports System.Data.OleDb
 
 Public Class GestionEmpleados
 
+
+    ' Número de control para controlar el dataBinding de los text boxes del formulario modificaciones, evitando que se relacionen dos veces.
+    Public numeroDeControlBindingModificacionesEmpleados As Long
+
+    Public posicionDataGridSeleccionada As Integer
+
+
     ' Especificamos la base de datos a la que nos vamos a conectar.
     Public conexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=CasaLibroDB.accdb")
     ' Al adaptador le asignamos la conexion que acabamos de realizar y una consulta
@@ -16,19 +23,40 @@ Public Class GestionEmpleados
     ' Aquí alojaremos los datos de la DB
     Public midataset As New DataSet
 
-    Public posicionDataGridSeleccionada As Integer
+    Public posicionDataGridSeleccionadaEmpleados As Integer
 
+    ' Método que se ejecuta cuando el formulario es iniciado por primera vez
     Private Sub GestionEmpleados_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Cargar la memoria del cache con datos.
-        adaptador.Fill(midataset, "Empleados")
+        Try
 
-        ' cargar en el datagridview, le decimos de donde sacamos los datos
-        DataGridView_Empleados.DataSource = midataset
-        DataGridView_Empleados.DataMember = "Empleados"
+            ' Cargar la memoria del cache con datos.
+            adaptador.Fill(midataset, "Empleados")
 
-        'Creación en la ultima columna del DataGridView el botón de modificar en cada registro.
-        crearButtonDataGridViewEmpleados()
+            Me.TextBox_DNIOCULTO.DataBindings.Add("text", midataset, "Empleados.DNI")
 
+            ' cargar en el datagridview, le decimos de donde sacamos los datos
+            DataGridView_Empleados.DataSource = midataset
+            DataGridView_Empleados.DataMember = "Empleados"
+
+            ' Inicializamos el número de control
+            numeroDeControlBindingModificacionesEmpleados = 0
+
+            'Creación en la ultima columna del DataGridView el botón de modificar en cada registro.
+            crearButtonDataGridViewEmpleados()
+
+        Catch ex As System.Data.OleDb.OleDbException
+            MsgBox("Parece que algo ha salido mal. Revise que la base de datos no esté abierta durante la ejecución.", MsgBoxStyle.OkOnly, "Error - Base de datos")
+
+            ' Especificamos la posición de la ventana
+            posicionarFormularioMenuPrincipal()
+
+            ' Mostramos el menú principal.
+            MenuPrincipal.Show()
+
+            ' Cerramos este formulario
+            Me.Close()
+
+        End Try
 
     End Sub
 
@@ -190,26 +218,34 @@ Public Class GestionEmpleados
 
     ' Método que se ejecuta al pulsar en una de las cajas del DataGridView
     Private Sub DataGridView_Socios_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView_Empleados.CellClick
-        posicionDataGridSeleccionada = BindingContext(midataset, "Empleados").Position
+        posicionDataGridSeleccionadaEmpleados = BindingContext(midataset, "Empleados").Position
+        Button_Eliminar.Enabled = True
+
+
+
     End Sub
 
     'Metodo evento que capta la puslación en la celda relativa al botón. 
     Private Sub DataGridView1_CellContentClick(sender As System.Object, e As DataGridViewCellEventArgs) Handles DataGridView_Empleados.CellContentClick
 
-        'Convierte el objeto en sender
-        Dim senderGrid = DirectCast(sender, DataGridView)
+        Try
 
-        'Comprueba que es una columna del data gridview que tiene el evento y que tiene indice mayor que 0
-        'Si es correcto se ejecutará el comando de abrir GestionSociosModificaciones
-        If TypeOf senderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso e.RowIndex >= 0 Then
-            ' Posicionamos el formulario que vamos a mostrar.
-            posicionarGestionModificaciones()
-            ' Mostramos el formulario
-            GestionEmpleadosModificaciones.ShowDialog()
+            'Convierte el objeto en sender
+            Dim senderGrid = DirectCast(sender, DataGridView)
 
-            'System.ArgumentException hacer expecion try catch
+            'Comprueba que es una columna del data gridview que tiene el evento y que tiene indice mayor que 0
+            'Si es correcto se ejecutará el comando de abrir GestionSociosModificaciones
+            If TypeOf senderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso e.RowIndex >= 0 Then
+                ' Posicionamos el formulario que vamos a mostrar.
+                posicionarGestionModificaciones()
+                ' Mostramos el formulario
+                GestionEmpleadosModificaciones.ShowDialog()
 
-        End If
+            End If
+
+        Catch ex As System.ArgumentException
+            ' MsgBox("Se ha producido un error al realizar la acción solicitada, intentelo de nuevo.", MsgBoxStyle.OkOnly, "Error del sistema")
+        End Try
     End Sub
 
     'Método que crea y da formato al botón de modificar, en cada una de los registros del DataGridView. 
@@ -255,4 +291,59 @@ Public Class GestionEmpleados
         DataGridView_Empleados.DataMember = "Empleados"
     End Sub
 
+    ' Método que se ejecuta al ser pulsado el botón "Eliminar"
+    Private Sub Button_Eliminar_Click(sender As Object, e As EventArgs) Handles Button_Eliminar.Click
+        Try
+            If TextBox_DNIOCULTO.Text = "" Then
+                MsgBox("Debes seleccionar un registro para eliminarlo")
+            Else
+                ' ####################  1º Informaros a la DB de que vamos a eliminar un registro ##############################
+                Dim cb As New OleDbCommandBuilder(adaptador)
+                adaptador.DeleteCommand = cb.GetDeleteCommand
+
+                ' ####################  2º Cambiamos el estado de los botones del menuStrip ##############################
+                Dim res As Integer
+                res = MsgBox("¿Estás seguro de que quieres eliminar?", MsgBoxStyle.YesNo)
+                If res = vbYes Then
+
+                    If BindingContext(midataset, "Empleados").Count > 0 Then
+                        BindingContext(midataset, "Empleados").RemoveAt(BindingContext(midataset, "Empleados").Position)
+                    End If
+
+                    If BindingContext(midataset, "Empleados").Count = 0 Then
+                        Button_Eliminar.Enabled = False
+                    End If
+                End If
+                ' ####################  3º Cambiamos el estado de los botones del menuStrip ##############################
+                adaptador.Update(midataset.Tables("Empleados"))
+
+                midataset.Clear()
+                adaptador.Fill(midataset, "Empleados")
+
+                DataGridView_Empleados.DataSource = midataset
+                DataGridView_Empleados.DataMember = "Empleados"
+                ' registro()
+                ' ####################  4º Cambiamos el estado de los botones del menuStrip ##############################
+                Button_Eliminar.Enabled = False
+
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    ' Método que se ejecuta cuando el botón limpiar es presionado.
+    ' Limpia todos los textBoxes del formulario
+    Private Sub Button_Limpiar_Click(sender As Object, e As EventArgs) Handles Button_Limpiar.Click
+        TextBox_DNI.Clear()
+        TextBox_NOMBRE.Clear()
+        TextBox_APELLIDOS.Clear()
+        TextBox_CORREO.Clear()
+    End Sub
+
+    ' Método que se ejecuta cuando el botón "Buscar" es pulsado.
+    ' Se encarga de buscar en base a los contenidos de los textBoxes
+    Private Sub Button_Buscar_Click(sender As Object, e As EventArgs) Handles Button_Buscar.Click
+
+    End Sub
 End Class

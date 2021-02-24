@@ -22,21 +22,23 @@ Partial Class GestionEmpleados
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionEmpleados))
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Button_Eliminar = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox_Titulo = New System.Windows.Forms.TextBox()
-        Me.Label_Autor = New System.Windows.Forms.Label()
+        Me.TextBox_APELLIDOS = New System.Windows.Forms.TextBox()
+        Me.TextBox_NOMBRE = New System.Windows.Forms.TextBox()
+        Me.TextBox_CORREO = New System.Windows.Forms.TextBox()
+        Me.TextBox_DNIOCULTO = New System.Windows.Forms.TextBox()
+        Me.Label_CORREO = New System.Windows.Forms.Label()
         Me.Button_Buscar = New System.Windows.Forms.Button()
         Me.Button_Limpiar = New System.Windows.Forms.Button()
-        Me.Label_Genero = New System.Windows.Forms.Label()
+        Me.Label_Apellidos = New System.Windows.Forms.Label()
         Me.Label_Nombre = New System.Windows.Forms.Label()
-        Me.Label_ISBN = New System.Windows.Forms.Label()
+        Me.Label_DNI = New System.Windows.Forms.Label()
         Me.Button_Annadir = New System.Windows.Forms.Button()
         Me.DataGridView_Empleados = New System.Windows.Forms.DataGridView()
         Me.MenuStripPagPrin = New System.Windows.Forms.MenuStrip()
@@ -54,7 +56,8 @@ Partial Class GestionEmpleados
         Me.VerLaAyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.TextBox_DNI = New System.Windows.Forms.TextBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -96,20 +99,30 @@ Partial Class GestionEmpleados
         Me.Panel1.TabIndex = 53
         Me.Panel1.TabStop = True
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(641, 160)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(98, 29)
+        Me.Button1.TabIndex = 185
+        Me.Button1.Text = "Actualizar"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'GroupBox1
         '
         Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox1.Controls.Add(Me.TextBox3)
-        Me.GroupBox1.Controls.Add(Me.TextBox2)
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
-        Me.GroupBox1.Controls.Add(Me.TextBox_Titulo)
-        Me.GroupBox1.Controls.Add(Me.Label_Autor)
+        Me.GroupBox1.Controls.Add(Me.TextBox_DNI)
+        Me.GroupBox1.Controls.Add(Me.TextBox_APELLIDOS)
+        Me.GroupBox1.Controls.Add(Me.TextBox_NOMBRE)
+        Me.GroupBox1.Controls.Add(Me.TextBox_CORREO)
+        Me.GroupBox1.Controls.Add(Me.TextBox_DNIOCULTO)
+        Me.GroupBox1.Controls.Add(Me.Label_CORREO)
         Me.GroupBox1.Controls.Add(Me.Button_Buscar)
         Me.GroupBox1.Controls.Add(Me.Button_Limpiar)
-        Me.GroupBox1.Controls.Add(Me.Label_Genero)
+        Me.GroupBox1.Controls.Add(Me.Label_Apellidos)
         Me.GroupBox1.Controls.Add(Me.Label_Nombre)
-        Me.GroupBox1.Controls.Add(Me.Label_ISBN)
+        Me.GroupBox1.Controls.Add(Me.Label_DNI)
         Me.GroupBox1.Location = New System.Drawing.Point(3, 16)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(938, 127)
@@ -117,59 +130,59 @@ Partial Class GestionEmpleados
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Filtro de Busqueda"
         '
-        'TextBox3
+        'TextBox_APELLIDOS
         '
-        Me.TextBox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox3.Location = New System.Drawing.Point(723, 30)
-        Me.TextBox3.MaxLength = 100
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox3.TabIndex = 185
+        Me.TextBox_APELLIDOS.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_APELLIDOS.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_APELLIDOS.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_APELLIDOS.Location = New System.Drawing.Point(723, 30)
+        Me.TextBox_APELLIDOS.MaxLength = 100
+        Me.TextBox_APELLIDOS.Name = "TextBox_APELLIDOS"
+        Me.TextBox_APELLIDOS.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_APELLIDOS.TabIndex = 185
         '
-        'TextBox2
+        'TextBox_NOMBRE
         '
-        Me.TextBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox2.Location = New System.Drawing.Point(392, 30)
-        Me.TextBox2.MaxLength = 100
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox2.TabIndex = 184
+        Me.TextBox_NOMBRE.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_NOMBRE.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_NOMBRE.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_NOMBRE.Location = New System.Drawing.Point(392, 30)
+        Me.TextBox_NOMBRE.MaxLength = 100
+        Me.TextBox_NOMBRE.Name = "TextBox_NOMBRE"
+        Me.TextBox_NOMBRE.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_NOMBRE.TabIndex = 184
         '
-        'TextBox1
+        'TextBox_CORREO
         '
-        Me.TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(73, 85)
-        Me.TextBox1.MaxLength = 100
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox1.TabIndex = 183
+        Me.TextBox_CORREO.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_CORREO.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_CORREO.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_CORREO.Location = New System.Drawing.Point(73, 85)
+        Me.TextBox_CORREO.MaxLength = 100
+        Me.TextBox_CORREO.Name = "TextBox_CORREO"
+        Me.TextBox_CORREO.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_CORREO.TabIndex = 183
         '
-        'TextBox_Titulo
+        'TextBox_DNIOCULTO
         '
-        Me.TextBox_Titulo.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_Titulo.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Titulo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Titulo.Location = New System.Drawing.Point(76, 30)
-        Me.TextBox_Titulo.MaxLength = 100
-        Me.TextBox_Titulo.Name = "TextBox_Titulo"
-        Me.TextBox_Titulo.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_Titulo.TabIndex = 182
+        Me.TextBox_DNIOCULTO.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_DNIOCULTO.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_DNIOCULTO.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_DNIOCULTO.Location = New System.Drawing.Point(76, 30)
+        Me.TextBox_DNIOCULTO.MaxLength = 100
+        Me.TextBox_DNIOCULTO.Name = "TextBox_DNIOCULTO"
+        Me.TextBox_DNIOCULTO.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_DNIOCULTO.TabIndex = 182
         '
-        'Label_Autor
+        'Label_CORREO
         '
-        Me.Label_Autor.AutoSize = True
-        Me.Label_Autor.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label_Autor.Location = New System.Drawing.Point(6, 84)
-        Me.Label_Autor.Name = "Label_Autor"
-        Me.Label_Autor.Size = New System.Drawing.Size(61, 20)
-        Me.Label_Autor.TabIndex = 181
-        Me.Label_Autor.Text = "Precio :"
+        Me.Label_CORREO.AutoSize = True
+        Me.Label_CORREO.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label_CORREO.Location = New System.Drawing.Point(6, 84)
+        Me.Label_CORREO.Name = "Label_CORREO"
+        Me.Label_CORREO.Size = New System.Drawing.Size(65, 20)
+        Me.Label_CORREO.TabIndex = 181
+        Me.Label_CORREO.Text = "Correo :"
         '
         'Button_Buscar
         '
@@ -189,15 +202,15 @@ Partial Class GestionEmpleados
         Me.Button_Limpiar.Text = "Limpiar"
         Me.Button_Limpiar.UseVisualStyleBackColor = True
         '
-        'Label_Genero
+        'Label_Apellidos
         '
-        Me.Label_Genero.AutoSize = True
-        Me.Label_Genero.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label_Genero.Location = New System.Drawing.Point(634, 29)
-        Me.Label_Genero.Name = "Label_Genero"
-        Me.Label_Genero.Size = New System.Drawing.Size(86, 20)
-        Me.Label_Genero.TabIndex = 169
-        Me.Label_Genero.Text = "Categoría :"
+        Me.Label_Apellidos.AutoSize = True
+        Me.Label_Apellidos.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label_Apellidos.Location = New System.Drawing.Point(634, 29)
+        Me.Label_Apellidos.Name = "Label_Apellidos"
+        Me.Label_Apellidos.Size = New System.Drawing.Size(81, 20)
+        Me.Label_Apellidos.TabIndex = 169
+        Me.Label_Apellidos.Text = "Apellidos :"
         '
         'Label_Nombre
         '
@@ -209,15 +222,15 @@ Partial Class GestionEmpleados
         Me.Label_Nombre.TabIndex = 167
         Me.Label_Nombre.Text = "Nombre :"
         '
-        'Label_ISBN
+        'Label_DNI
         '
-        Me.Label_ISBN.AutoSize = True
-        Me.Label_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label_ISBN.Location = New System.Drawing.Point(15, 29)
-        Me.Label_ISBN.Name = "Label_ISBN"
-        Me.Label_ISBN.Size = New System.Drawing.Size(55, 20)
-        Me.Label_ISBN.TabIndex = 165
-        Me.Label_ISBN.Text = "ISBN :"
+        Me.Label_DNI.AutoSize = True
+        Me.Label_DNI.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label_DNI.Location = New System.Drawing.Point(15, 29)
+        Me.Label_DNI.Name = "Label_DNI"
+        Me.Label_DNI.Size = New System.Drawing.Size(45, 20)
+        Me.Label_DNI.TabIndex = 165
+        Me.Label_DNI.Text = "DNI :"
         '
         'Button_Annadir
         '
@@ -347,14 +360,21 @@ Partial Class GestionEmpleados
         Me.Panel2.Size = New System.Drawing.Size(984, 94)
         Me.Panel2.TabIndex = 54
         '
-        'Button1
+        'ContextMenuStrip1
         '
-        Me.Button1.Location = New System.Drawing.Point(641, 160)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(98, 29)
-        Me.Button1.TabIndex = 185
-        Me.Button1.Text = "Actualizar"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(61, 4)
+        '
+        'TextBox_DNI
+        '
+        Me.TextBox_DNI.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_DNI.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_DNI.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_DNI.Location = New System.Drawing.Point(76, 30)
+        Me.TextBox_DNI.MaxLength = 100
+        Me.TextBox_DNI.Name = "TextBox_DNI"
+        Me.TextBox_DNI.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_DNI.TabIndex = 186
         '
         'GestionEmpleados
         '
@@ -402,15 +422,17 @@ Partial Class GestionEmpleados
     Friend WithEvents GestiónSociosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GestiónSociosToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents TextBox_Titulo As TextBox
-    Friend WithEvents Label_Autor As Label
+    Friend WithEvents TextBox_APELLIDOS As TextBox
+    Friend WithEvents TextBox_NOMBRE As TextBox
+    Friend WithEvents TextBox_CORREO As TextBox
+    Friend WithEvents TextBox_DNIOCULTO As TextBox
+    Friend WithEvents Label_CORREO As Label
     Friend WithEvents Button_Buscar As Button
     Friend WithEvents Button_Limpiar As Button
-    Friend WithEvents Label_Genero As Label
+    Friend WithEvents Label_Apellidos As Label
     Friend WithEvents Label_Nombre As Label
-    Friend WithEvents Label_ISBN As Label
+    Friend WithEvents Label_DNI As Label
     Friend WithEvents Button1 As Button
+    Friend WithEvents TextBox_DNI As TextBox
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
 End Class

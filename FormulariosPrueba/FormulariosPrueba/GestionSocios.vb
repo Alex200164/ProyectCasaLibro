@@ -3,8 +3,7 @@ Imports System.Data.OleDb
 
 Public Class GestionSocios
 
-    ' Número de control para controlar el dataBinding de los text boxes del formulario modificaciones, evitando que se relacionen dos veces.
-    Public numeroDeControlBindingModificaciones As Long
+
 
     ' Especificamos la base de datos a la que nos vamos a conectar.
     Public conexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=CasaLibroDB.accdb")
@@ -19,6 +18,9 @@ Public Class GestionSocios
     ' Aquí alojaremos los datos de la DB
     Public midataset As New DataSet
 
+    ' Número de control para controlar el dataBinding de los text boxes del formulario modificaciones, evitando que se relacionen dos veces.
+    Public numeroDeControlBindingModificaciones As Long
+
     Public posicionDataGridSeleccionada As Integer
 
     ' Método que se ejecuta al iniciarse el formulario
@@ -26,6 +28,8 @@ Public Class GestionSocios
         Try
             ' Cargar la memoria del cache con datos.
             adaptador.Fill(midataset, "Socios")
+
+            Me.TextBox_NumeroSocioOCULTO.DataBindings.Add("text", midataset, "Socios.NumeroDeSocio")
 
             ' cargar en el datagridview, le decimos de donde sacamos los datos
             DataGridView_Socios.DataSource = midataset
@@ -55,6 +59,7 @@ Public Class GestionSocios
     ' Método que se ejecuta al pulsar en una de las cajas del DataGridView
     Private Sub DataGridView_Socios_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView_Socios.CellClick
         posicionDataGridSeleccionada = BindingContext(midataset, "Socios").Position
+        Button_Eliminar.Enabled = True
     End Sub
 
     ' Método que permite posicionar la ventana en la posición especificada del formulario "GestionSociosAltas".
@@ -258,5 +263,201 @@ Public Class GestionSocios
         ' cargar en el datagridview, le decimos de donde sacamos los datos
         DataGridView_Socios.DataSource = midataset
         DataGridView_Socios.DataMember = "Socios"
+    End Sub
+
+    ' Método que se ejecuta al pulsar el botón "Eliminar"
+    Private Sub Button_Eliminar_Click(sender As Object, e As EventArgs) Handles Button_Eliminar.Click
+        Try
+            If TextBox_NumeroSocioOCULTO.Text = "" Then
+                MsgBox("Debes seleccionar un registro para eliminarlo")
+            Else
+                ' ####################  1º Informaros a la DB de que vamos a eliminar un registro ##############################
+                Dim cb As New OleDbCommandBuilder(adaptador)
+                adaptador.DeleteCommand = cb.GetDeleteCommand
+
+                ' ####################  2º Cambiamos el estado de los botones del menuStrip ##############################
+                Dim res As Integer
+                res = MsgBox("¿Estás seguro de que quieres eliminar?", MsgBoxStyle.YesNo)
+                If res = vbYes Then
+
+                    If BindingContext(midataset, "Socios").Count > 0 Then
+                        BindingContext(midataset, "Socios").RemoveAt(BindingContext(midataset, "Socios").Position)
+                    End If
+
+                    If BindingContext(midataset, "Socios").Count = 0 Then
+                        Button_Eliminar.Enabled = False
+                    End If
+                End If
+                ' ####################  3º Cambiamos el estado de los botones del menuStrip ##############################
+                adaptador.Update(midataset.Tables("Socios"))
+
+                midataset.Clear()
+                adaptador.Fill(midataset, "Socios")
+
+                DataGridView_Socios.DataSource = midataset
+                DataGridView_Socios.DataMember = "Socios"
+                ' registro()
+                ' ####################  4º Cambiamos el estado de los botones del menuStrip ##############################
+                Button_Eliminar.Enabled = False
+
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    ' Método que se ejecuta cuando el botón limpiar es presionado.
+    ' Limpia todos los textBoxes del formulario
+    Private Sub Button_Limpiar_Click(sender As Object, e As EventArgs) Handles Button_Limpiar.Click
+        TextBox_NumeroSocio.Clear()
+        TextBox_Nombre.Clear()
+        TextBox_Apellidos.Clear()
+        TextBox_Telefono.Clear()
+    End Sub
+
+    ' Método que se ejecuta cuando el botón "Buscar" es pulsado
+    ' Buscará en la DB utilizando los datos introducidos por el usuario en los TextBoxes
+    Private Sub Button_Buscar_Click(sender As Object, e As EventArgs) Handles Button_Buscar.Click
+
+        ' Comprobamos que haya datos en los textBoxes (por lo menos en uno de ellos)
+        If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text = "" Then
+            MsgBox("No se puede buscar , debe rellenar al menos una caja con datos.", MsgBoxStyle.OkOnly, "Error al buscar.")
+        Else
+
+            ' Si se ha introducido todo
+            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text <> "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Nombre LIKE? and Apellidos LIKE? and Telefono LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+                comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
+                comando.Parameters.Add("@var4", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Socios")
+
+                DataGridView_Socios.DataSource = midataset
+
+                DataGridView_Socios.DataMember = "Socios"
+            End If
+
+            ' Numero Nombre Apellido
+            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text = "" Then
+
+            End If
+
+            ' Nombre Apellidos Telefono
+            If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text <> "" Then
+
+            End If
+
+            ' Numero Apellidos Telefono
+            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text <> "" Then
+
+            End If
+
+            ' Numero Nombre Telefono
+            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text <> "" Then
+
+            End If
+
+            ' Numero Nombre
+            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text = "" Then
+
+            End If
+
+            ' Numero Apellidos
+            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text = "" Then
+
+            End If
+
+            ' Nombre Apellidos
+            If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text = "" Then
+
+            End If
+
+            ' Apellidos Telefono
+            If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text <> "" Then
+
+            End If
+
+            ' Numero telefono
+            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text <> "" Then
+
+            End If
+
+            ' Nombre Telefono
+            If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text <> "" Then
+
+            End If
+
+            ' Numero
+            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text = "" Then
+
+            End If
+
+            ' Nombre
+            If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text = "" Then
+
+            End If
+
+            ' Apellido
+            If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text = "" Then
+
+            End If
+
+            ' Telefono
+            If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text <> "" Then
+
+            End If
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            If TextBox_NumeroSocio.Text <> "" Then
+                    Dim ds As New DataSet
+
+                    Dim cb As New OleDbDataAdapter
+
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? ", conexion)
+
+                    cb.SelectCommand = comando
+
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
+
+                    midataset.Clear()
+
+                    cb.Fill(midataset, "Socios")
+
+                    DataGridView_Socios.DataSource = midataset
+
+                    DataGridView_Socios.DataMember = "Socios"
+                End If
+
+            ' MsgBox("Busqueda fallida...")
+
+        End If ' IF 1
+
     End Sub
 End Class

@@ -45,16 +45,17 @@ Partial Class GestionSocios
         Me.GestiónEmpleadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestiónEmpleadosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.TextBox_Telefono = New System.Windows.Forms.TextBox()
         Me.TextBox_NumeroSocio = New System.Windows.Forms.TextBox()
+        Me.TextBox_Telefono = New System.Windows.Forms.TextBox()
+        Me.TextBox_NumeroSocioOCULTO = New System.Windows.Forms.TextBox()
         Me.TextBox_Apellidos = New System.Windows.Forms.TextBox()
         Me.TextBox_Nombre = New System.Windows.Forms.TextBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Button_Eliminar = New System.Windows.Forms.Button()
         Me.DataGridView_Socios = New System.Windows.Forms.DataGridView()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.MenuStripPagPrin.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -235,8 +236,9 @@ Partial Class GestionSocios
         '
         Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox1.Controls.Add(Me.TextBox_Telefono)
         Me.GroupBox1.Controls.Add(Me.TextBox_NumeroSocio)
+        Me.GroupBox1.Controls.Add(Me.TextBox_Telefono)
+        Me.GroupBox1.Controls.Add(Me.TextBox_NumeroSocioOCULTO)
         Me.GroupBox1.Controls.Add(Me.TextBox_Apellidos)
         Me.GroupBox1.Controls.Add(Me.TextBox_Nombre)
         Me.GroupBox1.Controls.Add(Me.Label_Autor)
@@ -252,6 +254,17 @@ Partial Class GestionSocios
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Filtro de Busqueda"
         '
+        'TextBox_NumeroSocio
+        '
+        Me.TextBox_NumeroSocio.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_NumeroSocio.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_NumeroSocio.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_NumeroSocio.Location = New System.Drawing.Point(90, 26)
+        Me.TextBox_NumeroSocio.MaxLength = 100
+        Me.TextBox_NumeroSocio.Name = "TextBox_NumeroSocio"
+        Me.TextBox_NumeroSocio.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_NumeroSocio.TabIndex = 182
+        '
         'TextBox_Telefono
         '
         Me.TextBox_Telefono.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -263,16 +276,16 @@ Partial Class GestionSocios
         Me.TextBox_Telefono.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Telefono.TabIndex = 4
         '
-        'TextBox_NumeroSocio
+        'TextBox_NumeroSocioOCULTO
         '
-        Me.TextBox_NumeroSocio.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_NumeroSocio.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_NumeroSocio.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_NumeroSocio.Location = New System.Drawing.Point(90, 26)
-        Me.TextBox_NumeroSocio.MaxLength = 100
-        Me.TextBox_NumeroSocio.Name = "TextBox_NumeroSocio"
-        Me.TextBox_NumeroSocio.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_NumeroSocio.TabIndex = 1
+        Me.TextBox_NumeroSocioOCULTO.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_NumeroSocioOCULTO.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_NumeroSocioOCULTO.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_NumeroSocioOCULTO.Location = New System.Drawing.Point(90, 26)
+        Me.TextBox_NumeroSocioOCULTO.MaxLength = 100
+        Me.TextBox_NumeroSocioOCULTO.Name = "TextBox_NumeroSocioOCULTO"
+        Me.TextBox_NumeroSocioOCULTO.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_NumeroSocioOCULTO.TabIndex = 1
         '
         'TextBox_Apellidos
         '
@@ -308,6 +321,15 @@ Partial Class GestionSocios
         Me.Panel1.Size = New System.Drawing.Size(959, 480)
         Me.Panel1.TabIndex = 50
         Me.Panel1.TabStop = True
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(646, 161)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(93, 27)
+        Me.Button1.TabIndex = 184
+        Me.Button1.Text = "Actualizar"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'Button_Eliminar
         '
@@ -346,15 +368,6 @@ Partial Class GestionSocios
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(984, 94)
         Me.Panel2.TabIndex = 51
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(646, 161)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(93, 27)
-        Me.Button1.TabIndex = 184
-        Me.Button1.Text = "Actualizar"
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'GestionSocios
         '
@@ -409,8 +422,9 @@ Partial Class GestionSocios
     Friend WithEvents GestiónEmpleadosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GestiónEmpleadosToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents TextBox_Telefono As TextBox
-    Friend WithEvents TextBox_NumeroSocio As TextBox
+    Friend WithEvents TextBox_NumeroSocioOCULTO As TextBox
     Friend WithEvents TextBox_Apellidos As TextBox
     Friend WithEvents TextBox_Nombre As TextBox
     Friend WithEvents Button1 As Button
+    Friend WithEvents TextBox_NumeroSocio As TextBox
 End Class
