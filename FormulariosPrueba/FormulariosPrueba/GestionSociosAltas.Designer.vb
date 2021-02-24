@@ -192,7 +192,7 @@ Partial Class GestionSociosAltas
         Me.TextBox_Correo.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Correo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Correo.Location = New System.Drawing.Point(456, 64)
-        Me.TextBox_Correo.MaxLength = 100
+        Me.TextBox_Correo.MaxLength = 130
         Me.TextBox_Correo.Name = "TextBox_Correo"
         Me.TextBox_Correo.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Correo.TabIndex = 5

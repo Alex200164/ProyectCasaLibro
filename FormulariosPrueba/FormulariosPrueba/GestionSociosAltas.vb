@@ -1,6 +1,9 @@
 ﻿' Necesitamos importar el módelo de base de datos que vamos a utilizar, este es de access.
 Imports System.Data.OleDb
 
+' No hace falta hacer imports libValidaciones para instanciar sus clases porque está incluida en el proyecto.
+Imports System.IO
+
 Public Class GestionSociosAltas
 
     ' Especificamos la base de datos a la que nos vamos a conectar.
@@ -10,6 +13,9 @@ Public Class GestionSociosAltas
 
     ' Aquí alojaremos los datos de la DB
     Public midataset As New DataSet
+
+    ' Para evitar la apariciónd de una excepción cuando no le toca
+    Dim validacionControlCorreo As Integer = 0
 
     ' Método que se ejecuta cuando el botón "Salir..." del ToolStrip es pulsado y que nos lleva al formulario "GestionSocios".
     Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click
@@ -49,6 +55,33 @@ Public Class GestionSociosAltas
         If TextBox_NumeroSocio.Text = "" Or TextBox_Nombre.Text = "" Or TextBox_Apellidos.Text = "" Or TextBox_Telefono.Text = "" Or TextBox_Correo.Text = "" Then
             MsgBox("No se puede dar de alta , debe rellenar todos los datos.", MsgBoxStyle.OkOnly, "Error al dar de alta.")
         Else
+
+            ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
+            ' Instanciamos la clase
+            Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+            Dim resultado1 As Boolean = validarNumeroSocio.validarNumeroSocio(TextBox_NumeroSocio.Text, 2)
+            Dim resultado2 As Boolean = validarNumeroSocio.validarTelefono(TextBox_Telefono.Text)
+            Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_Nombre.Text, 1)
+            Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_Apellidos.Text, 2)
+            Dim resultado5 As Boolean = validarNumeroSocio.validarCorreo(TextBox_Correo.Text)
+
+            If resultado1 = False Then
+                'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                Exit Sub
+            ElseIf resultado2 = False Then
+                'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                Exit Sub
+            ElseIf resultado3 = False Then
+                'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                Exit Sub
+            ElseIf resultado4 = False Then
+                'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                Exit Sub
+            ElseIf resultado5 = False Then
+                'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                Exit Sub
+            End If
 
 
             Dim valor As String
@@ -118,5 +151,50 @@ Public Class GestionSociosAltas
         TextBox_Telefono.Clear()
         TextBox_Correo.Clear()
 
+    End Sub
+
+    ' Validamos este campo evitando que tenga caracteres que no sean númericos y que tenga una longitud de más de 8 caracteres.
+    Private Sub TextBox_NumeroSocio_TextChanged(sender As Object, e As EventArgs) Handles TextBox_NumeroSocio.TextChanged
+        ' Instanciamos la clase
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarNumeroSocio(TextBox_NumeroSocio.Text, 1)
+
+    End Sub
+
+    ' Validamos este campo evitando que tenga caracteres que no sean númericos y que tenga una longitud de más de 9 caracteres.
+    Private Sub TextBox_Telefono_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Telefono.TextChanged
+        ' Instanciamos la clase        
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarTelefono(TextBox_Telefono.Text)
+    End Sub
+
+    ' Validamos este campo evitando que tenga caracteres que no sean númericos y que tenga una longitud de no más de 50 caracteres.
+    Private Sub TextBox_Nombre_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Nombre.TextChanged
+        ' Instanciamos la clase        
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarNombre(TextBox_Nombre.Text, 1)
+    End Sub
+
+    ' Validamos este campo evitando que tenga caracteres que no sean númericos y que tenga una longitud de no más de 50 caracteres.
+    Private Sub TextBox_Apellidos_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Apellidos.TextChanged
+        ' Instanciamos la clase
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarNombre(TextBox_Apellidos.Text, 2)
+    End Sub
+
+    ' Validamos este campo evitando que tenga caracteres prohibidos en un e-mail y que tenga una longitud de no más de 120 caracteres.
+    Private Sub TextBox_Correo_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Correo.TextChanged
+        If validacionControlCorreo = 1 Then
+            ' Instanciamos la clase
+            Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+            validarNumeroSocio.validarCorreo(TextBox_Correo.Text)
+        Else
+            validacionControlCorreo = 1
+        End If
     End Sub
 End Class
