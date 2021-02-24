@@ -1,6 +1,9 @@
 ﻿' Necesitamos importar el módelo de base de datos que vamos a utilizar, este es de access.
 Imports System.Data.OleDb
 
+' No hace falta hacer imports libValidaciones para instanciar sus clases porque está incluida en el proyecto.
+Imports System.IO
+
 Public Class GestionEmpleadosModificaciones
 
     ' ##################################   Variables para bases de datos   ####################################################
@@ -25,7 +28,7 @@ Public Class GestionEmpleadosModificaciones
         adaptador.SelectCommand = comando
         'Al comando le vamos a pasar por parametro @numSocio (valor de tipo Numeric, 8) el cual va a ser cogido de la Fila(currentRow) seleccionada de la Columna 0 (NumeroSocio)
         'del DataGridView_Socios del formulario GestionSocios. Es decir al seleccionar un elemento detectará cual es la fila y el valor de la columna 0 y lo pasará por parametro.
-        comando.Parameters.Add("@numDNI", OleDbType.Numeric, 8).Value = GestionEmpleados.DataGridView_Empleados.Item(0, GestionEmpleados.DataGridView_Empleados.CurrentRow.Index).Value
+        comando.Parameters.Add("@numDNI", OleDbType.VarChar, 9).Value = GestionEmpleados.DataGridView_Empleados.Item(0, GestionEmpleados.DataGridView_Empleados.CurrentRow.Index).Value
 
         'Limpiamos el midataset para que no haya información residual posicionDataGridSeleccionadaEmpleados
         midataset.Clear() 'de este form 
@@ -50,6 +53,12 @@ Public Class GestionEmpleadosModificaciones
 
         ' Inicializamos la variable asignandole el número de socio inicial
         numDniInicial = GestionEmpleados.DataGridView_Empleados.Item(0, GestionEmpleados.DataGridView_Empleados.CurrentRow.Index).Value
+
+        Try
+
+        Catch ex As System.FormatException
+            MsgBox("Se ha producido un error, intentelo de nuevo", MsgBoxStyle.OkOnly, "Error - Operación abortada")
+        End Try
 
     End Sub
 
@@ -95,9 +104,53 @@ Public Class GestionEmpleadosModificaciones
     ' Se encarga de modificar los datos ya existentes en la DB
     Private Sub Button_Guardar_Alta_Click(sender As Object, e As EventArgs) Handles Button_Guardar_Alta.Click
         If TextBox_DNI.Text = "" Or TextBox_NOMBRE.Text = "" Or TextBox_APELLIDOS.Text = "" Or TextBox_TELEFONO.Text = "" Or TextBox_CORREO.Text = "" Or TextBox_USUARIO.Text = "" Or TextBox_CONTRASENNA.Text = "" Or TextBox_ROL.Text = "" Then
-            MsgBox("Debes seleccionar un registro para actualizarlo y si lo has seleccionado, no debe quedar ningún campo en blanco", MsgBoxStyle.OkOnly, "Error al dar de alta.")
+            MsgBox("Debes seleccionar un registro para actualizarlo y si lo has seleccionado, no debe quedar ningún campo en blanco", MsgBoxStyle.OkOnly, "Error al modificar.")
         Else
 
+            ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
+            ' Instanciamos la clase
+            Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+            Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
+            Dim resultado2 As Boolean = validarNumeroSocio.validarTelefono(TextBox_TELEFONO.Text, 2)
+            Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
+            Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
+            Dim resultado5 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
+            Dim resultado6 As Boolean = validarNumeroSocio.validarUsuario(TextBox_USUARIO.Text, 1)
+            Dim resultado7 As Boolean = validarNumeroSocio.validarContra(TextBox_CONTRASENNA.Text, 2)
+            Dim resultado8 As Boolean = validarNumeroSocio.validarROL(TextBox_ROL.Text, 1)
+
+            If resultado1 = False Then
+                Exit Sub
+            ElseIf resultado2 = False Then
+                Exit Sub
+            ElseIf resultado3 = False Then
+                Exit Sub
+            ElseIf resultado4 = False Then
+                Exit Sub
+            ElseIf resultado5 = False Then
+                Exit Sub
+            ElseIf resultado6 = False Then
+                Exit Sub
+            ElseIf resultado7 = False Then
+                Exit Sub
+            ElseIf resultado8 = False Then
+                Exit Sub
+            End If
+
+            Dim testComp As Integer = StrComp(TextBox_ROL.Text, "Admin", CompareMethod.Text)
+            Dim testComp2 As Integer = StrComp(TextBox_ROL.Text, "Encargado", CompareMethod.Text)
+            Dim testComp3 As Integer = StrComp(TextBox_ROL.Text, "Empleado", CompareMethod.Text)
+
+
+            If testComp <> 0 Then
+                If testComp2 <> 0 Then
+                    If testComp3 <> 0 Then
+                        MsgBox(" El rol debe ser uno de los siguientes: Admin, Encargado o Empleado.", MsgBoxStyle.OkOnly, "Error - Rol incorrecto")
+                        Exit Sub
+                    End If
+                End If
+            End If
 
             Dim valor As String
             Dim control As Integer = 0
@@ -154,16 +207,16 @@ Public Class GestionEmpleadosModificaciones
 
                     conexion.Open()
 
-                    cmd3.Parameters.AddWithValue("@p1", Convert.ToSingle(TextBox_CONTRASENNA.Text))
-                    cmd3.Parameters.AddWithValue("@p2", TextBox_ROL)
+                    cmd3.Parameters.AddWithValue("@p1", Convert.ToInt16(TextBox_CONTRASENNA.Text))
+                    cmd3.Parameters.AddWithValue("@p2", TextBox_ROL.Text)
                     cmd3.Parameters.AddWithValue("@p3", numDniInicial)
-                    Try
-                        cmd3.ExecuteNonQuery()
-                    Catch ex As System.Data.OleDb.OleDbException
+                    'Try
+                    cmd3.ExecuteNonQuery()
+                        'Catch ex As System.Data.OleDb.OleDbException
 
-                    End Try
+                        'End Try
 
-                    conexion.Close()
+                        conexion.Close()
 
                 End Using
 
@@ -185,6 +238,71 @@ Public Class GestionEmpleadosModificaciones
                 ' Hacer try-catch
             End If
         End If
+    End Sub
+
+    ' Validamos este campo evitando que tenga caracteres que no sean númericos y que tenga una longitud de más de 8 caracteres.
+    Private Sub TextBox_DNI_TextChanged(sender As Object, e As EventArgs) Handles TextBox_DNI.TextChanged
+        ' Instanciamos la clase
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarDNI(TextBox_DNI.Text, 1)
+
+    End Sub
+
+    ' Validamos este campo evitando que tenga caracteres que no sean númericos y que tenga una longitud de más de 9 caracteres.
+    Private Sub TextBox_Telefono_TextChanged(sender As Object, e As EventArgs) Handles TextBox_TELEFONO.TextChanged
+        ' Instanciamos la clase        
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarTelefono(TextBox_TELEFONO.Text, 1)
+    End Sub
+
+    ' Validamos este campo evitando que tenga caracteres que no sean númericos y que tenga una longitud de no más de 50 caracteres.
+    Private Sub TextBox_Nombre_TextChanged(sender As Object, e As EventArgs) Handles TextBox_NOMBRE.TextChanged
+        ' Instanciamos la clase        
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
+    End Sub
+
+    ' Validamos este campo evitando que tenga caracteres que no sean númericos y que tenga una longitud de no más de 50 caracteres.
+    Private Sub TextBox_Apellidos_TextChanged(sender As Object, e As EventArgs) Handles TextBox_APELLIDOS.TextChanged
+        ' Instanciamos la clase
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
+    End Sub
+
+    ' Validamos este campo evitando que tenga caracteres prohibidos en un e-mail y que tenga una longitud de no más de 120 caracteres.
+    Private Sub TextBox_Correo_TextChanged(sender As Object, e As EventArgs) Handles TextBox_CORREO.TextChanged
+        ' Instanciamos la clase
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
+    End Sub
+
+    ' Validación del usuario
+    Private Sub TextBox_USUARIO_TextChanged(sender As Object, e As EventArgs) Handles TextBox_USUARIO.TextChanged
+        ' Instanciamos la clase
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarUsuario(TextBox_USUARIO.Text)
+    End Sub
+
+    ' Validación de la contraseña
+    Private Sub TextBox_CONTRASENNA_TextChanged(sender As Object, e As EventArgs) Handles TextBox_CONTRASENNA.TextChanged
+        ' Instanciamos la clase
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarContra(TextBox_CONTRASENNA.Text, 1)
+    End Sub
+
+    ' Validación del rol
+    Private Sub TextBox_ROL_TextChanged(sender As Object, e As EventArgs) Handles TextBox_ROL.TextChanged
+        ' Instanciamos la clase
+        Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+        validarNumeroSocio.validarROL(TextBox_ROL.Text, 1)
     End Sub
 
 End Class

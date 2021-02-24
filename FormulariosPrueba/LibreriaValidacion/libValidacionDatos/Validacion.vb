@@ -110,13 +110,13 @@ Public Class Validacion
 
 
     ' Validación de número de socio
-    Public Function validardDNI(codigo As String, tipo As Integer) As Boolean
+    Public Function validarDNI(codigo As String, tipo As Integer) As Boolean
 
         ' Si el tipo es 1, solo se comprueba que no se pase de 8 caracteres y que estos sean solo númericos
         ' Si el tipo es 2, comprueba todo, incluyendo que la minima longitud sea de 8 caracteres.
 
         ' Se opta de nuevo por la solución de poner en un String los valores permitidos.
-        Dim charsPosibles As String = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789"
+        Dim charsPosibles As String = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789"
 
         Dim valido As Boolean = False
         Dim coincidencias As Integer = 0
@@ -142,7 +142,7 @@ Public Class Validacion
             If coincidencias = codigo.Length And codigo.Length <= valorMaximo Then
                 valido = True
             Else
-                MsgBox(" El dato número socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, debe tener una longitud de 9 digitos.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                MsgBox(" El dato DNI, no puede contener caracteres que no sean numéricos o símbolos no permitidos, debe tener una longitud de 9 digitos. La letra debe estar en mayúscula.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
                 'MsgBox(" El número de socio no puede contener otros caracteres que no sean números.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
             End If
             Return valido
@@ -165,7 +165,7 @@ Public Class Validacion
             If coincidencias = codigo.Length And codigo.Length = valorMaximo Then
                 valido = True
             Else
-                MsgBox(" El dato número socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, debe tener una longitud de 9 digitos.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                MsgBox(" El dato DNI, no puede contener caracteres que no sean numéricos o símbolos no permitidos, debe tener una longitud de 9 digitos. La letra debe estar en mayúscula.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
                 'MsgBox(" El número de socio no puede contener otros caracteres que no sean números.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
             End If
             Return valido
@@ -345,23 +345,27 @@ Public Class Validacion
         Return valido
     End Function
 
-    ' Validación de correo electrónico
-    Public Function validarCorreo(codigo As String) As Boolean
+    ' Validación de usuario
+    Public Function validarUsuario(codigo As String) As Boolean
 
-        ' Para el correo.
-        Dim charsPosiblesCorreo As String = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ_-.@!#"
+        Dim charsPosiblesNombre As String = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890-_"
 
         Dim valido As Boolean = False
         Dim coincidencias As Integer = 0
         Dim valorMaximo As Integer
 
         ' Máxima longitud del valor.
-        valorMaximo = 120
+        valorMaximo = 30
 
-        ' Validación 
+        ' Solo se permiten usuarios de hasta 50 caracteres.
+        If codigo.Length > valorMaximo Then
+            MsgBox("Por favor, introduzca un nombre que sea menor de 50 caracteres.", MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "Longitud incorrecta.")
+        End If
+
+
         For i = 1 To codigo.Length
-            For j = 1 To charsPosiblesCorreo.Length
-                If (GetChar(codigo, i) <> GetChar(charsPosiblesCorreo, j)) Then
+            For j = 1 To charsPosiblesNombre.Length
+                If (GetChar(codigo, i) <> GetChar(charsPosiblesNombre, j)) Then
 
                 Else
                     ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
@@ -372,12 +376,200 @@ Public Class Validacion
         Next i
 
         ' Devolvemos si los datos son válidos si se han encontrado tantas coincidencias como caracteres tenga la cadena.
-        If coincidencias = codigo.Length And codigo.Length <= valorMaximo Then
+        If coincidencias = codigo.Length Then
             valido = True
         Else
-            MsgBox(" El correo electrónico no puede contener símbolos no permitidos o ser mayor de 120 caracteres.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+            MsgBox(" El usuario no puede contener símbolos no permitidos. Debe tener una longitud máxima de 30 caracteres", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
         End If
         Return valido
+    End Function
+
+
+
+    ' Validación de contraseña
+    Public Function validarContra(codigo As String, tipo As Integer) As Boolean
+
+        Dim charsPosiblesNombre As String = "1234567890"
+
+        Dim valido As Boolean = False
+        Dim coincidencias As Integer = 0
+        Dim valorMaximo As Integer
+
+        ' Máxima longitud del valor.
+        valorMaximo = 4
+
+        If tipo = 1 Then
+            For i = 1 To codigo.Length
+                For j = 1 To charsPosiblesNombre.Length
+                    If (GetChar(codigo, i) <> GetChar(charsPosiblesNombre, j)) Then
+
+                    Else
+                        ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
+                        ' entonces los datos se validan.
+                        coincidencias = coincidencias + 1
+                    End If
+                Next j
+            Next i
+
+            ' Devolvemos si los datos son válidos si se han encontrado tantas coincidencias como caracteres tenga la cadena.
+            If coincidencias = codigo.Length And codigo.Length <= valorMaximo Then
+                valido = True
+            Else
+                MsgBox(" La contraseña no puede contener caracteres no permitidos. Debe tener una longitud de 4 digitos", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+            End If
+            Return valido
+        End If
+
+        If tipo = 2 Then
+            For i = 1 To codigo.Length
+                For j = 1 To charsPosiblesNombre.Length
+                    If (GetChar(codigo, i) <> GetChar(charsPosiblesNombre, j)) Then
+
+                    Else
+                        ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
+                        ' entonces los datos se validan.
+                        coincidencias = coincidencias + 1
+                    End If
+                Next j
+            Next i
+
+            ' Devolvemos si los datos son válidos si se han encontrado tantas coincidencias como caracteres tenga la cadena.
+            If coincidencias = codigo.Length And codigo.Length = valorMaximo Then
+                valido = True
+            Else
+                MsgBox(" La contraseña no puede contener caracteres no permitidos. Debe tener una longitud de 4 digitos", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+            End If
+            Return valido
+        End If
+
+
+    End Function
+
+
+
+    ' Validación del ROL
+    Public Function validarROL(codigo As String, tipo As Integer) As Boolean
+
+        Dim charsPosiblesNombre As String = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
+
+        Dim valido As Boolean = False
+        Dim coincidencias As Integer = 0
+        Dim valorMaximo As Integer
+
+        ' Máxima longitud del valor.
+        valorMaximo = 20
+
+        If tipo = 1 Then
+            For i = 1 To codigo.Length
+                For j = 1 To charsPosiblesNombre.Length
+                    If (GetChar(codigo, i) <> GetChar(charsPosiblesNombre, j)) Then
+
+                    Else
+                        ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
+                        ' entonces los datos se validan.
+                        coincidencias = coincidencias + 1
+                    End If
+                Next j
+            Next i
+
+            ' Devolvemos si los datos son válidos si se han encontrado tantas coincidencias como caracteres tenga la cadena.
+            If coincidencias = codigo.Length And codigo.Length <= valorMaximo Then
+                valido = True
+            Else
+                MsgBox(" El rol no puede contener caracteres no permitidos. Debe tener una longitud menor de 20 caracteres", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+            End If
+            Return valido
+        End If
+
+        If tipo = 2 Then
+            For i = 1 To codigo.Length
+                For j = 1 To charsPosiblesNombre.Length
+                    If (GetChar(codigo, i) <> GetChar(charsPosiblesNombre, j)) Then
+
+                    Else
+                        ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
+                        ' entonces los datos se validan.
+                        coincidencias = coincidencias + 1
+                    End If
+                Next j
+            Next i
+
+            ' Devolvemos si los datos son válidos si se han encontrado tantas coincidencias como caracteres tenga la cadena.
+            If coincidencias = codigo.Length And codigo.Length = valorMaximo Then
+                valido = True
+            Else
+                MsgBox(" El rol no puede contener caracteres no permitidos. Debe tener una longitud menor de 20 caracteres", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+            End If
+            Return valido
+        End If
+
+
+    End Function
+
+
+    ' Validación de correo electrónico
+    Public Function validarCorreo(codigo As String, tipo As Integer) As Boolean
+
+        ' Si el tipo es 1, solo se comprueba que no se pase de 120 caracteres
+        ' Si el tipo es 2, comprueba todo, incluyendo que la minima longitud sea de 120 caracteres.
+
+        ' Para el correo.
+        Dim charsPosiblesCorreo As String = "1234567890abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ_-.@!#"
+
+        Dim valido As Boolean = False
+        Dim coincidencias As Integer = 0
+        Dim valorMaximo As Integer
+
+        ' Máxima longitud del valor.
+        valorMaximo = 120
+
+        If tipo = 1 Then
+            For i = 1 To codigo.Length
+                For j = 1 To charsPosiblesCorreo.Length
+                    If (GetChar(codigo, i) <> GetChar(charsPosiblesCorreo, j)) Then
+
+                    Else
+                        ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
+                        ' entonces los datos se validan.
+                        coincidencias = coincidencias + 1
+                    End If
+                Next j
+            Next i
+
+            ' Devolvemos si los datos son válidos si se han encontrado tantas coincidencias como caracteres tenga la cadena.
+            If coincidencias = codigo.Length And codigo.Length <= valorMaximo Then
+                valido = True
+            Else
+                MsgBox(" El correo electrónico no puede contener símbolos no permitidos o ser mayor de 120 caracteres.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                'MsgBox(" El número de socio no puede contener otros caracteres que no sean números.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+            End If
+            Return valido
+        End If
+
+
+        If tipo = 2 Then
+            For i = 1 To codigo.Length
+                For j = 1 To charsPosiblesCorreo.Length
+                    If (GetChar(codigo, i) <> GetChar(charsPosiblesCorreo, j)) Then
+
+                    Else
+                        ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
+                        ' entonces los datos se validan.
+                        coincidencias = coincidencias + 1
+                    End If
+                Next j
+            Next i
+
+            ' Devolvemos si los datos son válidos si se han encontrado tantas coincidencias como caracteres tenga la cadena.
+            If coincidencias = codigo.Length And codigo.Length = valorMaximo Then
+                valido = True
+            Else
+                MsgBox(" El correo electrónico no puede contener símbolos no permitidos o ser mayor de 120 caracteres.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                'MsgBox(" El número de socio no puede contener otros caracteres que no sean números.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+            End If
+            Return valido
+        End If
+
     End Function
 
     ' Método usado en la pantalla de inicio de sesión para ver que se introducen solo números en el campo de contraseña.

@@ -352,11 +352,37 @@ Public Class GestionEmpleados
 
             ' Si se ha introducido todo
             If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text <> "" Then
+
+                ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
+                ' Instanciamos la clase
+                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
+                Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
+                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
+                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
+
+                If resultado1 = False Then
+                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+                ElseIf resultado2 = False Then
+                    'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+                ElseIf resultado3 = False Then
+                    'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+                ElseIf resultado4 = False Then
+                    'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+                End If
+
+
+
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE NumeroDeSocio LIKE? and Nombre LIKE? and Apellidos LIKE? and Telefono LIKE?", conexion)
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE? and Nombre LIKE? and Apellidos LIKE? and Correo LIKE?", conexion)
 
                 cb.SelectCommand = comando
 
@@ -378,11 +404,32 @@ Public Class GestionEmpleados
 
             ' DNI Nombre Apellido
             If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text = "" Then
+
+                ' Validamos.
+                ' Instanciamos la clase
+                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
+                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
+                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
+
+                If resultado1 = False Then
+                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+                ElseIf resultado3 = False Then
+                    'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+                ElseIf resultado4 = False Then
+                    'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+                End If
+
+
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE NumeroDeSocio LIKE? and Nombre LIKE? and Apellidos LIKE? ", conexion)
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE? and Nombre LIKE? and Apellidos LIKE? ", conexion)
 
                 cb.SelectCommand = comando
 
@@ -401,11 +448,31 @@ Public Class GestionEmpleados
 
             ' Nombre Apellidos Correo
             If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text <> "" Then
+
+                ' Validamos.
+                ' Instanciamos la clase
+                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
+                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
+                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
+
+                If resultado2 = False Then
+                    'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+                ElseIf resultado3 = False Then
+                    'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+                ElseIf resultado4 = False Then
+                    'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+                End If
+
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE Nombre LIKE? and Apellidos LIKE? and Telefono LIKE?", conexion)
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE Nombre LIKE? and Apellidos LIKE? and Correo LIKE?", conexion)
 
                 cb.SelectCommand = comando
 
@@ -424,11 +491,31 @@ Public Class GestionEmpleados
 
             ' DNI Apellidos Correo
             If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text <> "" Then
+
+                ' Validamos.
+                ' Instanciamos la clase
+                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
+                Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
+                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
+
+                If resultado1 = False Then
+                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+                ElseIf resultado2 = False Then
+                    'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+                ElseIf resultado4 = False Then
+                    'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+                End If
+
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE NumeroDeSocio LIKE? and Apellidos LIKE? and Telefono LIKE?", conexion)
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE? and Apellidos LIKE? and Correo LIKE?", conexion)
 
                 cb.SelectCommand = comando
 
@@ -447,11 +534,31 @@ Public Class GestionEmpleados
 
             ' DNI Nombre Correo
             If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text <> "" Then
+
+                ' Validamos.
+                ' Instanciamos la clase
+                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
+                Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
+                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
+
+                If resultado1 = False Then
+                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+                ElseIf resultado2 = False Then
+                    'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+                ElseIf resultado3 = False Then
+                    'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+                End If
+
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE NumeroDeSocio LIKE? and Nombre LIKE? and Telefono LIKE?", conexion)
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE? and Nombre LIKE? and Correo LIKE?", conexion)
 
                 cb.SelectCommand = comando
 
@@ -470,11 +577,30 @@ Public Class GestionEmpleados
 
             ' DNI Nombre
             If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text = "" Then
+
+                ' Validamos.
+                ' Instanciamos la clase
+                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
+                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
+
+
+                If resultado1 = False Then
+                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+
+                ElseIf resultado3 = False Then
+                    'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+
+                End If
+
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE NumeroDeSocio LIKE? and Nombre LIKE? ", conexion)
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE? and Nombre LIKE? ", conexion)
 
                 cb.SelectCommand = comando
 
@@ -492,11 +618,28 @@ Public Class GestionEmpleados
 
             ' DNI Apellidos
             If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text = "" Then
+
+                ' Validamos.
+                ' Instanciamos la clase
+                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
+                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
+
+                If resultado1 = False Then
+                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+
+                ElseIf resultado4 = False Then
+                    'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+                End If
+
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE NumeroDeSocio LIKE? and Apellidos LIKE?", conexion)
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE? and Apellidos LIKE?", conexion)
 
                 cb.SelectCommand = comando
 
@@ -514,6 +657,23 @@ Public Class GestionEmpleados
 
             ' Nombre Apellidos
             If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text = "" Then
+
+                ' Validamos.
+                ' Instanciamos la clase
+                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
+                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
+
+
+                If resultado3 = False Then
+                        'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    ElseIf resultado4 = False Then
+                        'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                End If
+
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
@@ -536,11 +696,28 @@ Public Class GestionEmpleados
 
             ' Apellidos Correo
             If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text <> "" Then
+
+                ' Validamos.
+                ' Instanciamos la clase
+                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
+                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
+
+
+                If resultado2 = False Then
+                    'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+                ElseIf resultado4 = False Then
+                        'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                End If
+
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE Apellidos LIKE? and Telefono LIKE?", conexion)
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE Apellidos LIKE? and Correo LIKE?", conexion)
 
                 cb.SelectCommand = comando
 
@@ -558,11 +735,29 @@ Public Class GestionEmpleados
 
             ' DNI Correo
             If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text <> "" Then
+
+                ' Validamos.
+                ' Instanciamos la clase
+                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
+                Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
+
+
+                If resultado1 = False Then
+                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+                ElseIf resultado2 = False Then
+                    'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+
+                End If
+
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE NumeroDeSocio LIKE? and Telefono LIKE?", conexion)
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE? and Correo LIKE?", conexion)
 
                 cb.SelectCommand = comando
 
@@ -580,11 +775,30 @@ Public Class GestionEmpleados
 
             ' Nombre Correo
             If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text <> "" Then
+
+                ' Validamos.
+                ' Instanciamos la clase
+                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
+                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
+
+
+
+                If resultado2 = False Then
+                        'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    ElseIf resultado3 = False Then
+                        'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+
+                End If
+
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE Nombre LIKE? and Telefono LIKE?", conexion)
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE Nombre LIKE? and Correo LIKE?", conexion)
 
                 cb.SelectCommand = comando
 
@@ -602,11 +816,24 @@ Public Class GestionEmpleados
 
             ' DNI
             If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text = "" Then
+
+                ' Validamos.
+                ' Instanciamos la clase
+                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
+
+                If resultado1 = False Then
+                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+
+                End If
+
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE NumeroDeSocio LIKE?", conexion)
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE?", conexion)
 
                 cb.SelectCommand = comando
 
@@ -623,6 +850,21 @@ Public Class GestionEmpleados
 
             ' Nombre
             If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text = "" Then
+
+                ' Validamos.
+                ' Instanciamos la clase
+                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
+
+
+
+                If resultado3 = False Then
+                    'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+
+                End If
+
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
@@ -644,6 +886,19 @@ Public Class GestionEmpleados
 
             ' Apellido
             If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text = "" Then
+
+                ' Validamos.
+                ' Instanciamos la clase
+                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+
+                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
+
+                If resultado4 = False Then
+                    'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+                End If
+
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
@@ -665,11 +920,27 @@ Public Class GestionEmpleados
 
             ' Correo
             If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text <> "" Then
+
+                ' Validamos.
+                ' Instanciamos la clase
+                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+
+                Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
+
+
+
+                If resultado2 = False Then
+                    'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Exit Sub
+
+                End If
+
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
 
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE Telefono LIKE?", conexion)
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE Correo LIKE?", conexion)
 
                 cb.SelectCommand = comando
 
@@ -695,7 +966,7 @@ Public Class GestionEmpleados
         ' Instanciamos la clase
         Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
-        validarNumeroSocio.validardDNI(TextBox_DNI.Text, 1)
+        validarNumeroSocio.validarDNI(TextBox_DNI.Text, 1)
 
     End Sub
 
@@ -704,7 +975,7 @@ Public Class GestionEmpleados
         ' Instanciamos la clase        
         Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
-        validarNumeroSocio.validarTelefono(TextBox_CORREO.Text)
+        validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
     End Sub
 
     ' Validamos este campo evitando que tenga caracteres que no sean númericos y que tenga una longitud de más de 50 caracteres.
