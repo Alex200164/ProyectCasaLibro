@@ -74,77 +74,94 @@ Public Class GestionSociosModificaciones
             MsgBox("Debes seleccionar un registro para actualizarlo y si lo has seleccionado, no debe quedar ningún campo en blanco", MsgBoxStyle.OkOnly, "Error al dar de alta.")
         Else
 
-            Try
-                ' Montamos una query parametrizada.
-                Dim queryParametrizada As String = "UPDATE Socios SET NumeroDeSocio=?, Nombre=?, Apellidos=?, Telefono=?, Correo=? WHERE NumeroDeSocio=?"
-                Using cmd = New OleDbCommand(queryParametrizada, conexion)
+            Dim valor As String
+            Dim control As Integer = 0
 
-                    conexion.Open()
-                    cmd.Parameters.AddWithValue("@p1", Convert.ToInt64(TextBox_NumeroSocio.Text))
-                    cmd.Parameters.AddWithValue("@p2", TextBox_Nombre.Text)
-                    cmd.Parameters.AddWithValue("@p3", TextBox_Apellidos.Text)
-                    cmd.Parameters.AddWithValue("@p4", Convert.ToInt64(TextBox_Telefono.Text))
-                    cmd.Parameters.AddWithValue("@p5", TextBox_Correo.Text)
-                    cmd.Parameters.AddWithValue("@p6", Convert.ToSingle(numSocioInicial))
+            ' Comprobamos que la clave primaria no se encuentra ya registrada.
+            For contador As Integer = 0 To GestionSocios.DataGridView_Socios.RowCount - 1
+                valor = GestionSocios.DataGridView_Socios.Item(0, contador).Value
 
-                    cmd.ExecuteNonQuery()
-
-                    ' System.FormatException montar try catch
-
-                    conexion.Close()
-                End Using
+                If valor = TextBox_NumeroSocio.Text And valor <> numSocioInicial Then
+                    MsgBox("No puedes introducir un número de socio que ya existe en la base de datos.", MsgBoxStyle.OkOnly, "Error, clave duplicada")
+                    control = 1
+                End If
+            Next
 
 
-                ' Dim cb As New OleDbCommandBuilder(adaptador)
-                ' adaptador.UpdateCommand = cb.GetUpdateCommand
-            Catch ex As System.InvalidOperationException
-                ' Avisamos del error por mensaje
-                MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
-            End Try
+            If control = 0 Then
+                Try
+                    ' Montamos una query parametrizada.
+                    Dim queryParametrizada As String = "UPDATE Socios SET NumeroDeSocio=?, Nombre=?, Apellidos=?, Telefono=?, Correo=? WHERE NumeroDeSocio=?"
+                    Using cmd = New OleDbCommand(queryParametrizada, conexion)
 
-            ' Dim a As Integer = GestionSocios.posicionDataGridSeleccionada
+                        conexion.Open()
+                        cmd.Parameters.AddWithValue("@p1", Convert.ToInt64(TextBox_NumeroSocio.Text))
+                        cmd.Parameters.AddWithValue("@p2", TextBox_Nombre.Text)
+                        cmd.Parameters.AddWithValue("@p3", TextBox_Apellidos.Text)
+                        cmd.Parameters.AddWithValue("@p4", Convert.ToInt64(TextBox_Telefono.Text))
+                        cmd.Parameters.AddWithValue("@p5", TextBox_Correo.Text)
+                        cmd.Parameters.AddWithValue("@p6", Convert.ToSingle(numSocioInicial))
 
-            ' Dim fila As DataRow = GestionSocios.midataset.Tables("Socios").Rows(a)
+                        cmd.ExecuteNonQuery()
+
+                        ' System.FormatException montar try catch
+
+                        conexion.Close()
+                    End Using
+
+
+                    ' Dim cb As New OleDbCommandBuilder(adaptador)
+                    ' adaptador.UpdateCommand = cb.GetUpdateCommand
+                Catch ex As System.InvalidOperationException
+                    ' Avisamos del error por mensaje
+                    MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                End Try
+
+                ' Dim a As Integer = GestionSocios.posicionDataGridSeleccionada
+
+                ' Dim fila As DataRow = GestionSocios.midataset.Tables("Socios").Rows(a)
 
 
 
-            ' Comenzamos la edición
-            '  fila.BeginEdit()
-            '  fila("NumeroDeSocio") = TextBox_NumeroSocio.Text
-            '  fila("Nombre") = TextBox_Nombre.Text
-            ' fila("Apellidos") = TextBox_Apellidos.Text
-            '  fila("Telefono") = TextBox_Telefono.Text
-            '  fila("Correo") = TextBox_Correo.Text
-            '  fila.EndEdit()
-            ' Finalizamos la edición
+                ' Comenzamos la edición
+                '  fila.BeginEdit()
+                '  fila("NumeroDeSocio") = TextBox_NumeroSocio.Text
+                '  fila("Nombre") = TextBox_Nombre.Text
+                ' fila("Apellidos") = TextBox_Apellidos.Text
+                '  fila("Telefono") = TextBox_Telefono.Text
+                '  fila("Correo") = TextBox_Correo.Text
+                '  fila.EndEdit()
+                ' Finalizamos la edición
 
-            '  Try
-            ' ' Ejecutamos la sentencia
-            ' adaptador.Update(GestionSocios.midataset.Tables("Socios"))
-            ' Catch ex As System.InvalidOperationException
+                '  Try
+                ' ' Ejecutamos la sentencia
+                ' adaptador.Update(GestionSocios.midataset.Tables("Socios"))
+                ' Catch ex As System.InvalidOperationException
 
-            ' End Try
+                ' End Try
 
-            ' Actualizamos el dataGridView del formulario de gestión principal
-            ' GestionSocios.midataset.Clear()
+                ' Actualizamos el dataGridView del formulario de gestión principal
+                ' GestionSocios.midataset.Clear()
 
-            ' Cargamos cache
-            'GestionSocios.adaptador.Fill(GestionSocios.midataset, "Socios")
+                ' Cargamos cache
+                'GestionSocios.adaptador.Fill(GestionSocios.midataset, "Socios")
 
-            ' cargar en el datagridview, le decimos de donde sacamos los datos
+                ' cargar en el datagridview, le decimos de donde sacamos los datos
 
-            'GestionSocios.DataGridView_Socios.DataSource = GestionSocios.midataset
-            'GestionSocios.DataGridView_Socios.DataMember = "Socios"
+                'GestionSocios.DataGridView_Socios.DataSource = GestionSocios.midataset
+                'GestionSocios.DataGridView_Socios.DataMember = "Socios"
 
-            ' Actualizamos el dataGridView del formulario de gestión principal
-            GestionSocios.midataset.Clear()
-            GestionSocios.adaptador.Fill(GestionSocios.midataset, "Socios")
+                ' Actualizamos el dataGridView del formulario de gestión principal
+                GestionSocios.midataset.Clear()
+                GestionSocios.adaptador.Fill(GestionSocios.midataset, "Socios")
 
-            ' Cerramos la ventana
-            Me.Close()
+                ' Cerramos la ventana
+                Me.Close()
 
-            ' Hacer try-catch
-            ' 
+                ' Hacer try-catch
+                ' 
+
+            End If
 
         End If
     End Sub

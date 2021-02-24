@@ -49,31 +49,47 @@ Public Class GestionSociosAltas
         If TextBox_NumeroSocio.Text = "" Or TextBox_Nombre.Text = "" Or TextBox_Apellidos.Text = "" Or TextBox_Telefono.Text = "" Or TextBox_Correo.Text = "" Then
             MsgBox("No se puede dar de alta , debe rellenar todos los datos.", MsgBoxStyle.OkOnly, "Error al dar de alta.")
         Else
-            ' ####################  1º Preparamos a la base de datos para recibir los datos. ##############################
-            Dim cb As New OleDbCommandBuilder(adaptador)
-            adaptador.InsertCommand = cb.GetInsertCommand
-
-            ' ####################  2º Recogemos los datos y los introducimos ##############################
-            Dim drc As DataRowCollection = midataset.Tables("Socios").Rows
-            drc.Add(TextBox_NumeroSocio.Text, TextBox_Nombre.Text, TextBox_Apellidos.Text, TextBox_Telefono.Text, TextBox_Correo.Text)
-
-            adaptador.Update(midataset.Tables("Socios"))
-            ' ####################  3º Actualizamos el middataset ##############################
-            ' Actualizamos el dataGridView del formulario de gestión principal
-            GestionSocios.midataset.Clear()
-            GestionSocios.adaptador.Fill(GestionSocios.midataset, "Socios")
-
-            ' Cerramos la ventana
-            Me.Close()
-
-            ' ####################  4º Cambiamos el estado de los botones del menuStrip ##############################
-            ' AltaToolStripMenuItem.Enabled = False
-            ' NuevoToolStripMenuItem.Enabled = True
-
-            'System.NullReferenceException: 'Referencia a objeto no establecida como instancia de un objeto.'
-            ' System.Data.OleDb.OleDbException: 'Error de sintaxis en la instrucción INSERT INTO.'
 
 
+            Dim valor As String
+            Dim control As Integer = 0
+
+            ' Comprobamos que la clave primaria no se encuentra ya registrada.
+            For contador As Integer = 0 To GestionSocios.DataGridView_Socios.RowCount - 1
+                valor = GestionSocios.DataGridView_Socios.Item(0, contador).Value
+
+                If valor = TextBox_NumeroSocio.Text Then
+                    MsgBox("No puedes introducir un número de socio que ya existe en la base de datos.", MsgBoxStyle.OkOnly, "Error, clave duplicada")
+                    control = 1
+                End If
+            Next
+
+
+            If control = 0 Then
+                ' ####################  1º Preparamos a la base de datos para recibir los datos. ##############################
+                Dim cb As New OleDbCommandBuilder(adaptador)
+                adaptador.InsertCommand = cb.GetInsertCommand
+
+                ' ####################  2º Recogemos los datos y los introducimos ##############################
+                Dim drc As DataRowCollection = midataset.Tables("Socios").Rows
+                drc.Add(TextBox_NumeroSocio.Text, TextBox_Nombre.Text, TextBox_Apellidos.Text, TextBox_Telefono.Text, TextBox_Correo.Text)
+
+                adaptador.Update(midataset.Tables("Socios"))
+                ' ####################  3º Actualizamos el middataset ##############################
+                ' Actualizamos el dataGridView del formulario de gestión principal
+                GestionSocios.midataset.Clear()
+                GestionSocios.adaptador.Fill(GestionSocios.midataset, "Socios")
+
+                ' Cerramos la ventana
+                Me.Close()
+
+                ' ####################  4º Cambiamos el estado de los botones del menuStrip ##############################
+                ' AltaToolStripMenuItem.Enabled = False
+                ' NuevoToolStripMenuItem.Enabled = True
+
+                'System.NullReferenceException: 'Referencia a objeto no establecida como instancia de un objeto.'
+                ' System.Data.OleDb.OleDbException: 'Error de sintaxis en la instrucción INSERT INTO.'
+            End If
 
         End If
     End Sub

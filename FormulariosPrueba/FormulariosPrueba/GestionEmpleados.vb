@@ -7,8 +7,9 @@ Public Class GestionEmpleados
     ' Número de control para controlar el dataBinding de los text boxes del formulario modificaciones, evitando que se relacionen dos veces.
     Public numeroDeControlBindingModificacionesEmpleados As Long
 
-    Public posicionDataGridSeleccionada As Integer
+    Public numeroDeControlBindingAltaEmpleados As Long
 
+    Public posicionDataGridSeleccionada As Integer
 
     ' Especificamos la base de datos a la que nos vamos a conectar.
     Public conexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=CasaLibroDB.accdb")
@@ -40,6 +41,7 @@ Public Class GestionEmpleados
 
             ' Inicializamos el número de control
             numeroDeControlBindingModificacionesEmpleados = 0
+            numeroDeControlBindingAltaEmpleados = 0
 
             'Creación en la ultima columna del DataGridView el botón de modificar en cada registro.
             crearButtonDataGridViewEmpleados()
@@ -220,9 +222,6 @@ Public Class GestionEmpleados
     Private Sub DataGridView_Socios_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView_Empleados.CellClick
         posicionDataGridSeleccionadaEmpleados = BindingContext(midataset, "Empleados").Position
         Button_Eliminar.Enabled = True
-
-
-
     End Sub
 
     'Metodo evento que capta la puslación en la celda relativa al botón. 
@@ -278,19 +277,6 @@ Public Class GestionEmpleados
         Me.Close()
     End Sub
 
-    ' Actualizamos el dataGridView
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        midataset.Clear()
-
-
-        ' Cargar la memoria del cache con datos.
-        adaptador.Fill(midataset, "Empleados")
-
-        ' cargar en el datagridview, le decimos de donde sacamos los datos
-        DataGridView_Empleados.DataSource = midataset
-        DataGridView_Empleados.DataMember = "Empleados"
-    End Sub
-
     ' Método que se ejecuta al ser pulsado el botón "Eliminar"
     Private Sub Button_Eliminar_Click(sender As Object, e As EventArgs) Handles Button_Eliminar.Click
         Try
@@ -339,11 +325,365 @@ Public Class GestionEmpleados
         TextBox_NOMBRE.Clear()
         TextBox_APELLIDOS.Clear()
         TextBox_CORREO.Clear()
+
+        ' Actualizamos el datagridview reiniciandolo
+        midataset.Clear()
+
+        ' Cargar la memoria del cache con datos.
+        adaptador.Fill(midataset, "Empleados")
+
+        ' cargar en el datagridview, le decimos de donde sacamos los datos
+        DataGridView_Empleados.DataSource = midataset
+        DataGridView_Empleados.DataMember = "Empleados"
+
     End Sub
 
     ' Método que se ejecuta cuando el botón "Buscar" es pulsado.
     ' Se encarga de buscar en base a los contenidos de los textBoxes
     Private Sub Button_Buscar_Click(sender As Object, e As EventArgs) Handles Button_Buscar.Click
+
+        ' Comprobamos que haya datos en los textBoxes (por lo menos en uno de ellos)
+        If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text = "" Then
+            MsgBox("No se puede buscar , debe rellenar al menos una caja con datos.", MsgBoxStyle.OkOnly, "Error al buscar.")
+        Else
+
+            ' Si se ha introducido todo
+            If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text <> "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE NumeroDeSocio LIKE? and Nombre LIKE? and Apellidos LIKE? and Telefono LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
+                comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
+                comando.Parameters.Add("@var4", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Empleados")
+
+                DataGridView_Empleados.DataSource = midataset
+
+                DataGridView_Empleados.DataMember = "Empleados"
+            End If
+
+
+
+            ' DNI Nombre Apellido
+            If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text = "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE NumeroDeSocio LIKE? and Nombre LIKE? and Apellidos LIKE? ", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
+                comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Empleados")
+
+                DataGridView_Empleados.DataSource = midataset
+
+                DataGridView_Empleados.DataMember = "Empleados"
+            End If
+
+            ' Nombre Apellidos Correo
+            If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text <> "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE Nombre LIKE? and Apellidos LIKE? and Telefono LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
+                comando.Parameters.Add("@var3", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Empleados")
+
+                DataGridView_Empleados.DataSource = midataset
+
+                DataGridView_Empleados.DataMember = "Empleados"
+            End If
+
+            ' DNI Apellidos Correo
+            If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text <> "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE NumeroDeSocio LIKE? and Apellidos LIKE? and Telefono LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
+                comando.Parameters.Add("@var3", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Empleados")
+
+                DataGridView_Empleados.DataSource = midataset
+
+                DataGridView_Empleados.DataMember = "Empleados"
+            End If
+
+            ' DNI Nombre Correo
+            If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text <> "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE NumeroDeSocio LIKE? and Nombre LIKE? and Telefono LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
+                comando.Parameters.Add("@var3", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Empleados")
+
+                DataGridView_Empleados.DataSource = midataset
+
+                DataGridView_Empleados.DataMember = "Empleados"
+            End If
+
+            ' DNI Nombre
+            If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text = "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE NumeroDeSocio LIKE? and Nombre LIKE? ", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Empleados")
+
+                DataGridView_Empleados.DataSource = midataset
+
+                DataGridView_Empleados.DataMember = "Empleados"
+            End If
+
+            ' DNI Apellidos
+            If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text = "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE NumeroDeSocio LIKE? and Apellidos LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Empleados")
+
+                DataGridView_Empleados.DataSource = midataset
+
+                DataGridView_Empleados.DataMember = "Empleados"
+            End If
+
+            ' Nombre Apellidos
+            If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text = "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE Nombre LIKE? and Apellidos LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Empleados")
+
+                DataGridView_Empleados.DataSource = midataset
+
+                DataGridView_Empleados.DataMember = "Empleados"
+            End If
+
+            ' Apellidos Correo
+            If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text <> "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE Apellidos LIKE? and Telefono LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Empleados")
+
+                DataGridView_Empleados.DataSource = midataset
+
+                DataGridView_Empleados.DataMember = "Empleados"
+            End If
+
+            ' DNI Correo
+            If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text <> "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE NumeroDeSocio LIKE? and Telefono LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Empleados")
+
+                DataGridView_Empleados.DataSource = midataset
+
+                DataGridView_Empleados.DataMember = "Empleados"
+            End If
+
+            ' Nombre Correo
+            If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text <> "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE Nombre LIKE? and Telefono LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Empleados")
+
+                DataGridView_Empleados.DataSource = midataset
+
+                DataGridView_Empleados.DataMember = "Empleados"
+            End If
+
+            ' DNI
+            If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text = "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE NumeroDeSocio LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Empleados")
+
+                DataGridView_Empleados.DataSource = midataset
+
+                DataGridView_Empleados.DataMember = "Empleados"
+            End If
+
+            ' Nombre
+            If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text = "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE Nombre LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Empleados")
+
+                DataGridView_Empleados.DataSource = midataset
+
+                DataGridView_Empleados.DataMember = "Empleados"
+            End If
+
+            ' Apellido
+            If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text = "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE Apellidos LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Empleados")
+
+                DataGridView_Empleados.DataSource = midataset
+
+                DataGridView_Empleados.DataMember = "Empleados"
+            End If
+
+            ' Correo
+            If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text <> "" Then
+                Dim ds As New DataSet
+
+                Dim cb As New OleDbDataAdapter
+
+                Dim comando As New OleDbCommand("Select * from Empleados WHERE Telefono LIKE?", conexion)
+
+                cb.SelectCommand = comando
+
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
+
+                midataset.Clear()
+
+                cb.Fill(midataset, "Empleados")
+
+                DataGridView_Empleados.DataSource = midataset
+
+                DataGridView_Empleados.DataMember = "Empleados"
+            End If
+
+            ' MsgBox("Busqueda fallida...")
+
+        End If ' IF 1
 
     End Sub
 End Class

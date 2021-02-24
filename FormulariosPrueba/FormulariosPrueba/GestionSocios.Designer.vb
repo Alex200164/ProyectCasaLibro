@@ -51,7 +51,6 @@ Partial Class GestionSocios
         Me.TextBox_Apellidos = New System.Windows.Forms.TextBox()
         Me.TextBox_Nombre = New System.Windows.Forms.TextBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.Button_Eliminar = New System.Windows.Forms.Button()
         Me.DataGridView_Socios = New System.Windows.Forms.DataGridView()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
@@ -311,7 +310,6 @@ Partial Class GestionSocios
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Controls.Add(Me.GroupBox1)
         Me.Panel1.Controls.Add(Me.Button_Eliminar)
         Me.Panel1.Controls.Add(Me.Button_Annadir)
@@ -321,15 +319,6 @@ Partial Class GestionSocios
         Me.Panel1.Size = New System.Drawing.Size(959, 480)
         Me.Panel1.TabIndex = 50
         Me.Panel1.TabStop = True
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(646, 161)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(93, 27)
-        Me.Button1.TabIndex = 184
-        Me.Button1.Text = "Actualizar"
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'Button_Eliminar
         '
@@ -425,6 +414,5 @@ Partial Class GestionSocios
     Friend WithEvents TextBox_NumeroSocioOCULTO As TextBox
     Friend WithEvents TextBox_Apellidos As TextBox
     Friend WithEvents TextBox_Nombre As TextBox
-    Friend WithEvents Button1 As Button
     Friend WithEvents TextBox_NumeroSocio As TextBox
 End Class
