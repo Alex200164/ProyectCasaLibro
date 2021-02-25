@@ -13,8 +13,6 @@ Public Class GestionSociosInforme
 
                 da.SelectCommand = cmd
 
-
-
                 da.Fill(dt)
 
             End Using
@@ -24,7 +22,7 @@ Public Class GestionSociosInforme
 
         With Me.ReportViewer1.LocalReport
             .DataSources.Clear()
-            .ReportPath = ruta '"GestionSociosInforme.rdlc"
+            .ReportPath = "GestionSociosInforme.rdlc"
             .DataSources.Add(New Microsoft.Reporting.WinForms.ReportDataSource("DataSetSocios", dt))
         End With
         Me.ReportViewer1.RefreshReport()
