@@ -24,11 +24,11 @@ Public Class MenuPrincipal
         'Especifica que el tipo de posicion de arranque será manual para Gestión Socios
         GestionSocios.StartPosition = FormStartPosition.Manual
 
-        'Varaible tipo Integer que calculará la posición vertical en la que ubicará el nuevo formulario
+        ' Variable tipo Integer que calculará la posición vertical en la que ubicará el nuevo formulario
         Dim a As Integer
         a = My.Computer.Screen.Bounds.Size.Width - (My.Computer.Screen.Bounds.Size.Width * 0.97)
 
-        'Varaible tipo Integer que calculará la posición horizontal en la que ubicará el nuevo formulario
+        ' Variable tipo Integer que calculará la posición horizontal en la que ubicará el nuevo formulario
         Dim b As Integer
         b = My.Computer.Screen.Bounds.Size.Width - (My.Computer.Screen.Bounds.Size.Width * 0.97)
 
@@ -54,7 +54,9 @@ Public Class MenuPrincipal
             ' Cargar la memoria del cache con datos.
             adaptador.Fill(midataset, "Socios")
 
+            ' Re-posicionamos el formulario donde lo queremos
             posicionarFormulariosGestiones(btn_Name)
+
             ' Mostramos el formulario de gestión de libros
             GestionLibros.Show()
             ' Ocultamos el formulario de menú principal
@@ -74,7 +76,9 @@ Public Class MenuPrincipal
             ' Cargar la memoria del cache con datos.
             adaptador.Fill(midataset, "Socios")
 
+            ' Re-posicionamos el formulario donde lo queremos
             posicionarFormulariosGestiones(btn_Name)
+
             ' Mostramos el formulario de gestión de papeleria
             GestionArticulos.Show()
             ' Ocultamos el formulario de menú principal
@@ -94,7 +98,9 @@ Public Class MenuPrincipal
             ' Cargar la memoria del cache con datos.
             adaptador.Fill(midataset, "Socios")
 
+            ' Re-posicionamos el formulario donde lo queremos
             posicionarFormulariosGestiones(btn_Name)
+
             ' Mostramos el formulario de gestión de socios
             GestionSocios.Show()
             ' Ocultamos el formulario de menú principal
@@ -115,7 +121,9 @@ Public Class MenuPrincipal
             ' Cargar la memoria del cache con datos.
             adaptador.Fill(midataset, "Socios")
 
+            ' Re-posicionamos el formulario donde lo queremos
             posicionarFormulariosGestiones(btn_Name)
+
             ' Mostramos el formulario de gestión de empleados
             GestionEmpleados.Show()
             ' Ocultamos el formulario de menú principal
@@ -125,7 +133,7 @@ Public Class MenuPrincipal
         End Try
     End Sub
 
-    ' Método que se ejecuta si el botón CerrarSesion es pulsado, mostrando de nuevo el formulario de inicio de sesión
+    ' Método que se ejecuta si el botón "CerrarSesion" es pulsado, mostrando de nuevo el formulario de inicio de sesión
     Private Sub Button_CerrarSesion_Click(sender As Object, e As EventArgs) Handles Button_CerrarSesion.Click
         ' Mostramos el formulario de inicio de sesión
         InicioSesion.Show()
