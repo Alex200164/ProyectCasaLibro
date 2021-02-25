@@ -995,4 +995,8 @@ Public Class GestionSocios
     Private Sub VerLaAyudaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerLaAyudaToolStripMenuItem.Click
         Help.ShowHelp(Me, "CHM\LaCasaDelLibro.chm", "")
     End Sub
+
+    Private Sub GenerarInformeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GenerarInformeToolStripMenuItem.Click
+        GestionSociosInforme.ShowDialog()
+    End Sub
 End Class

@@ -110,7 +110,6 @@ E:\REPO\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\bin\Debug\SqlServer
 E:\REPO\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\bin\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
 E:\REPO\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\bin\Debug\SqlServerTypes\x86\msvcr120.dll
 E:\REPO\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\bin\Debug\SqlServerTypes\x86\SqlServerSpatial140.dll
-E:\REPO\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\bin\Debug\cas_lib_dib.accdb
 E:\REPO\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\bin\Debug\FormulariosPrueba.exe.config
 E:\REPO\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\bin\Debug\FormulariosPrueba.exe
 E:\REPO\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\bin\Debug\FormulariosPrueba.pdb

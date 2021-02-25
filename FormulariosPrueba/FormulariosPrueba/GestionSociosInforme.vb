@@ -3,13 +3,9 @@ Imports System.Data.OleDb
 
 Public Class GestionSociosInforme
 
-    ' Especificamos la base de datos a la que nos vamos a conectar.
-    Public conexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=cas_lib_dib.accdb")
-    ' Al adaptador le asignamos la conexion que acabamos de realizar y una consulta
-    Public adaptador As New OleDbDataAdapter("Select * from Socios", conexion)
-
     Private Sub GestionSociosInforme_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        Dim dt As New DataTable
         Using con As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=cas_lib_dib.accdb")
             con.Open()
             Using cmd As New OleDbCommand("Select * from Socios", con)
@@ -17,24 +13,21 @@ Public Class GestionSociosInforme
 
                 da.SelectCommand = cmd
 
-                Dim dt As New DataSet
+
 
                 da.Fill(dt)
 
             End Using
         End Using
 
+        Dim ruta As String
+
         With Me.ReportViewer1.LocalReport
             .DataSources.Clear()
-            .ReportPath = "GestionSociosInforme.rdlc"
+            .ReportPath = ruta '"GestionSociosInforme.rdlc"
+            .DataSources.Add(New Microsoft.Reporting.WinForms.ReportDataSource("DataSetSocios", dt))
         End With
-
-
-
         Me.ReportViewer1.RefreshReport()
     End Sub
 
-    Private Sub ReportViewer1_Load(sender As Object, e As EventArgs) Handles ReportViewer1.Load
-
-    End Sub
 End Class

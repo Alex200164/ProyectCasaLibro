@@ -58,6 +58,8 @@ Partial Class GestionSocios
         Me.HelpProvider1 = New System.Windows.Forms.HelpProvider()
         Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.ReportViewer2 = New Microsoft.Reporting.WinForms.ReportViewer()
+        Me.InformeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GenerarInformeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStripPagPrin.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -184,7 +186,7 @@ Partial Class GestionSocios
         'MenuStripPagPrin
         '
         Me.MenuStripPagPrin.BackColor = System.Drawing.Color.Transparent
-        Me.MenuStripPagPrin.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HerramientasToolStripMenuItem, Me.GestiónLibrosToolStripMenuItem, Me.GestiónArticulosToolStripMenuItem, Me.GestiónEmpleadosToolStripMenuItem, Me.AyudaToolStripMenuItem})
+        Me.MenuStripPagPrin.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HerramientasToolStripMenuItem, Me.GestiónLibrosToolStripMenuItem, Me.GestiónArticulosToolStripMenuItem, Me.GestiónEmpleadosToolStripMenuItem, Me.AyudaToolStripMenuItem, Me.InformeToolStripMenuItem})
         Me.MenuStripPagPrin.Location = New System.Drawing.Point(0, 0)
         Me.MenuStripPagPrin.Name = "MenuStripPagPrin"
         Me.MenuStripPagPrin.Size = New System.Drawing.Size(984, 24)
@@ -364,7 +366,7 @@ Partial Class GestionSocios
         'ReportViewer1
         '
         Me.ReportViewer1.Location = New System.Drawing.Point(0, 0)
-        Me.ReportViewer1.Name = "ReportViewer"
+        Me.ReportViewer1.Name = "ReportViewer1"
         Me.ReportViewer1.ServerReport.BearerToken = Nothing
         Me.ReportViewer1.Size = New System.Drawing.Size(396, 246)
         Me.ReportViewer1.TabIndex = 0
@@ -372,10 +374,23 @@ Partial Class GestionSocios
         'ReportViewer2
         '
         Me.ReportViewer2.Location = New System.Drawing.Point(0, 0)
-        Me.ReportViewer2.Name = "ReportViewer"
+        Me.ReportViewer2.Name = "ReportViewer2"
         Me.ReportViewer2.ServerReport.BearerToken = Nothing
         Me.ReportViewer2.Size = New System.Drawing.Size(396, 246)
         Me.ReportViewer2.TabIndex = 0
+        '
+        'InformeToolStripMenuItem
+        '
+        Me.InformeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GenerarInformeToolStripMenuItem})
+        Me.InformeToolStripMenuItem.Name = "InformeToolStripMenuItem"
+        Me.InformeToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
+        Me.InformeToolStripMenuItem.Text = "Informe"
+        '
+        'GenerarInformeToolStripMenuItem
+        '
+        Me.GenerarInformeToolStripMenuItem.Name = "GenerarInformeToolStripMenuItem"
+        Me.GenerarInformeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.GenerarInformeToolStripMenuItem.Text = "Generar Informe"
         '
         'GestionSocios
         '
@@ -437,4 +452,6 @@ Partial Class GestionSocios
     Friend WithEvents HelpProvider1 As HelpProvider
     Friend WithEvents ReportViewer1 As Microsoft.Reporting.WinForms.ReportViewer
     Friend WithEvents ReportViewer2 As Microsoft.Reporting.WinForms.ReportViewer
+    Friend WithEvents InformeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GenerarInformeToolStripMenuItem As ToolStripMenuItem
 End Class

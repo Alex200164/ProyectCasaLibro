@@ -103,11 +103,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="cas_lib_dibDataSet.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>cas_lib_dibDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="GestionArticulos.Designer.vb">
       <DependentUpon>GestionArticulos.vb</DependentUpon>
     </Compile>
@@ -280,17 +275,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="cas_lib_dibDataSet.xsc">
-      <DependentUpon>cas_lib_dibDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="cas_lib_dibDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>cas_lib_dibDataSet.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="cas_lib_dibDataSet.xss">
-      <DependentUpon>cas_lib_dibDataSet.xsd</DependentUpon>
-    </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -371,9 +355,6 @@
     <None Include="Resources\Webp.net-resizeimage%286%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="cas_lib_dib.accdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="SqlServerTypes\Loader.cs" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">

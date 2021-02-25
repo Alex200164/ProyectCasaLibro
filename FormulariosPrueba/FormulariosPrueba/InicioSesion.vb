@@ -16,7 +16,7 @@ Public Class InicioSesion
         inicializarPantalla()
 
         ' Especificamos los valores de nuestra barra de progreso
-        ToolStripProgressBar_InicioSesion.Step = 3 'Indicamos que vamos a aumentarlo de uno en uno
+        ToolStripProgressBar_InicioSesion.Step = 10 'Indicamos que vamos a aumentarlo de uno en uno
         ToolStripProgressBar_InicioSesion.Maximum = 100 ' Indicamos el máximo
         ToolStripProgressBar_InicioSesion.Minimum = 0 ' Indicamos el minimo
         ToolStripProgressBar_InicioSesion.Value = 0 ' Indicamos el valor inicial
@@ -56,7 +56,7 @@ Public Class InicioSesion
     ' nos lleva al menu principal.
     Private Sub Button_InicioSesion_Click(sender As Object, e As EventArgs) Handles Button_InicioSesion.Click
         'Donde confirmaremos la veracidad de los datos de inicio de sesion 
-        VerificarLogeo(TextBox_Usuario.Text, TextBox_Contraseña.Text)
+        ' VerificarLogeo(TextBox_Usuario.Text, TextBox_Contraseña.Text)
 
 
         ' Damos comienzo al timer
