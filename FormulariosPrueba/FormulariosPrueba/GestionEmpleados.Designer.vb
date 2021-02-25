@@ -298,43 +298,46 @@ Partial Class GestionEmpleados
         'GestiónLibrosToolStripMenuItem
         '
         Me.GestiónLibrosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónLibrosToolStripMenuItem1})
+        Me.GestiónLibrosToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.GestiónLibrosToolStripMenuItem.Name = "GestiónLibrosToolStripMenuItem"
-        Me.GestiónLibrosToolStripMenuItem.Size = New System.Drawing.Size(51, 20)
+        Me.GestiónLibrosToolStripMenuItem.Size = New System.Drawing.Size(53, 20)
         Me.GestiónLibrosToolStripMenuItem.Text = "Libros"
         '
         'GestiónLibrosToolStripMenuItem1
         '
         Me.GestiónLibrosToolStripMenuItem1.Image = Global.FormulariosPrueba.My.Resources.Resources.libros
         Me.GestiónLibrosToolStripMenuItem1.Name = "GestiónLibrosToolStripMenuItem1"
-        Me.GestiónLibrosToolStripMenuItem1.Size = New System.Drawing.Size(165, 22)
+        Me.GestiónLibrosToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
         Me.GestiónLibrosToolStripMenuItem1.Text = "Gestión de Libros"
         '
         'GestiónArticulosToolStripMenuItem
         '
         Me.GestiónArticulosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónArticulosToolStripMenuItem1})
+        Me.GestiónArticulosToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.GestiónArticulosToolStripMenuItem.Name = "GestiónArticulosToolStripMenuItem"
-        Me.GestiónArticulosToolStripMenuItem.Size = New System.Drawing.Size(66, 20)
+        Me.GestiónArticulosToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.GestiónArticulosToolStripMenuItem.Text = "Articulos"
         '
         'GestiónArticulosToolStripMenuItem1
         '
         Me.GestiónArticulosToolStripMenuItem1.Image = Global.FormulariosPrueba.My.Resources.Resources.articulos
         Me.GestiónArticulosToolStripMenuItem1.Name = "GestiónArticulosToolStripMenuItem1"
-        Me.GestiónArticulosToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.GestiónArticulosToolStripMenuItem1.Size = New System.Drawing.Size(182, 22)
         Me.GestiónArticulosToolStripMenuItem1.Text = "Gestión de Articulos"
         '
         'GestiónSociosToolStripMenuItem
         '
         Me.GestiónSociosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónSociosToolStripMenuItem1})
+        Me.GestiónSociosToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.GestiónSociosToolStripMenuItem.Name = "GestiónSociosToolStripMenuItem"
-        Me.GestiónSociosToolStripMenuItem.Size = New System.Drawing.Size(53, 20)
+        Me.GestiónSociosToolStripMenuItem.Size = New System.Drawing.Size(56, 20)
         Me.GestiónSociosToolStripMenuItem.Text = "Socios"
         '
         'GestiónSociosToolStripMenuItem1
         '
         Me.GestiónSociosToolStripMenuItem1.Image = Global.FormulariosPrueba.My.Resources.Resources.socios
         Me.GestiónSociosToolStripMenuItem1.Name = "GestiónSociosToolStripMenuItem1"
-        Me.GestiónSociosToolStripMenuItem1.Size = New System.Drawing.Size(167, 22)
+        Me.GestiónSociosToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
         Me.GestiónSociosToolStripMenuItem1.Text = "Gestión de Socios"
         '
         'AyudaToolStripMenuItem

@@ -81,7 +81,7 @@ Partial Class GestionSocios
         Me.CalculadoraToolStripMenuItem.Image = CType(resources.GetObject("CalculadoraToolStripMenuItem.Image"), System.Drawing.Image)
         Me.CalculadoraToolStripMenuItem.Name = "CalculadoraToolStripMenuItem"
         Me.CalculadoraToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D1), System.Windows.Forms.Keys)
-        Me.CalculadoraToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.CalculadoraToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.CalculadoraToolStripMenuItem.Text = "Calculadora"
         '
         'BlocNotasToolStripMenuItem
@@ -89,7 +89,7 @@ Partial Class GestionSocios
         Me.BlocNotasToolStripMenuItem.Image = CType(resources.GetObject("BlocNotasToolStripMenuItem.Image"), System.Drawing.Image)
         Me.BlocNotasToolStripMenuItem.Name = "BlocNotasToolStripMenuItem"
         Me.BlocNotasToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D2), System.Windows.Forms.Keys)
-        Me.BlocNotasToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.BlocNotasToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.BlocNotasToolStripMenuItem.Text = "Bloc Notas"
         '
         'SalirToolStripMenuItem
@@ -97,7 +97,7 @@ Partial Class GestionSocios
         Me.SalirToolStripMenuItem.Image = CType(resources.GetObject("SalirToolStripMenuItem.Image"), System.Drawing.Image)
         Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
         Me.SalirToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
-        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.SalirToolStripMenuItem.Text = "Salir..."
         '
         'Label_Autor
@@ -197,48 +197,52 @@ Partial Class GestionSocios
         'GestiónLibrosToolStripMenuItem
         '
         Me.GestiónLibrosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónLibrosToolStripMenuItem1})
+        Me.GestiónLibrosToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.GestiónLibrosToolStripMenuItem.Name = "GestiónLibrosToolStripMenuItem"
-        Me.GestiónLibrosToolStripMenuItem.Size = New System.Drawing.Size(51, 20)
+        Me.GestiónLibrosToolStripMenuItem.Size = New System.Drawing.Size(53, 20)
         Me.GestiónLibrosToolStripMenuItem.Text = "Libros"
         '
         'GestiónLibrosToolStripMenuItem1
         '
         Me.GestiónLibrosToolStripMenuItem1.Image = Global.FormulariosPrueba.My.Resources.Resources.libros
         Me.GestiónLibrosToolStripMenuItem1.Name = "GestiónLibrosToolStripMenuItem1"
-        Me.GestiónLibrosToolStripMenuItem1.Size = New System.Drawing.Size(165, 22)
+        Me.GestiónLibrosToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
         Me.GestiónLibrosToolStripMenuItem1.Text = "Gestión de Libros"
         '
         'GestiónArticulosToolStripMenuItem
         '
         Me.GestiónArticulosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónArticulosToolStripMenuItem1})
+        Me.GestiónArticulosToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.GestiónArticulosToolStripMenuItem.Name = "GestiónArticulosToolStripMenuItem"
-        Me.GestiónArticulosToolStripMenuItem.Size = New System.Drawing.Size(66, 20)
+        Me.GestiónArticulosToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.GestiónArticulosToolStripMenuItem.Text = "Articulos"
         '
         'GestiónArticulosToolStripMenuItem1
         '
         Me.GestiónArticulosToolStripMenuItem1.Image = Global.FormulariosPrueba.My.Resources.Resources.articulos
         Me.GestiónArticulosToolStripMenuItem1.Name = "GestiónArticulosToolStripMenuItem1"
-        Me.GestiónArticulosToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.GestiónArticulosToolStripMenuItem1.Size = New System.Drawing.Size(182, 22)
         Me.GestiónArticulosToolStripMenuItem1.Text = "Gestión de Articulos"
         '
         'GestiónEmpleadosToolStripMenuItem
         '
         Me.GestiónEmpleadosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónEmpleadosToolStripMenuItem1})
+        Me.GestiónEmpleadosToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.GestiónEmpleadosToolStripMenuItem.Name = "GestiónEmpleadosToolStripMenuItem"
-        Me.GestiónEmpleadosToolStripMenuItem.Size = New System.Drawing.Size(77, 20)
+        Me.GestiónEmpleadosToolStripMenuItem.Size = New System.Drawing.Size(82, 20)
         Me.GestiónEmpleadosToolStripMenuItem.Text = "Empleados"
         '
         'GestiónEmpleadosToolStripMenuItem1
         '
         Me.GestiónEmpleadosToolStripMenuItem1.Image = Global.FormulariosPrueba.My.Resources.Resources.empleados
         Me.GestiónEmpleadosToolStripMenuItem1.Name = "GestiónEmpleadosToolStripMenuItem1"
-        Me.GestiónEmpleadosToolStripMenuItem1.Size = New System.Drawing.Size(191, 22)
+        Me.GestiónEmpleadosToolStripMenuItem1.Size = New System.Drawing.Size(199, 22)
         Me.GestiónEmpleadosToolStripMenuItem1.Text = "Gestión de Empleados"
         '
         'InformeToolStripMenuItem
         '
         Me.InformeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GenerarInformeToolStripMenuItem})
+        Me.InformeToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.InformeToolStripMenuItem.Name = "InformeToolStripMenuItem"
         Me.InformeToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
         Me.InformeToolStripMenuItem.Text = "Informe"
@@ -246,7 +250,7 @@ Partial Class GestionSocios
         'GenerarInformeToolStripMenuItem
         '
         Me.GenerarInformeToolStripMenuItem.Name = "GenerarInformeToolStripMenuItem"
-        Me.GenerarInformeToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.GenerarInformeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.GenerarInformeToolStripMenuItem.Text = "Generar Informe"
         '
         'GroupBox1
