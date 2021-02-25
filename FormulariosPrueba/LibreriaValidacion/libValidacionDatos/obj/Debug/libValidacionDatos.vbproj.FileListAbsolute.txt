@@ -38,3 +38,13 @@ E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROL
 E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libreriaValidacion.xml
 E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libreriaValidacion.pdb
 E:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libValidacionDatos.vbprojAssemblyReference.cache
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\bin\Debug\libreriaValidacion.dll
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\bin\Debug\libreriaValidacion.pdb
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\bin\Debug\libreriaValidacion.xml
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libValidacionDatos.vbprojAssemblyReference.cache
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libreriaValidacion.Resources.resources
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libValidacionDatos.vbproj.GenerateResource.cache
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libValidacionDatos.vbproj.CoreCompileInputs.cache
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libreriaValidacion.dll
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libreriaValidacion.xml
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libreriaValidacion.pdb

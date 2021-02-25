@@ -1,6 +1,9 @@
 ﻿' Necesitamos importar el módelo de base de datos que vamos a utilizar, este es de access.
 Imports System.Data.OleDb
 
+' No hace falta hacer imports libValidaciones para instanciar sus clases porque está incluida en el proyecto.
+Imports System.IO
+
 Public Class GestionLibrosAltas
 
     ' Especificamos la base de datos a la que nos vamos a conectar.
@@ -61,6 +64,68 @@ Public Class GestionLibrosAltas
             TextBox_Plazaedicion.Text = "" Or TextBox_Traductor.Text = "" Or TextBox_Formato.Text = "" Or TextBox_Precio.Text = "" Or TextBox_Stock.Text = "" Then
             MsgBox("No se puede dar de alta , debe rellenar todos los datos.", MsgBoxStyle.OkOnly, "Error al dar de alta.")
         Else
+
+
+            ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
+            ' Instanciamos la clase
+            Dim validarCampos As New libreriaValidacion.Validacion
+
+            Dim resultado1 As Boolean = validarCampos.validarISBN(TextBox_ISBN.Text, 2)
+            Dim resultado2 As Boolean = validarCampos.validarTelefono(TextBox_Titulo.Text, 2)
+            Dim resultado3 As Boolean = validarCampos.validarNombre(TextBox_Autor.Text, 1)
+            Dim resultado4 As Boolean = validarCampos.validarNombre(TextBox_Numeropags.Text, 2)
+            Dim resultado5 As Boolean = validarCampos.validarCorreo(TextBox_Editorial.Text, 1)
+            Dim resultado6 As Boolean = validarCampos.validarCorreo(TextBox_Idioma.Text, 1)
+            Dim resultado7 As Boolean = validarCampos.validarCorreo(TextBox_Encuadernacion.Text, 1)
+            Dim resultado8 As Boolean = validarCampos.validarCorreo(TextBox_Annoedicion.Text, 1)
+            Dim resultado9 As Boolean = validarCampos.validarCorreo(TextBox_Plazaedicion.Text, 1)
+            Dim resultado10 As Boolean = validarCampos.validarCorreo(TextBox_Traductor.Text, 1)
+            Dim resultado11 As Boolean = validarCampos.validarCorreo(TextBox_Formato.Text, 1)
+            Dim resultado12 As Boolean = validarCampos.validarCorreo(TextBox_Precio.Text, 1)
+            Dim resultado13 As Boolean = validarCampos.validarCorreo(TextBox_Stock.Text, 1)
+
+
+            If resultado1 = False Then
+                'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                Exit Sub
+            ElseIf resultado2 = False Then
+                'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                Exit Sub
+            ElseIf resultado3 = False Then
+                'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                Exit Sub
+            ElseIf resultado4 = False Then
+                'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                Exit Sub
+            ElseIf resultado5 = False Then
+                'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                Exit Sub
+            ElseIf resultado6 = False Then
+                'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                Exit Sub
+            ElseIf resultado7 = False Then
+                'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                Exit Sub
+            ElseIf resultado8 = False Then
+                'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                Exit Sub
+            ElseIf resultado9 = False Then
+                'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                Exit Sub
+            ElseIf resultado10 = False Then
+                'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                Exit Sub
+            ElseIf resultado11 = False Then
+                'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                Exit Sub
+            ElseIf resultado12 = False Then
+                'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                Exit Sub
+            ElseIf resultado13 = False Then
+                'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                Exit Sub
+
+            End If
 
             Dim valor As String
             Dim control As Integer = 0
@@ -144,5 +209,12 @@ Public Class GestionLibrosAltas
         TextBox_Formato.Clear()
         TextBox_Precio.Clear()
         TextBox_Stock.Clear()
+    End Sub
+
+    Private Sub TextBox_ISBN_TextChanged(sender As Object, e As EventArgs) Handles TextBox_ISBN.TextChanged
+        ' Instanciamos la clase        
+        Dim validarISBN As New libreriaValidacion.Validacion
+
+        validarISBN.validarISBN(TextBox_ISBN.Text, 1)
     End Sub
 End Class

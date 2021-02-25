@@ -803,4 +803,50 @@ Public Class Validacion
     End Function
 
 
+
+    'Validación de Precio
+
+
+    'Validacion de ISBN
+    Public Function ValidarISBN(codigo As String, tipo As Integer) As Boolean
+        ' Se opta de nuevo por la solución de poner en un String los valores permitidos.
+        Dim charsPosibles As String = "0123456789"
+
+        Dim valido As Boolean = False
+        Dim coincidencias As Integer = 0
+        Dim valorMaximo As Integer
+
+        ' Máxima longitud del valor.
+        valorMaximo = 13
+
+        ' Solo se permiten códigos de hasta 13 números.
+        If codigo.Length > valorMaximo Then
+            MsgBox("Por favor, introduzca un ISBN que sea menor de 13 dígitos", MsgBoxStyle.OkOnly, "Longitud incorrecta.")
+        End If
+
+        For i = 1 To codigo.Length
+            For j = 1 To charsPosibles.Length
+                If (GetChar(codigo, i) <> GetChar(charsPosibles, j)) Then
+
+                Else
+                    ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
+                    ' entonces los datos se validan.
+                    coincidencias = coincidencias + 1
+                End If
+            Next j
+        Next i
+
+        ' Devolvemos si los datos son válidos si se han encontrado tantas coincidencias como caracteres tenga la cadena.
+        If coincidencias = codigo.Length And codigo.Length <= valorMaximo Then
+            valido = True
+        Else
+            MsgBox(" El dato ISBN, no puede contener caracteres que no sean numéricos o símbolos no permitidos, también debe tener una longitud de 13 digitos.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+        End If
+        Return valido
+    End Function
+
+    'Validacion de 
+
+
+
 End Class

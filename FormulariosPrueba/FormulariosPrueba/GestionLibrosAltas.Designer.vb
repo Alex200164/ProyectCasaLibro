@@ -140,7 +140,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Formato.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Formato.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Formato.Location = New System.Drawing.Point(492, 120)
-        Me.TextBox_Formato.MaxLength = 100
+        Me.TextBox_Formato.MaxLength = 15
         Me.TextBox_Formato.Name = "TextBox_Formato"
         Me.TextBox_Formato.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Formato.TabIndex = 11
@@ -151,7 +151,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Precio.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Precio.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Precio.Location = New System.Drawing.Point(492, 148)
-        Me.TextBox_Precio.MaxLength = 100
+        Me.TextBox_Precio.MaxLength = 6
         Me.TextBox_Precio.Name = "TextBox_Precio"
         Me.TextBox_Precio.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Precio.TabIndex = 12
@@ -162,7 +162,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Stock.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Stock.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Stock.Location = New System.Drawing.Point(492, 176)
-        Me.TextBox_Stock.MaxLength = 100
+        Me.TextBox_Stock.MaxLength = 4
         Me.TextBox_Stock.Name = "TextBox_Stock"
         Me.TextBox_Stock.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Stock.TabIndex = 13
@@ -213,7 +213,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Traductor.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Traductor.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Traductor.Location = New System.Drawing.Point(492, 92)
-        Me.TextBox_Traductor.MaxLength = 100
+        Me.TextBox_Traductor.MaxLength = 50
         Me.TextBox_Traductor.Name = "TextBox_Traductor"
         Me.TextBox_Traductor.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Traductor.TabIndex = 10
@@ -224,7 +224,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Plazaedicion.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Plazaedicion.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Plazaedicion.Location = New System.Drawing.Point(492, 64)
-        Me.TextBox_Plazaedicion.MaxLength = 100
+        Me.TextBox_Plazaedicion.MaxLength = 50
         Me.TextBox_Plazaedicion.Name = "TextBox_Plazaedicion"
         Me.TextBox_Plazaedicion.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Plazaedicion.TabIndex = 9
@@ -235,7 +235,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Annoedicion.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Annoedicion.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Annoedicion.Location = New System.Drawing.Point(492, 36)
-        Me.TextBox_Annoedicion.MaxLength = 100
+        Me.TextBox_Annoedicion.MaxLength = 4
         Me.TextBox_Annoedicion.Name = "TextBox_Annoedicion"
         Me.TextBox_Annoedicion.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Annoedicion.TabIndex = 8
@@ -257,7 +257,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Autor.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Autor.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Autor.Location = New System.Drawing.Point(139, 92)
-        Me.TextBox_Autor.MaxLength = 100
+        Me.TextBox_Autor.MaxLength = 50
         Me.TextBox_Autor.Name = "TextBox_Autor"
         Me.TextBox_Autor.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Autor.TabIndex = 3
@@ -268,7 +268,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Numeropags.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Numeropags.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Numeropags.Location = New System.Drawing.Point(139, 120)
-        Me.TextBox_Numeropags.MaxLength = 100
+        Me.TextBox_Numeropags.MaxLength = 4
         Me.TextBox_Numeropags.Name = "TextBox_Numeropags"
         Me.TextBox_Numeropags.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Numeropags.TabIndex = 4
@@ -279,7 +279,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Editorial.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Editorial.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Editorial.Location = New System.Drawing.Point(139, 148)
-        Me.TextBox_Editorial.MaxLength = 100
+        Me.TextBox_Editorial.MaxLength = 50
         Me.TextBox_Editorial.Name = "TextBox_Editorial"
         Me.TextBox_Editorial.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Editorial.TabIndex = 5
@@ -290,7 +290,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Encuadernacion.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Encuadernacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Encuadernacion.Location = New System.Drawing.Point(139, 204)
-        Me.TextBox_Encuadernacion.MaxLength = 100
+        Me.TextBox_Encuadernacion.MaxLength = 20
         Me.TextBox_Encuadernacion.Name = "TextBox_Encuadernacion"
         Me.TextBox_Encuadernacion.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Encuadernacion.TabIndex = 7
@@ -301,7 +301,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Idioma.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Idioma.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Idioma.Location = New System.Drawing.Point(139, 176)
-        Me.TextBox_Idioma.MaxLength = 100
+        Me.TextBox_Idioma.MaxLength = 50
         Me.TextBox_Idioma.Name = "TextBox_Idioma"
         Me.TextBox_Idioma.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Idioma.TabIndex = 6
@@ -363,7 +363,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_ISBN.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_ISBN.Location = New System.Drawing.Point(139, 33)
-        Me.TextBox_ISBN.MaxLength = 100
+        Me.TextBox_ISBN.MaxLength = 13
         Me.TextBox_ISBN.Name = "TextBox_ISBN"
         Me.TextBox_ISBN.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_ISBN.TabIndex = 1
