@@ -50,6 +50,8 @@ Public Class GestionEmpleadosModificaciones
             GestionEmpleados.numeroDeControlBindingModificacionesEmpleados = 1
         End If
 
+        ' Inicializamos la variable de control
+        controlCalculadora = 0
 
         ' Inicializamos la variable asignandole el número de socio inicial
         numDniInicial = GestionEmpleados.DataGridView_Empleados.Item(0, GestionEmpleados.DataGridView_Empleados.CurrentRow.Index).Value
@@ -84,11 +86,14 @@ Public Class GestionEmpleadosModificaciones
         ' Mostramos el formulario "GestionEmpleados".
         GestionEmpleados.Show()
 
+        ' Reiniciamos el valor para la próxima vez
+        controlCalculadora = 0
+
         ' Cerramos este formulario
         Me.Close()
     End Sub
 
-    Dim controlCalculadora As Integer = 0
+    Dim controlCalculadora As Integer
 
     ' Método que se ejecuta cuando es pulsado el botón "Calculadora" del menuStrip
     Private Sub CalculadoraToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculadoraToolStripMenuItem.Click
@@ -129,8 +134,6 @@ Public Class GestionEmpleadosModificaciones
             Dim resultado7 As Boolean = validarNumeroSocio.validarContra(TextBox_CONTRASENNA.Text, 2)
             Dim resultado8 As Boolean = validarNumeroSocio.validarROL(TextBox_ROL.Text, 1)
 
-
-
             If resultado1 = False Then
                 Exit Sub
             ElseIf resultado2 = False Then
@@ -165,7 +168,6 @@ Public Class GestionEmpleadosModificaciones
 
             Dim valor As String
             Dim control As Integer = 0
-            Dim control2 As Integer = 0
 
             ' Comprobamos que la clave primaria no se encuentra ya registrada.
             For contador As Integer = 0 To GestionEmpleados.DataGridView_Empleados.RowCount - 1
@@ -174,11 +176,6 @@ Public Class GestionEmpleadosModificaciones
                 If valor = TextBox_DNI.Text And valor <> numDniInicial Then
                     MsgBox("No puedes introducir un DNI que ya existe en la base de datos.", MsgBoxStyle.OkOnly, "Error, clave duplicada")
                     control = 1
-
-                End If
-
-                If TextBox_DNI.Text = numDniInicial Then
-                    control2 = 1
                 End If
 
             Next
@@ -191,108 +188,51 @@ Public Class GestionEmpleadosModificaciones
                 Dim a As Integer = BindingContext(GestionEmpleados.midataset, "Empleados").Position
                 Dim fila As DataRow = GestionEmpleados.midataset.Tables("Empleados").Rows(a)
 
-                ' Comenzamos la edición
-                fila.BeginEdit()
-                If control2 = 1 Then
+                Try
+                    'Montamos una query parametrizada.
+                    Dim queryParametrizada As String = "UPDATE Empleados SET DNI=?, Nombre=?, Apellidos=?, Correo=?, Telefono=?, Usuario=?, Contrasenna=?, Rol=? WHERE DNI=?"
+                    Using cmd = New OleDbCommand(queryParametrizada, conexion)
+                        conexion.Open()
 
-                Else
-                    fila("DNI") = TextBox_DNI.Text
-                End If
+                        cmd.Parameters.AddWithValue("@p1", TextBox_DNI.Text)
+                        cmd.Parameters.AddWithValue("@p2", TextBox_NOMBRE.Text)
+                        cmd.Parameters.AddWithValue("@p3", TextBox_APELLIDOS.Text)
+                        cmd.Parameters.AddWithValue("@p4", TextBox_CORREO.Text)
+                        cmd.Parameters.AddWithValue("@p5", Convert.ToSingle(TextBox_TELEFONO.Text))
+                        cmd.Parameters.AddWithValue("@p6", TextBox_USUARIO.Text)
+                        cmd.Parameters.AddWithValue("@p7", Convert.ToInt16(TextBox_CONTRASENNA.Text))
+                        cmd.Parameters.AddWithValue("@p8", TextBox_ROL.Text)
 
-                fila("Nombre") = TextBox_NOMBRE.Text
-                fila("Apellidos") = TextBox_APELLIDOS.Text
-                fila("Correo") = TextBox_CORREO.Text
-                fila("Telefono") = TextBox_TELEFONO.Text
-                fila("Usuario") = TextBox_USUARIO.Text
-                fila("Contrasenna") = TextBox_CONTRASENNA.Text
-                fila("Rol") = TextBox_ROL.Text
-                fila.EndEdit()
-                    ' Finalizamos la edición
+                        cmd.Parameters.AddWithValue("@p9", numDniInicial)
 
+                        cmd.ExecuteNonQuery()
 
+                        conexion.Close()
 
-                    GestionEmpleados.adaptador.Update(GestionEmpleados.midataset.Tables("Empleados"))
+                    End Using
 
-                    '' Try
-                    '' Montamos una query parametrizada.
-                    'Dim queryParametrizada As String = "UPDATE Empleados SET DNI=?, Nombre=?, Apellidos=?, Correo=?, Telefono=?, Usuario=?, Contrasenna=?, Rol=? WHERE DNI=?"
-                    'Using cmd = New OleDbCommand(queryParametrizada, conexion)
-                    '    conexion.Open()
-
-                    '    cmd.Transaction.Begin()
-
-                    '    cmd.Parameters.AddWithValue("@p1", TextBox_DNI.Text)
-                    '    cmd.Parameters.AddWithValue("@p2", TextBox_NOMBRE.Text)
-                    '    cmd.Parameters.AddWithValue("@p3", TextBox_APELLIDOS.Text)
-                    '    cmd.Parameters.AddWithValue("@p4", TextBox_CORREO.Text)
-                    '    cmd.Parameters.AddWithValue("@p5", Convert.ToSingle(TextBox_TELEFONO.Text))
-                    '    cmd.Parameters.AddWithValue("@p6", TextBox_USUARIO.Text)
-                    '    cmd.Parameters.AddWithValue("@p7", Convert.ToInt16(TextBox_CONTRASENNA.Text))
-                    '    cmd.Parameters.AddWithValue("@p8", TextBox_ROL.Text)
-
-                    '    cmd.Parameters.AddWithValue("@p9", numDniInicial)
-
-                    '    ' System.FormatException montar try catch System.Data.OleDb.OleDbException
-
-                    '    cmd.ExecuteNonQuery()
-
-
-                    '    cmd.Transaction.Commit()
-
-
-
-
-                    '    conexion.Close()
-
-                    'End Using
-
-                    'Dim queryParametrizada2 As String = "UPDATE Empleados SET Telefono=?, Usuario=? WHERE DNI=?"
-                    'Using cmd2 = New OleDbCommand(queryParametrizada2, conexion)
-
-                    '    conexion.Open()
-
-                    '    cmd2.Parameters.AddWithValue("@p1", Convert.ToSingle(TextBox_TELEFONO.Text))
-                    '    cmd2.Parameters.AddWithValue("@p2", TextBox_USUARIO.Text)
-                    '    cmd2.Parameters.AddWithValue("@p3", numDniInicial)
-
-                    '    cmd2.ExecuteNonQuery()
-
-                    '    conexion.Close()
-
-                    'End Using
-
-                    'Dim queryParametrizada3 As String = "UPDATE Empleados SET Contrasenna=?, Rol=? WHERE DNI=?"
-                    'Using cmd3 = New OleDbCommand(queryParametrizada3, conexion)
-
-                    '    conexion.Open()
-
-                    '    cmd3.Parameters.AddWithValue("@p1", Convert.ToInt16(TextBox_CONTRASENNA.Text))
-                    '    cmd3.Parameters.AddWithValue("@p2", TextBox_ROL.Text)
-                    '    cmd3.Parameters.AddWithValue("@p3", numDniInicial)
-                    '    'Try
-                    '    cmd3.ExecuteNonQuery()
-                    '        'Catch ex As System.Data.OleDb.OleDbException
-
-                    '        'End Try
-
-                    '        conexion.Close()
-
-                    'End Using
-
-
-                    ' Dim cb As New OleDbCommandBuilder(adaptador)
-                    ' adaptador.UpdateCommand = cb.GetUpdateCommand
-                    'Catch ex As System.InvalidOperationException
+                    'Dim cb As New OleDbCommandBuilder(adaptador)
+                    'adaptador.UpdateCommand = cb.GetUpdateCommand
+                Catch ex As System.InvalidOperationException
                     ' Avisamos del error por mensaje
-                    '  MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
-                    'End Try
+                    MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                Catch ex2 As System.FormatException
+                    ' Avisamos del error por mensaje
+                    MsgBox("El formato de los datos introducidos es incorrecto, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                Catch ex3 As System.Data.OleDb.OleDbException
+                    ' Avisamos del error por mensaje
+                    MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                End Try
 
-                    ' Actualizamos el dataGridView del formulario de gestión principal
-                    GestionEmpleados.midataset.Clear()
+                ' Actualizamos el dataGridView del formulario de gestión principal
+                GestionEmpleados.midataset.Clear()
                     GestionEmpleados.adaptador.Fill(GestionEmpleados.midataset, "Empleados")
 
-                    ' Cerramos la ventana
-                    Me.Close()
+                ' Reiniciamos su valor para la próxima vez
+                controlCalculadora = 0
+
+                ' Cerramos la ventana
+                Me.Close()
 
                     ' Hacer try-catch
                 End If

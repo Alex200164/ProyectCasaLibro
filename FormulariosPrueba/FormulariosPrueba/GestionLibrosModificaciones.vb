@@ -24,11 +24,14 @@ Public Class GestionLibrosModificaciones
         ' Mostramos el formulario "GestionLibros".
         GestionLibros.Show()
 
+        ' Reiniciamos su valor para la próxima vez
+        controlCalculadora = 0
+
         ' Cerramos este formulario
         Me.Close()
     End Sub
 
-    Dim controlCalculadora As Integer = 0
+    Dim controlCalculadora As Integer
 
     ' Método que se ejecuta cuando es pulsado el botón "Calculadora" del menuStrip
     Private Sub CalculadoraToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculadoraToolStripMenuItem.Click
@@ -107,6 +110,9 @@ Public Class GestionLibrosModificaciones
 
         ' Inicializamos la variable asignandole el número de socio inicial
         ISBNInicial = GestionLibros.DataGridView_Libros.Item(0, GestionLibros.DataGridView_Libros.CurrentRow.Index).Value
+
+        ' Inicializamos la variable de control
+        controlCalculadora = 0
 
     End Sub
 
@@ -201,6 +207,9 @@ Public Class GestionLibrosModificaciones
                 ' Actualizamos el dataGridView del formulario de gestión principal
                 GestionLibros.midataset.Clear()
                 GestionLibros.adaptador.Fill(GestionLibros.midataset, "Libros")
+
+                ' Reiniciamos su valor para la próxima vez
+                controlCalculadora = 0
 
                 ' Cerramos la ventana
                 Me.Close()

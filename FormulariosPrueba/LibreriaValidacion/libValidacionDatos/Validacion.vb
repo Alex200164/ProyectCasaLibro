@@ -109,7 +109,7 @@ Public Class Validacion
 
 
 
-    ' Validación de número de socio
+    ' Validación de DNI
     Public Function validarDNI(codigo As String, tipo As Integer) As Boolean
 
         ' Si el tipo es 1, solo se comprueba que no se pase de 8 caracteres y que estos sean solo númericos
@@ -245,8 +245,6 @@ Public Class Validacion
 
     ' Validación de número de teléfono
     Public Function validarTelefono(codigo As String, tipo As Integer) As Boolean
-
-
         ' Se opta de nuevo por la solución de poner en un String los valores permitidos.
         Dim charsPosibles As String = "0123456789"
 
@@ -262,25 +260,53 @@ Public Class Validacion
         'MsgBox("Por favor, introduzca un número de teléfono que sea menor de 8 dígitos", MsgBoxStyle.OkOnly, "Longitud incorrecta.")
         'End If
 
-        For i = 1 To codigo.Length
-            For j = 1 To charsPosibles.Length
-                If (GetChar(codigo, i) <> GetChar(charsPosibles, j)) Then
+        If tipo = 1 Then
 
-                Else
-                    ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
-                    ' entonces los datos se validan.
-                    coincidencias = coincidencias + 1
-                End If
-            Next j
-        Next i
+            For i = 1 To codigo.Length
+                For j = 1 To charsPosibles.Length
+                    If (GetChar(codigo, i) <> GetChar(charsPosibles, j)) Then
 
-        ' Devolvemos si los datos son válidos si se han encontrado tantas coincidencias como caracteres tenga la cadena.
-        If coincidencias = codigo.Length And codigo.Length <= valorMaximo Then
-            valido = True
-        Else
-            MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, también debe tener una longitud de 9 digitos.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                    Else
+                        ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
+                        ' entonces los datos se validan.
+                        coincidencias = coincidencias + 1
+                    End If
+                Next j
+            Next i
+
+            ' Devolvemos si los datos son válidos si se han encontrado tantas coincidencias como caracteres tenga la cadena.
+            If coincidencias = codigo.Length And codigo.Length <= valorMaximo Then
+                valido = True
+            Else
+                MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, también debe tener una longitud de 9 digitos.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+            End If
+            Return valido
+
         End If
-        Return valido
+
+        If tipo = 2 Then
+
+            For i = 1 To codigo.Length
+                For j = 1 To charsPosibles.Length
+                    If (GetChar(codigo, i) <> GetChar(charsPosibles, j)) Then
+
+                    Else
+                        ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
+                        ' entonces los datos se validan.
+                        coincidencias = coincidencias + 1
+                    End If
+                Next j
+            Next i
+
+            ' Devolvemos si los datos son válidos si se han encontrado tantas coincidencias como caracteres tenga la cadena.
+            If coincidencias = codigo.Length And codigo.Length = valorMaximo Then
+                valido = True
+            Else
+                MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, también debe tener una longitud de 9 digitos.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+            End If
+            Return valido
+
+        End If
     End Function
 
     ' Validación de nombre
@@ -348,7 +374,7 @@ Public Class Validacion
     ' Validación de usuario
     Public Function validarUsuario(codigo As String) As Boolean
 
-        Dim charsPosiblesNombre As String = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890-_"
+        Dim charsPosiblesUsuario As String = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890-_"
 
         Dim valido As Boolean = False
         Dim coincidencias As Integer = 0
@@ -357,15 +383,15 @@ Public Class Validacion
         ' Máxima longitud del valor.
         valorMaximo = 30
 
-        ' Solo se permiten usuarios de hasta 50 caracteres.
+        ' Solo se permiten usuarios de hasta 30 caracteres.
         If codigo.Length > valorMaximo Then
-            MsgBox("Por favor, introduzca un nombre que sea menor de 50 caracteres.", MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "Longitud incorrecta.")
+            MsgBox("Por favor, introduzca un usuario que sea menor de 31 caracteres.", MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "Longitud incorrecta.")
         End If
 
 
         For i = 1 To codigo.Length
-            For j = 1 To charsPosiblesNombre.Length
-                If (GetChar(codigo, i) <> GetChar(charsPosiblesNombre, j)) Then
+            For j = 1 To charsPosiblesUsuario.Length
+                If (GetChar(codigo, i) <> GetChar(charsPosiblesUsuario, j)) Then
 
                 Else
                     ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
@@ -383,8 +409,6 @@ Public Class Validacion
         End If
         Return valido
     End Function
-
-
 
     ' Validación de contraseña
     Public Function validarContra(codigo As String, tipo As Integer) As Boolean
@@ -445,8 +469,6 @@ Public Class Validacion
 
     End Function
 
-
-
     ' Validación del ROL
     Public Function validarROL(codigo As String, tipo As Integer) As Boolean
 
@@ -476,7 +498,7 @@ Public Class Validacion
             If coincidencias = codigo.Length And codigo.Length <= valorMaximo Then
                 valido = True
             Else
-                MsgBox(" El rol no puede contener caracteres no permitidos. Debe tener una longitud menor de 20 caracteres", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                MsgBox(" El rol no puede contener caracteres no permitidos. Debe tener una longitud menor de 21 caracteres", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
             End If
             Return valido
         End If
@@ -498,12 +520,10 @@ Public Class Validacion
             If coincidencias = codigo.Length And codigo.Length = valorMaximo Then
                 valido = True
             Else
-                MsgBox(" El rol no puede contener caracteres no permitidos. Debe tener una longitud menor de 20 caracteres", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                MsgBox(" El rol no puede contener caracteres no permitidos. Debe tener una longitud menor de 21 caracteres", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
             End If
             Return valido
         End If
-
-
     End Function
 
 

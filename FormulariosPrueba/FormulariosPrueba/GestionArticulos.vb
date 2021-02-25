@@ -48,6 +48,9 @@ Public Class GestionArticulos
             numeroDeControlBindingModificaciones = 0
             numeroDeControlBindingAltaArticulos = 0
 
+            ' Inicializamos la variable de control
+            controlCalculadora = 0
+
             'Creación en la ultima columna del DataGridView el botón de modificar en cada registro.
             crearButtonDataGridView()
 
@@ -226,7 +229,7 @@ Public Class GestionArticulos
         End If
     End Sub
 
-    Dim controlCalculadora As Integer = 0
+    Dim controlCalculadora As Integer
 
     ' Método que se ejecuta cuando es pulsado el botón "Calculadora" del menuStrip
     Private Sub CalculadoraToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculadoraToolStripMenuItem.Click
@@ -250,9 +253,11 @@ Public Class GestionArticulos
     ' Método que se ejecuta cuando el botón "Salir..." del ToolStrip es pulsado y que nos lleva al formulario "MenuPrincipal"
     Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click
 
+        ' Reiniciamos su valor para la próxima vez
+        controlCalculadora = 0
+
         ' Mostramos el menú principal.
         MenuPrincipal.Show()
-
 
         ' Cerramos este formulario
         Me.Close()

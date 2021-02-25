@@ -65,14 +65,14 @@ Public Class GestionSociosModificaciones
             GestionSocios.numeroDeControlBindingModificaciones = 1
         End If
 
+        ' Inicializamos la variable de control
+        controlCalculadora = 0
 
         ' Inicializamos la variable asignandole el número de socio inicial
         numSocioInicial = GestionSocios.DataGridView_Socios.Item(0, GestionSocios.DataGridView_Socios.CurrentRow.Index).Value
 
 
     End Sub
-
-
 
     ' Método que se ejecuta al pulsarse el botón "Modificar"
     ' Se encarga de modificar los datos ya existentes en la DB
@@ -108,7 +108,9 @@ Public Class GestionSociosModificaciones
                 Exit Sub
             End If
 
+            ' Variable auxiliar
             Dim valor As String
+            ' Variable de control para controlar las primary keys duplicadas
             Dim control As Integer = 0
 
             ' Comprobamos que la clave primaria no se encuentra ya registrada.
@@ -117,17 +119,17 @@ Public Class GestionSociosModificaciones
 
                 If valor = TextBox_NumeroSocio.Text And valor <> numSocioInicial Then
                     MsgBox("No puedes introducir un número de socio que ya existe en la base de datos.", MsgBoxStyle.OkOnly, "Error, clave duplicada")
+                    ' Dado que la primary key que pretendemos introducir ya se encuentra en los registros, cambiamos la variable de control
                     control = 1
                 End If
             Next
-
 
             If control = 0 Then
                 Try
                     ' Montamos una query parametrizada.
                     Dim queryParametrizada As String = "UPDATE Socios SET NumeroDeSocio=?, Nombre=?, Apellidos=?, Telefono=?, Correo=? WHERE NumeroDeSocio=?"
                     Using cmd = New OleDbCommand(queryParametrizada, conexion)
-
+                        ' Abrimos la conexión
                         conexion.Open()
                         cmd.Parameters.AddWithValue("@p1", Convert.ToInt64(TextBox_NumeroSocio.Text))
                         cmd.Parameters.AddWithValue("@p2", TextBox_Nombre.Text)
@@ -138,34 +140,34 @@ Public Class GestionSociosModificaciones
 
                         cmd.ExecuteNonQuery()
 
-                        ' System.FormatException montar try catch
-
+                        ' Cerramos la conexión
                         conexion.Close()
                     End Using
 
-
-                    ' Dim cb As New OleDbCommandBuilder(adaptador)
-                    ' adaptador.UpdateCommand = cb.GetUpdateCommand
                 Catch ex As System.InvalidOperationException
                     ' Avisamos del error por mensaje
                     MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                Catch ex2 As System.Data.OleDb.OleDbException
+                    ' Avisamos del error por mensaje
+                    MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                Catch ex3 As System.FormatException
+                    ' Avisamos del error por mensaje
+                    MsgBox("Uno de los datos tiene un formato incorrecto, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
                 End Try
 
                 ' Actualizamos el dataGridView del formulario de gestión principal
                 GestionSocios.midataset.Clear()
                 GestionSocios.adaptador.Fill(GestionSocios.midataset, "Socios")
 
+                ' Reiniciamos su valor para la próxima vez
+                controlCalculadora = 0
+
                 ' Cerramos la ventana
                 Me.Close()
 
-                ' Hacer try-catch
-                ' 
-
             End If
-
         End If
     End Sub
-
 
     ' #####################################################    Métodos varios    ##########################################################################
 
@@ -175,11 +177,14 @@ Public Class GestionSociosModificaciones
         ' Mostramos el formulario "GestionSocios".
         GestionSocios.Show()
 
+        ' Reiniciamos el valor para la próxima vez
+        controlCalculadora = 0
+
         ' Cerramos este formulario
         Me.Close()
     End Sub
 
-    Dim controlCalculadora As Integer = 0
+    Dim controlCalculadora As Integer
 
     ' Método que se ejecuta cuando es pulsado el botón "Calculadora" del menuStrip
     Private Sub CalculadoraToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculadoraToolStripMenuItem.Click

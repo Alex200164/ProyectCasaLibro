@@ -22,11 +22,14 @@ Public Class GestionSociosAltas
         ' Mostramos el formulario "GestionSocios".
         GestionSocios.Show()
 
+        ' Reiniciamos el valor para la próxima vez
+        controlCalculadora = 0
+
         ' Cerramos este formulario
         Me.Close()
     End Sub
 
-    Dim controlCalculadora As Integer = 0
+    Dim controlCalculadora As Integer
 
     ' Método que se ejecuta cuando es pulsado el botón "Calculadora" del menuStrip
     Private Sub CalculadoraToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculadoraToolStripMenuItem.Click
@@ -106,30 +109,43 @@ Public Class GestionSociosAltas
                 End If
             Next
 
-
             If control = 0 Then
-                ' ####################  1º Preparamos a la base de datos para recibir los datos. ##############################
-                Dim cb As New OleDbCommandBuilder(adaptador)
-                adaptador.InsertCommand = cb.GetInsertCommand
+                Try
+                    ' ####################  1º Preparamos a la base de datos para recibir los datos. ##############################
+                    Dim cb As New OleDbCommandBuilder(adaptador)
+                    adaptador.InsertCommand = cb.GetInsertCommand
 
-                ' ####################  2º Recogemos los datos y los introducimos ##############################
-                Dim drc As DataRowCollection = midataset.Tables("Socios").Rows
-                drc.Add(TextBox_NumeroSocio.Text, TextBox_Nombre.Text, TextBox_Apellidos.Text, TextBox_Telefono.Text, TextBox_Correo.Text)
+                    ' ####################  2º Recogemos los datos y los introducimos ##############################
+                    Dim drc As DataRowCollection = midataset.Tables("Socios").Rows
+                    drc.Add(TextBox_NumeroSocio.Text, TextBox_Nombre.Text, TextBox_Apellidos.Text, TextBox_Telefono.Text, TextBox_Correo.Text)
 
-                adaptador.Update(midataset.Tables("Socios"))
+                    adaptador.Update(midataset.Tables("Socios"))
+                Catch ex As System.InvalidOperationException
+                    ' Avisamos del error por mensaje
+                    MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                Catch ex2 As System.FormatException
+                    ' Avisamos del error por mensaje
+                    MsgBox("El formato de los datos introducidos es incorrecto, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                Catch ex3 As System.Data.OleDb.OleDbException
+                    ' Avisamos del error por mensaje
+                    MsgBox("Algo no ha ido bien, es la sintaxis correcta?, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                Catch ex4 As System.NullReferenceException
+                    ' Avisamos del error por mensaje
+                    MsgBox("Algo no ha ido bien, intentalo de nuevo. Referencia a objeto no establecida como instancia de un objeto.", MsgBoxStyle.OkOnly, "Operación invalida")
+                End Try
+
                 ' ####################  3º Actualizamos el middataset ##############################
                 ' Actualizamos el dataGridView del formulario de gestión principal
                 GestionSocios.midataset.Clear()
                 GestionSocios.adaptador.Fill(GestionSocios.midataset, "Socios")
 
+                ' Reiniciamos su valor para la próxima vez
+                controlCalculadora = 0
+
                 ' Cerramos la ventana
                 Me.Close()
 
-                ' ####################  4º Cambiamos el estado de los botones del menuStrip ##############################
-                ' AltaToolStripMenuItem.Enabled = False
-                ' NuevoToolStripMenuItem.Enabled = True
-
-                'System.NullReferenceException: 'Referencia a objeto no establecida como instancia de un objeto.'
+                ' System.NullReferenceException: 'Referencia a objeto no establecida como instancia de un objeto.'
                 ' System.Data.OleDb.OleDbException: 'Error de sintaxis en la instrucción INSERT INTO.'
             End If
 
@@ -152,6 +168,7 @@ Public Class GestionSociosAltas
         End If
         ' Relacionar los campos de la tabla con los textbox
 
+        controlCalculadora = 0
 
         ' Vaciamos cada textBox de forma individual
         TextBox_NumeroSocio.Clear()

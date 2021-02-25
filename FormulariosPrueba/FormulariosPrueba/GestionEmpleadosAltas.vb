@@ -19,11 +19,14 @@ Public Class GestionEmpleadosAltas
         ' Mostramos el formulario "GestionEmpleados".
         GestionEmpleados.Show()
 
+        ' Reiniciamos el valor para la próxima vez
+        controlCalculadora = 0
+
         ' Cerramos este formulario
         Me.Close()
     End Sub
 
-    Dim controlCalculadora As Integer = 0
+    Dim controlCalculadora As Integer
 
     ' Método que se ejecuta cuando es pulsado el botón "Calculadora" del menuStrip
     Private Sub CalculadoraToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculadoraToolStripMenuItem.Click
@@ -76,6 +79,8 @@ Public Class GestionEmpleadosAltas
             GestionEmpleados.numeroDeControlBindingAltaEmpleados = 1
         End If
 
+        ' Inicializamos la variable de control
+        controlCalculadora = 0
 
         ' Vaciamos cada textBox de forma individual
         TextBox_DNI.Clear()
@@ -86,8 +91,6 @@ Public Class GestionEmpleadosAltas
         TextBox_USUARIO.Clear()
         TextBox_CONTRASENNA.Clear()
         TextBox_ROL.Clear()
-
-
     End Sub
 
     ' Método que se ejecuta cuando el botón "Alta" es pulsado. 
@@ -178,6 +181,9 @@ Public Class GestionEmpleadosAltas
                 ' Catch ex As System.Data.OleDb.OleDbException
                 '    MsgBox("No puedes introducir un DNI que ya existe en la base de datos.", MsgBoxStyle.OkOnly, "Error, clave duplicada")
                 ' End Try
+
+                ' Reiniciamos su valor para la proxima vez
+                controlCalculadora = 0
 
                 ' Cerramos la ventana
                 Me.Close()

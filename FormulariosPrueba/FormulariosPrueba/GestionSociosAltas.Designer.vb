@@ -77,7 +77,7 @@ Partial Class GestionSociosAltas
         Me.CalculadoraToolStripMenuItem.Image = CType(resources.GetObject("CalculadoraToolStripMenuItem.Image"), System.Drawing.Image)
         Me.CalculadoraToolStripMenuItem.Name = "CalculadoraToolStripMenuItem"
         Me.CalculadoraToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D1), System.Windows.Forms.Keys)
-        Me.CalculadoraToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.CalculadoraToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.CalculadoraToolStripMenuItem.Text = "Calculadora"
         '
         'BlocNotasToolStripMenuItem
@@ -85,7 +85,7 @@ Partial Class GestionSociosAltas
         Me.BlocNotasToolStripMenuItem.Image = CType(resources.GetObject("BlocNotasToolStripMenuItem.Image"), System.Drawing.Image)
         Me.BlocNotasToolStripMenuItem.Name = "BlocNotasToolStripMenuItem"
         Me.BlocNotasToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D2), System.Windows.Forms.Keys)
-        Me.BlocNotasToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.BlocNotasToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.BlocNotasToolStripMenuItem.Text = "Bloc Notas"
         '
         'SalirToolStripMenuItem
@@ -93,7 +93,7 @@ Partial Class GestionSociosAltas
         Me.SalirToolStripMenuItem.Image = CType(resources.GetObject("SalirToolStripMenuItem.Image"), System.Drawing.Image)
         Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
         Me.SalirToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
-        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.SalirToolStripMenuItem.Text = "Salir..."
         '
         'AyudaToolStripMenuItem
@@ -159,7 +159,7 @@ Partial Class GestionSociosAltas
         Me.TextBox_Nombre.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Nombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Nombre.Location = New System.Drawing.Point(139, 64)
-        Me.TextBox_Nombre.MaxLength = 100
+        Me.TextBox_Nombre.MaxLength = 50
         Me.TextBox_Nombre.Name = "TextBox_Nombre"
         Me.TextBox_Nombre.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Nombre.TabIndex = 2
@@ -170,7 +170,7 @@ Partial Class GestionSociosAltas
         Me.TextBox_Apellidos.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Apellidos.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Apellidos.Location = New System.Drawing.Point(139, 92)
-        Me.TextBox_Apellidos.MaxLength = 100
+        Me.TextBox_Apellidos.MaxLength = 50
         Me.TextBox_Apellidos.Name = "TextBox_Apellidos"
         Me.TextBox_Apellidos.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Apellidos.TabIndex = 3
@@ -181,7 +181,7 @@ Partial Class GestionSociosAltas
         Me.TextBox_Telefono.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Telefono.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Telefono.Location = New System.Drawing.Point(456, 36)
-        Me.TextBox_Telefono.MaxLength = 100
+        Me.TextBox_Telefono.MaxLength = 9
         Me.TextBox_Telefono.Name = "TextBox_Telefono"
         Me.TextBox_Telefono.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Telefono.TabIndex = 4
@@ -192,7 +192,7 @@ Partial Class GestionSociosAltas
         Me.TextBox_Correo.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Correo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Correo.Location = New System.Drawing.Point(456, 64)
-        Me.TextBox_Correo.MaxLength = 130
+        Me.TextBox_Correo.MaxLength = 120
         Me.TextBox_Correo.Name = "TextBox_Correo"
         Me.TextBox_Correo.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Correo.TabIndex = 5
@@ -223,7 +223,7 @@ Partial Class GestionSociosAltas
         Me.TextBox_NumeroSocio.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_NumeroSocio.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_NumeroSocio.Location = New System.Drawing.Point(139, 33)
-        Me.TextBox_NumeroSocio.MaxLength = 100
+        Me.TextBox_NumeroSocio.MaxLength = 8
         Me.TextBox_NumeroSocio.Name = "TextBox_NumeroSocio"
         Me.TextBox_NumeroSocio.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_NumeroSocio.TabIndex = 1

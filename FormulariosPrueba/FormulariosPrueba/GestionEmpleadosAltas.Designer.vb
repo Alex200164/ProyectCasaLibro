@@ -191,7 +191,7 @@ Partial Class GestionEmpleadosAltas
         Me.TextBox_ROL.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_ROL.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_ROL.Location = New System.Drawing.Point(492, 120)
-        Me.TextBox_ROL.MaxLength = 100
+        Me.TextBox_ROL.MaxLength = 20
         Me.TextBox_ROL.Name = "TextBox_ROL"
         Me.TextBox_ROL.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_ROL.TabIndex = 186
@@ -222,7 +222,7 @@ Partial Class GestionEmpleadosAltas
         Me.TextBox_CONTRASENNA.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_CONTRASENNA.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_CONTRASENNA.Location = New System.Drawing.Point(492, 92)
-        Me.TextBox_CONTRASENNA.MaxLength = 100
+        Me.TextBox_CONTRASENNA.MaxLength = 4
         Me.TextBox_CONTRASENNA.Name = "TextBox_CONTRASENNA"
         Me.TextBox_CONTRASENNA.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_CONTRASENNA.TabIndex = 185
@@ -233,7 +233,7 @@ Partial Class GestionEmpleadosAltas
         Me.TextBox_USUARIO.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_USUARIO.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_USUARIO.Location = New System.Drawing.Point(492, 64)
-        Me.TextBox_USUARIO.MaxLength = 100
+        Me.TextBox_USUARIO.MaxLength = 30
         Me.TextBox_USUARIO.Name = "TextBox_USUARIO"
         Me.TextBox_USUARIO.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_USUARIO.TabIndex = 184
@@ -244,7 +244,7 @@ Partial Class GestionEmpleadosAltas
         Me.TextBox_TELEFONO.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_TELEFONO.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_TELEFONO.Location = New System.Drawing.Point(492, 36)
-        Me.TextBox_TELEFONO.MaxLength = 100
+        Me.TextBox_TELEFONO.MaxLength = 9
         Me.TextBox_TELEFONO.Name = "TextBox_TELEFONO"
         Me.TextBox_TELEFONO.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_TELEFONO.TabIndex = 183
@@ -255,7 +255,7 @@ Partial Class GestionEmpleadosAltas
         Me.TextBox_NOMBRE.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_NOMBRE.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_NOMBRE.Location = New System.Drawing.Point(139, 64)
-        Me.TextBox_NOMBRE.MaxLength = 100
+        Me.TextBox_NOMBRE.MaxLength = 50
         Me.TextBox_NOMBRE.Name = "TextBox_NOMBRE"
         Me.TextBox_NOMBRE.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_NOMBRE.TabIndex = 180
@@ -266,7 +266,7 @@ Partial Class GestionEmpleadosAltas
         Me.TextBox_APELLIDOS.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_APELLIDOS.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_APELLIDOS.Location = New System.Drawing.Point(139, 92)
-        Me.TextBox_APELLIDOS.MaxLength = 100
+        Me.TextBox_APELLIDOS.MaxLength = 50
         Me.TextBox_APELLIDOS.Name = "TextBox_APELLIDOS"
         Me.TextBox_APELLIDOS.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_APELLIDOS.TabIndex = 181
@@ -277,7 +277,7 @@ Partial Class GestionEmpleadosAltas
         Me.TextBox_CORREO.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_CORREO.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_CORREO.Location = New System.Drawing.Point(139, 120)
-        Me.TextBox_CORREO.MaxLength = 100
+        Me.TextBox_CORREO.MaxLength = 120
         Me.TextBox_CORREO.Name = "TextBox_CORREO"
         Me.TextBox_CORREO.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_CORREO.TabIndex = 182
@@ -329,7 +329,7 @@ Partial Class GestionEmpleadosAltas
         Me.TextBox_DNI.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_DNI.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_DNI.Location = New System.Drawing.Point(139, 33)
-        Me.TextBox_DNI.MaxLength = 100
+        Me.TextBox_DNI.MaxLength = 9
         Me.TextBox_DNI.Name = "TextBox_DNI"
         Me.TextBox_DNI.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_DNI.TabIndex = 179

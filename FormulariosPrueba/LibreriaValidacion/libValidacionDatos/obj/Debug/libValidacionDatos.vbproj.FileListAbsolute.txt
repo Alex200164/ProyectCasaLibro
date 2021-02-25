@@ -48,3 +48,13 @@ D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\LibreriaValid
 D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libreriaValidacion.dll
 D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libreriaValidacion.xml
 D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libreriaValidacion.pdb
+E:\REPO\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\bin\Debug\libreriaValidacion.dll
+E:\REPO\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\bin\Debug\libreriaValidacion.pdb
+E:\REPO\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\bin\Debug\libreriaValidacion.xml
+E:\REPO\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libValidacionDatos.vbprojAssemblyReference.cache
+E:\REPO\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libreriaValidacion.Resources.resources
+E:\REPO\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libValidacionDatos.vbproj.GenerateResource.cache
+E:\REPO\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libValidacionDatos.vbproj.CoreCompileInputs.cache
+E:\REPO\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libreriaValidacion.dll
+E:\REPO\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libreriaValidacion.xml
+E:\REPO\ProyectCasaLibro\FormulariosPrueba\LibreriaValidacion\libValidacionDatos\obj\Debug\libreriaValidacion.pdb

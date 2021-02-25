@@ -18,8 +18,6 @@ Public Class GestionSociosInforme
             End Using
         End Using
 
-        Dim ruta As String
-
         With Me.ReportViewer1.LocalReport
             .DataSources.Clear()
             .ReportPath = "GestionSociosInforme.rdlc"

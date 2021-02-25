@@ -125,7 +125,7 @@ Partial Class GestionEmpleados
         Me.TextBox_DNI.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_DNI.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_DNI.Location = New System.Drawing.Point(76, 30)
-        Me.TextBox_DNI.MaxLength = 100
+        Me.TextBox_DNI.MaxLength = 9
         Me.TextBox_DNI.Name = "TextBox_DNI"
         Me.TextBox_DNI.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_DNI.TabIndex = 186
@@ -136,7 +136,7 @@ Partial Class GestionEmpleados
         Me.TextBox_APELLIDOS.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_APELLIDOS.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_APELLIDOS.Location = New System.Drawing.Point(723, 30)
-        Me.TextBox_APELLIDOS.MaxLength = 100
+        Me.TextBox_APELLIDOS.MaxLength = 50
         Me.TextBox_APELLIDOS.Name = "TextBox_APELLIDOS"
         Me.TextBox_APELLIDOS.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_APELLIDOS.TabIndex = 185
@@ -147,7 +147,7 @@ Partial Class GestionEmpleados
         Me.TextBox_NOMBRE.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_NOMBRE.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_NOMBRE.Location = New System.Drawing.Point(392, 30)
-        Me.TextBox_NOMBRE.MaxLength = 100
+        Me.TextBox_NOMBRE.MaxLength = 50
         Me.TextBox_NOMBRE.Name = "TextBox_NOMBRE"
         Me.TextBox_NOMBRE.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_NOMBRE.TabIndex = 184
@@ -158,7 +158,7 @@ Partial Class GestionEmpleados
         Me.TextBox_CORREO.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_CORREO.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_CORREO.Location = New System.Drawing.Point(73, 85)
-        Me.TextBox_CORREO.MaxLength = 100
+        Me.TextBox_CORREO.MaxLength = 120
         Me.TextBox_CORREO.Name = "TextBox_CORREO"
         Me.TextBox_CORREO.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_CORREO.TabIndex = 183
@@ -244,7 +244,6 @@ Partial Class GestionEmpleados
         'DataGridView_Empleados
         '
         Me.DataGridView_Empleados.AllowUserToAddRows = False
-        Me.DataGridView_Empleados.AllowUserToOrderColumns = True
         Me.DataGridView_Empleados.BackgroundColor = System.Drawing.Color.White
         Me.DataGridView_Empleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView_Empleados.Location = New System.Drawing.Point(3, 211)
@@ -299,43 +298,46 @@ Partial Class GestionEmpleados
         'GestiónLibrosToolStripMenuItem
         '
         Me.GestiónLibrosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónLibrosToolStripMenuItem1})
+        Me.GestiónLibrosToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.GestiónLibrosToolStripMenuItem.Name = "GestiónLibrosToolStripMenuItem"
-        Me.GestiónLibrosToolStripMenuItem.Size = New System.Drawing.Size(51, 20)
+        Me.GestiónLibrosToolStripMenuItem.Size = New System.Drawing.Size(53, 20)
         Me.GestiónLibrosToolStripMenuItem.Text = "Libros"
         '
         'GestiónLibrosToolStripMenuItem1
         '
         Me.GestiónLibrosToolStripMenuItem1.Image = Global.FormulariosPrueba.My.Resources.Resources.libros
         Me.GestiónLibrosToolStripMenuItem1.Name = "GestiónLibrosToolStripMenuItem1"
-        Me.GestiónLibrosToolStripMenuItem1.Size = New System.Drawing.Size(165, 22)
+        Me.GestiónLibrosToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
         Me.GestiónLibrosToolStripMenuItem1.Text = "Gestión de Libros"
         '
         'GestiónArticulosToolStripMenuItem
         '
         Me.GestiónArticulosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónArticulosToolStripMenuItem1})
+        Me.GestiónArticulosToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.GestiónArticulosToolStripMenuItem.Name = "GestiónArticulosToolStripMenuItem"
-        Me.GestiónArticulosToolStripMenuItem.Size = New System.Drawing.Size(66, 20)
+        Me.GestiónArticulosToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.GestiónArticulosToolStripMenuItem.Text = "Articulos"
         '
         'GestiónArticulosToolStripMenuItem1
         '
         Me.GestiónArticulosToolStripMenuItem1.Image = Global.FormulariosPrueba.My.Resources.Resources.articulos
         Me.GestiónArticulosToolStripMenuItem1.Name = "GestiónArticulosToolStripMenuItem1"
-        Me.GestiónArticulosToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.GestiónArticulosToolStripMenuItem1.Size = New System.Drawing.Size(182, 22)
         Me.GestiónArticulosToolStripMenuItem1.Text = "Gestión de Articulos"
         '
         'GestiónSociosToolStripMenuItem
         '
         Me.GestiónSociosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestiónSociosToolStripMenuItem1})
+        Me.GestiónSociosToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.GestiónSociosToolStripMenuItem.Name = "GestiónSociosToolStripMenuItem"
-        Me.GestiónSociosToolStripMenuItem.Size = New System.Drawing.Size(53, 20)
+        Me.GestiónSociosToolStripMenuItem.Size = New System.Drawing.Size(56, 20)
         Me.GestiónSociosToolStripMenuItem.Text = "Socios"
         '
         'GestiónSociosToolStripMenuItem1
         '
         Me.GestiónSociosToolStripMenuItem1.Image = Global.FormulariosPrueba.My.Resources.Resources.socios
         Me.GestiónSociosToolStripMenuItem1.Name = "GestiónSociosToolStripMenuItem1"
-        Me.GestiónSociosToolStripMenuItem1.Size = New System.Drawing.Size(167, 22)
+        Me.GestiónSociosToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
         Me.GestiónSociosToolStripMenuItem1.Text = "Gestión de Socios"
         '
         'AyudaToolStripMenuItem
