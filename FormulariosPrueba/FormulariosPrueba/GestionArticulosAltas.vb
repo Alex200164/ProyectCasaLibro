@@ -6,7 +6,7 @@ Public Class GestionArticulosAltas
     ' Especificamos la base de datos a la que nos vamos a conectar.
     Public conexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=cas_lib_dib.accdb")
     ' Al adaptador le asignamos la conexion que acabamos de realizar y una consulta
-    Public adaptador As New OleDbDataAdapter("Select * from Productos", conexion)
+    Public adaptador As New OleDbDataAdapter("Select * from Productos", conexion)     
 
     ' Aquí alojaremos los datos de la DB
     Public midataset As New DataSet
@@ -121,24 +121,24 @@ Public Class GestionArticulosAltas
         ' Cargar la memoria del cache con datos.
         adaptador.Fill(midataset, "Productos")
 
-        ' Relacionar los campos de la tabla con los textbox
-        If GestionArticulos.numeroDeControlBindingAltaArticulos = 0 Then
-            Me.TextBox_ISBN.DataBindings.Add("text", midataset, "Productos.ISBN")
-            Me.TextBox_Nombre.DataBindings.Add("text", midataset, "Productos.Nombre")
-            Me.TextBox_Categoria.DataBindings.Add("text", midataset, "Productos.Categoria")
-            Me.TextBox_Precio.DataBindings.Add("text", midataset, "Productos.Precio")
-            Me.TextBox_Stock.DataBindings.Add("text", midataset, "Productos.Stock")
+        '' Relacionar los campos de la tabla con los textbox
+        'If GestionArticulos.numeroDeControlBindingAltaArticulos = 0 Then
+        '    Me.TextBox_ISBN.DataBindings.Add("text", midataset, "Productos.ISBN")
+        '    Me.TextBox_Nombre.DataBindings.Add("text", midataset, "Productos.Nombre")
+        '    Me.TextBox_Categoria.DataBindings.Add("text", midataset, "Productos.Categoria")
+        '    Me.TextBox_Precio.DataBindings.Add("text", midataset, "Productos.Precio")
+        '    Me.TextBox_Stock.DataBindings.Add("text", midataset, "Productos.Stock")
 
-            GestionArticulos.numeroDeControlBindingAltaArticulos = 1
-        End If
+        '    GestionArticulos.numeroDeControlBindingAltaArticulos = 1
+        'End If
 
 
         ' Vaciamos cada textBox de forma individual
-        TextBox_ISBN.Clear()
-        TextBox_Nombre.Clear()
-        TextBox_Categoria.Clear()
-        TextBox_Precio.Clear()
-        TextBox_Stock.Clear()
+        Me.TextBox_ISBN.Clear()
+        Me.TextBox_Nombre.Clear()
+        Me.TextBox_Categoria.Clear()
+        Me.TextBox_Precio.Clear()
+        Me.TextBox_Stock.Clear()
 
     End Sub
 

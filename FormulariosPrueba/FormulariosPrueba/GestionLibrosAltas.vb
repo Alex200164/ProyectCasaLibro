@@ -122,118 +122,119 @@ Public Class GestionLibrosAltas
 
     '  Método que se ejecuta al iniciarse el formulario.
     Private Sub GestionLibrosAltas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Cargar la memoria del cache con datos.
-        adaptador.Fill(midataset, "Libros")
-
-        If GestionLibros.numeroDeControlBindingAltaLibros = 0 Then
-            ' Relacionar los campos de la tabla con los textbox
-            Me.TextBox_ISBN.DataBindings.Add("text", midataset, "Libros.ISBN")
-            Me.TextBox_Titulo.DataBindings.Add("text", midataset, "Libros.Titulo")
-            Me.TextBox_Autor.DataBindings.Add("text", midataset, "Libros.Autor")
-            Me.TextBox_Numeropags.DataBindings.Add("text", midataset, "Libros.Paginas")
-            Me.TextBox_Editorial.DataBindings.Add("text", midataset, "Libros.Editorial")
-            Me.TextBox_Idioma.DataBindings.Add("text", midataset, "Libros.Idioma")
-            Me.ComboBox_Encuadernacion.DataBindings.Add("text", midataset, "Libros.Encuadernacion")
-            Me.TextBox_Annoedicion.DataBindings.Add("text", midataset, "Libros.Anno_edicion")
-            Me.TextBox_Plazaedicion.DataBindings.Add("text", midataset, "Libros.Plaza_de_edicion")
-            Me.TextBox_Traductor.DataBindings.Add("text", midataset, "Libros.Traductor")
-            Me.ComboBox_Formato.DataBindings.Add("text", midataset, "Libros.Formato")
-            Me.TextBox_Precio.DataBindings.Add("text", midataset, "Libros.Precio")
-            Me.TextBox_Stock.DataBindings.Add("text", midataset, "Libros.Stock")
-
-            GestionLibros.numeroDeControlBindingAltaLibros = 1
-        End If
-
-        ' Vaciamos cada textBox de forma individual
-        TextBox_ISBN.Clear()
-        TextBox_Titulo.Clear()
-        TextBox_Autor.Clear()
-        TextBox_Numeropags.Clear()
-        TextBox_Editorial.Clear()
-        TextBox_Idioma.Clear()
-        ComboBox_Encuadernacion.ResetText()
-        TextBox_Annoedicion.Clear()
-        TextBox_Plazaedicion.Clear()
-        TextBox_Traductor.Clear()
-        ComboBox_Formato.ResetText()
-        TextBox_Precio.Clear()
-        TextBox_Stock.Clear()
+        'Se quita todo*******************************************************************************************
     End Sub
 
     Private Sub TextBox_ISBN_TextChanged(sender As Object, e As EventArgs) Handles TextBox_ISBN.TextChanged
         ' Instanciamos la clase        
         Dim validarISBN As New libreriaValidacion.Validacion
 
-        validarISBN.ValidarISBN(TextBox_ISBN.Text)
+        If (validarISBN.ValidarISBN(TextBox_ISBN.Text) = False) Then
+            TextBox_ISBN.Text = TextBox_ISBN.Text.Substring(0, TextBox_ISBN.Text.Length - 1)
+            TextBox_ISBN.SelectionStart = TextBox_ISBN.TextLength
+        End If
+
     End Sub
 
     Private Sub TextBox_Titulo_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Titulo.TextChanged
         ' Instanciamos la clase        
         Dim validarTitulo As New libreriaValidacion.Validacion
 
-        validarTitulo.validarTitulolibro(TextBox_Titulo.Text)
+        If (validarTitulo.validarTitulolibro(TextBox_Titulo.Text) = False) Then
+            TextBox_Titulo.Text = TextBox_Titulo.Text.Substring(0, TextBox_Titulo.Text.Length - 1)
+            TextBox_Titulo.SelectionStart = TextBox_Titulo.TextLength
+        End If
     End Sub
 
     Private Sub TextBox_Autor_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Autor.TextChanged
         ' Instanciamos la clase        
         Dim validarAutor As New libreriaValidacion.Validacion
 
-        validarAutor.validarAutor(TextBox_Autor.Text)
+        If (validarAutor.validarAutor(TextBox_Autor.Text) = False) Then
+            TextBox_Autor.Text = TextBox_Autor.Text.Substring(0, TextBox_Autor.Text.Length - 1)
+            TextBox_Autor.SelectionStart = TextBox_Autor.TextLength
+        End If
     End Sub
 
     Private Sub TextBox_Numeropags_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Numeropags.TextChanged
         ' Instanciamos la clase        
         Dim validarpaginas As New libreriaValidacion.Validacion
 
-        validarpaginas.validar4digitos(TextBox_Numeropags.Text)
+        If (validarpaginas.validar4digitos(TextBox_Numeropags.Text) = False) Then
+            TextBox_Numeropags.Text = TextBox_Numeropags.Text.Substring(0, TextBox_Numeropags.Text.Length - 1)
+            TextBox_Numeropags.SelectionStart = TextBox_Numeropags.TextLength
+        End If
     End Sub
 
     Private Sub TextBox_Editorial_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Editorial.TextChanged
         ' Instanciamos la clase        
         Dim validarEditorial As New libreriaValidacion.Validacion
 
-        validarEditorial.validarEditorial(TextBox_Editorial.Text)
+        If (validarEditorial.validarEditorial(TextBox_Editorial.Text) = False) Then
+            TextBox_Editorial.Text = TextBox_Editorial.Text.Substring(0, TextBox_Editorial.Text.Length - 1)
+            TextBox_Editorial.SelectionStart = TextBox_Editorial.TextLength
+        End If
     End Sub
 
     Private Sub TextBox_Idioma_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Idioma.TextChanged
         ' Instanciamos la clase        
         Dim validarIdioma As New libreriaValidacion.Validacion
 
-        validarIdioma.validarIdioma(TextBox_Idioma.Text)
+        If validarIdioma.validarIdioma(TextBox_Idioma.Text) = False Then
+            TextBox_Idioma.Text = TextBox_Idioma.Text.Substring(0, TextBox_Idioma.Text.Length - 1)
+            TextBox_Idioma.SelectionStart = TextBox_Idioma.TextLength
+        End If
     End Sub
 
     Private Sub TextBox_Annoedicion_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Annoedicion.TextChanged
         ' Instanciamos la clase        
         Dim validarAnnoedicion As New libreriaValidacion.Validacion
 
-        validarAnnoedicion.validar4digitos(TextBox_Annoedicion.Text)
+        If (validarAnnoedicion.validar4digitos(TextBox_Annoedicion.Text) = False) Then
+            TextBox_Annoedicion.Text = TextBox_Annoedicion.Text.Substring(0, TextBox_Annoedicion.Text.Length - 1)
+            TextBox_Annoedicion.SelectionStart = TextBox_Annoedicion.TextLength
+        End If
     End Sub
 
     Private Sub TextBox_Plazaedicion_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Plazaedicion.TextChanged '******
         ' Instanciamos la clase        
         Dim validarPlazaEdicion As New libreriaValidacion.Validacion
 
-        validarPlazaEdicion.validarPlazaEdicion(TextBox_Plazaedicion.Text, 1)
+        If (validarPlazaEdicion.validarPlazaEdicion(TextBox_Plazaedicion.Text, 1) = False) Then
+            TextBox_Plazaedicion.Text = TextBox_Plazaedicion.Text.Substring(0, TextBox_Plazaedicion.Text.Length - 1)
+            TextBox_Plazaedicion.SelectionStart = TextBox_Plazaedicion.TextLength
+        End If
     End Sub
 
     Private Sub TextBox_Traductor_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Traductor.TextChanged '********
         ' Instanciamos la clase        
         Dim validarTraductor As New libreriaValidacion.Validacion
 
-        validarTraductor.validarTraductor(TextBox_Traductor.Text)
+        If (validarTraductor.validarTraductor(TextBox_Traductor.Text) = False) Then
+            TextBox_Traductor.Text = TextBox_Traductor.Text.Substring(0, TextBox_Traductor.Text.Length - 1)
+            TextBox_Traductor.SelectionStart = TextBox_Traductor.TextLength
+        End If
     End Sub
     Private Sub TextBox_Precio_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Precio.TextChanged
         ' Instanciamos la clase        
         Dim validarPrecio As New libreriaValidacion.Validacion
 
-        validarPrecio.validarPrecio(TextBox_Precio.Text)
+
+        If (validarPrecio.validarPrecio(TextBox_Precio.Text) = False) Then
+            TextBox_Precio.Text = TextBox_Precio.Text.Substring(0, TextBox_Precio.Text.Length - 1)
+            TextBox_Precio.SelectionStart = TextBox_Precio.TextLength
+        End If
     End Sub
 
     Private Sub TextBox_Stock_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Stock.TextChanged
         ' Instanciamos la clase        
         Dim validarStock As New libreriaValidacion.Validacion
 
-        validarStock.validar4digitos(TextBox_Stock.Text)
+
+        If (validarStock.validar4digitos(TextBox_Stock.Text) = False) Then
+            TextBox_Stock.Text = TextBox_Stock.Text.Substring(0, TextBox_Stock.Text.Length - 1)
+            TextBox_Stock.SelectionStart = TextBox_Stock.TextLength
+        End If
     End Sub
 
 
