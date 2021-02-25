@@ -43,11 +43,11 @@ Partial Class GestionArticulosAltas
         Me.Label20 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.GruopBox = New System.Windows.Forms.GroupBox()
+        Me.Button_Examinar = New System.Windows.Forms.Button()
         Me.PictureBoxProducto = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.Button_Examinar = New System.Windows.Forms.Button()
         Me.MenuStripPagPrin.SuspendLayout()
         Me.GruopBox.SuspendLayout()
         CType(Me.PictureBoxProducto, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -140,7 +140,7 @@ Partial Class GestionArticulosAltas
         Me.TextBox_Nombre.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Nombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Nombre.Location = New System.Drawing.Point(139, 64)
-        Me.TextBox_Nombre.MaxLength = 100
+        Me.TextBox_Nombre.MaxLength = 50
         Me.TextBox_Nombre.Name = "TextBox_Nombre"
         Me.TextBox_Nombre.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Nombre.TabIndex = 2
@@ -151,7 +151,7 @@ Partial Class GestionArticulosAltas
         Me.TextBox_Categoria.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Categoria.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Categoria.Location = New System.Drawing.Point(139, 92)
-        Me.TextBox_Categoria.MaxLength = 100
+        Me.TextBox_Categoria.MaxLength = 50
         Me.TextBox_Categoria.Name = "TextBox_Categoria"
         Me.TextBox_Categoria.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Categoria.TabIndex = 3
@@ -162,7 +162,7 @@ Partial Class GestionArticulosAltas
         Me.TextBox_Stock.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Stock.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Stock.Location = New System.Drawing.Point(139, 142)
-        Me.TextBox_Stock.MaxLength = 100
+        Me.TextBox_Stock.MaxLength = 4
         Me.TextBox_Stock.Name = "TextBox_Stock"
         Me.TextBox_Stock.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Stock.TabIndex = 5
@@ -173,7 +173,7 @@ Partial Class GestionArticulosAltas
         Me.TextBox_Precio.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Precio.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Precio.Location = New System.Drawing.Point(139, 117)
-        Me.TextBox_Precio.MaxLength = 100
+        Me.TextBox_Precio.MaxLength = 6
         Me.TextBox_Precio.Name = "TextBox_Precio"
         Me.TextBox_Precio.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Precio.TabIndex = 4
@@ -204,7 +204,7 @@ Partial Class GestionArticulosAltas
         Me.TextBox_ISBN.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_ISBN.Location = New System.Drawing.Point(139, 33)
-        Me.TextBox_ISBN.MaxLength = 100
+        Me.TextBox_ISBN.MaxLength = 13
         Me.TextBox_ISBN.Name = "TextBox_ISBN"
         Me.TextBox_ISBN.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_ISBN.TabIndex = 1
@@ -265,6 +265,15 @@ Partial Class GestionArticulosAltas
         Me.GruopBox.TabStop = False
         Me.GruopBox.Text = "Añadir/Modificar Artículo"
         '
+        'Button_Examinar
+        '
+        Me.Button_Examinar.Location = New System.Drawing.Point(384, 183)
+        Me.Button_Examinar.Name = "Button_Examinar"
+        Me.Button_Examinar.Size = New System.Drawing.Size(86, 29)
+        Me.Button_Examinar.TabIndex = 184
+        Me.Button_Examinar.Text = "Examinar"
+        Me.Button_Examinar.UseVisualStyleBackColor = True
+        '
         'PictureBoxProducto
         '
         Me.PictureBoxProducto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -302,15 +311,6 @@ Partial Class GestionArticulosAltas
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox2.TabIndex = 39
         Me.PictureBox2.TabStop = False
-        '
-        'Button_Examinar
-        '
-        Me.Button_Examinar.Location = New System.Drawing.Point(384, 183)
-        Me.Button_Examinar.Name = "Button_Examinar"
-        Me.Button_Examinar.Size = New System.Drawing.Size(86, 29)
-        Me.Button_Examinar.TabIndex = 184
-        Me.Button_Examinar.Text = "Examinar"
-        Me.Button_Examinar.UseVisualStyleBackColor = True
         '
         'GestionArticulosAltas
         '

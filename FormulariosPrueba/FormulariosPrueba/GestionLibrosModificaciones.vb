@@ -59,11 +59,11 @@ Public Class GestionLibrosModificaciones
         TextBox_Numeropags.Clear()
         TextBox_Editorial.Clear()
         TextBox_Idioma.Clear()
-        TextBox_Encuadernacion.Clear()
+        ComboBox_Encuadernacion.ResetText()
         TextBox_Annoedicion.Clear()
         TextBox_Plazaedicion.Clear()
         TextBox_Traductor.Clear()
-        TextBox_Formato.Clear()
+        ComboBox_Formato.ResetText()
         TextBox_Precio.Clear()
         TextBox_Stock.Clear()
     End Sub
@@ -94,11 +94,11 @@ Public Class GestionLibrosModificaciones
             Me.TextBox_Numeropags.DataBindings.Add("text", midataset, "Libros.Paginas")
             Me.TextBox_Editorial.DataBindings.Add("text", midataset, "Libros.Editorial")
             Me.TextBox_Idioma.DataBindings.Add("text", midataset, "Libros.Idioma")
-            Me.TextBox_Encuadernacion.DataBindings.Add("text", midataset, "Libros.Encuadernacion")
+            Me.ComboBox_Encuadernacion.DataBindings.Add("text", midataset, "Libros.Encuadernacion")
             Me.TextBox_Annoedicion.DataBindings.Add("text", midataset, "Libros.Anno_edicion")
             Me.TextBox_Plazaedicion.DataBindings.Add("text", midataset, "Libros.Plaza_de_edicion")
             Me.TextBox_Traductor.DataBindings.Add("text", midataset, "Libros.Traductor")
-            Me.TextBox_Formato.DataBindings.Add("text", midataset, "Libros.Formato")
+            Me.ComboBox_Formato.DataBindings.Add("text", midataset, "Libros.Formato")
             Me.TextBox_Precio.DataBindings.Add("text", midataset, "Libros.Precio")
             Me.TextBox_Stock.DataBindings.Add("text", midataset, "Libros.Stock")
 
@@ -114,8 +114,8 @@ Public Class GestionLibrosModificaciones
     ' Se encarga de modificar los datos ya existentes en la DB
     Private Sub Button_Modificar_Click(sender As Object, e As EventArgs) Handles Button_Modificar.Click
         If TextBox_ISBN.Text = "" Or TextBox_Titulo.Text = "" Or TextBox_Autor.Text = "" Or TextBox_Numeropags.Text = "" Or
-            TextBox_Editorial.Text = "" Or TextBox_Idioma.Text = "" Or TextBox_Encuadernacion.Text = "" Or TextBox_Annoedicion.Text = "" Or
-            TextBox_Plazaedicion.Text = "" Or TextBox_Traductor.Text = "" Or TextBox_Formato.Text = "" Or TextBox_Precio.Text = "" Or TextBox_Stock.Text = "" Then
+            TextBox_Editorial.Text = "" Or TextBox_Idioma.Text = "" Or ComboBox_Encuadernacion.Text = "" Or TextBox_Annoedicion.Text = "" Or
+            TextBox_Plazaedicion.Text = "" Or TextBox_Traductor.Text = "" Or ComboBox_Formato.Text = "" Or TextBox_Precio.Text = "" Or TextBox_Stock.Text = "" Then
             MsgBox("Debes seleccionar un registro para actualizarlo y si lo has seleccionado, no debe quedar ningún campo en blanco", MsgBoxStyle.OkOnly, "Error al dar de alta.")
         Else
 
@@ -139,20 +139,20 @@ Public Class GestionLibrosModificaciones
                     Using cmd = New OleDbCommand(queryParametrizada, conexion)
 
                         conexion.Open()
-                        cmd.Parameters.AddWithValue("@p1", Convert.ToInt64(TextBox_ISBN.Text))
+                        cmd.Parameters.AddWithValue("@p1", (TextBox_ISBN.Text))
                         cmd.Parameters.AddWithValue("@p2", TextBox_Titulo.Text)
                         cmd.Parameters.AddWithValue("@p3", TextBox_Autor.Text)
                         cmd.Parameters.AddWithValue("@p4", Convert.ToInt64(TextBox_Numeropags.Text))
                         cmd.Parameters.AddWithValue("@p5", TextBox_Editorial.Text)
                         cmd.Parameters.AddWithValue("@p6", TextBox_Idioma.Text)
-                        cmd.Parameters.AddWithValue("@p7", TextBox_Encuadernacion.Text)
+                        cmd.Parameters.AddWithValue("@p7", ComboBox_Encuadernacion.Text)
                         cmd.Parameters.AddWithValue("@p8", Convert.ToInt64(TextBox_Annoedicion.Text))
                         cmd.Parameters.AddWithValue("@p9", TextBox_Plazaedicion.Text)
                         cmd.Parameters.AddWithValue("@p10", TextBox_Traductor.Text)
-                        cmd.Parameters.AddWithValue("@p11", TextBox_Formato.Text)
+                        cmd.Parameters.AddWithValue("@p11", ComboBox_Formato.Text)
                         cmd.Parameters.AddWithValue("@p12", Convert.ToDouble(TextBox_Precio.Text))
                         cmd.Parameters.AddWithValue("@p13", Convert.ToInt64(TextBox_Stock.Text))
-                        cmd.Parameters.AddWithValue("@p14", Convert.ToSingle(ISBNInicial))
+                        cmd.Parameters.AddWithValue("@p14", (ISBNInicial))
 
                         cmd.ExecuteNonQuery()
 
@@ -210,6 +210,83 @@ Public Class GestionLibrosModificaciones
         End If
     End Sub
 
+
+    Private Sub TextBox_ISBN_TextChanged(sender As Object, e As EventArgs) Handles TextBox_ISBN.TextChanged
+        ' Instanciamos la clase        
+        Dim validarISBN As New libreriaValidacion.Validacion
+
+        validarISBN.ValidarISBN(TextBox_ISBN.Text)
+    End Sub
+
+    Private Sub TextBox_Titulo_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Titulo.TextChanged
+        ' Instanciamos la clase        
+        Dim validarTitulo As New libreriaValidacion.Validacion
+
+        validarTitulo.validarTitulolibro(TextBox_Titulo.Text)
+    End Sub
+
+    Private Sub TextBox_Autor_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Autor.TextChanged
+        ' Instanciamos la clase        
+        Dim validarAutor As New libreriaValidacion.Validacion
+
+        validarAutor.validarAutor(TextBox_Autor.Text)
+    End Sub
+
+    Private Sub TextBox_Numeropags_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Numeropags.TextChanged
+        ' Instanciamos la clase        
+        Dim validarpaginas As New libreriaValidacion.Validacion
+
+        validarpaginas.validar4digitos(TextBox_Numeropags.Text)
+    End Sub
+
+    Private Sub TextBox_Editorial_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Editorial.TextChanged
+        ' Instanciamos la clase        
+        Dim validarEditorial As New libreriaValidacion.Validacion
+
+        validarEditorial.validarEditorial(TextBox_Editorial.Text)
+    End Sub
+
+    Private Sub TextBox_Idioma_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Idioma.TextChanged
+        ' Instanciamos la clase        
+        Dim validarIdioma As New libreriaValidacion.Validacion
+
+        validarIdioma.validarIdioma(TextBox_Idioma.Text)
+    End Sub
+
+    Private Sub TextBox_Annoedicion_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Annoedicion.TextChanged
+        ' Instanciamos la clase        
+        Dim validarAnnoedicion As New libreriaValidacion.Validacion
+
+        validarAnnoedicion.validar4digitos(TextBox_Annoedicion.Text)
+    End Sub
+
+    Private Sub TextBox_Plazaedicion_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Plazaedicion.TextChanged '******
+        ' Instanciamos la clase        
+        Dim validarPlazaEdicion As New libreriaValidacion.Validacion
+
+        validarPlazaEdicion.validarPlazaEdicion(TextBox_Plazaedicion.Text, 1)
+    End Sub
+
+    Private Sub TextBox_Traductor_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Traductor.TextChanged '********
+        ' Instanciamos la clase        
+        Dim validarTraductor As New libreriaValidacion.Validacion
+
+        validarTraductor.validarTraductor(TextBox_Traductor.Text)
+    End Sub
+    Private Sub TextBox_Precio_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Precio.TextChanged
+        ' Instanciamos la clase        
+        Dim validarPrecio As New libreriaValidacion.Validacion
+
+        validarPrecio.validarPrecio(TextBox_Precio.Text)
+    End Sub
+
+    Private Sub TextBox_Stock_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Stock.TextChanged
+        ' Instanciamos la clase        
+        Dim validarStock As New libreriaValidacion.Validacion
+
+        validarStock.validar4digitos(TextBox_Stock.Text)
+    End Sub
+
     ' Esté método es ejecutado cuando el usuario presiona la tecla "F1"
     Private Sub GestionSocios_HelpRequested(sender As Object, hlpevent As HelpEventArgs) Handles Me.HelpRequested
         Help.ShowHelp(Me, "CHM\LaCasaDelLibro.chm", "")
@@ -220,5 +297,6 @@ Public Class GestionLibrosModificaciones
     Private Sub VerLaAyudaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerLaAyudaToolStripMenuItem.Click
         Help.ShowHelp(Me, "CHM\LaCasaDelLibro.chm", "")
     End Sub
+
 
 End Class

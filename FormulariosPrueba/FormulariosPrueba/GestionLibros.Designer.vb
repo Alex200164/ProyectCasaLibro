@@ -65,7 +65,6 @@ Partial Class GestionLibros
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.TextBox_ISBNOCULTO)
         Me.Panel1.Controls.Add(Me.Button_Eliminar)
         Me.Panel1.Controls.Add(Me.Button_Annadir)
         Me.Panel1.Controls.Add(Me.DataGridView_Libros)
@@ -81,7 +80,7 @@ Partial Class GestionLibros
         Me.TextBox_ISBNOCULTO.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_ISBNOCULTO.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_ISBNOCULTO.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_ISBNOCULTO.Location = New System.Drawing.Point(74, 163)
+        Me.TextBox_ISBNOCULTO.Location = New System.Drawing.Point(71, 30)
         Me.TextBox_ISBNOCULTO.MaxLength = 100
         Me.TextBox_ISBNOCULTO.Name = "TextBox_ISBNOCULTO"
         Me.TextBox_ISBNOCULTO.Size = New System.Drawing.Size(197, 19)
@@ -121,6 +120,8 @@ Partial Class GestionLibros
         '
         Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.TextBox_ISBN)
+        Me.GroupBox1.Controls.Add(Me.TextBox_ISBNOCULTO)
         Me.GroupBox1.Controls.Add(Me.Label_Autor)
         Me.GroupBox1.Controls.Add(Me.TextBox_Autor)
         Me.GroupBox1.Controls.Add(Me.Button_Buscar)
@@ -130,7 +131,6 @@ Partial Class GestionLibros
         Me.GroupBox1.Controls.Add(Me.TextBox_Titulo)
         Me.GroupBox1.Controls.Add(Me.Label_Titulo)
         Me.GroupBox1.Controls.Add(Me.Label_ISBN)
-        Me.GroupBox1.Controls.Add(Me.TextBox_ISBN)
         Me.GroupBox1.Location = New System.Drawing.Point(3, 15)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(938, 127)
@@ -234,7 +234,7 @@ Partial Class GestionLibros
         Me.TextBox_ISBN.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_ISBN.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_ISBN.Location = New System.Drawing.Point(71, 26)
+        Me.TextBox_ISBN.Location = New System.Drawing.Point(71, 30)
         Me.TextBox_ISBN.MaxLength = 100
         Me.TextBox_ISBN.Name = "TextBox_ISBN"
         Me.TextBox_ISBN.Size = New System.Drawing.Size(197, 19)
@@ -377,7 +377,6 @@ Partial Class GestionLibros
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Gestión de Libros"
         Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
         CType(Me.DataGridView_Libros, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()

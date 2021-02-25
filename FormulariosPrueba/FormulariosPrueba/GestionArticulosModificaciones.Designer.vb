@@ -93,7 +93,7 @@ Partial Class GestionArticulosModificaciones
         Me.TextBox_Precio.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Precio.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Precio.Location = New System.Drawing.Point(453, 36)
-        Me.TextBox_Precio.MaxLength = 100
+        Me.TextBox_Precio.MaxLength = 6
         Me.TextBox_Precio.Name = "TextBox_Precio"
         Me.TextBox_Precio.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Precio.TabIndex = 181
@@ -122,7 +122,7 @@ Partial Class GestionArticulosModificaciones
         Me.TextBox_Nombre.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Nombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Nombre.Location = New System.Drawing.Point(139, 64)
-        Me.TextBox_Nombre.MaxLength = 100
+        Me.TextBox_Nombre.MaxLength = 50
         Me.TextBox_Nombre.Name = "TextBox_Nombre"
         Me.TextBox_Nombre.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Nombre.TabIndex = 2
@@ -133,7 +133,7 @@ Partial Class GestionArticulosModificaciones
         Me.TextBox_Categoria.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Categoria.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Categoria.Location = New System.Drawing.Point(139, 92)
-        Me.TextBox_Categoria.MaxLength = 100
+        Me.TextBox_Categoria.MaxLength = 50
         Me.TextBox_Categoria.Name = "TextBox_Categoria"
         Me.TextBox_Categoria.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Categoria.TabIndex = 3
@@ -144,7 +144,7 @@ Partial Class GestionArticulosModificaciones
         Me.TextBox_Stock.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Stock.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Stock.Location = New System.Drawing.Point(453, 63)
-        Me.TextBox_Stock.MaxLength = 100
+        Me.TextBox_Stock.MaxLength = 4
         Me.TextBox_Stock.Name = "TextBox_Stock"
         Me.TextBox_Stock.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Stock.TabIndex = 4
@@ -175,7 +175,7 @@ Partial Class GestionArticulosModificaciones
         Me.TextBox_ISBN.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_ISBN.Location = New System.Drawing.Point(139, 33)
-        Me.TextBox_ISBN.MaxLength = 100
+        Me.TextBox_ISBN.MaxLength = 13
         Me.TextBox_ISBN.Name = "TextBox_ISBN"
         Me.TextBox_ISBN.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_ISBN.TabIndex = 1

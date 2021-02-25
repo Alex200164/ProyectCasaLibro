@@ -27,7 +27,6 @@ Partial Class GestionArticulos
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.DataGridView_Articulos = New System.Windows.Forms.DataGridView()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.TextBox_ISBNOCULTO = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TextBox_Precio = New System.Windows.Forms.TextBox()
         Me.TextBox_ISBN = New System.Windows.Forms.TextBox()
@@ -55,7 +54,7 @@ Partial Class GestionArticulos
         Me.GestiónEmpleadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestiónEmpleadosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.TextBox_ISBNOCULTO = New System.Windows.Forms.TextBox()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView_Articulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,8 +95,6 @@ Partial Class GestionArticulos
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.ComboBox1)
-        Me.Panel1.Controls.Add(Me.TextBox_ISBNOCULTO)
         Me.Panel1.Controls.Add(Me.GroupBox1)
         Me.Panel1.Controls.Add(Me.Button_Eliminar)
         Me.Panel1.Controls.Add(Me.Button_Annadir)
@@ -108,23 +105,13 @@ Partial Class GestionArticulos
         Me.Panel1.TabIndex = 47
         Me.Panel1.TabStop = True
         '
-        'TextBox_ISBNOCULTO
-        '
-        Me.TextBox_ISBNOCULTO.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_ISBNOCULTO.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_ISBNOCULTO.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_ISBNOCULTO.Location = New System.Drawing.Point(76, 163)
-        Me.TextBox_ISBNOCULTO.MaxLength = 100
-        Me.TextBox_ISBNOCULTO.Name = "TextBox_ISBNOCULTO"
-        Me.TextBox_ISBNOCULTO.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_ISBNOCULTO.TabIndex = 182
-        '
         'GroupBox1
         '
         Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox1.Controls.Add(Me.TextBox_Precio)
         Me.GroupBox1.Controls.Add(Me.TextBox_ISBN)
+        Me.GroupBox1.Controls.Add(Me.TextBox_Precio)
+        Me.GroupBox1.Controls.Add(Me.TextBox_ISBNOCULTO)
         Me.GroupBox1.Controls.Add(Me.TextBox_Categoria)
         Me.GroupBox1.Controls.Add(Me.TextBox_Nombre)
         Me.GroupBox1.Controls.Add(Me.Label_Autor)
@@ -156,7 +143,7 @@ Partial Class GestionArticulos
         Me.TextBox_ISBN.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_ISBN.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_ISBN.Location = New System.Drawing.Point(76, 29)
+        Me.TextBox_ISBN.Location = New System.Drawing.Point(73, 29)
         Me.TextBox_ISBN.MaxLength = 100
         Me.TextBox_ISBN.Name = "TextBox_ISBN"
         Me.TextBox_ISBN.Size = New System.Drawing.Size(197, 19)
@@ -361,13 +348,16 @@ Partial Class GestionArticulos
         Me.GestiónEmpleadosToolStripMenuItem1.Size = New System.Drawing.Size(191, 22)
         Me.GestiónEmpleadosToolStripMenuItem1.Text = "Gestión de Empleados"
         '
-        'ComboBox1
+        'TextBox_ISBNOCULTO
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(395, 160)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
-        Me.ComboBox1.TabIndex = 184
+        Me.TextBox_ISBNOCULTO.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_ISBNOCULTO.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_ISBNOCULTO.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_ISBNOCULTO.Location = New System.Drawing.Point(73, 30)
+        Me.TextBox_ISBNOCULTO.MaxLength = 100
+        Me.TextBox_ISBNOCULTO.Name = "TextBox_ISBNOCULTO"
+        Me.TextBox_ISBNOCULTO.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_ISBNOCULTO.TabIndex = 182
         '
         'GestionArticulos
         '
@@ -385,7 +375,6 @@ Partial Class GestionArticulos
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView_Articulos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.MenuStripPagPrin.ResumeLayout(False)
@@ -427,5 +416,4 @@ Partial Class GestionArticulos
     Friend WithEvents TextBox_Categoria As TextBox
     Friend WithEvents TextBox_Nombre As TextBox
     Friend WithEvents TextBox_ISBNOCULTO As TextBox
-    Friend WithEvents ComboBox1 As ComboBox
 End Class

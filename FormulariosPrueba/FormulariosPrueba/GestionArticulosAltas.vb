@@ -196,4 +196,38 @@ Public Class GestionArticulosAltas
         Help.ShowHelp(Me, "CHM\LaCasaDelLibro.chm", "")
     End Sub
 
+    Private Sub TextBox_ISBN_TextChanged(sender As Object, e As EventArgs) Handles TextBox_ISBN.TextChanged
+        ' Instanciamos la clase        
+        Dim validarISBN As New libreriaValidacion.Validacion
+
+        validarISBN.ValidarISBN(TextBox_ISBN.Text)
+    End Sub
+
+    Private Sub TextBox_Nombre_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Nombre.TextChanged
+        ' Instanciamos la clase        
+        Dim validarNombre As New libreriaValidacion.Validacion
+
+        validarNombre.validarNombreProducto(TextBox_Nombre.Text)
+    End Sub
+
+    Private Sub TextBox_Categoria_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Categoria.TextChanged
+        ' Instanciamos la clase        
+        Dim validarCategoria As New libreriaValidacion.Validacion
+
+        validarCategoria.validarCategoria(TextBox_Categoria.Text)
+    End Sub
+
+    Private Sub TextBox_Precio_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Precio.TextChanged
+        ' Instanciamos la clase        
+        Dim validarPrecio As New libreriaValidacion.Validacion
+
+        validarPrecio.validarPrecio(TextBox_Precio.Text)
+    End Sub
+
+    Private Sub TextBox_Stock_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Stock.TextChanged
+        ' Instanciamos la clase        
+        Dim validarStock As New libreriaValidacion.Validacion
+
+        validarStock.validar4digitos(TextBox_Stock.Text)
+    End Sub
 End Class

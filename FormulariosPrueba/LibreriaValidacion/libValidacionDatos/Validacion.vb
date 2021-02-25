@@ -804,11 +804,11 @@ Public Class Validacion
 
 
 
-    'Validación de Precio
+
 
 
     'Validacion de ISBN
-    Public Function ValidarISBN(codigo As String, tipo As Integer) As Boolean
+    Public Function ValidarISBN(codigo As String) As Boolean
         ' Se opta de nuevo por la solución de poner en un String los valores permitidos.
         Dim charsPosibles As String = "0123456789"
 
@@ -816,10 +816,10 @@ Public Class Validacion
         Dim coincidencias As Integer = 0
         Dim valorMaximo As Integer
 
-        ' Máxima longitud del valor.
+        'Máxima longitud del valor.
         valorMaximo = 13
 
-        ' Solo se permiten códigos de hasta 13 números.
+        'Solo se permiten códigos de hasta 13 números.
         If codigo.Length > valorMaximo Then
             MsgBox("Por favor, introduzca un ISBN que sea menor de 13 dígitos", MsgBoxStyle.OkOnly, "Longitud incorrecta.")
         End If
@@ -840,16 +840,16 @@ Public Class Validacion
         If coincidencias = codigo.Length And codigo.Length <= valorMaximo Then
             valido = True
         Else
-            MsgBox(" El dato ISBN, no puede contener caracteres que no sean numéricos o símbolos no permitidos, también debe tener una longitud de 13 digitos.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+            MsgBox("El dato ISBN, solo acepta caracteres numéricos, también debe tener una longitud de 13 digitos.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
         End If
         Return valido
     End Function
 
-    'Validacion de Titulos libros
 
+    'Validacion de Titulos libros
     Public Function validarTitulolibro(codigo As String) As Boolean
 
-        Dim charsPosiblesNombre As String = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890-_éúíóá¿?¡!:"
+        Dim charsPosiblesNombre As String = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890-_éúíóáÁÉÍÓÚ,()¿?¡!: "
 
         Dim valido As Boolean = False
         Dim coincidencias As Integer = 0
@@ -862,7 +862,6 @@ Public Class Validacion
         If codigo.Length > valorMaximo Then
             MsgBox("Por favor, introduzca un Titulo que sea menor de 100 caracteres.", MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "Longitud incorrecta.")
         End If
-
 
         For i = 1 To codigo.Length
             For j = 1 To charsPosiblesNombre.Length
@@ -880,20 +879,18 @@ Public Class Validacion
         If coincidencias = codigo.Length Then
             valido = True
         Else
-            MsgBox(" El usuario no puede contener símbolos no permitidos. Debe tener una longitud máxima de 100 caracteres", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+            MsgBox(" El Titulo no puede contener símbolos no permitidos. Debe tener una longitud máxima de 100 caracteres", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
         End If
         Return valido
     End Function
 
-
     'Validacion Nombre Autor/es
-    Public Function validarAutor(codigo As String, tipo As Integer) As Boolean
+    Public Function validarAutor(codigo As String) As Boolean
 
         ' Si tipo es 1, se realizara la validación de un nombre.
-        ' Si tipo es 2, se realizara la validación de un apellido.
 
         ' Para el nombre.
-        Dim charsPosiblesNombre As String = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZáéíóúÁÉÍÓÚ/- "
+        Dim charsPosiblesNombre As String = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZáéíóúÁÉÍÓÚ.- "
 
         Dim valido As Boolean = False
         Dim coincidencias As Integer = 0
@@ -908,20 +905,17 @@ Public Class Validacion
         End If
 
         ' Validación nombre
-        If tipo = 1 Then
-            For i = 1 To codigo.Length
-                For j = 1 To charsPosiblesNombre.Length
-                    If (GetChar(codigo, i) <> GetChar(charsPosiblesNombre, j)) Then
+        For i = 1 To codigo.Length
+            For j = 1 To charsPosiblesNombre.Length
+                If (GetChar(codigo, i) <> GetChar(charsPosiblesNombre, j)) Then
 
-                    Else
-                        ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
-                        ' entonces los datos se validan.
-                        coincidencias = coincidencias + 1
-                    End If
-                Next j
-            Next i
-        End If
-
+                Else
+                    ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
+                    ' entonces los datos se validan.
+                    coincidencias = coincidencias + 1
+                End If
+            Next j
+        Next i
 
         ' Devolvemos si los datos son válidos si se han encontrado tantas coincidencias como caracteres tenga la cadena.
         If coincidencias = codigo.Length Then
@@ -933,7 +927,7 @@ Public Class Validacion
     End Function
 
     'Validación Numero de paginas/ Año de edicion /Sotck
-    Public Function validar4digitos(codigo As String, tipo As Integer) As Boolean
+    Public Function validar4digitos(codigo As String) As Boolean
 
         Dim charsPosiblesNombre As String = "1234567890"
 
@@ -944,59 +938,32 @@ Public Class Validacion
         ' Máxima longitud del valor.
         valorMaximo = 4
 
-        If tipo = 1 Then
-            For i = 1 To codigo.Length
-                For j = 1 To charsPosiblesNombre.Length
-                    If (GetChar(codigo, i) <> GetChar(charsPosiblesNombre, j)) Then
 
-                    Else
-                        ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
-                        ' entonces los datos se validan.
-                        coincidencias = coincidencias + 1
-                    End If
-                Next j
-            Next i
+        For i = 1 To codigo.Length
+            For j = 1 To charsPosiblesNombre.Length
+                If (GetChar(codigo, i) <> GetChar(charsPosiblesNombre, j)) Then
 
-            ' Devolvemos si los datos son válidos si se han encontrado tantas coincidencias como caracteres tenga la cadena.
-            If coincidencias = codigo.Length And codigo.Length <= valorMaximo Then
-                valido = True
-            Else
-                MsgBox(" Solo se permiten Números. Debe tener una longitud de 4 digitos", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-            End If
-            Return valido
+                Else
+                    ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
+                    ' entonces los datos se validan.
+                    coincidencias = coincidencias + 1
+                End If
+            Next j
+        Next i
+
+        ' Devolvemos si los datos son válidos si se han encontrado tantas coincidencias como caracteres tenga la cadena.
+        If coincidencias = codigo.Length And codigo.Length <= valorMaximo Then
+            valido = True
+        Else
+            MsgBox(" Solo se permiten Números. Debe tener una longitud de 4 digitos", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
         End If
-
-        If tipo = 2 Then
-            For i = 1 To codigo.Length
-                For j = 1 To charsPosiblesNombre.Length
-                    If (GetChar(codigo, i) <> GetChar(charsPosiblesNombre, j)) Then
-
-                    Else
-                        ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
-                        ' entonces los datos se validan.
-                        coincidencias = coincidencias + 1
-                    End If
-                Next j
-            Next i
-
-            ' Devolvemos si los datos son válidos si se han encontrado tantas coincidencias como caracteres tenga la cadena.
-            If coincidencias = codigo.Length And codigo.Length = valorMaximo Then
-                valido = True
-            Else
-                MsgBox(" Solo se permiten Números. Debe tener una longitud de 4 digitos", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-            End If
-            Return valido
-        End If
+        Return valido
 
 
     End Function
 
-
     'Validacion Editorial
-    Public Function validarEditorial(codigo As String, tipo As Integer) As Boolean
-
-        ' Si tipo es 1, se realizara la validación de un nombre.
-        ' Si tipo es 2, se realizara la validación de un apellido.
+    Public Function validarEditorial(codigo As String) As Boolean
 
         ' Para el nombre.
         Dim charsPosiblesNombre As String = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZáéíóúÁÉÍÓÚ.123456789 "
@@ -1014,19 +981,17 @@ Public Class Validacion
         End If
 
         ' Validación nombre
-        If tipo = 1 Then
-            For i = 1 To codigo.Length
-                For j = 1 To charsPosiblesNombre.Length
-                    If (GetChar(codigo, i) <> GetChar(charsPosiblesNombre, j)) Then
+        For i = 1 To codigo.Length
+            For j = 1 To charsPosiblesNombre.Length
+                If (GetChar(codigo, i) <> GetChar(charsPosiblesNombre, j)) Then
 
-                    Else
-                        ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
-                        ' entonces los datos se validan.
-                        coincidencias = coincidencias + 1
-                    End If
-                Next j
-            Next i
-        End If
+                Else
+                    ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
+                    ' entonces los datos se validan.
+                    coincidencias = coincidencias + 1
+                End If
+            Next j
+        Next i
 
 
         ' Devolvemos si los datos son válidos si se han encontrado tantas coincidencias como caracteres tenga la cadena.
@@ -1039,13 +1004,11 @@ Public Class Validacion
     End Function
 
     'Validacion Idioma
-    Public Function validarIdioma(codigo As String, tipo As Integer) As Boolean
+    Public Function validarIdioma(codigo As String) As Boolean
 
-        ' Si tipo es 1, se realizara la validación de un nombre.
-        ' Si tipo es 2, se realizara la validación de un apellido.
 
         ' Para el nombre.
-        Dim charsPosiblesNombre As String = "ÇçäëÏüöabcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZáéíóúÁÉÍÓÚ/ "
+        Dim charsPosiblesNombre As String = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZáéíóúÁÉÍÓÚ "
 
         Dim valido As Boolean = False
         Dim coincidencias As Integer = 0
@@ -1056,30 +1019,30 @@ Public Class Validacion
 
         ' Solo se permiten nombres de hasta 50 números.
         If codigo.Length > valorMaximo Then
-            MsgBox("Por favor, introduzca un nombre que sea menor de 50 caracteres.", MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "Longitud incorrecta.")
+            MsgBox("Por favor, introduzca un Idioma que sea menor de 50 caracteres.", MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "Longitud incorrecta.")
         End If
 
         ' Validación nombre
-        If tipo = 1 Then
-            For i = 1 To codigo.Length
-                For j = 1 To charsPosiblesNombre.Length
-                    If (GetChar(codigo, i) <> GetChar(charsPosiblesNombre, j)) Then
 
-                    Else
-                        ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
-                        ' entonces los datos se validan.
-                        coincidencias = coincidencias + 1
-                    End If
-                Next j
-            Next i
-        End If
+        For i = 1 To codigo.Length
+            For j = 1 To charsPosiblesNombre.Length
+                If (GetChar(codigo, i) <> GetChar(charsPosiblesNombre, j)) Then
+
+                Else
+                    ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
+                    ' entonces los datos se validan.
+                    coincidencias = coincidencias + 1
+                End If
+            Next j
+        Next i
+
 
 
         ' Devolvemos si los datos son válidos si se han encontrado tantas coincidencias como caracteres tenga la cadena.
         If coincidencias = codigo.Length Then
             valido = True
         Else
-            MsgBox(" El Autor no puede contener caracteres numéricos o símbolos no permitidos.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+            MsgBox(" El Idioma no puede contener caracteres numéricos o símbolos no permitidos.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
         End If
         Return valido
     End Function
@@ -1131,14 +1094,10 @@ Public Class Validacion
     End Function
 
     'Validacion Traductor 
-    'Validacion Nombre Autor/es
-    Public Function validarTraductor(codigo As String, tipo As Integer) As Boolean
-
-        ' Si tipo es 1, se realizara la validación de un nombre.
-        ' Si tipo es 2, se realizara la validación de un apellido.
+    Public Function validarTraductor(codigo As String) As Boolean
 
         ' Para el nombre.
-        Dim charsPosiblesNombre As String = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZáéíóúÁÉÍÓÚ/- "
+        Dim charsPosiblesNombre As String = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZáéíóúÁÉÍÓÚ.- "
 
         Dim valido As Boolean = False
         Dim coincidencias As Integer = 0
@@ -1153,32 +1112,32 @@ Public Class Validacion
         End If
 
         ' Validación nombre
-        If tipo = 1 Then
-            For i = 1 To codigo.Length
-                For j = 1 To charsPosiblesNombre.Length
-                    If (GetChar(codigo, i) <> GetChar(charsPosiblesNombre, j)) Then
 
-                    Else
-                        ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
-                        ' entonces los datos se validan.
-                        coincidencias = coincidencias + 1
-                    End If
-                Next j
-            Next i
-        End If
+        For i = 1 To codigo.Length
+            For j = 1 To charsPosiblesNombre.Length
+                If (GetChar(codigo, i) <> GetChar(charsPosiblesNombre, j)) Then
+
+                Else
+                    ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
+                    ' entonces los datos se validan.
+                    coincidencias = coincidencias + 1
+                End If
+            Next j
+        Next i
+
 
 
         ' Devolvemos si los datos son válidos si se han encontrado tantas coincidencias como caracteres tenga la cadena.
         If coincidencias = codigo.Length Then
             valido = True
         Else
-            MsgBox(" El Autor no puede contener caracteres numéricos o símbolos no permitidos.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+            MsgBox(" El Tradcutor no puede contener caracteres numéricos o símbolos no permitidos.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
         End If
         Return valido
     End Function
 
-    'Validar precio
-    Public Function validarPrecio(codigo As String, tipo As Integer) As Boolean
+    'Validar Precio
+    Public Function validarPrecio(codigo As String) As Boolean
 
 
         ' Se opta de nuevo por la solución de poner en un String los valores permitidos.
@@ -1212,11 +1171,89 @@ Public Class Validacion
         If coincidencias = codigo.Length And codigo.Length <= valorMaximo Then
             valido = True
         Else
-            MsgBox(" El precio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, también debe tener una longitud de 6 digitos.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+            MsgBox(" El precio, solo admite caracteres numéricos y coma ',' .También debe tener una longitud de 6 digitos.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
         End If
         Return valido
     End Function
 
 
-    '
+    'Validar Nombre productos
+    Public Function validarNombreProducto(codigo As String) As Boolean
+
+        Dim charsPosiblesNombre As String = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890-_éúíóá¿?¡!();,.& "
+
+        Dim valido As Boolean = False
+        Dim coincidencias As Integer = 0
+        Dim valorMaximo As Integer
+
+        ' Máxima longitud del valor.
+        valorMaximo = 50
+        ' Solo se permiten nombres de hasta 50 números.
+        If codigo.Length > valorMaximo Then
+            MsgBox("Por favor, introduzca una Nombre que sea menor de 50 caracteres.", MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "Longitud incorrecta.")
+        End If
+
+        For i = 1 To codigo.Length
+            For j = 1 To charsPosiblesNombre.Length
+                If (GetChar(codigo, i) <> GetChar(charsPosiblesNombre, j)) Then
+
+                Else
+                    ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
+                    ' entonces los datos se validan.
+                    coincidencias = coincidencias + 1
+                End If
+            Next j
+        Next i
+
+        ' Devolvemos si los datos son válidos si se han encontrado tantas coincidencias como caracteres tenga la cadena.
+        If coincidencias = codigo.Length Then
+            valido = True
+        Else
+            MsgBox(" El Nombre del producto no puede contener símbolos no permitidos. Debe tener una longitud máxima de 50 caracteres", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+        End If
+        Return valido
+    End Function
+
+    'Validar Categoría Y Genero
+    Public Function validarCategoria(codigo As String) As Boolean
+
+        ' Para el nombre.
+        Dim charsPosiblesNombre As String = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZáéíóúÁÉÍÓÚ- "
+
+        Dim valido As Boolean = False
+        Dim coincidencias As Integer = 0
+        Dim valorMaximo As Integer
+
+        ' Máxima longitud del valor.
+        valorMaximo = 50
+
+        ' Solo se permiten nombres de hasta 50 números.
+        If codigo.Length > valorMaximo Then
+            MsgBox("Por favor, introduzca una Categoria que sea menor de 50 caracteres.", MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "Longitud incorrecta.")
+        End If
+
+        ' Validación nombre
+
+        For i = 1 To codigo.Length
+            For j = 1 To charsPosiblesNombre.Length
+                If (GetChar(codigo, i) <> GetChar(charsPosiblesNombre, j)) Then
+
+                Else
+                    ' Si se encuentran el mismo número de coincidencias que caracteres contrastados hay
+                    ' entonces los datos se validan.
+                    coincidencias = coincidencias + 1
+                End If
+            Next j
+        Next i
+
+
+        ' Devolvemos si los datos son válidos si se han encontrado tantas coincidencias como caracteres tenga la cadena.
+        If coincidencias = codigo.Length Then
+            valido = True
+        Else
+            MsgBox(" La Categoria no puede contener caracteres numéricos o símbolos no permitidos.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+        End If
+        Return valido
+    End Function
+
 End Class
