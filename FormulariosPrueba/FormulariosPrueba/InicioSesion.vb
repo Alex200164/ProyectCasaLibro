@@ -55,27 +55,52 @@ Public Class InicioSesion
     ' Método que se ejecuta la presionar el botón de "Iniciar sesion". Comprueba los datos introducidos y en caso afirmativo
     ' nos lleva al menu principal.
     Private Sub Button_InicioSesion_Click(sender As Object, e As EventArgs) Handles Button_InicioSesion.Click
+        ' If TextBox_Usuario.Text = "" Or TextBox_Contraseña.Text = "" Then
+        '  MsgBox("Porfavor rellene los campos de entrada. ", 64, "Mensajes del Sistema")
+
+        ' Else
         'Donde confirmaremos la veracidad de los datos de inicio de sesion 
-        ' VerificarLogeo(TextBox_Usuario.Text, TextBox_Contraseña.Text)
+        'VerificarLogeo(TextBox_Usuario.Text, TextBox_Contraseña.Text)
 
 
-        ' Damos comienzo al timer
-        Timer_BarraProgreso.Start()
+        '    End If
 
-        ' Actualizamos el estado 
-        ToolStripStatusLabel.Text = "Status: iniciando sesión"
+        '
 
     End Sub
+
+    'Private Function verificarUsuarioContrasenna(ByVal user As String, ByVal contrasena As String) As Boolean
+
+    '    adaptador = New OleDbDataAdapter("Select Usuario, Contrasenna from Empleados WHERE Usuario='" + user + "' AND Contrasenna='" + contrasena + "'", conexion)
+    '    adaptador.Fill(midataset, "Empleados")
+
+
+    'End Function
+
+
+
 
     Private Sub VerificarLogeo(ByVal user As String, ByVal contrasena As String)
 
         Try
-            adaptador = New OleDbDataAdapter("Select usuario from tablaEmpleados WHERE usuario='" + user + "' AND contrasenna='" + contrasena + "'", conexion)
+            'adaptador = New OleDbDataAdapter("Select Usuario, Contrasenna from Empleados WHERE Usuario='" + user + "' AND Contrasenna='" + contrasena + "'", conexion)
+            ' adaptador.Fill(midataset, "Empleados")
 
-            adaptador.Fill(midataset, "tablaEmpleados")
 
+            Dim ds As New DataSet
 
-            If midataset.Tables("tablaEmpleados").Rows.Count = 1 Then
+            Dim cb As New OleDbDataAdapter
+
+            Dim comando As New OleDbCommand("Select Usuario, Contrasenna from Empleados WHERE Usuario=@u AND Contrasenna = @c", conexion)
+
+            cb.SelectCommand = comando
+
+            comando.Parameters.Add("@var1", OleDbType.VarChar, 30).Value = user
+            comando.Parameters.Add("@var2", OleDbType.Numeric, 4).Value = contrasena
+
+            Dim result As String = comando.ExecuteScalar()
+
+            If (Not (String.IsNullOrEmpty(result))) Then
 
                 ' Guardamos datos del acceso en el archivo
                 ' accesosApp.AccesosApp("Login OK. usuario: " & TBUsuario.Text & " contraseña: " & TBContrasenna.Text)
@@ -84,10 +109,12 @@ Public Class InicioSesion
                 TextBox_Usuario.Text = ""
                 TextBox_Contraseña.Text = ""
 
-                midataset.Tables("tablaEmpleados").Clear()
+                midataset.Tables("Empleados").Clear()
 
                 ' Damos comienzo al timer
                 Timer_BarraProgreso.Start()
+                ' Actualizamos el estado 
+                ToolStripStatusLabel.Text = "Status: iniciando sesión"
 
                 MsgBox("Entrando en la aplicación")
 

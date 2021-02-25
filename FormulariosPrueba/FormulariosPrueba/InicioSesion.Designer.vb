@@ -61,10 +61,8 @@ Partial Class InicioSesion
         Me.TextBox_Contraseña.Location = New System.Drawing.Point(43, 147)
         Me.TextBox_Contraseña.MaxLength = 4
         Me.TextBox_Contraseña.Name = "TextBox_Contraseña"
-        Me.TextBox_Contraseña.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TextBox_Contraseña.Size = New System.Drawing.Size(197, 22)
         Me.TextBox_Contraseña.TabIndex = 2
-        Me.TextBox_Contraseña.UseSystemPasswordChar = True
         '
         'TextBox_Usuario
         '
