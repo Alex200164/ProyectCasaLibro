@@ -59,10 +59,12 @@ Partial Class InicioSesion
         Me.TextBox_Contraseña.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Contraseña.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Contraseña.Location = New System.Drawing.Point(43, 147)
-        Me.TextBox_Contraseña.MaxLength = 100
+        Me.TextBox_Contraseña.MaxLength = 4
         Me.TextBox_Contraseña.Name = "TextBox_Contraseña"
+        Me.TextBox_Contraseña.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TextBox_Contraseña.Size = New System.Drawing.Size(197, 22)
         Me.TextBox_Contraseña.TabIndex = 2
+        Me.TextBox_Contraseña.UseSystemPasswordChar = True
         '
         'TextBox_Usuario
         '
@@ -79,6 +81,7 @@ Partial Class InicioSesion
         '
         Me.Label_Contraseña.AutoSize = True
         Me.Label_Contraseña.Font = New System.Drawing.Font("Ebrima", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label_Contraseña.ForeColor = System.Drawing.Color.White
         Me.Label_Contraseña.Location = New System.Drawing.Point(38, 102)
         Me.Label_Contraseña.Name = "Label_Contraseña"
         Me.Label_Contraseña.Size = New System.Drawing.Size(123, 30)
@@ -89,6 +92,7 @@ Partial Class InicioSesion
         '
         Me.Label_Usuario.AutoSize = True
         Me.Label_Usuario.Font = New System.Drawing.Font("Ebrima", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label_Usuario.ForeColor = System.Drawing.Color.White
         Me.Label_Usuario.Location = New System.Drawing.Point(38, 19)
         Me.Label_Usuario.Name = "Label_Usuario"
         Me.Label_Usuario.Size = New System.Drawing.Size(88, 30)
@@ -100,7 +104,7 @@ Partial Class InicioSesion
         Me.LinkLabel_Contacto.AutoSize = True
         Me.LinkLabel_Contacto.Font = New System.Drawing.Font("Ebrima", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LinkLabel_Contacto.LinkColor = System.Drawing.Color.LightBlue
-        Me.LinkLabel_Contacto.Location = New System.Drawing.Point(576, 607)
+        Me.LinkLabel_Contacto.Location = New System.Drawing.Point(575, 583)
         Me.LinkLabel_Contacto.Name = "LinkLabel_Contacto"
         Me.LinkLabel_Contacto.Size = New System.Drawing.Size(97, 30)
         Me.LinkLabel_Contacto.TabIndex = 31
@@ -158,6 +162,9 @@ Partial Class InicioSesion
         '
         Me.ToolStripProgressBar_InicioSesion.Name = "ToolStripProgressBar_InicioSesion"
         Me.ToolStripProgressBar_InicioSesion.Size = New System.Drawing.Size(150, 20)
+        '
+        'Timer_BarraProgreso
+        '
         '
         'InicioSesion
         '

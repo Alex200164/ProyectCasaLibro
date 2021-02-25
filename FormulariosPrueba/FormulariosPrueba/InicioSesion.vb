@@ -1,4 +1,14 @@
-﻿Public Class InicioSesion
+﻿' Necesitamos importar el módelo de base de datos que vamos a utilizar, este es de access.
+Imports System.Data.OleDb
+
+Public Class InicioSesion
+
+    ' Especificamos la base de datos a la que nos vamos a conectar.
+    Public conexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=cas_lib_dib.accdb")
+    ' Al adaptador le asignamos la conexion que acabamos de realizar y una consulta
+    Public adaptador As New OleDbDataAdapter("Select * from Empleados", conexion)
+    'Aquí alojaremos los datos de la DB
+    Public midataset As New DataSet
 
     ' Método que se ejecuta cuando el formulario es iniciado por primera vez
     Private Sub InicioSesion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -46,6 +56,8 @@
     ' nos lleva al menu principal.
     Private Sub Button_InicioSesion_Click(sender As Object, e As EventArgs) Handles Button_InicioSesion.Click
         'Donde confirmaremos la veracidad de los datos de inicio de sesion 
+        VerificarLogeo(TextBox_Usuario.Text, TextBox_Contraseña.Text)
+
 
         ' Damos comienzo al timer
         Timer_BarraProgreso.Start()
@@ -53,6 +65,55 @@
         ' Actualizamos el estado 
         ToolStripStatusLabel.Text = "Status: iniciando sesión"
 
+    End Sub
+
+    Private Sub VerificarLogeo(ByVal user As String, ByVal contrasena As String)
+
+        Try
+            adaptador = New OleDbDataAdapter("Select usuario from tablaEmpleados WHERE usuario='" + user + "' AND contrasenna='" + contrasena + "'", conexion)
+
+            adaptador.Fill(midataset, "tablaEmpleados")
+
+
+            If midataset.Tables("tablaEmpleados").Rows.Count = 1 Then
+
+                ' Guardamos datos del acceso en el archivo
+                ' accesosApp.AccesosApp("Login OK. usuario: " & TBUsuario.Text & " contraseña: " & TBContrasenna.Text)
+
+                ' Dejamos limpios los campos
+                TextBox_Usuario.Text = ""
+                TextBox_Contraseña.Text = ""
+
+                midataset.Tables("tablaEmpleados").Clear()
+
+                ' Damos comienzo al timer
+                Timer_BarraProgreso.Start()
+
+                MsgBox("Entrando en la aplicación")
+
+                Me.Hide()
+                MenuPrincipal.Show()
+
+            Else
+
+                ' Guardamos datos del acceso en el archivo
+                'accesosApp.AccesosApp("Login Erroneo. usuario: " & TBUsuario.Text & " contraseña: " & TBContrasenna.Text)
+
+                ' Mostramos mensaje de error
+                MsgBox("El usuario o contraseña introducido es incorrecto, por favor introduzca otro", MsgBoxStyle.Information, "Error en la verificación")
+            End If
+
+        Catch ex As Exception
+
+            '  erroresApp.ErroresApp("Excepción controlada nº" & Err.Number & " : " & ex.Message & " generada en el formulario de Gestión de Empleados")
+
+            ' Dim encontradoError As Boolean = errores.MensajeError(Err.Number, "Por favor, revise la base de datos. ", False)
+
+            'If encontradoError = False Then
+            MsgBox("Error nº: " & Err.Number & ". " & ex.Message & " Por favor, revise la base de datos. ", MsgBoxStyle.Exclamation, ex.Message)
+            ' End If
+
+        End Try
     End Sub
 
 
