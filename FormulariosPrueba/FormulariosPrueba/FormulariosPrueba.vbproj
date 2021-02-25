@@ -58,9 +58,23 @@
     <Reference Include="libreriaValidacion">
       <HintPath>..\LibreriaValidacion\libValidacionDatos\bin\Debug\libreriaValidacion.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
-    <Reference Include="Microsoft.ReportViewer.WinForms">
-      <HintPath>..\..\..\..\..\Agenda BASES DE DATOS EJEMPLO\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1427.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1427.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1427.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1427.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1427.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1427.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -160,16 +174,16 @@
     <Compile Include="GestionSociosAltas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GestionSociosInforme.Designer.vb">
+      <DependentUpon>GestionSociosInforme.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionSociosInforme.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GestionSociosModificaciones.Designer.vb">
       <DependentUpon>GestionSociosModificaciones.vb</DependentUpon>
     </Compile>
     <Compile Include="GestionSociosModificaciones.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="InformeSocios.Designer.vb">
-      <DependentUpon>InformeSocios.vb</DependentUpon>
-    </Compile>
-    <Compile Include="InformeSocios.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="InicioSesion.Designer.vb">
@@ -241,11 +255,12 @@
     <EmbeddedResource Include="GestionSociosAltas.resx">
       <DependentUpon>GestionSociosAltas.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GestionSociosInforme.rdlc" />
+    <EmbeddedResource Include="GestionSociosInforme.resx">
+      <DependentUpon>GestionSociosInforme.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GestionSociosModificaciones.resx">
       <DependentUpon>GestionSociosModificaciones.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InformeSocios.resx">
-      <DependentUpon>InformeSocios.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InicioSesion.resx">
       <DependentUpon>InicioSesion.vb</DependentUpon>
@@ -289,6 +304,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Resources\logoCuadrado.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -357,6 +373,20 @@
   <ItemGroup>
     <Content Include="cas_lib_dib.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\Loader.cs" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
