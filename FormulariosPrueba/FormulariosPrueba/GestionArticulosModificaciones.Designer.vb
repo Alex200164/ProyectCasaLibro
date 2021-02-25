@@ -48,6 +48,7 @@ Partial Class GestionArticulosModificaciones
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Button_Examinar = New System.Windows.Forms.Button()
         Me.PictureBoxProducto = New System.Windows.Forms.PictureBox()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.Panel2.SuspendLayout()
         Me.GruopBox.SuspendLayout()
         Me.MenuStripPagPrin.SuspendLayout()
@@ -310,6 +311,15 @@ Partial Class GestionArticulosModificaciones
         Me.PictureBoxProducto.TabIndex = 185
         Me.PictureBoxProducto.TabStop = False
         '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(390, 414)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(75, 23)
+        Me.Button3.TabIndex = 188
+        Me.Button3.Text = "Button3"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
         'GestionArticulosModificaciones
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -317,6 +327,7 @@ Partial Class GestionArticulosModificaciones
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(754, 540)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button_Examinar)
         Me.Controls.Add(Me.PictureBoxProducto)
         Me.Controls.Add(Me.Panel3)
@@ -363,4 +374,5 @@ Partial Class GestionArticulosModificaciones
     Friend WithEvents Label_Precio As Label
     Friend WithEvents Button_Examinar As Button
     Friend WithEvents PictureBoxProducto As PictureBox
+    Friend WithEvents Button3 As Button
 End Class

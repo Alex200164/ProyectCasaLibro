@@ -1,7 +1,12 @@
 ﻿' Necesitamos importar el módelo de base de datos que vamos a utilizar, este es de access.
+Imports System.ComponentModel
 Imports System.Data.OleDb
 
 Public Class GestionArticulosModificaciones
+    'Para poder jugar con las imagenes en la base de datos usamos estas variables 
+    Dim imgpath As String
+    Dim arrImage() As Byte
+    Dim mstream As New System.IO.MemoryStream()
 
     ' Variable para almacenar el ISBN inicial con el que se identificará el registro a modificar.
     Dim ISBNInicial As String
@@ -46,6 +51,10 @@ Public Class GestionArticulosModificaciones
         'Asociamos el nuevo adaptador con el nuevo comando al midataset de la tabla Productos 
         adaptador.Fill(midataset, "Productos")
 
+        'Create a new object (Which has a bitmap property). Normally this would be
+        'some kind of data structure
+        tObject = New TestObject
+
         If GestionArticulos.numeroDeControlBindingModificaciones = 0 Then
             'Se relacionan los campos de la tabla con los textbox y se muestran los datos del registro que queremos modificar.
             Me.TextBox_ISBN.DataBindings.Add("text", midataset, "Productos.ISBN")
@@ -53,6 +62,9 @@ Public Class GestionArticulosModificaciones
             Me.TextBox_Categoria.DataBindings.Add("text", midataset, "Productos.Categoria")
             Me.TextBox_Precio.DataBindings.Add("text", midataset, "Productos.Precio")
             Me.TextBox_Stock.DataBindings.Add("text", midataset, "Productos.Stock")
+            Me.PictureBoxProducto.DataBindings.Add("Image", midataset, "Productos.Foto", True)
+
+            ' PictureBoxProducto.DataBindings.Add(New Binding("Image", tObject, "TestImage", True, DataSourceUpdateMode.OnPropertyChanged))
 
             GestionArticulos.numeroDeControlBindingModificaciones = 1
         End If
@@ -60,28 +72,60 @@ Public Class GestionArticulosModificaciones
         ' Inicializamos la variable asignandole el ISBN inicial
         ISBNInicial = GestionArticulos.DataGridView_Articulos.Item(0, GestionArticulos.DataGridView_Articulos.CurrentRow.Index).Value
 
-
-
     End Sub
+
+    '*********************
+    Private tObject As TestObject
+
+    'Your test object that has a bitmap as a property
+    Public Class TestObject
+
+        'Implement the INotifyPropertyChanged Interface
+        Implements INotifyPropertyChanged
+
+        'Create a property changed event
+        Private Event PropertyChanged As PropertyChangedEventHandler _
+            Implements INotifyPropertyChanged.PropertyChanged
+
+        'Create the routine to call the property changed event
+        Protected Sub OnPropertyChanged(ByVal name As String)
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(name))
+        End Sub
+
+        'Create a property which holds your bitmap
+        Private _TestImage As Bitmap
+        Public Property TestImage As Bitmap
+            Get
+                Return _TestImage
+            End Get
+            Set(value As Bitmap)
+                _TestImage = value
+
+                'call the routine which raises the propertychanged event
+                OnPropertyChanged("TestImage")
+            End Set
+        End Property
+
+    End Class
+
 
     ' Método que se ejecuta al pulsarse el botón "Modificar"
     ' Se encarga de modificar los datos ya existentes en la DB
     Private Sub Button_Modificar_Click(sender As Object, e As EventArgs) Handles Button_ModificarProv.Click
 
-        'Para subir la imagen lo que tenemos que hacer es 
-        Dim mstream As New System.IO.MemoryStream()
-        PictureBoxProducto.Image.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
-        arrImage = mstream.GetBuffer()
-        Dim FileSize As UInt64
-        FileSize = mstream.Length
-        mstream.Close()
-        'Acaba Método para meter las imagenes dentro de la base de datos de tipo Largo. 
-
-
-
         If TextBox_ISBN.Text = "" Or TextBox_Nombre.Text = "" Or TextBox_Categoria.Text = "" Or TextBox_Precio.Text = "" Or TextBox_Stock.Text = "" Then
             MsgBox("Debes seleccionar un registro para actualizarlo y si lo has seleccionado, no debe quedar ningún campo en blanco", MsgBoxStyle.OkOnly, "Error al dar de alta.")
         Else
+
+            ' If arrImage IsNot Nothing AndAlso arrImage.Length > 0 Then
+            'Para subir la imagen lo que tenemos que hacer es 
+            PictureBoxProducto.Image.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
+                arrImage = mstream.GetBuffer()
+                Dim FileSize As UInt64
+                FileSize = mstream.Length
+                mstream.Close()
+            'Acaba Método para meter las imagenes dentro de la base de datos de tipo Largo. 
+            ' End If
 
 
             Dim valor As String
@@ -100,18 +144,18 @@ Public Class GestionArticulosModificaciones
 
             If control = 0 Then
                 Try
-                    ' Montamos una query parametrizada.
+ 
                     Dim queryParametrizada As String = "UPDATE Productos SET ISBN=?, Nombre=?, Categoria=?, Precio=?, Stock=?, Foto=? WHERE ISBN=?"
                     Using cmd = New OleDbCommand(queryParametrizada, conexion)
 
                         conexion.Open()
-                        cmd.Parameters.AddWithValue("@p1", Convert.ToInt64(TextBox_ISBN.Text))
+                        cmd.Parameters.AddWithValue("@p1", (TextBox_ISBN.Text))
                         cmd.Parameters.AddWithValue("@p2", TextBox_Nombre.Text)
                         cmd.Parameters.AddWithValue("@p3", TextBox_Categoria.Text)
                         cmd.Parameters.AddWithValue("@p4", Convert.ToDouble(TextBox_Precio.Text))
                         cmd.Parameters.AddWithValue("@p5", Convert.ToInt64(TextBox_Stock.Text))
-                        cmd.Parameters.AddWithValue("@p6", arrImage)
-                        cmd.Parameters.AddWithValue("@p7", Convert.ToSingle(ISBNInicial))
+                        cmd.Parameters.AddWithValue("@p6", mstream.GetBuffer)
+                        cmd.Parameters.AddWithValue("@p7", (ISBNInicial))
 
                         cmd.ExecuteNonQuery()
 
@@ -121,11 +165,11 @@ Public Class GestionArticulosModificaciones
                     End Using
 
 
-                    ' Dim cb As New OleDbCommandBuilder(adaptador)
-                    ' adaptador.UpdateCommand = cb.GetUpdateCommand
+                    Dim cb As New OleDbCommandBuilder(adaptador)
+                    adaptador.UpdateCommand = cb.GetUpdateCommand
                 Catch ex As System.InvalidOperationException
                     ' Avisamos del error por mensaje
-                    MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                    ' MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
                 End Try
 
                 ' Actualizamos el dataGridView del formulario de gestión principal
@@ -173,8 +217,7 @@ Public Class GestionArticulosModificaciones
         End If
     End Sub
 
-    Dim imgpath As String
-    Dim arrImage() As Byte
+
     Private Sub Button_Examinar_Click(sender As Object, e As EventArgs) Handles Button_Examinar.Click
         Try
             'objeto de openfiledialog
@@ -260,4 +303,5 @@ Public Class GestionArticulosModificaciones
 
         validarStock.validar4digitos(TextBox_Stock.Text)
     End Sub
+
 End Class

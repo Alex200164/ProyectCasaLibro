@@ -56,14 +56,6 @@ Public Class GestionArticulosAltas
     ' Introduce los datos escritos por el usuario en los textBox en la DB.
     Private Sub Button_Alta_Click(sender As Object, e As EventArgs) Handles Button_Alta.Click
 
-        'Para subir la imagen lo que tenemos que hacer es 
-        Dim mstream As New System.IO.MemoryStream()
-        PictureBoxProducto.Image.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
-        arrImage = mstream.GetBuffer()
-        Dim FileSize As UInt64
-        FileSize = mstream.Length
-        mstream.Close()
-        'Acaba Método para meter las imagenes dentro de la base de datos de tipo Largo. 
 
 
 
@@ -72,7 +64,19 @@ Public Class GestionArticulosAltas
         Else
 
 
-            Dim valor As String
+
+            'Para subir la imagen lo que tenemos que hacer es 
+            Dim mstream As New System.IO.MemoryStream()
+                PictureBoxProducto.Image.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
+                arrImage = mstream.GetBuffer()
+                Dim FileSize As UInt64
+                FileSize = mstream.Length
+                mstream.Close()
+                'Acaba Método para meter las imagenes dentro de la base de datos de tipo Largo. 
+
+
+
+                Dim valor As String
             Dim control As Integer = 0
 
             ' Comprobamos que la clave primaria no se encuentra ya registrada.
@@ -121,16 +125,16 @@ Public Class GestionArticulosAltas
         ' Cargar la memoria del cache con datos.
         adaptador.Fill(midataset, "Productos")
 
-        '' Relacionar los campos de la tabla con los textbox
-        'If GestionArticulos.numeroDeControlBindingAltaArticulos = 0 Then
-        '    Me.TextBox_ISBN.DataBindings.Add("text", midataset, "Productos.ISBN")
-        '    Me.TextBox_Nombre.DataBindings.Add("text", midataset, "Productos.Nombre")
-        '    Me.TextBox_Categoria.DataBindings.Add("text", midataset, "Productos.Categoria")
-        '    Me.TextBox_Precio.DataBindings.Add("text", midataset, "Productos.Precio")
-        '    Me.TextBox_Stock.DataBindings.Add("text", midataset, "Productos.Stock")
+        ' Relacionar los campos de la tabla con los textbox
+        If GestionArticulos.numeroDeControlBindingAltaArticulos = 0 Then
+            Me.TextBox_ISBN.DataBindings.Add("text", midataset, "Productos.ISBN")
+            Me.TextBox_Nombre.DataBindings.Add("text", midataset, "Productos.Nombre")
+            Me.TextBox_Categoria.DataBindings.Add("text", midataset, "Productos.Categoria")
+            Me.TextBox_Precio.DataBindings.Add("text", midataset, "Productos.Precio")
+            Me.TextBox_Stock.DataBindings.Add("text", midataset, "Productos.Stock")
 
-        '    GestionArticulos.numeroDeControlBindingAltaArticulos = 1
-        'End If
+            GestionArticulos.numeroDeControlBindingAltaArticulos = 1
+        End If
 
 
         ' Vaciamos cada textBox de forma individual

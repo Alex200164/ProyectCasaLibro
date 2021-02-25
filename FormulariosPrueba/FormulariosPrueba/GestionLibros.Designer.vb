@@ -25,21 +25,20 @@ Partial Class GestionLibros
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionLibros))
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.TextBox_ISBNOCULTO = New System.Windows.Forms.TextBox()
         Me.Button_Eliminar = New System.Windows.Forms.Button()
         Me.Button_Annadir = New System.Windows.Forms.Button()
         Me.DataGridView_Libros = New System.Windows.Forms.DataGridView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TextBox_ISBN = New System.Windows.Forms.TextBox()
+        Me.TextBox_ISBNOCULTO = New System.Windows.Forms.TextBox()
         Me.Label_Autor = New System.Windows.Forms.Label()
         Me.TextBox_Autor = New System.Windows.Forms.TextBox()
         Me.Button_Buscar = New System.Windows.Forms.Button()
         Me.Button_Limpiar = New System.Windows.Forms.Button()
-        Me.TextBox_Genero = New System.Windows.Forms.TextBox()
         Me.Label_Genero = New System.Windows.Forms.Label()
         Me.TextBox_Titulo = New System.Windows.Forms.TextBox()
         Me.Label_Titulo = New System.Windows.Forms.Label()
         Me.Label_ISBN = New System.Windows.Forms.Label()
-        Me.TextBox_ISBN = New System.Windows.Forms.TextBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.MenuStripPagPrin = New System.Windows.Forms.MenuStrip()
@@ -55,6 +54,7 @@ Partial Class GestionLibros
         Me.GestiónEmpleadosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VerLaAyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ComboBox_Genero = New System.Windows.Forms.ComboBox()
         Me.Panel1.SuspendLayout()
         CType(Me.DataGridView_Libros, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -74,17 +74,6 @@ Partial Class GestionLibros
         Me.Panel1.Size = New System.Drawing.Size(959, 480)
         Me.Panel1.TabIndex = 53
         Me.Panel1.TabStop = True
-        '
-        'TextBox_ISBNOCULTO
-        '
-        Me.TextBox_ISBNOCULTO.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_ISBNOCULTO.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_ISBNOCULTO.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_ISBNOCULTO.Location = New System.Drawing.Point(71, 30)
-        Me.TextBox_ISBNOCULTO.MaxLength = 100
-        Me.TextBox_ISBNOCULTO.Name = "TextBox_ISBNOCULTO"
-        Me.TextBox_ISBNOCULTO.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_ISBNOCULTO.TabIndex = 100
         '
         'Button_Eliminar
         '
@@ -113,6 +102,7 @@ Partial Class GestionLibros
         Me.DataGridView_Libros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView_Libros.Location = New System.Drawing.Point(3, 211)
         Me.DataGridView_Libros.Name = "DataGridView_Libros"
+        Me.DataGridView_Libros.ReadOnly = True
         Me.DataGridView_Libros.Size = New System.Drawing.Size(938, 260)
         Me.DataGridView_Libros.TabIndex = 99
         '
@@ -120,13 +110,13 @@ Partial Class GestionLibros
         '
         Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.ComboBox_Genero)
         Me.GroupBox1.Controls.Add(Me.TextBox_ISBN)
         Me.GroupBox1.Controls.Add(Me.TextBox_ISBNOCULTO)
         Me.GroupBox1.Controls.Add(Me.Label_Autor)
         Me.GroupBox1.Controls.Add(Me.TextBox_Autor)
         Me.GroupBox1.Controls.Add(Me.Button_Buscar)
         Me.GroupBox1.Controls.Add(Me.Button_Limpiar)
-        Me.GroupBox1.Controls.Add(Me.TextBox_Genero)
         Me.GroupBox1.Controls.Add(Me.Label_Genero)
         Me.GroupBox1.Controls.Add(Me.TextBox_Titulo)
         Me.GroupBox1.Controls.Add(Me.Label_Titulo)
@@ -137,6 +127,28 @@ Partial Class GestionLibros
         Me.GroupBox1.TabIndex = 24
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Filtro de Busqueda"
+        '
+        'TextBox_ISBN
+        '
+        Me.TextBox_ISBN.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_ISBN.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_ISBN.Location = New System.Drawing.Point(71, 30)
+        Me.TextBox_ISBN.MaxLength = 13
+        Me.TextBox_ISBN.Name = "TextBox_ISBN"
+        Me.TextBox_ISBN.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_ISBN.TabIndex = 1
+        '
+        'TextBox_ISBNOCULTO
+        '
+        Me.TextBox_ISBNOCULTO.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_ISBNOCULTO.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_ISBNOCULTO.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_ISBNOCULTO.Location = New System.Drawing.Point(71, 30)
+        Me.TextBox_ISBNOCULTO.MaxLength = 100
+        Me.TextBox_ISBNOCULTO.Name = "TextBox_ISBNOCULTO"
+        Me.TextBox_ISBNOCULTO.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_ISBNOCULTO.TabIndex = 100
         '
         'Label_Autor
         '
@@ -154,7 +166,7 @@ Partial Class GestionLibros
         Me.TextBox_Autor.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Autor.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Autor.Location = New System.Drawing.Point(71, 81)
-        Me.TextBox_Autor.MaxLength = 100
+        Me.TextBox_Autor.MaxLength = 50
         Me.TextBox_Autor.Name = "TextBox_Autor"
         Me.TextBox_Autor.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Autor.TabIndex = 4
@@ -176,17 +188,6 @@ Partial Class GestionLibros
         Me.Button_Limpiar.TabIndex = 6
         Me.Button_Limpiar.Text = "Limpiar"
         Me.Button_Limpiar.UseVisualStyleBackColor = True
-        '
-        'TextBox_Genero
-        '
-        Me.TextBox_Genero.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_Genero.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Genero.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Genero.Location = New System.Drawing.Point(723, 29)
-        Me.TextBox_Genero.MaxLength = 100
-        Me.TextBox_Genero.Name = "TextBox_Genero"
-        Me.TextBox_Genero.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_Genero.TabIndex = 3
         '
         'Label_Genero
         '
@@ -228,17 +229,6 @@ Partial Class GestionLibros
         Me.Label_ISBN.Size = New System.Drawing.Size(55, 20)
         Me.Label_ISBN.TabIndex = 165
         Me.Label_ISBN.Text = "ISBN :"
-        '
-        'TextBox_ISBN
-        '
-        Me.TextBox_ISBN.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_ISBN.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_ISBN.Location = New System.Drawing.Point(71, 30)
-        Me.TextBox_ISBN.MaxLength = 100
-        Me.TextBox_ISBN.Name = "TextBox_ISBN"
-        Me.TextBox_ISBN.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_ISBN.TabIndex = 1
         '
         'Panel2
         '
@@ -363,6 +353,17 @@ Partial Class GestionLibros
         Me.VerLaAyudaToolStripMenuItem.Size = New System.Drawing.Size(187, 22)
         Me.VerLaAyudaToolStripMenuItem.Text = "Ver la Ayuda"
         '
+        'ComboBox_Genero
+        '
+        Me.ComboBox_Genero.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.ComboBox_Genero.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.ComboBox_Genero.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ComboBox_Genero.FormattingEnabled = True
+        Me.ComboBox_Genero.Location = New System.Drawing.Point(723, 32)
+        Me.ComboBox_Genero.Name = "ComboBox_Genero"
+        Me.ComboBox_Genero.Size = New System.Drawing.Size(197, 21)
+        Me.ComboBox_Genero.TabIndex = 182
+        '
         'GestionLibros
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -397,7 +398,6 @@ Partial Class GestionLibros
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Button_Buscar As Button
     Friend WithEvents Button_Limpiar As Button
-    Friend WithEvents TextBox_Genero As TextBox
     Friend WithEvents Label_Genero As Label
     Friend WithEvents TextBox_Titulo As TextBox
     Friend WithEvents Label_Titulo As Label
@@ -421,4 +421,5 @@ Partial Class GestionLibros
     Friend WithEvents AyudaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents VerLaAyudaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TextBox_ISBNOCULTO As TextBox
+    Friend WithEvents ComboBox_Genero As ComboBox
 End Class

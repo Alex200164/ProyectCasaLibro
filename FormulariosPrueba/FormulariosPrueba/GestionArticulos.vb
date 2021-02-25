@@ -40,6 +40,10 @@ Public Class GestionArticulos
             DataGridView_Articulos.DataSource = midataset
             DataGridView_Articulos.DataMember = "Productos"
 
+            ' DataGridView_Articulos.Columns(5).Visible = False
+
+
+
             ' Inicializamos el número de control
             numeroDeControlBindingModificaciones = 0
             numeroDeControlBindingAltaArticulos = 0
@@ -50,8 +54,6 @@ Public Class GestionArticulos
         Catch ex As System.Data.OleDb.OleDbException
             MsgBox("Parece que algo ha salido mal. Revise que la base de datos no esté abierta durante la ejecución.", MsgBoxStyle.OkOnly, "Error - Base de datos")
 
-            ' Especificamos la posición de la ventana
-            posicionarFormularioMenuPrincipal()
 
             ' Mostramos el menú principal.
             MenuPrincipal.Show()
@@ -90,16 +92,7 @@ Public Class GestionArticulos
         GestionArticulosModificaciones.Location = New Point(a, b)
     End Sub
 
-    ' Método que permite posicionar la ventana en la posición especificada del formulario "MenuPrincipal".
-    ' En este caso para evitar que quede encima del formulario anterior.
-    Private Shared Sub posicionarFormularioMenuPrincipal()
-        MenuPrincipal.StartPosition = FormStartPosition.Manual
-        Dim a As Integer
-        a = My.Computer.Screen.Bounds.Size.Width - (My.Computer.Screen.Bounds.Size.Width * 0.97)
-        Dim b As Integer
-        b = My.Computer.Screen.Bounds.Size.Height - (My.Computer.Screen.Bounds.Size.Height * 0.97)
-        MenuPrincipal.Location = New Point(a, b)
-    End Sub
+
 
     ' Método que se ejecuta cuando el botón "Añadir" es pulsado.
     Private Sub Button_Annadir_Click(sender As Object, e As EventArgs) Handles Button_Annadir.Click
@@ -256,8 +249,6 @@ Public Class GestionArticulos
 
     ' Método que se ejecuta cuando el botón "Salir..." del ToolStrip es pulsado y que nos lleva al formulario "MenuPrincipal"
     Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click
-        ' Especificamos la posición de la ventana
-        posicionarFormularioMenuPrincipal()
 
         ' Mostramos el menú principal.
         MenuPrincipal.Show()

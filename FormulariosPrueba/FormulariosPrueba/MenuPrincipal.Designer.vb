@@ -119,6 +119,7 @@ Partial Class MenuPrincipal
         Me.Controls.Add(Me.Button_GestionLibros)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "MenuPrincipal"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Menu Principal"
         Me.ResumeLayout(False)
 

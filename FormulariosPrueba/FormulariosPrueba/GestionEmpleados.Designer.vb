@@ -243,10 +243,13 @@ Partial Class GestionEmpleados
         '
         'DataGridView_Empleados
         '
+        Me.DataGridView_Empleados.AllowUserToAddRows = False
+        Me.DataGridView_Empleados.AllowUserToOrderColumns = True
         Me.DataGridView_Empleados.BackgroundColor = System.Drawing.Color.White
         Me.DataGridView_Empleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView_Empleados.Location = New System.Drawing.Point(3, 211)
         Me.DataGridView_Empleados.Name = "DataGridView_Empleados"
+        Me.DataGridView_Empleados.ReadOnly = True
         Me.DataGridView_Empleados.Size = New System.Drawing.Size(938, 260)
         Me.DataGridView_Empleados.TabIndex = 99
         '
@@ -371,6 +374,7 @@ Partial Class GestionEmpleados
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(984, 611)
+        Me.ControlBox = False
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.MenuStripPagPrin)
         Me.Controls.Add(Me.Panel2)

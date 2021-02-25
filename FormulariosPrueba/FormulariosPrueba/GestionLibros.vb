@@ -45,8 +45,6 @@ Public Class GestionLibros
         Catch ex As System.Data.OleDb.OleDbException
             MsgBox("Parece que algo ha salido mal. Revise que la base de datos no esté abierta durante la ejecución.", MsgBoxStyle.OkOnly, "Error - Base de datos")
 
-            ' Especificamos la posición de la ventana
-            posicionarFormularioMenuPrincipal()
 
             ' Mostramos el menú principal.
             MenuPrincipal.Show()
@@ -85,16 +83,7 @@ Public Class GestionLibros
         GestionLibrosModificaciones.Location = New Point(a, b)
     End Sub
 
-    ' Método que permite posicionar la ventana en la posición especificada del formulario "MenuPrincipal".
-    ' En este caso para evitar que quede encima del formulario anterior.
-    Private Shared Sub posicionarFormularioMenuPrincipal()
-        MenuPrincipal.StartPosition = FormStartPosition.Manual
-        Dim a As Integer
-        a = My.Computer.Screen.Bounds.Size.Width - (My.Computer.Screen.Bounds.Size.Width * 0.97)
-        Dim b As Integer
-        b = My.Computer.Screen.Bounds.Size.Height - (My.Computer.Screen.Bounds.Size.Height * 0.97)
-        MenuPrincipal.Location = New Point(a, b)
-    End Sub
+
 
     ' Método que se ejecuta cuando el botón "Añadir" es pulsado.
     Private Sub Button_Annadir_Click(sender As Object, e As EventArgs) Handles Button_Annadir.Click
@@ -251,8 +240,6 @@ Public Class GestionLibros
 
     ' Método que se ejecuta cuando el botón "Salir..." del ToolStrip es pulsado y que nos lleva al formulario "MenuPrincipal"
     Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click
-        ' Especificamos la posición de la ventana
-        posicionarFormularioMenuPrincipal()
 
         ' Mostramos el menú principal.
         MenuPrincipal.Show()
@@ -308,7 +295,7 @@ Public Class GestionLibros
     Private Sub Button_Limpiar_Click(sender As Object, e As EventArgs) Handles Button_Limpiar.Click
         TextBox_ISBN.Clear()
         TextBox_Titulo.Clear()
-        TextBox_Genero.Clear()
+        ComboBox_Genero.ResetText()
         TextBox_Autor.Clear()
 
         ' Actualizamos el datagriview
@@ -328,12 +315,12 @@ Public Class GestionLibros
     Private Sub Button_Buscar_Click(sender As Object, e As EventArgs) Handles Button_Buscar.Click
 
         ' Comprobamos que haya datos en los textBoxes (por lo menos en uno de ellos)
-        If TextBox_ISBN.Text = "" And TextBox_Titulo.Text = "" And TextBox_Genero.Text = "" And TextBox_Autor.Text = "" Then
+        If TextBox_ISBN.Text = "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text = "" Then
             MsgBox("No se puede buscar , debe rellenar al menos una caja con datos.", MsgBoxStyle.OkOnly, "Error al buscar.")
         Else
 
             ' Si se ha introducido todo
-            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text <> "" And TextBox_Genero.Text <> "" And TextBox_Autor.Text <> "" Then
+            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text <> "" Then
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
@@ -344,7 +331,7 @@ Public Class GestionLibros
 
                 comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
                 comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
-                comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = TextBox_Genero.Text
+                comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
                 comando.Parameters.Add("@var4", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
 
                 midataset.Clear()
@@ -359,7 +346,7 @@ Public Class GestionLibros
 
 
             ' Numero Titulo Genero
-            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text <> "" And TextBox_Genero.Text <> "" And TextBox_Autor.Text = "" Then
+            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text = "" Then
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
@@ -370,7 +357,7 @@ Public Class GestionLibros
 
                 comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
                 comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
-                comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = TextBox_Genero.Text
+                comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
 
                 midataset.Clear()
 
@@ -382,7 +369,7 @@ Public Class GestionLibros
             End If
 
             ' Titulo Genero Autor
-            If TextBox_ISBN.Text = "" And TextBox_Titulo.Text <> "" And TextBox_Genero.Text <> "" And TextBox_Autor.Text <> "" Then
+            If TextBox_ISBN.Text = "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text <> "" Then
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
@@ -392,7 +379,7 @@ Public Class GestionLibros
                 cb.SelectCommand = comando
 
                 comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Genero.Text
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
                 comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
 
                 midataset.Clear()
@@ -405,7 +392,7 @@ Public Class GestionLibros
             End If
 
             ' Numero Genero Autor
-            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text = "" And TextBox_Genero.Text <> "" And TextBox_Autor.Text <> "" Then
+            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text <> "" Then
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
@@ -415,7 +402,7 @@ Public Class GestionLibros
                 cb.SelectCommand = comando
 
                 comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Genero.Text
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
                 comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
 
                 midataset.Clear()
@@ -428,7 +415,7 @@ Public Class GestionLibros
             End If
 
             ' Numero Titulo Autor
-            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text <> "" And TextBox_Genero.Text = "" And TextBox_Autor.Text <> "" Then
+            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text <> "" Then
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
@@ -451,7 +438,7 @@ Public Class GestionLibros
             End If
 
             ' Numero Titulo
-            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text <> "" And TextBox_Genero.Text = "" And TextBox_Autor.Text = "" Then
+            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text = "" Then
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
@@ -473,7 +460,7 @@ Public Class GestionLibros
             End If
 
             ' Numero Genero
-            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text = "" And TextBox_Genero.Text <> "" And TextBox_Autor.Text = "" Then
+            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text = "" Then
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
@@ -483,7 +470,7 @@ Public Class GestionLibros
                 cb.SelectCommand = comando
 
                 comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Genero.Text
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
 
                 midataset.Clear()
 
@@ -495,7 +482,7 @@ Public Class GestionLibros
             End If
 
             ' Titulo Genero
-            If TextBox_ISBN.Text = "" And TextBox_Titulo.Text <> "" And TextBox_Genero.Text <> "" And TextBox_Autor.Text = "" Then
+            If TextBox_ISBN.Text = "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text = "" Then
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
@@ -505,7 +492,7 @@ Public Class GestionLibros
                 cb.SelectCommand = comando
 
                 comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Genero.Text
+                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
 
                 midataset.Clear()
 
@@ -517,7 +504,7 @@ Public Class GestionLibros
             End If
 
             ' Genero Autor
-            If TextBox_ISBN.Text = "" And TextBox_Titulo.Text = "" And TextBox_Genero.Text <> "" And TextBox_Autor.Text <> "" Then
+            If TextBox_ISBN.Text = "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text <> "" Then
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
@@ -526,7 +513,7 @@ Public Class GestionLibros
 
                 cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Genero.Text
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
                 comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
 
                 midataset.Clear()
@@ -539,7 +526,7 @@ Public Class GestionLibros
             End If
 
             ' Numero Autor
-            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text = "" And TextBox_Genero.Text = "" And TextBox_Autor.Text <> "" Then
+            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text <> "" Then
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
@@ -561,7 +548,7 @@ Public Class GestionLibros
             End If
 
             ' Titulo Autor
-            If TextBox_ISBN.Text = "" And TextBox_Titulo.Text <> "" And TextBox_Genero.Text = "" And TextBox_Autor.Text <> "" Then
+            If TextBox_ISBN.Text = "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text <> "" Then
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
@@ -583,7 +570,7 @@ Public Class GestionLibros
             End If
 
             ' Numero
-            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text = "" And TextBox_Genero.Text = "" And TextBox_Autor.Text = "" Then
+            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text = "" Then
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
@@ -604,7 +591,7 @@ Public Class GestionLibros
             End If
 
             ' Titulo
-            If TextBox_ISBN.Text = "" And TextBox_Titulo.Text <> "" And TextBox_Genero.Text = "" And TextBox_Autor.Text = "" Then
+            If TextBox_ISBN.Text = "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text = "" Then
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
@@ -625,7 +612,7 @@ Public Class GestionLibros
             End If
 
             ' Genero
-            If TextBox_ISBN.Text = "" And TextBox_Titulo.Text = "" And TextBox_Genero.Text <> "" And TextBox_Autor.Text = "" Then
+            If TextBox_ISBN.Text = "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text = "" Then
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
@@ -634,7 +621,7 @@ Public Class GestionLibros
 
                 cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Genero.Text
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
 
                 midataset.Clear()
 
@@ -646,7 +633,7 @@ Public Class GestionLibros
             End If
 
             ' Autor
-            If TextBox_ISBN.Text = "" And TextBox_Titulo.Text = "" And TextBox_Genero.Text = "" And TextBox_Autor.Text <> "" Then
+            If TextBox_ISBN.Text = "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text <> "" Then
                 Dim ds As New DataSet
 
                 Dim cb As New OleDbDataAdapter
