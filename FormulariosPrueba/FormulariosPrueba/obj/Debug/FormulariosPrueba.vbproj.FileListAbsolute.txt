@@ -100,7 +100,9 @@ D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPr
 D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\bin\Debug\libreriaValidacion.pdb
 D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\bin\Debug\libreriaValidacion.xml
 D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.vbproj.CopyComplete
-F:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.vbprojResolveAssemblyReference.cache
 F:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\bin\Debug\libreriaValidacion.dll
 F:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\bin\Debug\libreriaValidacion.pdb
 F:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\bin\Debug\libreriaValidacion.xml
+F:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.vbprojAssemblyReference.cache
+F:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.vbproj.CoreCompileInputs.cache
+F:\Trabajo\Grado_superior\2_Curso\Desarrollo de Interfaces\Repositorios\DESARROLLO-2\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.vbproj.CopyComplete

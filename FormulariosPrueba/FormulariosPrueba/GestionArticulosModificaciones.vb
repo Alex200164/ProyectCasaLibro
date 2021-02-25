@@ -10,7 +10,7 @@ Public Class GestionArticulosModificaciones
     Dim numControlPK As Single = 0
 
     ' Especificamos la base de datos a la que nos vamos a conectar.
-    Public conexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=CasaLibroDB.accdb")
+    Public conexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=cas_lib_dib.accdb")
     ' Al adaptador le asignamos la conexion que acabamos de realizar y una consulta
     Public adaptador As New OleDbDataAdapter("Select * from Productos", conexion)
 
