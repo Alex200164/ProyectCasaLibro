@@ -56,6 +56,8 @@ Partial Class GestionSocios
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.HelpProvider1 = New System.Windows.Forms.HelpProvider()
+        Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
+        Me.ReportViewer2 = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.MenuStripPagPrin.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -359,6 +361,22 @@ Partial Class GestionSocios
         Me.Panel2.Size = New System.Drawing.Size(984, 94)
         Me.Panel2.TabIndex = 51
         '
+        'ReportViewer1
+        '
+        Me.ReportViewer1.Location = New System.Drawing.Point(0, 0)
+        Me.ReportViewer1.Name = "ReportViewer"
+        Me.ReportViewer1.ServerReport.BearerToken = Nothing
+        Me.ReportViewer1.Size = New System.Drawing.Size(396, 246)
+        Me.ReportViewer1.TabIndex = 0
+        '
+        'ReportViewer2
+        '
+        Me.ReportViewer2.Location = New System.Drawing.Point(0, 0)
+        Me.ReportViewer2.Name = "ReportViewer"
+        Me.ReportViewer2.ServerReport.BearerToken = Nothing
+        Me.ReportViewer2.Size = New System.Drawing.Size(396, 246)
+        Me.ReportViewer2.TabIndex = 0
+        '
         'GestionSocios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -417,4 +435,6 @@ Partial Class GestionSocios
     Friend WithEvents TextBox_Nombre As TextBox
     Friend WithEvents TextBox_NumeroSocio As TextBox
     Friend WithEvents HelpProvider1 As HelpProvider
+    Friend WithEvents ReportViewer1 As Microsoft.Reporting.WinForms.ReportViewer
+    Friend WithEvents ReportViewer2 As Microsoft.Reporting.WinForms.ReportViewer
 End Class
