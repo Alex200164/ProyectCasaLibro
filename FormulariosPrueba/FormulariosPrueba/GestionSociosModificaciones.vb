@@ -134,7 +134,7 @@ Public Class GestionSociosModificaciones
                         cmd.Parameters.AddWithValue("@p3", TextBox_Apellidos.Text)
                         cmd.Parameters.AddWithValue("@p4", Convert.ToInt64(TextBox_Telefono.Text))
                         cmd.Parameters.AddWithValue("@p5", TextBox_Correo.Text)
-                        cmd.Parameters.AddWithValue("@p6", Convert.ToSingle(numSocioInicial))
+                        cmd.Parameters.AddWithValue("@p6", numSocioInicial)
 
                         cmd.ExecuteNonQuery()
 
@@ -150,40 +150,6 @@ Public Class GestionSociosModificaciones
                     ' Avisamos del error por mensaje
                     MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
                 End Try
-
-                ' Dim a As Integer = GestionSocios.posicionDataGridSeleccionada
-
-                ' Dim fila As DataRow = GestionSocios.midataset.Tables("Socios").Rows(a)
-
-
-
-                ' Comenzamos la edición
-                '  fila.BeginEdit()
-                '  fila("NumeroDeSocio") = TextBox_NumeroSocio.Text
-                '  fila("Nombre") = TextBox_Nombre.Text
-                ' fila("Apellidos") = TextBox_Apellidos.Text
-                '  fila("Telefono") = TextBox_Telefono.Text
-                '  fila("Correo") = TextBox_Correo.Text
-                '  fila.EndEdit()
-                ' Finalizamos la edición
-
-                '  Try
-                ' ' Ejecutamos la sentencia
-                ' adaptador.Update(GestionSocios.midataset.Tables("Socios"))
-                ' Catch ex As System.InvalidOperationException
-
-                ' End Try
-
-                ' Actualizamos el dataGridView del formulario de gestión principal
-                ' GestionSocios.midataset.Clear()
-
-                ' Cargamos cache
-                'GestionSocios.adaptador.Fill(GestionSocios.midataset, "Socios")
-
-                ' cargar en el datagridview, le decimos de donde sacamos los datos
-
-                'GestionSocios.DataGridView_Socios.DataSource = GestionSocios.midataset
-                'GestionSocios.DataGridView_Socios.DataMember = "Socios"
 
                 ' Actualizamos el dataGridView del formulario de gestión principal
                 GestionSocios.midataset.Clear()

@@ -55,6 +55,7 @@ Partial Class GestionSocios
         Me.DataGridView_Socios = New System.Windows.Forms.DataGridView()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.HelpProvider1 = New System.Windows.Forms.HelpProvider()
         Me.MenuStripPagPrin.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -415,4 +416,5 @@ Partial Class GestionSocios
     Friend WithEvents TextBox_Apellidos As TextBox
     Friend WithEvents TextBox_Nombre As TextBox
     Friend WithEvents TextBox_NumeroSocio As TextBox
+    Friend WithEvents HelpProvider1 As HelpProvider
 End Class

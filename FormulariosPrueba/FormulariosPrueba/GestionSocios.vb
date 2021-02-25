@@ -255,14 +255,14 @@ Public Class GestionSocios
 
 
         ' Cerramos este formulario
-        Me.Close()
+        Me.Hide()
     End Sub
 
     ' Método que se ejecuta al pulsar el botón "Eliminar"
     Private Sub Button_Eliminar_Click(sender As Object, e As EventArgs) Handles Button_Eliminar.Click
         Try
             If TextBox_NumeroSocioOCULTO.Text = "" Then
-                MsgBox("Debes seleccionar un registro para eliminarlo")
+                MsgBox("Debes seleccionar un registro para eliminarlo", MsgBoxStyle.OkOnly, "Aviso")
             Else
                 ' ####################  1º Informaros a la DB de que vamos a eliminar un registro ##############################
                 Dim cb As New OleDbCommandBuilder(adaptador)
@@ -270,7 +270,7 @@ Public Class GestionSocios
 
                 ' ####################  2º Cambiamos el estado de los botones del menuStrip ##############################
                 Dim res As Integer
-                res = MsgBox("¿Estás seguro de que quieres eliminar?", MsgBoxStyle.YesNo)
+                res = MsgBox("¿Estás seguro de que quieres eliminar?", MsgBoxStyle.YesNo, "Importante")
                 If res = vbYes Then
 
                     If BindingContext(midataset, "Socios").Count > 0 Then
@@ -974,5 +974,13 @@ Public Class GestionSocios
         Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
         validarNumeroSocio.validarNombre(TextBox_Apellidos.Text, 2)
+    End Sub
+
+    Private Sub GestionSocios_HelpRequested(sender As Object, hlpevent As HelpEventArgs) Handles Me.HelpRequested
+        Help.ShowHelp(Me, "Tutorial_HelpNDoc.chm", "Tutorial_HelpNDoc.html")
+    End Sub
+
+    Private Sub VerLaAyudaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerLaAyudaToolStripMenuItem.Click
+        Help.ShowHelp(Me, "Tutorial_HelpNDoc.chm", "Tutorial_HelpNDoc.html")
     End Sub
 End Class
