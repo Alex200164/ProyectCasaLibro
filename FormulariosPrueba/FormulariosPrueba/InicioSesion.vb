@@ -1,7 +1,15 @@
 ﻿Public Class InicioSesion
+
     Private Sub InicioSesion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Tenemos que cargar las conexiones a las tanto a la base de datos como a la libreria.
         inicializarPantalla()
+
+        ' Especificamos los valores de nuestra barra de progreso
+        ToolStripProgressBar_InicioSesion.Step = 3 'Indicamos que vamos a aumentarlo de uno en uno
+        ToolStripProgressBar_InicioSesion.Maximum = 100 ' Indicamos el máximo
+        ToolStripProgressBar_InicioSesion.Minimum = 0 ' Indicamos el minimo
+        ToolStripProgressBar_InicioSesion.Value = 0 ' Indicamos el valor inicial
+
     End Sub
 
     'Método que se encargará de inicializar todos los componenetes de la pantalla.
@@ -54,11 +62,40 @@
     Private Sub Button_InicioSesion_Click(sender As Object, e As EventArgs) Handles Button_InicioSesion.Click
         'Donde confirmaremos la veracidad de los datos de inicio de sesion 
 
-        ' Ocultamos este formulario (se queda en segundo plano).
-        Me.Hide()
-        ' Especificamos la posición en la que queremos que se coloque en pantalla el formualario "MenuPricipal"
-        posicionarFormularioMenuPrincipal()
-        ' Mostramos al usuario el menu principal.
-        MenuPrincipal.Show()
+        ' Damos comienzo al timer
+        Timer_BarraProgreso.Start()
+
+        ' Actualizamos el estado
+        ToolStripStatusLabel.Text = "Status: iniciando sesión"
+
     End Sub
+
+    ' Método del timer que permitirá su ejecución
+    Private Sub Timer_paraProgreso_Tick(sender As Object, e As EventArgs) Handles Timer_BarraProgreso.Tick
+        ' Avanzamos x en el valor del progress bar
+        ToolStripProgressBar_InicioSesion.PerformStep()
+
+        If ToolStripProgressBar_InicioSesion.Value = 100 Then
+            ' Paramos el progreso del timer
+            Timer_BarraProgreso.Stop()
+
+            ' Ocultamos este formulario (se queda en segundo plano).
+            Me.Hide()
+
+            ' Especificamos la posición en la que queremos que se coloque en pantalla el formualario "MenuPricipal"
+            posicionarFormularioMenuPrincipal()
+            ' Mostramos al usuario el menu principal.
+            MenuPrincipal.Show()
+
+            ' Especificamos los valores de nuestra barra de progreso nuevamente (reiniciandola)
+            ToolStripProgressBar_InicioSesion.Step = 3 'Indicamos que vamos a aumentarlo de uno en uno
+            ToolStripProgressBar_InicioSesion.Maximum = 100 ' Indicamos el máximo
+            ToolStripProgressBar_InicioSesion.Minimum = 0 ' Indicamos el minimo
+            ToolStripProgressBar_InicioSesion.Value = 0 ' Indicamos el valor inicial
+            ' Actualizamos el estado a por defecto para el próximo inicio de sesión
+            ToolStripStatusLabel.Text = "Status: en espera"
+
+        End If
+    End Sub
+
 End Class

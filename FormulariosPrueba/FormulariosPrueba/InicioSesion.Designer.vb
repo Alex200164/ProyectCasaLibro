@@ -22,6 +22,7 @@ Partial Class InicioSesion
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(InicioSesion))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.TextBox_Contraseña = New System.Windows.Forms.TextBox()
@@ -32,8 +33,13 @@ Partial Class InicioSesion
         Me.PictureBox_Logo = New System.Windows.Forms.PictureBox()
         Me.Button_Salir = New System.Windows.Forms.Button()
         Me.Button_InicioSesion = New System.Windows.Forms.Button()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.ToolStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripProgressBar_InicioSesion = New System.Windows.Forms.ToolStripProgressBar()
+        Me.Timer_BarraProgreso = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox_Logo, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel1
@@ -131,12 +137,35 @@ Partial Class InicioSesion
         Me.Button_InicioSesion.Text = "Iniciar sesión"
         Me.Button_InicioSesion.UseVisualStyleBackColor = True
         '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel, Me.ToolStripProgressBar_InicioSesion})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 635)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(684, 26)
+        Me.StatusStrip1.TabIndex = 36
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'ToolStripStatusLabel
+        '
+        Me.ToolStripStatusLabel.BackColor = System.Drawing.Color.White
+        Me.ToolStripStatusLabel.Name = "ToolStripStatusLabel"
+        Me.ToolStripStatusLabel.Size = New System.Drawing.Size(95, 21)
+        Me.ToolStripStatusLabel.Text = "Status: en espera"
+        '
+        'ToolStripProgressBar_InicioSesion
+        '
+        Me.ToolStripProgressBar_InicioSesion.Name = "ToolStripProgressBar_InicioSesion"
+        Me.ToolStripProgressBar_InicioSesion.Size = New System.Drawing.Size(150, 20)
+        '
         'InicioSesion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(3, Byte), Integer), CType(CType(76, Byte), Integer), CType(CType(56, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(684, 661)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.LinkLabel_Contacto)
         Me.Controls.Add(Me.PictureBox_Logo)
@@ -149,6 +178,8 @@ Partial Class InicioSesion
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.PictureBox_Logo, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -163,4 +194,8 @@ Partial Class InicioSesion
     Friend WithEvents PictureBox_Logo As PictureBox
     Friend WithEvents Button_Salir As Button
     Friend WithEvents Button_InicioSesion As Button
+    Friend WithEvents StatusStrip1 As StatusStrip
+    Friend WithEvents ToolStripStatusLabel As ToolStripStatusLabel
+    Friend WithEvents ToolStripProgressBar_InicioSesion As ToolStripProgressBar
+    Friend WithEvents Timer_BarraProgreso As Timer
 End Class
