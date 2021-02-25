@@ -277,7 +277,7 @@ Public Class GestionEmpleados
         MenuPrincipal.Show()
 
         ' Cerramos este formulario
-        Me.Close()
+        Me.Hide()
     End Sub
 
     ' Método que se ejecuta al ser pulsado el botón "Eliminar"
