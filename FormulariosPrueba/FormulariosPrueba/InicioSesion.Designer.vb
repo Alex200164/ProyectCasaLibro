@@ -187,7 +187,7 @@ Partial Class InicioSesion
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "InicioSesion"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "InicioSesion"
+        Me.Text = "Inicio Sesión"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.PictureBox_Logo, System.ComponentModel.ISupportInitialize).EndInit()

@@ -141,7 +141,7 @@ Public Class GestionLibrosModificaciones
             If control = 0 Then
                 Try
                     ' Montamos una query parametrizada.
-                    Dim queryParametrizada As String = "UPDATE Libros SET ISBN=?, Titulo=?, Autor=?, Paginas=?, Editorial=?, Idioma=?, Encuadernacion=?, Anno_edicion=?, Plaza_edicion=?, Traductor=?, Formato=?, Precio=?, Stock=?,  WHERE ISBN=?"
+                    Dim queryParametrizada As String = "UPDATE Libros SET ISBN=?, Titulo=?, Autor=?, Paginas=?, Editorial=?, Idioma=?, Encuadernacion=?, Anno_edicion=?, Plaza_edicion=?, Traductor=?, Formato=?, Precio=?, Stock=?, WHERE ISBN=?"
                     Using cmd = New OleDbCommand(queryParametrizada, conexion)
 
                         conexion.Open()
