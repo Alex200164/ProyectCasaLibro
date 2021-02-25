@@ -61,12 +61,8 @@ Public Class InicioSesion
         Else
             'Donde confirmaremos la veracidad de los datos de inicio de sesion 
             VerificarLogIn(TextBox_Usuario.Text.Trim, TextBox_Contraseña.Text.Trim)
-
         End If
     End Sub
-
-
-
 
     Private Sub VerificarLogIn(ByVal user As String, ByVal contrasena As String)
         Try
@@ -94,10 +90,7 @@ Public Class InicioSesion
                 ' Actualizamos el estado 
                 ToolStripStatusLabel.Text = "Status: iniciando sesión"
 
-                'MsgBox("Accediendo a la Aplicación ")
-
                 If (reader.GetValue(7).ToString = "Admin") Then
-                    MsgBox("Bienvenido administrador " & reader.GetValue(7))
                     MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipIcon = ToolTipIcon.Info
                     MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipTitle = "Bienvenido " & reader.GetValue(5) & "!!"
                     MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipText = " Tienes a todas las gestiones del programa "
@@ -107,7 +100,6 @@ Public Class InicioSesion
 
 
                 ElseIf (reader.GetValue(7).ToString = "Encargado") Then
-                    MsgBox("Bienvenido Encargado " & reader.GetValue(7))
                     MenuPrincipal.Button_GestionEmpleados.Enabled = False
 
                     MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipIcon = ToolTipIcon.Info
@@ -120,7 +112,6 @@ Public Class InicioSesion
 
 
                 ElseIf (reader.GetValue(7).ToString = "Empleado") Then
-                    MsgBox("Bienvenido Empleado " & reader.GetValue(7))
                     MenuPrincipal.Button_GestionEmpleados.Enabled = False
                     MenuPrincipal.Button_GestionSocios.Enabled = False
                     GestionArticulos.Button_Annadir.Enabled = False

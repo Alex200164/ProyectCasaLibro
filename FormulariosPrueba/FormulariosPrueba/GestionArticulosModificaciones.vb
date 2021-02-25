@@ -60,7 +60,8 @@ Public Class GestionArticulosModificaciones
         ' Inicializamos la variable asignandole el ISBN inicial
         ISBNInicial = GestionArticulos.DataGridView_Articulos.Item(0, GestionArticulos.DataGridView_Articulos.CurrentRow.Index).Value
 
-
+        ' Inicializamos la variable de control
+        controlCalculadora = 0
 
     End Sub
 
@@ -132,6 +133,9 @@ Public Class GestionArticulosModificaciones
                 GestionArticulos.midataset.Clear()
                 GestionArticulos.adaptador.Fill(GestionArticulos.midataset, "Productos")
 
+                ' Reiniciamos su valor para la próxima vez
+                controlCalculadora = 0
+
                 ' Cerramos la ventana
                 Me.Close()
 
@@ -148,11 +152,14 @@ Public Class GestionArticulosModificaciones
         ' Mostramos el formulario "GestionArticulos".
         GestionArticulos.Show()
 
+        ' Reiniciamos su valor para la próxima vez
+        controlCalculadora = 0
+
         ' Cerramos este formulario
         Me.Close()
     End Sub
 
-    Dim controlCalculadora As Integer = 0
+    Dim controlCalculadora As Integer
 
     ' Método que se ejecuta cuando es pulsado el botón "Calculadora" del menuStrip
     Private Sub CalculadoraToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculadoraToolStripMenuItem.Click

@@ -44,6 +44,8 @@ Partial Class GestionSocios
         Me.GestiónArticulosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestiónEmpleadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestiónEmpleadosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.InformeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GenerarInformeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TextBox_NumeroSocio = New System.Windows.Forms.TextBox()
         Me.TextBox_Telefono = New System.Windows.Forms.TextBox()
@@ -58,8 +60,6 @@ Partial Class GestionSocios
         Me.HelpProvider1 = New System.Windows.Forms.HelpProvider()
         Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.ReportViewer2 = New Microsoft.Reporting.WinForms.ReportViewer()
-        Me.InformeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GenerarInformeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStripPagPrin.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -236,6 +236,19 @@ Partial Class GestionSocios
         Me.GestiónEmpleadosToolStripMenuItem1.Size = New System.Drawing.Size(191, 22)
         Me.GestiónEmpleadosToolStripMenuItem1.Text = "Gestión de Empleados"
         '
+        'InformeToolStripMenuItem
+        '
+        Me.InformeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GenerarInformeToolStripMenuItem})
+        Me.InformeToolStripMenuItem.Name = "InformeToolStripMenuItem"
+        Me.InformeToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
+        Me.InformeToolStripMenuItem.Text = "Informe"
+        '
+        'GenerarInformeToolStripMenuItem
+        '
+        Me.GenerarInformeToolStripMenuItem.Name = "GenerarInformeToolStripMenuItem"
+        Me.GenerarInformeToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.GenerarInformeToolStripMenuItem.Text = "Generar Informe"
+        '
         'GroupBox1
         '
         Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -264,7 +277,7 @@ Partial Class GestionSocios
         Me.TextBox_NumeroSocio.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_NumeroSocio.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_NumeroSocio.Location = New System.Drawing.Point(90, 26)
-        Me.TextBox_NumeroSocio.MaxLength = 100
+        Me.TextBox_NumeroSocio.MaxLength = 8
         Me.TextBox_NumeroSocio.Name = "TextBox_NumeroSocio"
         Me.TextBox_NumeroSocio.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_NumeroSocio.TabIndex = 182
@@ -275,7 +288,7 @@ Partial Class GestionSocios
         Me.TextBox_Telefono.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Telefono.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Telefono.Location = New System.Drawing.Point(90, 84)
-        Me.TextBox_Telefono.MaxLength = 100
+        Me.TextBox_Telefono.MaxLength = 9
         Me.TextBox_Telefono.Name = "TextBox_Telefono"
         Me.TextBox_Telefono.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Telefono.TabIndex = 4
@@ -297,7 +310,7 @@ Partial Class GestionSocios
         Me.TextBox_Apellidos.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Apellidos.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Apellidos.Location = New System.Drawing.Point(723, 25)
-        Me.TextBox_Apellidos.MaxLength = 100
+        Me.TextBox_Apellidos.MaxLength = 50
         Me.TextBox_Apellidos.Name = "TextBox_Apellidos"
         Me.TextBox_Apellidos.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Apellidos.TabIndex = 3
@@ -308,7 +321,7 @@ Partial Class GestionSocios
         Me.TextBox_Nombre.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Nombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Nombre.Location = New System.Drawing.Point(394, 26)
-        Me.TextBox_Nombre.MaxLength = 100
+        Me.TextBox_Nombre.MaxLength = 50
         Me.TextBox_Nombre.Name = "TextBox_Nombre"
         Me.TextBox_Nombre.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Nombre.TabIndex = 2
@@ -336,10 +349,12 @@ Partial Class GestionSocios
         '
         'DataGridView_Socios
         '
+        Me.DataGridView_Socios.AllowUserToAddRows = False
         Me.DataGridView_Socios.BackgroundColor = System.Drawing.Color.White
         Me.DataGridView_Socios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView_Socios.Location = New System.Drawing.Point(3, 211)
         Me.DataGridView_Socios.Name = "DataGridView_Socios"
+        Me.DataGridView_Socios.ReadOnly = True
         Me.DataGridView_Socios.Size = New System.Drawing.Size(938, 260)
         Me.DataGridView_Socios.TabIndex = 99
         '
@@ -379,25 +394,13 @@ Partial Class GestionSocios
         Me.ReportViewer2.Size = New System.Drawing.Size(396, 246)
         Me.ReportViewer2.TabIndex = 0
         '
-        'InformeToolStripMenuItem
-        '
-        Me.InformeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GenerarInformeToolStripMenuItem})
-        Me.InformeToolStripMenuItem.Name = "InformeToolStripMenuItem"
-        Me.InformeToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
-        Me.InformeToolStripMenuItem.Text = "Informe"
-        '
-        'GenerarInformeToolStripMenuItem
-        '
-        Me.GenerarInformeToolStripMenuItem.Name = "GenerarInformeToolStripMenuItem"
-        Me.GenerarInformeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.GenerarInformeToolStripMenuItem.Text = "Generar Informe"
-        '
         'GestionSocios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(984, 611)
+        Me.ControlBox = False
         Me.Controls.Add(Me.MenuStripPagPrin)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel2)

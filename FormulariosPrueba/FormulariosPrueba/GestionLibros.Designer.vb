@@ -25,11 +25,12 @@ Partial Class GestionLibros
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionLibros))
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.TextBox_ISBNOCULTO = New System.Windows.Forms.TextBox()
         Me.Button_Eliminar = New System.Windows.Forms.Button()
         Me.Button_Annadir = New System.Windows.Forms.Button()
         Me.DataGridView_Libros = New System.Windows.Forms.DataGridView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TextBox_ISBN = New System.Windows.Forms.TextBox()
+        Me.TextBox_ISBNOCULTO = New System.Windows.Forms.TextBox()
         Me.Label_Autor = New System.Windows.Forms.Label()
         Me.TextBox_Autor = New System.Windows.Forms.TextBox()
         Me.Button_Buscar = New System.Windows.Forms.Button()
@@ -39,7 +40,6 @@ Partial Class GestionLibros
         Me.TextBox_Titulo = New System.Windows.Forms.TextBox()
         Me.Label_Titulo = New System.Windows.Forms.Label()
         Me.Label_ISBN = New System.Windows.Forms.Label()
-        Me.TextBox_ISBN = New System.Windows.Forms.TextBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.MenuStripPagPrin = New System.Windows.Forms.MenuStrip()
@@ -74,17 +74,6 @@ Partial Class GestionLibros
         Me.Panel1.Size = New System.Drawing.Size(959, 480)
         Me.Panel1.TabIndex = 53
         Me.Panel1.TabStop = True
-        '
-        'TextBox_ISBNOCULTO
-        '
-        Me.TextBox_ISBNOCULTO.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_ISBNOCULTO.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_ISBNOCULTO.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_ISBNOCULTO.Location = New System.Drawing.Point(71, 30)
-        Me.TextBox_ISBNOCULTO.MaxLength = 100
-        Me.TextBox_ISBNOCULTO.Name = "TextBox_ISBNOCULTO"
-        Me.TextBox_ISBNOCULTO.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_ISBNOCULTO.TabIndex = 100
         '
         'Button_Eliminar
         '
@@ -137,6 +126,28 @@ Partial Class GestionLibros
         Me.GroupBox1.TabIndex = 24
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Filtro de Busqueda"
+        '
+        'TextBox_ISBN
+        '
+        Me.TextBox_ISBN.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_ISBN.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_ISBN.Location = New System.Drawing.Point(71, 30)
+        Me.TextBox_ISBN.MaxLength = 100
+        Me.TextBox_ISBN.Name = "TextBox_ISBN"
+        Me.TextBox_ISBN.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_ISBN.TabIndex = 1
+        '
+        'TextBox_ISBNOCULTO
+        '
+        Me.TextBox_ISBNOCULTO.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox_ISBNOCULTO.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_ISBNOCULTO.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox_ISBNOCULTO.Location = New System.Drawing.Point(71, 30)
+        Me.TextBox_ISBNOCULTO.MaxLength = 100
+        Me.TextBox_ISBNOCULTO.Name = "TextBox_ISBNOCULTO"
+        Me.TextBox_ISBNOCULTO.Size = New System.Drawing.Size(197, 19)
+        Me.TextBox_ISBNOCULTO.TabIndex = 100
         '
         'Label_Autor
         '
@@ -228,17 +239,6 @@ Partial Class GestionLibros
         Me.Label_ISBN.Size = New System.Drawing.Size(55, 20)
         Me.Label_ISBN.TabIndex = 165
         Me.Label_ISBN.Text = "ISBN :"
-        '
-        'TextBox_ISBN
-        '
-        Me.TextBox_ISBN.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox_ISBN.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_ISBN.Location = New System.Drawing.Point(71, 30)
-        Me.TextBox_ISBN.MaxLength = 100
-        Me.TextBox_ISBN.Name = "TextBox_ISBN"
-        Me.TextBox_ISBN.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_ISBN.TabIndex = 1
         '
         'Panel2
         '
@@ -369,6 +369,7 @@ Partial Class GestionLibros
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(984, 611)
+        Me.ControlBox = False
         Me.Controls.Add(Me.MenuStripPagPrin)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel2)

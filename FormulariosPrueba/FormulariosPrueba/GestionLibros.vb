@@ -39,6 +39,10 @@ Public Class GestionLibros
             numeroDeControlBindingModificaciones = 0
             numeroDeControlBindingAltaLibros = 0
 
+
+            ' Inicializamos la variable de control
+            controlCalculadora = 0
+
             'Creación en la ultima columna del DataGridView el botón de modificar en cada registro.
             crearButtonDataGridView()
 
@@ -228,7 +232,7 @@ Public Class GestionLibros
         End If
     End Sub
 
-    Dim controlCalculadora As Integer = 0
+    Dim controlCalculadora As Integer
 
     ' Método que se ejecuta cuando es pulsado el botón "Calculadora" del menuStrip
     Private Sub CalculadoraToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculadoraToolStripMenuItem.Click
@@ -253,6 +257,9 @@ Public Class GestionLibros
     Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click
         ' Especificamos la posición de la ventana
         posicionarFormularioMenuPrincipal()
+
+        ' Reiniciamos la variable de control
+        controlCalculadora = 0
 
         ' Mostramos el menú principal.
         MenuPrincipal.Show()

@@ -125,7 +125,7 @@ Partial Class GestionEmpleados
         Me.TextBox_DNI.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_DNI.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_DNI.Location = New System.Drawing.Point(76, 30)
-        Me.TextBox_DNI.MaxLength = 100
+        Me.TextBox_DNI.MaxLength = 9
         Me.TextBox_DNI.Name = "TextBox_DNI"
         Me.TextBox_DNI.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_DNI.TabIndex = 186
@@ -136,7 +136,7 @@ Partial Class GestionEmpleados
         Me.TextBox_APELLIDOS.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_APELLIDOS.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_APELLIDOS.Location = New System.Drawing.Point(723, 30)
-        Me.TextBox_APELLIDOS.MaxLength = 100
+        Me.TextBox_APELLIDOS.MaxLength = 50
         Me.TextBox_APELLIDOS.Name = "TextBox_APELLIDOS"
         Me.TextBox_APELLIDOS.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_APELLIDOS.TabIndex = 185
@@ -147,7 +147,7 @@ Partial Class GestionEmpleados
         Me.TextBox_NOMBRE.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_NOMBRE.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_NOMBRE.Location = New System.Drawing.Point(392, 30)
-        Me.TextBox_NOMBRE.MaxLength = 100
+        Me.TextBox_NOMBRE.MaxLength = 50
         Me.TextBox_NOMBRE.Name = "TextBox_NOMBRE"
         Me.TextBox_NOMBRE.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_NOMBRE.TabIndex = 184
@@ -158,7 +158,7 @@ Partial Class GestionEmpleados
         Me.TextBox_CORREO.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_CORREO.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_CORREO.Location = New System.Drawing.Point(73, 85)
-        Me.TextBox_CORREO.MaxLength = 100
+        Me.TextBox_CORREO.MaxLength = 120
         Me.TextBox_CORREO.Name = "TextBox_CORREO"
         Me.TextBox_CORREO.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_CORREO.TabIndex = 183
@@ -243,10 +243,12 @@ Partial Class GestionEmpleados
         '
         'DataGridView_Empleados
         '
+        Me.DataGridView_Empleados.AllowUserToAddRows = False
         Me.DataGridView_Empleados.BackgroundColor = System.Drawing.Color.White
         Me.DataGridView_Empleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView_Empleados.Location = New System.Drawing.Point(3, 211)
         Me.DataGridView_Empleados.Name = "DataGridView_Empleados"
+        Me.DataGridView_Empleados.ReadOnly = True
         Me.DataGridView_Empleados.Size = New System.Drawing.Size(938, 260)
         Me.DataGridView_Empleados.TabIndex = 99
         '
@@ -371,6 +373,7 @@ Partial Class GestionEmpleados
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(984, 611)
+        Me.ControlBox = False
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.MenuStripPagPrin)
         Me.Controls.Add(Me.Panel2)

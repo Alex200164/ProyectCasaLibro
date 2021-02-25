@@ -90,7 +90,7 @@ Partial Class GestionSociosModificaciones
         Me.TextBox_Nombre.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Nombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Nombre.Location = New System.Drawing.Point(139, 63)
-        Me.TextBox_Nombre.MaxLength = 100
+        Me.TextBox_Nombre.MaxLength = 50
         Me.TextBox_Nombre.Name = "TextBox_Nombre"
         Me.TextBox_Nombre.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Nombre.TabIndex = 159
@@ -110,7 +110,7 @@ Partial Class GestionSociosModificaciones
         Me.TextBox_Apellidos.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Apellidos.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Apellidos.Location = New System.Drawing.Point(139, 91)
-        Me.TextBox_Apellidos.MaxLength = 100
+        Me.TextBox_Apellidos.MaxLength = 50
         Me.TextBox_Apellidos.Name = "TextBox_Apellidos"
         Me.TextBox_Apellidos.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Apellidos.TabIndex = 160
@@ -130,7 +130,7 @@ Partial Class GestionSociosModificaciones
         Me.TextBox_Telefono.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Telefono.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Telefono.Location = New System.Drawing.Point(456, 35)
-        Me.TextBox_Telefono.MaxLength = 100
+        Me.TextBox_Telefono.MaxLength = 9
         Me.TextBox_Telefono.Name = "TextBox_Telefono"
         Me.TextBox_Telefono.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Telefono.TabIndex = 161
@@ -141,7 +141,7 @@ Partial Class GestionSociosModificaciones
         Me.TextBox_Correo.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Correo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Correo.Location = New System.Drawing.Point(456, 63)
-        Me.TextBox_Correo.MaxLength = 100
+        Me.TextBox_Correo.MaxLength = 120
         Me.TextBox_Correo.Name = "TextBox_Correo"
         Me.TextBox_Correo.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_Correo.TabIndex = 162
@@ -172,7 +172,7 @@ Partial Class GestionSociosModificaciones
         Me.TextBox_NumeroSocio.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_NumeroSocio.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_NumeroSocio.Location = New System.Drawing.Point(139, 32)
-        Me.TextBox_NumeroSocio.MaxLength = 100
+        Me.TextBox_NumeroSocio.MaxLength = 8
         Me.TextBox_NumeroSocio.Name = "TextBox_NumeroSocio"
         Me.TextBox_NumeroSocio.Size = New System.Drawing.Size(197, 19)
         Me.TextBox_NumeroSocio.TabIndex = 158

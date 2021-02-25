@@ -112,6 +112,7 @@ Partial Class MenuPrincipal
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(984, 611)
+        Me.ControlBox = False
         Me.Controls.Add(Me.Button_CerrarSesion)
         Me.Controls.Add(Me.Button_GestionEmpleados)
         Me.Controls.Add(Me.Button_GestionSocios)

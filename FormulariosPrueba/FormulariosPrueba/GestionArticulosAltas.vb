@@ -16,11 +16,14 @@ Public Class GestionArticulosAltas
         ' Mostramos el formulario "GestionArticulos".
         GestionArticulos.Show()
 
+        ' Reiniciamos su valor para la próxima vez
+        controlCalculadora = 0
+
         ' Cerramos este formulario
         Me.Close()
     End Sub
 
-    Dim controlCalculadora As Integer = 0
+    Dim controlCalculadora As Integer
 
     ' Método que se ejecuta cuando es pulsado el botón "Calculadora" del menuStrip
     Private Sub CalculadoraToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculadoraToolStripMenuItem.Click
@@ -101,6 +104,9 @@ Public Class GestionArticulosAltas
                 ' Actualizamos el dataGridView del formulario de gestión principal
                 GestionArticulos.midataset.Clear()
                 GestionArticulos.adaptador.Fill(GestionArticulos.midataset, "Productos")
+
+                ' Reiniciamos su valor para la próxima vez
+                controlCalculadora = 0
 
                 ' Cerramos la ventana
                 Me.Close()

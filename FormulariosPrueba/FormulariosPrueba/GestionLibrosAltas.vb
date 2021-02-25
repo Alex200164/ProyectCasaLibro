@@ -19,11 +19,14 @@ Public Class GestionLibrosAltas
         ' Mostramos el formulario "GestionLibros".
         GestionLibros.Show()
 
+        ' Reiniciamos su valor para la próxima vez
+        controlCalculadora = 0
+
         ' Cerramos este formulario
         Me.Close()
     End Sub
 
-    Dim controlCalculadora As Integer = 0
+    Dim controlCalculadora As Integer
 
     ' Método que se ejecuta cuando es pulsado el botón "Calculadora" del menuStrip
     Private Sub CalculadoraToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculadoraToolStripMenuItem.Click
@@ -106,6 +109,9 @@ Public Class GestionLibrosAltas
                 GestionLibros.midataset.Clear()
                 GestionLibros.adaptador.Fill(GestionLibros.midataset, "Libros")
 
+                ' Reiniciamos su valor para la próxima vez
+                controlCalculadora = 0
+
                 ' Cerramos la ventana
                 Me.Close()
 
@@ -123,6 +129,12 @@ Public Class GestionLibrosAltas
     '  Método que se ejecuta al iniciarse el formulario.
     Private Sub GestionLibrosAltas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Se quita todo*******************************************************************************************
+
+
+
+        ' Inicializamos la variable de control
+        controlCalculadora = 0
+
     End Sub
 
     Private Sub TextBox_ISBN_TextChanged(sender As Object, e As EventArgs) Handles TextBox_ISBN.TextChanged
