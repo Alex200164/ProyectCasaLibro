@@ -46,6 +46,7 @@ Public Class GestionArticulosAltas
     ' Método que se ejecuta cuando el botón "Alta" es pulsado. 
     ' Introduce los datos escritos por el usuario en los textBox en la DB.
     Private Sub Button_Alta_Click(sender As Object, e As EventArgs) Handles Button_Alta.Click
+
         'Para subir la imagen lo que tenemos que hacer es 
         Dim mstream As New System.IO.MemoryStream()
         PictureBoxProducto.Image.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
@@ -53,6 +54,9 @@ Public Class GestionArticulosAltas
         Dim FileSize As UInt64
         FileSize = mstream.Length
         mstream.Close()
+        'Acaba Método para meter las imagenes dentro de la base de datos de tipo Largo. 
+
+
 
         If TextBox_ISBN.Text = "" Or TextBox_Nombre.Text = "" Or TextBox_Categoria.Text = "" Or TextBox_Precio.Text = "" Or TextBox_Stock.Text = "" Then
             MsgBox("No se puede dar de alta , debe rellenar todos los datos.", MsgBoxStyle.OkOnly, "Error al dar de alta.")
@@ -132,7 +136,7 @@ Public Class GestionArticulosAltas
     Dim imgpath As String
     Dim arrImage() As Byte
 
-    Private Sub ButtonExaminar_Click(sender As Object, e As EventArgs) Handles ButtonExaminar.Click
+    Private Sub Button_Examinar_Click(sender As Object, e As EventArgs) Handles Button_Examinar.Click
         Try
             'objeto de openfiledialog
             Dim odf As New OpenFileDialog()
@@ -171,7 +175,5 @@ Public Class GestionArticulosAltas
 
         End Try
     End Sub
-
-
 
 End Class

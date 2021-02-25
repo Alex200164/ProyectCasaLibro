@@ -43,19 +43,17 @@ Partial Class GestionArticulosAltas
         Me.Label20 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.GruopBox = New System.Windows.Forms.GroupBox()
+        Me.PictureBoxProducto = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.ButtonExaminar = New System.Windows.Forms.Button()
-        Me.PictureBoxProducto = New System.Windows.Forms.PictureBox()
+        Me.Button_Examinar = New System.Windows.Forms.Button()
         Me.MenuStripPagPrin.SuspendLayout()
         Me.GruopBox.SuspendLayout()
+        CType(Me.PictureBoxProducto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel1.SuspendLayout()
-        CType(Me.PictureBoxProducto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStripPagPrin
@@ -120,7 +118,7 @@ Partial Class GestionArticulosAltas
         '
         'Button_Alta
         '
-        Me.Button_Alta.Location = New System.Drawing.Point(482, 125)
+        Me.Button_Alta.Location = New System.Drawing.Point(476, 183)
         Me.Button_Alta.Name = "Button_Alta"
         Me.Button_Alta.Size = New System.Drawing.Size(86, 29)
         Me.Button_Alta.TabIndex = 180
@@ -129,7 +127,7 @@ Partial Class GestionArticulosAltas
         '
         'Button_Limpiar
         '
-        Me.Button_Limpiar.Location = New System.Drawing.Point(574, 125)
+        Me.Button_Limpiar.Location = New System.Drawing.Point(568, 183)
         Me.Button_Limpiar.Name = "Button_Limpiar"
         Me.Button_Limpiar.Size = New System.Drawing.Size(86, 29)
         Me.Button_Limpiar.TabIndex = 179
@@ -163,7 +161,7 @@ Partial Class GestionArticulosAltas
         Me.TextBox_Stock.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Stock.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Stock.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Stock.Location = New System.Drawing.Point(456, 62)
+        Me.TextBox_Stock.Location = New System.Drawing.Point(139, 142)
         Me.TextBox_Stock.MaxLength = 100
         Me.TextBox_Stock.Name = "TextBox_Stock"
         Me.TextBox_Stock.Size = New System.Drawing.Size(197, 19)
@@ -174,7 +172,7 @@ Partial Class GestionArticulosAltas
         Me.TextBox_Precio.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Precio.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Precio.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Precio.Location = New System.Drawing.Point(456, 37)
+        Me.TextBox_Precio.Location = New System.Drawing.Point(139, 117)
         Me.TextBox_Precio.MaxLength = 100
         Me.TextBox_Precio.Name = "TextBox_Precio"
         Me.TextBox_Precio.Size = New System.Drawing.Size(197, 19)
@@ -184,7 +182,7 @@ Partial Class GestionArticulosAltas
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(58, 64)
+        Me.Label5.Location = New System.Drawing.Point(60, 64)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(73, 20)
         Me.Label5.TabIndex = 157
@@ -225,7 +223,7 @@ Partial Class GestionArticulosAltas
         '
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.Location = New System.Drawing.Point(392, 63)
+        Me.Label20.Location = New System.Drawing.Point(75, 141)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(58, 20)
         Me.Label20.TabIndex = 152
@@ -235,7 +233,7 @@ Partial Class GestionArticulosAltas
         '
         Me.Label19.AutoSize = True
         Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(389, 36)
+        Me.Label19.Location = New System.Drawing.Point(72, 116)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(61, 20)
         Me.Label19.TabIndex = 153
@@ -244,6 +242,8 @@ Partial Class GestionArticulosAltas
         '
         'GruopBox
         '
+        Me.GruopBox.Controls.Add(Me.Button_Examinar)
+        Me.GruopBox.Controls.Add(Me.PictureBoxProducto)
         Me.GruopBox.Controls.Add(Me.Button_Alta)
         Me.GruopBox.Controls.Add(Me.Button_Limpiar)
         Me.GruopBox.Controls.Add(Me.TextBox_Nombre)
@@ -260,17 +260,27 @@ Partial Class GestionArticulosAltas
         Me.GruopBox.ForeColor = System.Drawing.Color.Black
         Me.GruopBox.Location = New System.Drawing.Point(15, 16)
         Me.GruopBox.Name = "GruopBox"
-        Me.GruopBox.Size = New System.Drawing.Size(700, 174)
+        Me.GruopBox.Size = New System.Drawing.Size(700, 232)
         Me.GruopBox.TabIndex = 124
         Me.GruopBox.TabStop = False
         Me.GruopBox.Text = "Añadir/Modificar Artículo"
+        '
+        'PictureBoxProducto
+        '
+        Me.PictureBoxProducto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBoxProducto.Location = New System.Drawing.Point(476, 33)
+        Me.PictureBoxProducto.Name = "PictureBoxProducto"
+        Me.PictureBoxProducto.Size = New System.Drawing.Size(136, 128)
+        Me.PictureBoxProducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBoxProducto.TabIndex = 183
+        Me.PictureBoxProducto.TabStop = False
         '
         'Panel2
         '
         Me.Panel2.Controls.Add(Me.GruopBox)
         Me.Panel2.Location = New System.Drawing.Point(12, 146)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(730, 205)
+        Me.Panel2.Size = New System.Drawing.Size(730, 264)
         Me.Panel2.TabIndex = 52
         '
         'Panel3
@@ -293,44 +303,22 @@ Partial Class GestionArticulosAltas
         Me.PictureBox2.TabIndex = 39
         Me.PictureBox2.TabStop = False
         '
-        'Panel1
+        'Button_Examinar
         '
-        Me.Panel1.Controls.Add(Me.ButtonExaminar)
-        Me.Panel1.Controls.Add(Me.PictureBoxProducto)
-        Me.Panel1.Location = New System.Drawing.Point(27, 370)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(700, 239)
-        Me.Panel1.TabIndex = 54
-        '
-        'ButtonExaminar
-        '
-        Me.ButtonExaminar.BackColor = System.Drawing.Color.LightBlue
-        Me.ButtonExaminar.Font = New System.Drawing.Font("Gadugi", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonExaminar.Location = New System.Drawing.Point(317, 83)
-        Me.ButtonExaminar.Name = "ButtonExaminar"
-        Me.ButtonExaminar.Size = New System.Drawing.Size(133, 59)
-        Me.ButtonExaminar.TabIndex = 119
-        Me.ButtonExaminar.Text = "Examinar"
-        Me.ButtonExaminar.UseVisualStyleBackColor = False
-        '
-        'PictureBoxProducto
-        '
-        Me.PictureBoxProducto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBoxProducto.Location = New System.Drawing.Point(51, 23)
-        Me.PictureBoxProducto.Name = "PictureBoxProducto"
-        Me.PictureBoxProducto.Size = New System.Drawing.Size(225, 186)
-        Me.PictureBoxProducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBoxProducto.TabIndex = 120
-        Me.PictureBoxProducto.TabStop = False
+        Me.Button_Examinar.Location = New System.Drawing.Point(384, 183)
+        Me.Button_Examinar.Name = "Button_Examinar"
+        Me.Button_Examinar.Size = New System.Drawing.Size(86, 29)
+        Me.Button_Examinar.TabIndex = 184
+        Me.Button_Examinar.Text = "Examinar"
+        Me.Button_Examinar.UseVisualStyleBackColor = True
         '
         'GestionArticulosAltas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(754, 621)
+        Me.ClientSize = New System.Drawing.Size(754, 422)
         Me.ControlBox = False
-        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.MenuStripPagPrin)
         Me.Controls.Add(Me.Panel2)
@@ -341,11 +329,10 @@ Partial Class GestionArticulosAltas
         Me.MenuStripPagPrin.PerformLayout()
         Me.GruopBox.ResumeLayout(False)
         Me.GruopBox.PerformLayout()
+        CType(Me.PictureBoxProducto, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel1.ResumeLayout(False)
-        CType(Me.PictureBoxProducto, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -374,7 +361,6 @@ Partial Class GestionArticulosAltas
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Panel3 As Panel
     Friend WithEvents PictureBox2 As PictureBox
-    Friend WithEvents Panel1 As Panel
-    Friend WithEvents ButtonExaminar As Button
     Friend WithEvents PictureBoxProducto As PictureBox
+    Friend WithEvents Button_Examinar As Button
 End Class

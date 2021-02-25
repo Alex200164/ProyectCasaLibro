@@ -46,11 +46,14 @@ Partial Class GestionArticulosModificaciones
         Me.MenuStripPagPrin = New System.Windows.Forms.MenuStrip()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.Button_Examinar = New System.Windows.Forms.Button()
+        Me.PictureBoxProducto = New System.Windows.Forms.PictureBox()
         Me.Panel2.SuspendLayout()
         Me.GruopBox.SuspendLayout()
         Me.MenuStripPagPrin.SuspendLayout()
         Me.Panel3.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBoxProducto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel2
@@ -288,19 +291,38 @@ Partial Class GestionArticulosModificaciones
         Me.PictureBox2.TabIndex = 39
         Me.PictureBox2.TabStop = False
         '
+        'Button_Examinar
+        '
+        Me.Button_Examinar.Location = New System.Drawing.Point(224, 408)
+        Me.Button_Examinar.Name = "Button_Examinar"
+        Me.Button_Examinar.Size = New System.Drawing.Size(86, 29)
+        Me.Button_Examinar.TabIndex = 186
+        Me.Button_Examinar.Text = "Examinar"
+        Me.Button_Examinar.UseVisualStyleBackColor = True
+        '
+        'PictureBoxProducto
+        '
+        Me.PictureBoxProducto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBoxProducto.Location = New System.Drawing.Point(82, 355)
+        Me.PictureBoxProducto.Name = "PictureBoxProducto"
+        Me.PictureBoxProducto.Size = New System.Drawing.Size(136, 128)
+        Me.PictureBoxProducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBoxProducto.TabIndex = 185
+        Me.PictureBoxProducto.TabStop = False
+        '
         'GestionArticulosModificaciones
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(754, 353)
+        Me.ClientSize = New System.Drawing.Size(754, 540)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Button_Examinar)
+        Me.Controls.Add(Me.PictureBoxProducto)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.MenuStripPagPrin)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MaximumSize = New System.Drawing.Size(770, 392)
-        Me.MinimumSize = New System.Drawing.Size(770, 392)
         Me.Name = "GestionArticulosModificaciones"
         Me.Text = "Gestion de Articulos (Modificaciones)"
         Me.Panel2.ResumeLayout(False)
@@ -310,6 +332,7 @@ Partial Class GestionArticulosModificaciones
         Me.MenuStripPagPrin.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBoxProducto, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -338,4 +361,6 @@ Partial Class GestionArticulosModificaciones
     Friend WithEvents Label21 As Label
     Friend WithEvents Label20 As Label
     Friend WithEvents Label_Precio As Label
+    Friend WithEvents Button_Examinar As Button
+    Friend WithEvents PictureBoxProducto As PictureBox
 End Class
