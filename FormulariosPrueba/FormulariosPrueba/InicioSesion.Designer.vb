@@ -37,6 +37,7 @@ Partial Class InicioSesion
         Me.ToolStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripProgressBar_InicioSesion = New System.Windows.Forms.ToolStripProgressBar()
         Me.Timer_BarraProgreso = New System.Windows.Forms.Timer(Me.components)
+        Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox_Logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -61,8 +62,10 @@ Partial Class InicioSesion
         Me.TextBox_Contraseña.Location = New System.Drawing.Point(43, 147)
         Me.TextBox_Contraseña.MaxLength = 4
         Me.TextBox_Contraseña.Name = "TextBox_Contraseña"
+        Me.TextBox_Contraseña.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TextBox_Contraseña.Size = New System.Drawing.Size(197, 22)
         Me.TextBox_Contraseña.TabIndex = 2
+        Me.TextBox_Contraseña.UseSystemPasswordChar = True
         '
         'TextBox_Usuario
         '
@@ -164,6 +167,11 @@ Partial Class InicioSesion
         'Timer_BarraProgreso
         '
         '
+        'NotifyIcon1
+        '
+        Me.NotifyIcon1.Text = "NotifyIcon1"
+        Me.NotifyIcon1.Visible = True
+        '
         'InicioSesion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -203,4 +211,5 @@ Partial Class InicioSesion
     Friend WithEvents ToolStripStatusLabel As ToolStripStatusLabel
     Friend WithEvents ToolStripProgressBar_InicioSesion As ToolStripProgressBar
     Friend WithEvents Timer_BarraProgreso As Timer
+    Friend WithEvents NotifyIcon1 As NotifyIcon
 End Class

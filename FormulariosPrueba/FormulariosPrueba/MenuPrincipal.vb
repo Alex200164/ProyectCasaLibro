@@ -140,4 +140,5 @@ Public Class MenuPrincipal
         ' Cerramos el formulario de menú principal
         Me.Close()
     End Sub
+
 End Class

@@ -31,6 +31,7 @@ Partial Class MenuPrincipal
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.Button_CerrarSesion = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.NotifyIcon_Bienvenida = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.SuspendLayout()
         '
         'Button_GestionLibros
@@ -97,6 +98,14 @@ Partial Class MenuPrincipal
         Me.Button_CerrarSesion.Text = "CERRAR SESIÓN"
         Me.Button_CerrarSesion.UseVisualStyleBackColor = True
         '
+        'NotifyIcon_Bienvenida
+        '
+        Me.NotifyIcon_Bienvenida.BalloonTipText = "Bienvenido"
+        Me.NotifyIcon_Bienvenida.BalloonTipTitle = "A la casa del libro"
+        Me.NotifyIcon_Bienvenida.Icon = CType(resources.GetObject("NotifyIcon_Bienvenida.Icon"), System.Drawing.Icon)
+        Me.NotifyIcon_Bienvenida.Text = "NotifyIcon1"
+        Me.NotifyIcon_Bienvenida.Visible = True
+        '
         'MenuPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -122,4 +131,5 @@ Partial Class MenuPrincipal
     Friend WithEvents ImageList1 As ImageList
     Friend WithEvents Button_CerrarSesion As Button
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
+    Friend WithEvents NotifyIcon_Bienvenida As NotifyIcon
 End Class

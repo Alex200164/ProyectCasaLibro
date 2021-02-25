@@ -55,71 +55,88 @@ Public Class InicioSesion
     ' Método que se ejecuta la presionar el botón de "Iniciar sesion". Comprueba los datos introducidos y en caso afirmativo
     ' nos lleva al menu principal.
     Private Sub Button_InicioSesion_Click(sender As Object, e As EventArgs) Handles Button_InicioSesion.Click
-        ' If TextBox_Usuario.Text = "" Or TextBox_Contraseña.Text = "" Then
-        '  MsgBox("Porfavor rellene los campos de entrada. ", 64, "Mensajes del Sistema")
+        If TextBox_Usuario.Text = "" Or TextBox_Contraseña.Text = "" Then
+            MsgBox("Porfavor rellene los campos de entrada. ", 64, "Mensajes del Sistema")
 
-        ' Else
-        'Donde confirmaremos la veracidad de los datos de inicio de sesion 
-        'VerificarLogeo(TextBox_Usuario.Text, TextBox_Contraseña.Text)
+        Else
+            'Donde confirmaremos la veracidad de los datos de inicio de sesion 
+            VerificarLogIn(TextBox_Usuario.Text.Trim, TextBox_Contraseña.Text.Trim)
 
-
-        '    End If
-
-        '
-
+        End If
     End Sub
 
-    'Private Function verificarUsuarioContrasenna(ByVal user As String, ByVal contrasena As String) As Boolean
-
-    '    adaptador = New OleDbDataAdapter("Select Usuario, Contrasenna from Empleados WHERE Usuario='" + user + "' AND Contrasenna='" + contrasena + "'", conexion)
-    '    adaptador.Fill(midataset, "Empleados")
-
-
-    'End Function
 
 
 
-
-    Private Sub VerificarLogeo(ByVal user As String, ByVal contrasena As String)
-
+    Private Sub VerificarLogIn(ByVal user As String, ByVal contrasena As String)
         Try
-            'adaptador = New OleDbDataAdapter("Select Usuario, Contrasenna from Empleados WHERE Usuario='" + user + "' AND Contrasenna='" + contrasena + "'", conexion)
-            ' adaptador.Fill(midataset, "Empleados")
-
-
             Dim ds As New DataSet
 
             Dim cb As New OleDbDataAdapter
 
-            Dim comando As New OleDbCommand("Select Usuario, Contrasenna from Empleados WHERE Usuario=@u AND Contrasenna = @c", conexion)
+            Dim comando As New OleDbCommand("Select * from Empleados WHERE Usuario=@usu AND Contrasenna=@contra", conexion)
 
+            conexion.Open()
             cb.SelectCommand = comando
+            comando.Parameters.Add("@usu", OleDbType.VarChar, 30).Value = user
+            comando.Parameters.Add("@usu", OleDbType.Numeric, 4).Value = contrasena
 
-            comando.Parameters.Add("@var1", OleDbType.VarChar, 30).Value = user
-            comando.Parameters.Add("@var2", OleDbType.Numeric, 4).Value = contrasena
+            cb.Fill(ds, "Empleados")
 
-            Dim result As String = comando.ExecuteScalar()
+            Dim reader As OleDbDataReader = comando.ExecuteReader()
+            Dim meta As Object() = New Object(8) {}
 
-            If (Not (String.IsNullOrEmpty(result))) Then
-
-                ' Guardamos datos del acceso en el archivo
-                ' accesosApp.AccesosApp("Login OK. usuario: " & TBUsuario.Text & " contraseña: " & TBContrasenna.Text)
-
-                ' Dejamos limpios los campos
-                TextBox_Usuario.Text = ""
-                TextBox_Contraseña.Text = ""
-
-                midataset.Tables("Empleados").Clear()
+            If reader.Read = True Then
+                'MsgBox(reader.GetValue(7) & reader.GetValue(6) & reader.GetValue(5))
 
                 ' Damos comienzo al timer
                 Timer_BarraProgreso.Start()
                 ' Actualizamos el estado 
                 ToolStripStatusLabel.Text = "Status: iniciando sesión"
 
-                MsgBox("Entrando en la aplicación")
+                'MsgBox("Accediendo a la Aplicación ")
 
-                Me.Hide()
-                MenuPrincipal.Show()
+                If (reader.GetValue(7).ToString = "Admin") Then
+                    MsgBox("Bienvenido administrador " & reader.GetValue(7))
+                    MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipIcon = ToolTipIcon.Info
+                    MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipTitle = "Bienvenido " & reader.GetValue(5) & "!!"
+                    MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipText = " Tienes a todas las gestiones del programa "
+                    MenuPrincipal.NotifyIcon_Bienvenida.ShowBalloonTip(5)
+                    Me.Hide()
+                    MenuPrincipal.Show()
+
+
+                ElseIf (reader.GetValue(7).ToString = "Encargado") Then
+                    MsgBox("Bienvenido Encargado " & reader.GetValue(7))
+                    MenuPrincipal.Button_GestionEmpleados.Enabled = False
+
+                    MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipIcon = ToolTipIcon.Info
+                    MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipTitle = "Bienvenido " & reader.GetValue(5) & "!!"
+                    MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipText = " Tienes acceso a Gestion de Libros, Gestion de Articulos y Gestion de Socios "
+                    MenuPrincipal.NotifyIcon_Bienvenida.ShowBalloonTip(5)
+
+                    Me.Hide()
+                    MenuPrincipal.Show()
+
+
+                ElseIf (reader.GetValue(7).ToString = "Empleado") Then
+                    MsgBox("Bienvenido Empleado " & reader.GetValue(7))
+                    MenuPrincipal.Button_GestionEmpleados.Enabled = False
+                    MenuPrincipal.Button_GestionSocios.Enabled = False
+                    GestionArticulos.Button_Annadir.Enabled = False
+                    GestionArticulos.Button_Eliminar.Enabled = False
+                    GestionArticulosModificaciones.Enabled = False
+
+                    MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipIcon = ToolTipIcon.Info
+                    MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipTitle = "Bienvenido " & reader.GetValue(5) & "!!"
+                    MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipText = " Tienes acceso a Gestion de Libros, Gestion de Articulos y Gestion de Socios "
+                    MenuPrincipal.NotifyIcon_Bienvenida.ShowBalloonTip(5)
+
+                    'Me.Hide()
+                    MenuPrincipal.Show()
+
+
+                End If
 
             Else
 
@@ -129,6 +146,7 @@ Public Class InicioSesion
                 ' Mostramos mensaje de error
                 MsgBox("El usuario o contraseña introducido es incorrecto, por favor introduzca otro", MsgBoxStyle.Information, "Error en la verificación")
             End If
+            conexion.Close()
 
         Catch ex As Exception
 
@@ -191,5 +209,6 @@ Public Class InicioSesion
         TextBox_Contraseña.Clear()
         TextBox_Usuario.Clear()
     End Sub
+
 
 End Class
