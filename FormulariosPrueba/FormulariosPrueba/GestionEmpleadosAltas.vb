@@ -23,16 +23,25 @@ Public Class GestionEmpleadosAltas
         Me.Close()
     End Sub
 
-    ' Método que se ejecuta cuando es pulsado el botón "Calculadora" del 
+    Dim controlCalculadora As Integer = 0
+
+    ' Método que se ejecuta cuando es pulsado el botón "Calculadora" del menuStrip
     Private Sub CalculadoraToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculadoraToolStripMenuItem.Click
-        ' Try catch para atrapar el error en caso de que el ordenador del usuario
-        Try
-            Dim program As String
-            program = "calc.exe"
-            Process.Start(program)
-        Catch ex As System.ComponentModel.Win32Exception '
-            MsgBox("Ha ocurrido un error, no se pudo iniciar la calculadora.", MsgBoxStyle.OkOnly, "Error (proceso calculadora)")
-        End Try
+        If controlCalculadora < 2 Then
+            ' Try catch para atrapar el error en caso de que el ordenador del usuario
+            Try
+                Dim program As String
+                program = "calc.exe"
+                Process.Start(program)
+            Catch ex As System.ComponentModel.Win32Exception '
+                MsgBox("Ha ocurrido un error, no se pudo iniciar la calculadora.", MsgBoxStyle.OkOnly, "Error (proceso calculadora)")
+            End Try
+
+            controlCalculadora = controlCalculadora + 1
+
+        Else
+            MsgBox("Solo se pueden iniciar dos calculadoras por sesión.", MsgBoxStyle.OkOnly, "Aviso")
+        End If
     End Sub
 
     ' Método que se ejecuta al pulsar el botón "Limpiar"
@@ -249,4 +258,16 @@ Public Class GestionEmpleadosAltas
 
         validarNumeroSocio.validarROL(TextBox_ROL.Text, 1)
     End Sub
+
+    ' Esté método es ejecutado cuando el usuario presiona la tecla "F1"
+    Private Sub GestionSocios_HelpRequested(sender As Object, hlpevent As HelpEventArgs) Handles Me.HelpRequested
+        Help.ShowHelp(Me, "CHM\LaCasaDelLibro.chm", "")
+    End Sub
+
+    ' Esté método es ejecutado cuando el usuario presiona el botón de ayuda situado en la barra superior.
+    ' Muestra un documento de ayuda.
+    Private Sub VerLaAyudaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerLaAyudaToolStripMenuItem.Click
+        Help.ShowHelp(Me, "CHM\LaCasaDelLibro.chm", "")
+    End Sub
+
 End Class
