@@ -156,6 +156,8 @@ Public Class GestionArticulosAltas
             GestionArticulos.numeroDeControlBindingAltaArticulos = 1
         End If
 
+        ' Inicializamos la variable de control
+        controlCalculadora = 0
 
         ' Vaciamos cada textBox de forma individual
         Me.TextBox_ISBN.Clear()

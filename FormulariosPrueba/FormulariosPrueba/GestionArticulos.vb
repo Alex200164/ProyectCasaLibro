@@ -260,7 +260,7 @@ Public Class GestionArticulos
         MenuPrincipal.Show()
 
         ' Cerramos este formulario
-        Me.Close()
+        Me.Hide()
     End Sub
 
     ' Método que se ejecuta al pulsar el botón "Eliminar"

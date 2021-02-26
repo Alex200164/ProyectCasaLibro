@@ -36,7 +36,6 @@ Partial Class GestionLibrosModificaciones
         Me.TextBox_Traductor = New System.Windows.Forms.TextBox()
         Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BlocNotasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TextBox_Plazaedicion = New System.Windows.Forms.TextBox()
         Me.TextBox_Annoedicion = New System.Windows.Forms.TextBox()
         Me.TextBox_Titulo = New System.Windows.Forms.TextBox()
@@ -58,14 +57,14 @@ Partial Class GestionLibrosModificaciones
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.GruopBox = New System.Windows.Forms.GroupBox()
+        Me.ComboBox_Genero = New System.Windows.Forms.ComboBox()
+        Me.Label_Genero = New System.Windows.Forms.Label()
         Me.Button_Examinar = New System.Windows.Forms.Button()
         Me.ComboBox_Formato = New System.Windows.Forms.ComboBox()
         Me.PictureBoxProducto = New System.Windows.Forms.PictureBox()
         Me.ComboBox_Encuadernacion = New System.Windows.Forms.ComboBox()
         Me.TextBox_ISBN = New System.Windows.Forms.TextBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.ComboBox_Genero = New System.Windows.Forms.ComboBox()
-        Me.Label_Genero = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.MenuStripPagPrin.SuspendLayout()
@@ -196,16 +195,8 @@ Partial Class GestionLibrosModificaciones
         Me.SalirToolStripMenuItem.Image = CType(resources.GetObject("SalirToolStripMenuItem.Image"), System.Drawing.Image)
         Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
         Me.SalirToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
-        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.SalirToolStripMenuItem.Text = "Salir..."
-        '
-        'BlocNotasToolStripMenuItem
-        '
-        Me.BlocNotasToolStripMenuItem.Image = CType(resources.GetObject("BlocNotasToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.BlocNotasToolStripMenuItem.Name = "BlocNotasToolStripMenuItem"
-        Me.BlocNotasToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D2), System.Windows.Forms.Keys)
-        Me.BlocNotasToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
-        Me.BlocNotasToolStripMenuItem.Text = "Bloc Notas"
         '
         'TextBox_Plazaedicion
         '
@@ -276,7 +267,7 @@ Partial Class GestionLibrosModificaciones
         Me.CalculadoraToolStripMenuItem.Image = CType(resources.GetObject("CalculadoraToolStripMenuItem.Image"), System.Drawing.Image)
         Me.CalculadoraToolStripMenuItem.Name = "CalculadoraToolStripMenuItem"
         Me.CalculadoraToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D1), System.Windows.Forms.Keys)
-        Me.CalculadoraToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.CalculadoraToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.CalculadoraToolStripMenuItem.Text = "Calculadora"
         '
         'TextBox_Autor
@@ -304,7 +295,7 @@ Partial Class GestionLibrosModificaciones
         '
         'HerramientasToolStripMenuItem
         '
-        Me.HerramientasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CalculadoraToolStripMenuItem, Me.BlocNotasToolStripMenuItem, Me.SalirToolStripMenuItem})
+        Me.HerramientasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CalculadoraToolStripMenuItem, Me.SalirToolStripMenuItem})
         Me.HerramientasToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.HerramientasToolStripMenuItem.Name = "HerramientasToolStripMenuItem"
         Me.HerramientasToolStripMenuItem.Size = New System.Drawing.Size(94, 20)
@@ -456,6 +447,28 @@ Partial Class GestionLibrosModificaciones
         Me.GruopBox.TabStop = False
         Me.GruopBox.Text = "Gestión de artículos"
         '
+        'ComboBox_Genero
+        '
+        Me.ComboBox_Genero.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.ComboBox_Genero.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.ComboBox_Genero.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ComboBox_Genero.FormattingEnabled = True
+        Me.ComboBox_Genero.Items.AddRange(New Object() {"Arte", "Ciencias", "Deportes y Juegos", "Filología", "Idiomas", "Juvenil", "Manialidades"})
+        Me.ComboBox_Genero.Location = New System.Drawing.Point(139, 119)
+        Me.ComboBox_Genero.Name = "ComboBox_Genero"
+        Me.ComboBox_Genero.Size = New System.Drawing.Size(197, 28)
+        Me.ComboBox_Genero.TabIndex = 190
+        '
+        'Label_Genero
+        '
+        Me.Label_Genero.AutoSize = True
+        Me.Label_Genero.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label_Genero.Location = New System.Drawing.Point(62, 122)
+        Me.Label_Genero.Name = "Label_Genero"
+        Me.Label_Genero.Size = New System.Drawing.Size(71, 20)
+        Me.Label_Genero.TabIndex = 189
+        Me.Label_Genero.Text = "Género :"
+        '
         'Button_Examinar
         '
         Me.Button_Examinar.Location = New System.Drawing.Point(172, 380)
@@ -516,28 +529,6 @@ Partial Class GestionLibrosModificaciones
         Me.Panel2.Size = New System.Drawing.Size(730, 445)
         Me.Panel2.TabIndex = 49
         '
-        'ComboBox_Genero
-        '
-        Me.ComboBox_Genero.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.ComboBox_Genero.Cursor = System.Windows.Forms.Cursors.Arrow
-        Me.ComboBox_Genero.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ComboBox_Genero.FormattingEnabled = True
-        Me.ComboBox_Genero.Items.AddRange(New Object() {"Arte", "Ciencias", "Deportes y Juegos", "Filología", "Idiomas", "Juvenil", "Manialidades"})
-        Me.ComboBox_Genero.Location = New System.Drawing.Point(139, 119)
-        Me.ComboBox_Genero.Name = "ComboBox_Genero"
-        Me.ComboBox_Genero.Size = New System.Drawing.Size(197, 28)
-        Me.ComboBox_Genero.TabIndex = 190
-        '
-        'Label_Genero
-        '
-        Me.Label_Genero.AutoSize = True
-        Me.Label_Genero.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label_Genero.Location = New System.Drawing.Point(62, 122)
-        Me.Label_Genero.Name = "Label_Genero"
-        Me.Label_Genero.Size = New System.Drawing.Size(71, 20)
-        Me.Label_Genero.TabIndex = 189
-        Me.Label_Genero.Text = "Género :"
-        '
         'GestionLibrosModificaciones
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -577,7 +568,6 @@ Partial Class GestionLibrosModificaciones
     Friend WithEvents TextBox_Traductor As TextBox
     Friend WithEvents AyudaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SalirToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents BlocNotasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TextBox_Plazaedicion As TextBox
     Friend WithEvents TextBox_Annoedicion As TextBox
     Friend WithEvents TextBox_Titulo As TextBox

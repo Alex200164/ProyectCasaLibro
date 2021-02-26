@@ -175,10 +175,10 @@ Public Class GestionArticulosModificaciones
                     adaptador.UpdateCommand = cb.GetUpdateCommand
                 Catch ex As System.InvalidOperationException
                     ' Avisamos del error por mensaje
-                    MsgBox("Algo no ha ido bien, intentalo de nuevojhh", MsgBoxStyle.OkOnly, "Operación invalida")
+                    MsgBox("Modificado con exito", MsgBoxStyle.OkOnly, "Operación invalida")
                 Catch ex2 As System.Data.OleDb.OleDbException
                     ' Avisamos del error por mensaje
-                    MsgBox("Algo no ha ido bien, intentalo de nuevojh", MsgBoxStyle.OkOnly, "Operación invalida")
+                    MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
                 Catch ex3 As System.FormatException
                     ' Avisamos del error por mensaje
                     MsgBox("Uno de los datos tiene un formato incorrecto, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")

@@ -45,7 +45,6 @@ Partial Class GestionLibros
         Me.MenuStripPagPrin = New System.Windows.Forms.MenuStrip()
         Me.HerramientasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CalculadoraToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BlocNotasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestiónArticulosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestiónArticulosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -55,6 +54,8 @@ Partial Class GestionLibros
         Me.GestiónEmpleadosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VerLaAyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.InformeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GenerarInformeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel1.SuspendLayout()
         CType(Me.DataGridView_Libros, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -267,7 +268,7 @@ Partial Class GestionLibros
         'MenuStripPagPrin
         '
         Me.MenuStripPagPrin.BackColor = System.Drawing.Color.Transparent
-        Me.MenuStripPagPrin.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HerramientasToolStripMenuItem, Me.GestiónArticulosToolStripMenuItem, Me.GestiónSociosToolStripMenuItem, Me.GestiónEmpleadosToolStripMenuItem, Me.AyudaToolStripMenuItem})
+        Me.MenuStripPagPrin.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HerramientasToolStripMenuItem, Me.GestiónArticulosToolStripMenuItem, Me.GestiónSociosToolStripMenuItem, Me.GestiónEmpleadosToolStripMenuItem, Me.AyudaToolStripMenuItem, Me.InformeToolStripMenuItem})
         Me.MenuStripPagPrin.Location = New System.Drawing.Point(0, 0)
         Me.MenuStripPagPrin.Name = "MenuStripPagPrin"
         Me.MenuStripPagPrin.Size = New System.Drawing.Size(984, 24)
@@ -277,7 +278,7 @@ Partial Class GestionLibros
         '
         'HerramientasToolStripMenuItem
         '
-        Me.HerramientasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CalculadoraToolStripMenuItem, Me.BlocNotasToolStripMenuItem, Me.SalirToolStripMenuItem})
+        Me.HerramientasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CalculadoraToolStripMenuItem, Me.SalirToolStripMenuItem})
         Me.HerramientasToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.HerramientasToolStripMenuItem.Name = "HerramientasToolStripMenuItem"
         Me.HerramientasToolStripMenuItem.Size = New System.Drawing.Size(94, 20)
@@ -290,14 +291,6 @@ Partial Class GestionLibros
         Me.CalculadoraToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D1), System.Windows.Forms.Keys)
         Me.CalculadoraToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.CalculadoraToolStripMenuItem.Text = "Calculadora"
-        '
-        'BlocNotasToolStripMenuItem
-        '
-        Me.BlocNotasToolStripMenuItem.Image = CType(resources.GetObject("BlocNotasToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.BlocNotasToolStripMenuItem.Name = "BlocNotasToolStripMenuItem"
-        Me.BlocNotasToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D2), System.Windows.Forms.Keys)
-        Me.BlocNotasToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
-        Me.BlocNotasToolStripMenuItem.Text = "Bloc Notas"
         '
         'SalirToolStripMenuItem
         '
@@ -365,6 +358,20 @@ Partial Class GestionLibros
         Me.VerLaAyudaToolStripMenuItem.Size = New System.Drawing.Size(187, 22)
         Me.VerLaAyudaToolStripMenuItem.Text = "Ver la Ayuda"
         '
+        'InformeToolStripMenuItem
+        '
+        Me.InformeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GenerarInformeToolStripMenuItem})
+        Me.InformeToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.InformeToolStripMenuItem.Name = "InformeToolStripMenuItem"
+        Me.InformeToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
+        Me.InformeToolStripMenuItem.Text = "Informe"
+        '
+        'GenerarInformeToolStripMenuItem
+        '
+        Me.GenerarInformeToolStripMenuItem.Name = "GenerarInformeToolStripMenuItem"
+        Me.GenerarInformeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.GenerarInformeToolStripMenuItem.Text = "Generar Informe"
+        '
         'GestionLibros
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -411,7 +418,6 @@ Partial Class GestionLibros
     Friend WithEvents MenuStripPagPrin As MenuStrip
     Friend WithEvents HerramientasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CalculadoraToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents BlocNotasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SalirToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GestiónArticulosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GestiónArticulosToolStripMenuItem1 As ToolStripMenuItem
@@ -423,4 +429,6 @@ Partial Class GestionLibros
     Friend WithEvents VerLaAyudaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TextBox_ISBNOCULTO As TextBox
     Friend WithEvents ComboBox_Genero As ComboBox
+    Friend WithEvents InformeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GenerarInformeToolStripMenuItem As ToolStripMenuItem
 End Class

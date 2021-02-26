@@ -119,6 +119,7 @@ Public Class InicioSesion
                     Timer_BarraProgreso.Start()
                     ' Actualizamos el estado 
                     ToolStripStatusLabel.Text = "Status: iniciando sesión"
+                    conexion.Close()
 
                 ElseIf (reader.GetValue(7).ToString = "Encargado") Then
                     MenuPrincipal.Button_GestionEmpleados.Enabled = False
@@ -138,6 +139,7 @@ Public Class InicioSesion
                     Timer_BarraProgreso.Start()
                     ' Actualizamos el estado 
                     ToolStripStatusLabel.Text = "Status: iniciando sesión"
+                    conexion.Close()
 
 
                 ElseIf (reader.GetValue(7).ToString = "Empleado") Then
@@ -165,10 +167,15 @@ Public Class InicioSesion
                     Timer_BarraProgreso.Start()
                     ' Actualizamos el estado 
                     ToolStripStatusLabel.Text = "Status: iniciando sesión"
+                    conexion.Close()
 
                 End If
 
             Else
+                ErrorProvider_LogIn.SetError(TextBox_Usuario, "Introduzca un usuario válido")
+                ErrorProvider_LogIn.SetError(TextBox_Contraseña, "Introduzca una contraseña váloda")
+
+
                 TextBox_Contraseña.Clear()
                 TextBox_Usuario.Clear()
 
@@ -183,6 +190,7 @@ Public Class InicioSesion
                 ' Cerramos los flujos para escribir en el log de acceso.
                 sw.Close()
                 datosAcceso.Close()
+                conexion.Close()
 
                 'Guardamos datos del acceso en el archivo
 
@@ -190,7 +198,6 @@ Public Class InicioSesion
                 MsgBox("El usuario o contraseña introducido es incorrecto, por favor introduzca otro", MsgBoxStyle.Information, "Error en la verificación")
             End If
 
-            conexion.Close()
 
         Catch ex As Exception
 
@@ -201,6 +208,7 @@ Public Class InicioSesion
             'If encontradoError = False Then
             MsgBox("Error nº: " & Err.Number & ". " & ex.Message & " Por favor, revise la base de datos. ", MsgBoxStyle.Exclamation, ex.Message)
             ' End If
+            conexion.Close()
 
         End Try
     End Sub

@@ -38,9 +38,11 @@ Partial Class InicioSesion
         Me.ToolStripProgressBar_InicioSesion = New System.Windows.Forms.ToolStripProgressBar()
         Me.Timer_BarraProgreso = New System.Windows.Forms.Timer(Me.components)
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
+        Me.ErrorProvider_LogIn = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox_Logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
+        CType(Me.ErrorProvider_LogIn, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -172,6 +174,11 @@ Partial Class InicioSesion
         Me.NotifyIcon1.Text = "NotifyIcon1"
         Me.NotifyIcon1.Visible = True
         '
+        'ErrorProvider_LogIn
+        '
+        Me.ErrorProvider_LogIn.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
+        Me.ErrorProvider_LogIn.ContainerControl = Me
+        '
         'InicioSesion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -193,6 +200,7 @@ Partial Class InicioSesion
         CType(Me.PictureBox_Logo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        CType(Me.ErrorProvider_LogIn, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -212,4 +220,5 @@ Partial Class InicioSesion
     Friend WithEvents ToolStripProgressBar_InicioSesion As ToolStripProgressBar
     Friend WithEvents Timer_BarraProgreso As Timer
     Friend WithEvents NotifyIcon1 As NotifyIcon
+    Friend WithEvents ErrorProvider_LogIn As ErrorProvider
 End Class
