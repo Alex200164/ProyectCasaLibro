@@ -119,15 +119,18 @@ Public Class GestionArticulosModificaciones
         If TextBox_ISBN.Text = "" Or TextBox_Nombre.Text = "" Or TextBox_Categoria.Text = "" Or TextBox_Precio.Text = "" Or TextBox_Stock.Text = "" Then
             MsgBox("Debes seleccionar un registro para actualizarlo y si lo has seleccionado, no debe quedar ningún campo en blanco", MsgBoxStyle.OkOnly, "Error al dar de alta.")
         Else
-
             Dim mstream As New System.IO.MemoryStream()
-            'Para subir la imagen lo que tenemos que hacer es 
-            PictureBoxProducto.Image.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
-            arrImage = mstream.GetBuffer()
-            Dim FileSize As UInt64
-            FileSize = mstream.Length
-            mstream.Close()
-            'Acaba Método para meter las imagenes dentro de la base de datos de tipo Largo. 
+            Try
+                'Para subir la imagen lo que tenemos que hacer es 
+                PictureBoxProducto.Image.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
+                arrImage = mstream.GetBuffer()
+                Dim FileSize As UInt64
+                FileSize = mstream.Length
+                mstream.Close()
+                'Acaba Método para meter las imagenes dentro de la base de datos de tipo Largo. 
+            Catch ex As System.NullReferenceException
+                MsgBox("Ha ocurrido un error, al cargar la imagen.", MsgBoxStyle.OkOnly, "Error (proceso Formato de imagen )")
+            End Try
 
 
 

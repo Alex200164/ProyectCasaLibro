@@ -27,6 +27,8 @@ Partial Class GestionLibrosAltas
         Me.Button_Examinar = New System.Windows.Forms.Button()
         Me.PictureBoxProducto = New System.Windows.Forms.PictureBox()
         Me.GruopBox = New System.Windows.Forms.GroupBox()
+        Me.ComboBox_Genero = New System.Windows.Forms.ComboBox()
+        Me.Label_Genero = New System.Windows.Forms.Label()
         Me.ComboBox_Formato = New System.Windows.Forms.ComboBox()
         Me.ComboBox_Encuadernacion = New System.Windows.Forms.ComboBox()
         Me.Button_Alta = New System.Windows.Forms.Button()
@@ -64,8 +66,6 @@ Partial Class GestionLibrosAltas
         Me.CalculadoraToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HerramientasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStripPagPrin = New System.Windows.Forms.MenuStrip()
-        Me.ComboBox_Genero = New System.Windows.Forms.ComboBox()
-        Me.Label_Genero = New System.Windows.Forms.Label()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBoxProducto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GruopBox.SuspendLayout()
@@ -144,6 +144,28 @@ Partial Class GestionLibrosAltas
         Me.GruopBox.TabStop = False
         Me.GruopBox.Text = "Gestión de artículos"
         '
+        'ComboBox_Genero
+        '
+        Me.ComboBox_Genero.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.ComboBox_Genero.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.ComboBox_Genero.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ComboBox_Genero.FormattingEnabled = True
+        Me.ComboBox_Genero.Items.AddRange(New Object() {"Arte", "Ciencias", "Deportes y Juegos", "Filología", "Idiomas", "Juvenil", "Manialidades"})
+        Me.ComboBox_Genero.Location = New System.Drawing.Point(153, 117)
+        Me.ComboBox_Genero.Name = "ComboBox_Genero"
+        Me.ComboBox_Genero.Size = New System.Drawing.Size(197, 28)
+        Me.ComboBox_Genero.TabIndex = 4
+        '
+        'Label_Genero
+        '
+        Me.Label_Genero.AutoSize = True
+        Me.Label_Genero.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label_Genero.Location = New System.Drawing.Point(77, 120)
+        Me.Label_Genero.Name = "Label_Genero"
+        Me.Label_Genero.Size = New System.Drawing.Size(71, 20)
+        Me.Label_Genero.TabIndex = 183
+        Me.Label_Genero.Text = "Género :"
+        '
         'ComboBox_Formato
         '
         Me.ComboBox_Formato.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -153,7 +175,7 @@ Partial Class GestionLibrosAltas
         Me.ComboBox_Formato.Location = New System.Drawing.Point(492, 120)
         Me.ComboBox_Formato.Name = "ComboBox_Formato"
         Me.ComboBox_Formato.Size = New System.Drawing.Size(197, 28)
-        Me.ComboBox_Formato.TabIndex = 179
+        Me.ComboBox_Formato.TabIndex = 12
         '
         'ComboBox_Encuadernacion
         '
@@ -162,17 +184,18 @@ Partial Class GestionLibrosAltas
         Me.ComboBox_Encuadernacion.FormattingEnabled = True
         Me.ComboBox_Encuadernacion.Items.AddRange(New Object() {"Tapa Blanda", "Tapa Dura", "Bolsillo", "Otros formatos"})
         Me.ComboBox_Encuadernacion.Location = New System.Drawing.Point(153, 236)
+        Me.ComboBox_Encuadernacion.MaxDropDownItems = 10
         Me.ComboBox_Encuadernacion.Name = "ComboBox_Encuadernacion"
         Me.ComboBox_Encuadernacion.Size = New System.Drawing.Size(197, 28)
-        Me.ComboBox_Encuadernacion.TabIndex = 7
+        Me.ComboBox_Encuadernacion.TabIndex = 8
         '
         'Button_Alta
         '
         Me.Button_Alta.Location = New System.Drawing.Point(506, 241)
         Me.Button_Alta.Name = "Button_Alta"
         Me.Button_Alta.Size = New System.Drawing.Size(86, 29)
-        Me.Button_Alta.TabIndex = 178
-        Me.Button_Alta.Text = "Guard/Alta"
+        Me.Button_Alta.TabIndex = 15
+        Me.Button_Alta.Text = "Alta"
         Me.Button_Alta.UseVisualStyleBackColor = True
         '
         'Button_Limpiar
@@ -193,7 +216,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Precio.MaxLength = 6
         Me.TextBox_Precio.Name = "TextBox_Precio"
         Me.TextBox_Precio.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_Precio.TabIndex = 12
+        Me.TextBox_Precio.TabIndex = 13
         '
         'TextBox_Stock
         '
@@ -204,7 +227,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Stock.MaxLength = 4
         Me.TextBox_Stock.Name = "TextBox_Stock"
         Me.TextBox_Stock.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_Stock.TabIndex = 13
+        Me.TextBox_Stock.TabIndex = 14
         '
         'Label9
         '
@@ -255,7 +278,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Traductor.MaxLength = 50
         Me.TextBox_Traductor.Name = "TextBox_Traductor"
         Me.TextBox_Traductor.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_Traductor.TabIndex = 10
+        Me.TextBox_Traductor.TabIndex = 11
         '
         'TextBox_Plazaedicion
         '
@@ -266,7 +289,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Plazaedicion.MaxLength = 50
         Me.TextBox_Plazaedicion.Name = "TextBox_Plazaedicion"
         Me.TextBox_Plazaedicion.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_Plazaedicion.TabIndex = 9
+        Me.TextBox_Plazaedicion.TabIndex = 10
         '
         'TextBox_Annoedicion
         '
@@ -277,7 +300,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Annoedicion.MaxLength = 4
         Me.TextBox_Annoedicion.Name = "TextBox_Annoedicion"
         Me.TextBox_Annoedicion.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_Annoedicion.TabIndex = 8
+        Me.TextBox_Annoedicion.TabIndex = 9
         '
         'TextBox_Titulo
         '
@@ -310,7 +333,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Numeropags.MaxLength = 4
         Me.TextBox_Numeropags.Name = "TextBox_Numeropags"
         Me.TextBox_Numeropags.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_Numeropags.TabIndex = 4
+        Me.TextBox_Numeropags.TabIndex = 5
         '
         'TextBox_Editorial
         '
@@ -321,7 +344,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Editorial.MaxLength = 50
         Me.TextBox_Editorial.Name = "TextBox_Editorial"
         Me.TextBox_Editorial.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_Editorial.TabIndex = 5
+        Me.TextBox_Editorial.TabIndex = 6
         '
         'TextBox_Idioma
         '
@@ -332,7 +355,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Idioma.MaxLength = 50
         Me.TextBox_Idioma.Name = "TextBox_Idioma"
         Me.TextBox_Idioma.Size = New System.Drawing.Size(197, 19)
-        Me.TextBox_Idioma.TabIndex = 6
+        Me.TextBox_Idioma.TabIndex = 7
         '
         'Label24
         '
@@ -515,28 +538,6 @@ Partial Class GestionLibrosAltas
         Me.MenuStripPagPrin.TabIndex = 44
         Me.MenuStripPagPrin.TabStop = True
         Me.MenuStripPagPrin.Text = "MenuStrip1"
-        '
-        'ComboBox_Genero
-        '
-        Me.ComboBox_Genero.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.ComboBox_Genero.Cursor = System.Windows.Forms.Cursors.Arrow
-        Me.ComboBox_Genero.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ComboBox_Genero.FormattingEnabled = True
-        Me.ComboBox_Genero.Items.AddRange(New Object() {"Arte", "Ciencias", "Deportes y Juegos", "Filología", "Idiomas", "Juvenil", "Manialidades"})
-        Me.ComboBox_Genero.Location = New System.Drawing.Point(153, 117)
-        Me.ComboBox_Genero.Name = "ComboBox_Genero"
-        Me.ComboBox_Genero.Size = New System.Drawing.Size(197, 28)
-        Me.ComboBox_Genero.TabIndex = 184
-        '
-        'Label_Genero
-        '
-        Me.Label_Genero.AutoSize = True
-        Me.Label_Genero.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label_Genero.Location = New System.Drawing.Point(77, 120)
-        Me.Label_Genero.Name = "Label_Genero"
-        Me.Label_Genero.Size = New System.Drawing.Size(71, 20)
-        Me.Label_Genero.TabIndex = 183
-        Me.Label_Genero.Text = "Género :"
         '
         'GestionLibrosAltas
         '
