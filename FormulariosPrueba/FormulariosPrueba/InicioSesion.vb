@@ -104,10 +104,7 @@ Public Class InicioSesion
                 TextBox_Contraseña.Clear()
                 TextBox_Usuario.Clear()
 
-                ' Damos comienzo al timer
-                Timer_BarraProgreso.Start()
-                ' Actualizamos el estado 
-                ToolStripStatusLabel.Text = "Status: iniciando sesión"
+
 
                 If (reader.GetValue(7).ToString = "Admin") Then
 
@@ -117,9 +114,11 @@ Public Class InicioSesion
                     MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipText = " Tienes acceso a todas las Gestiones del programa "
                     MenuPrincipal.NotifyIcon_Bienvenida.ShowBalloonTip(5)
 
-                    Me.Hide()
-                    MenuPrincipal.Show()
 
+                    ' Damos comienzo al timer
+                    Timer_BarraProgreso.Start()
+                    ' Actualizamos el estado 
+                    ToolStripStatusLabel.Text = "Status: iniciando sesión"
 
                 ElseIf (reader.GetValue(7).ToString = "Encargado") Then
                     MenuPrincipal.Button_GestionEmpleados.Enabled = False
@@ -135,8 +134,10 @@ Public Class InicioSesion
                     MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipText = " Tienes acceso a Gestion de Libros, Gestion de Articulos y Gestion de Socios "
                     MenuPrincipal.NotifyIcon_Bienvenida.ShowBalloonTip(5)
 
-                    Me.Hide()
-                    MenuPrincipal.Show()
+                    ' Damos comienzo al timer
+                    Timer_BarraProgreso.Start()
+                    ' Actualizamos el estado 
+                    ToolStripStatusLabel.Text = "Status: iniciando sesión"
 
 
                 ElseIf (reader.GetValue(7).ToString = "Empleado") Then
@@ -160,9 +161,10 @@ Public Class InicioSesion
                     MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipText = " Tienes acceso a Busquedas  de Libros, Busquedas de Articulos y Gestion de Socios "
                     MenuPrincipal.NotifyIcon_Bienvenida.ShowBalloonTip(5)
 
-                    Me.Hide()
-                    MenuPrincipal.Show()
-
+                    ' Damos comienzo al timer
+                    Timer_BarraProgreso.Start()
+                    ' Actualizamos el estado 
+                    ToolStripStatusLabel.Text = "Status: iniciando sesión"
 
                 End If
 
@@ -214,6 +216,8 @@ Public Class InicioSesion
             ' Paramos el progreso del timer
             Timer_BarraProgreso.Stop()
 
+            Me.Hide()
+            MenuPrincipal.Show()
 
             ' ###### Reiniciamos la barra de progreso ######
 

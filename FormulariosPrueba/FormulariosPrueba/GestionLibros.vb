@@ -336,7 +336,7 @@ Public Class GestionLibros
 
                     cb.SelectCommand = comando
 
-                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 13).Value = (TextBox_ISBN.Text)
                     comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
                     comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
                     comando.Parameters.Add("@var4", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
@@ -362,7 +362,7 @@ Public Class GestionLibros
 
                     cb.SelectCommand = comando
 
-                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 13).Value = (TextBox_ISBN.Text)
                     comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
                     comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
 
@@ -408,7 +408,7 @@ Public Class GestionLibros
 
                     cb.SelectCommand = comando
 
-                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 13).Value = (TextBox_ISBN.Text)
                     comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
                     comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
 
@@ -431,7 +431,7 @@ Public Class GestionLibros
 
                     cb.SelectCommand = comando
 
-                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 13).Value = (TextBox_ISBN.Text)
                     comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
                     comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
 
@@ -454,7 +454,7 @@ Public Class GestionLibros
 
                     cb.SelectCommand = comando
 
-                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 13).Value = (TextBox_ISBN.Text)
                     comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
 
                     midataset.Clear()
@@ -476,7 +476,7 @@ Public Class GestionLibros
 
                     cb.SelectCommand = comando
 
-                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 13).Value = (TextBox_ISBN.Text)
                     comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
 
                     midataset.Clear()
@@ -542,7 +542,7 @@ Public Class GestionLibros
 
                     cb.SelectCommand = comando
 
-                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 13).Value = (TextBox_ISBN.Text)
                     comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
 
                     midataset.Clear()
@@ -586,7 +586,7 @@ Public Class GestionLibros
 
                     cb.SelectCommand = comando
 
-                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 13).Value = (TextBox_ISBN.Text)
 
                     midataset.Clear()
 

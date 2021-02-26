@@ -84,76 +84,77 @@ Public Class GestionLibrosAltas
             MsgBox("No se puede dar de alta , debe rellenar todos los datos.", MsgBoxStyle.OkOnly, "Error al dar de alta.")
         Else
 
-            'Para subir la imagen lo que tenemos que hacer es 
-            Dim mstream As New System.IO.MemoryStream()
-            PictureBoxProducto.Image.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
-            arrImage = mstream.GetBuffer()
-            Dim FileSize As UInt64
-            FileSize = mstream.Length
-            mstream.Close()
-            'Acaba Método para meter las imagenes dentro de la base de datos de tipo Largo. 
-
+            If arrImage IsNot Nothing AndAlso arrImage.Length > 0 Then
+                'Para subir la imagen lo que tenemos que hacer es 
+                Dim mstream As New System.IO.MemoryStream()
+                PictureBoxProducto.Image.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
+                arrImage = mstream.GetBuffer()
+                Dim FileSize As UInt64
+                FileSize = mstream.Length
+                mstream.Close()
+                'Acaba Método para meter las imagenes dentro de la base de datos de tipo Largo. 
+            End If
 
             Dim valor As String
-            Dim control As Integer = 0
+                Dim control As Integer = 0
 
-            ' Comprobamos que la clave primaria no se encuentra ya registrada.
-            For contador As Integer = 0 To GestionLibros.DataGridView_Libros.RowCount - 1
-                valor = GestionLibros.DataGridView_Libros.Item(0, contador).Value
+                ' Comprobamos que la clave primaria no se encuentra ya registrada.
+                For contador As Integer = 0 To GestionLibros.DataGridView_Libros.RowCount - 1
+                    valor = GestionLibros.DataGridView_Libros.Item(0, contador).Value
 
-                If valor = TextBox_ISBN.Text Then
-                    MsgBox("No puedes introducir un ISBN que ya existe en la base de datos.", MsgBoxStyle.OkOnly, "Error, clave duplicada")
-                    control = 1
-                End If
-            Next
+                    If valor = TextBox_ISBN.Text Then
+                        MsgBox("No puedes introducir un ISBN que ya existe en la base de datos.", MsgBoxStyle.OkOnly, "Error, clave duplicada")
+                        control = 1
+                    End If
+                Next
 
 
-            If control = 0 Then
-                ' ####################  1º Preparamos a la base de datos para recibir los datos. ##############################
-                Dim cb As New OleDbCommandBuilder(adaptador)
-                adaptador.InsertCommand = cb.GetInsertCommand
+                If control = 0 Then
+                    ' ####################  1º Preparamos a la base de datos para recibir los datos. ##############################
+                    Dim cb As New OleDbCommandBuilder(adaptador)
+                    adaptador.InsertCommand = cb.GetInsertCommand
 
-                ' ####################  2º Recogemos los datos y los introducimos ##############################
-                Dim drc As DataRowCollection = midataset.Tables("Libros").Rows
-                drc.Add(TextBox_ISBN.Text, TextBox_Titulo.Text, TextBox_Autor.Text, ComboBox_Genero.Text, TextBox_Numeropags.Text, TextBox_Editorial.Text, TextBox_Idioma.Text, ComboBox_Encuadernacion.Text,
+                    ' ####################  2º Recogemos los datos y los introducimos ##############################
+                    Dim drc As DataRowCollection = midataset.Tables("Libros").Rows
+                    drc.Add(TextBox_ISBN.Text, TextBox_Titulo.Text, TextBox_Autor.Text, ComboBox_Genero.Text, TextBox_Numeropags.Text, TextBox_Editorial.Text, TextBox_Idioma.Text, ComboBox_Encuadernacion.Text,
                     TextBox_Annoedicion.Text, TextBox_Plazaedicion.Text, TextBox_Traductor.Text, ComboBox_Formato.Text, TextBox_Precio.Text, TextBox_Stock.Text, arrImage)
 
-                adaptador.Update(midataset.Tables("Libros"))
-                ' ####################  3º Actualizamos el middataset ##############################
-                ' Actualizamos el dataGridView del formulario de gestión principal
-                GestionLibros.midataset.Clear()
-                GestionLibros.adaptador.Fill(GestionLibros.midataset, "Libros")
+                    adaptador.Update(midataset.Tables("Libros"))
+                    ' ####################  3º Actualizamos el middataset ##############################
+                    ' Actualizamos el dataGridView del formulario de gestión principal
+                    GestionLibros.midataset.Clear()
+                    GestionLibros.adaptador.Fill(GestionLibros.midataset, "Libros")
 
-                ' Reiniciamos su valor para la próxima vez
-                controlCalculadora = 0
+                    ' Reiniciamos su valor para la próxima vez
+                    controlCalculadora = 0
 
-                ' Vaciamos cada textBox de forma individual
-                TextBox_ISBN.Clear()
-                TextBox_Titulo.Clear()
-                TextBox_Autor.Clear()
-                ComboBox_Genero.ResetText()
-                TextBox_Numeropags.Clear()
-                TextBox_Editorial.Clear()
-                TextBox_Idioma.Clear()
-                ComboBox_Encuadernacion.ResetText()
-                TextBox_Annoedicion.Clear()
-                TextBox_Plazaedicion.Clear()
-                TextBox_Traductor.Clear()
-                ComboBox_Formato.ResetText()
-                TextBox_Precio.Clear()
-                TextBox_Stock.Clear()
-                ' Cerramos la ventana
-                Me.Close()
+                    ' Vaciamos cada textBox de forma individual
+                    TextBox_ISBN.Clear()
+                    TextBox_Titulo.Clear()
+                    TextBox_Autor.Clear()
+                    ComboBox_Genero.ResetText()
+                    TextBox_Numeropags.Clear()
+                    TextBox_Editorial.Clear()
+                    TextBox_Idioma.Clear()
+                    ComboBox_Encuadernacion.ResetText()
+                    TextBox_Annoedicion.Clear()
+                    TextBox_Plazaedicion.Clear()
+                    TextBox_Traductor.Clear()
+                    ComboBox_Formato.ResetText()
+                    TextBox_Precio.Clear()
+                    TextBox_Stock.Clear()
+                    ' Cerramos la ventana
+                    Me.Close()
 
-                ' ####################  4º Cambiamos el estado de los botones del menuStrip ##############################
-                ' AltaToolStripMenuItem.Enabled = False
-                ' NuevoToolStripMenuItem.Enabled = True
+                    ' ####################  4º Cambiamos el estado de los botones del menuStrip ##############################
+                    ' AltaToolStripMenuItem.Enabled = False
+                    ' NuevoToolStripMenuItem.Enabled = True
 
-                'System.NullReferenceException: 'Referencia a objeto no establecida como instancia de un objeto.'
-                'System.Data.OleDb.OleDbException: 'Error de sintaxis en la instrucción INSERT INTO.'
+                    'System.NullReferenceException: 'Referencia a objeto no establecida como instancia de un objeto.'
+                    'System.Data.OleDb.OleDbException: 'Error de sintaxis en la instrucción INSERT INTO.'
 
+                End If
             End If
-        End If
     End Sub
 
     '  Método que se ejecuta al iniciarse el formulario.
