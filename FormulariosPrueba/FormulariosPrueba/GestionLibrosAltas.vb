@@ -58,10 +58,10 @@ Public Class GestionLibrosAltas
         TextBox_ISBN.Clear()
         TextBox_Titulo.Clear()
         TextBox_Autor.Clear()
+        ComboBox_Genero.ResetText()
         TextBox_Numeropags.Clear()
         TextBox_Editorial.Clear()
         TextBox_Idioma.Clear()
-        'ComboBox_Encuadernacion.Clear()
         ComboBox_Encuadernacion.ResetText()
         TextBox_Annoedicion.Clear()
         TextBox_Plazaedicion.Clear()
@@ -69,6 +69,7 @@ Public Class GestionLibrosAltas
         ComboBox_Formato.ResetText()
         TextBox_Precio.Clear()
         TextBox_Stock.Clear()
+
     End Sub
 
 
@@ -77,7 +78,7 @@ Public Class GestionLibrosAltas
     ' Introduce los datos escritos por el usuario en los textBox en la DB.
     Private Sub Button_Alta_Click(sender As Object, e As EventArgs) Handles Button_Alta.Click
 
-        If TextBox_ISBN.Text = "" Or TextBox_Titulo.Text = "" Or TextBox_Autor.Text = "" Or TextBox_Numeropags.Text = "" Or
+        If TextBox_ISBN.Text = "" Or TextBox_Titulo.Text = "" Or TextBox_Autor.Text = "" Or ComboBox_Genero.Text = "" Or TextBox_Numeropags.Text = "" Or
             TextBox_Editorial.Text = "" Or TextBox_Idioma.Text = "" Or ComboBox_Encuadernacion.Text = "" Or TextBox_Annoedicion.Text = "" Or
             TextBox_Plazaedicion.Text = "" Or TextBox_Traductor.Text = "" Or ComboBox_Formato.Text = "" Or TextBox_Precio.Text = "" Or TextBox_Stock.Text = "" Then
             MsgBox("No se puede dar de alta , debe rellenar todos los datos.", MsgBoxStyle.OkOnly, "Error al dar de alta.")
@@ -114,7 +115,7 @@ Public Class GestionLibrosAltas
 
                 ' ####################  2º Recogemos los datos y los introducimos ##############################
                 Dim drc As DataRowCollection = midataset.Tables("Libros").Rows
-                drc.Add(TextBox_ISBN.Text, TextBox_Titulo.Text, TextBox_Autor.Text, TextBox_Numeropags.Text, TextBox_Editorial.Text, TextBox_Idioma.Text, ComboBox_Encuadernacion.Text,
+                drc.Add(TextBox_ISBN.Text, TextBox_Titulo.Text, TextBox_Autor.Text, ComboBox_Genero.Text, TextBox_Numeropags.Text, TextBox_Editorial.Text, TextBox_Idioma.Text, ComboBox_Encuadernacion.Text,
                     TextBox_Annoedicion.Text, TextBox_Plazaedicion.Text, TextBox_Traductor.Text, ComboBox_Formato.Text, TextBox_Precio.Text, TextBox_Stock.Text, arrImage)
 
                 adaptador.Update(midataset.Tables("Libros"))
@@ -130,6 +131,7 @@ Public Class GestionLibrosAltas
                 TextBox_ISBN.Clear()
                 TextBox_Titulo.Clear()
                 TextBox_Autor.Clear()
+                ComboBox_Genero.ResetText()
                 TextBox_Numeropags.Clear()
                 TextBox_Editorial.Clear()
                 TextBox_Idioma.Clear()
@@ -165,6 +167,7 @@ Public Class GestionLibrosAltas
             Me.TextBox_ISBN.DataBindings.Add("text", midataset, "Libros.ISBN")
             Me.TextBox_Titulo.DataBindings.Add("text", midataset, "Libros.Titulo")
             Me.TextBox_Autor.DataBindings.Add("text", midataset, "Libros.Autor")
+            Me.ComboBox_Genero.DataBindings.Add("text", midataset, "Libros.Genero")
             Me.TextBox_Numeropags.DataBindings.Add("text", midataset, "Libros.Paginas")
             Me.TextBox_Editorial.DataBindings.Add("text", midataset, "Libros.Editorial")
             Me.TextBox_Idioma.DataBindings.Add("text", midataset, "Libros.Idioma")
@@ -184,6 +187,7 @@ Public Class GestionLibrosAltas
         TextBox_ISBN.Clear()
         TextBox_Titulo.Clear()
         TextBox_Autor.Clear()
+        ComboBox_Genero.ResetText()
         TextBox_Numeropags.Clear()
         TextBox_Editorial.Clear()
         TextBox_Idioma.Clear()

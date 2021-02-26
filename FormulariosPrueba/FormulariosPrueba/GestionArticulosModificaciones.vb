@@ -69,6 +69,9 @@ Public Class GestionArticulosModificaciones
             GestionArticulos.numeroDeControlBindingModificaciones = 1
         End If
 
+        ' Inicializamos la variable de control
+        controlCalculadora = 0
+
         ' Inicializamos la variable asignandole el ISBN inicial
         ISBNInicial = GestionArticulos.DataGridView_Articulos.Item(0, GestionArticulos.DataGridView_Articulos.CurrentRow.Index).Value
 
@@ -169,11 +172,21 @@ Public Class GestionArticulosModificaciones
                     adaptador.UpdateCommand = cb.GetUpdateCommand
                 Catch ex As System.InvalidOperationException
                     ' Avisamos del error por mensaje
-                    ' MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                    MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                Catch ex2 As System.Data.OleDb.OleDbException
+                    ' Avisamos del error por mensaje
+                    MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                Catch ex3 As System.FormatException
+                    ' Avisamos del error por mensaje
+                    MsgBox("Uno de los datos tiene un formato incorrecto, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
                 End Try
                 ' Actualizamos el dataGridView del formulario de gestión principal
                 GestionArticulos.midataset.Clear()
                 GestionArticulos.adaptador.Fill(GestionArticulos.midataset, "Productos")
+
+
+                ' Reiniciamos su valor para la próxima vez
+                controlCalculadora = 0
 
                 ' Cerramos la ventana
                 Me.Close()

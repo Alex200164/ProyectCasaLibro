@@ -24,6 +24,8 @@ Partial Class GestionLibrosAltas
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionLibrosAltas))
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Button_Examinar = New System.Windows.Forms.Button()
+        Me.PictureBoxProducto = New System.Windows.Forms.PictureBox()
         Me.GruopBox = New System.Windows.Forms.GroupBox()
         Me.ComboBox_Formato = New System.Windows.Forms.ComboBox()
         Me.ComboBox_Encuadernacion = New System.Windows.Forms.ComboBox()
@@ -62,14 +64,14 @@ Partial Class GestionLibrosAltas
         Me.CalculadoraToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HerramientasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStripPagPrin = New System.Windows.Forms.MenuStrip()
-        Me.Button_Examinar = New System.Windows.Forms.Button()
-        Me.PictureBoxProducto = New System.Windows.Forms.PictureBox()
+        Me.ComboBox_Genero = New System.Windows.Forms.ComboBox()
+        Me.Label_Genero = New System.Windows.Forms.Label()
         Me.Panel2.SuspendLayout()
+        CType(Me.PictureBoxProducto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GruopBox.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.MenuStripPagPrin.SuspendLayout()
-        CType(Me.PictureBoxProducto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel2
@@ -82,8 +84,29 @@ Partial Class GestionLibrosAltas
         Me.Panel2.Size = New System.Drawing.Size(730, 460)
         Me.Panel2.TabIndex = 46
         '
+        'Button_Examinar
+        '
+        Me.Button_Examinar.Location = New System.Drawing.Point(325, 358)
+        Me.Button_Examinar.Name = "Button_Examinar"
+        Me.Button_Examinar.Size = New System.Drawing.Size(86, 29)
+        Me.Button_Examinar.TabIndex = 186
+        Me.Button_Examinar.Text = "Examinar"
+        Me.Button_Examinar.UseVisualStyleBackColor = True
+        '
+        'PictureBoxProducto
+        '
+        Me.PictureBoxProducto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBoxProducto.Location = New System.Drawing.Point(168, 314)
+        Me.PictureBoxProducto.Name = "PictureBoxProducto"
+        Me.PictureBoxProducto.Size = New System.Drawing.Size(136, 128)
+        Me.PictureBoxProducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBoxProducto.TabIndex = 185
+        Me.PictureBoxProducto.TabStop = False
+        '
         'GruopBox
         '
+        Me.GruopBox.Controls.Add(Me.ComboBox_Genero)
+        Me.GruopBox.Controls.Add(Me.Label_Genero)
         Me.GruopBox.Controls.Add(Me.ComboBox_Formato)
         Me.GruopBox.Controls.Add(Me.ComboBox_Encuadernacion)
         Me.GruopBox.Controls.Add(Me.Button_Alta)
@@ -138,7 +161,7 @@ Partial Class GestionLibrosAltas
         Me.ComboBox_Encuadernacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ComboBox_Encuadernacion.FormattingEnabled = True
         Me.ComboBox_Encuadernacion.Items.AddRange(New Object() {"Tapa Blanda", "Tapa Dura", "Bolsillo", "Otros formatos"})
-        Me.ComboBox_Encuadernacion.Location = New System.Drawing.Point(154, 207)
+        Me.ComboBox_Encuadernacion.Location = New System.Drawing.Point(153, 236)
         Me.ComboBox_Encuadernacion.Name = "ComboBox_Encuadernacion"
         Me.ComboBox_Encuadernacion.Size = New System.Drawing.Size(197, 28)
         Me.ComboBox_Encuadernacion.TabIndex = 7
@@ -283,7 +306,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Numeropags.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Numeropags.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Numeropags.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Numeropags.Location = New System.Drawing.Point(154, 123)
+        Me.TextBox_Numeropags.Location = New System.Drawing.Point(153, 152)
         Me.TextBox_Numeropags.MaxLength = 4
         Me.TextBox_Numeropags.Name = "TextBox_Numeropags"
         Me.TextBox_Numeropags.Size = New System.Drawing.Size(197, 19)
@@ -294,7 +317,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Editorial.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Editorial.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Editorial.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Editorial.Location = New System.Drawing.Point(154, 151)
+        Me.TextBox_Editorial.Location = New System.Drawing.Point(153, 180)
         Me.TextBox_Editorial.MaxLength = 50
         Me.TextBox_Editorial.Name = "TextBox_Editorial"
         Me.TextBox_Editorial.Size = New System.Drawing.Size(197, 19)
@@ -305,7 +328,7 @@ Partial Class GestionLibrosAltas
         Me.TextBox_Idioma.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Idioma.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Idioma.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Idioma.Location = New System.Drawing.Point(154, 179)
+        Me.TextBox_Idioma.Location = New System.Drawing.Point(153, 208)
         Me.TextBox_Idioma.MaxLength = 50
         Me.TextBox_Idioma.Name = "TextBox_Idioma"
         Me.TextBox_Idioma.Size = New System.Drawing.Size(197, 19)
@@ -315,7 +338,7 @@ Partial Class GestionLibrosAltas
         '
         Me.Label24.AutoSize = True
         Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label24.Location = New System.Drawing.Point(84, 178)
+        Me.Label24.Location = New System.Drawing.Point(83, 207)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(65, 20)
         Me.Label24.TabIndex = 158
@@ -387,7 +410,7 @@ Partial Class GestionLibrosAltas
         '
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.Location = New System.Drawing.Point(55, 122)
+        Me.Label20.Location = New System.Drawing.Point(54, 151)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(95, 20)
         Me.Label20.TabIndex = 152
@@ -397,7 +420,7 @@ Partial Class GestionLibrosAltas
         '
         Me.Label19.AutoSize = True
         Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(75, 150)
+        Me.Label19.Location = New System.Drawing.Point(74, 179)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(74, 20)
         Me.Label19.TabIndex = 153
@@ -408,7 +431,7 @@ Partial Class GestionLibrosAltas
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(15, 206)
+        Me.Label6.Location = New System.Drawing.Point(14, 235)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(133, 20)
         Me.Label6.TabIndex = 154
@@ -493,24 +516,27 @@ Partial Class GestionLibrosAltas
         Me.MenuStripPagPrin.TabStop = True
         Me.MenuStripPagPrin.Text = "MenuStrip1"
         '
-        'Button_Examinar
+        'ComboBox_Genero
         '
-        Me.Button_Examinar.Location = New System.Drawing.Point(325, 358)
-        Me.Button_Examinar.Name = "Button_Examinar"
-        Me.Button_Examinar.Size = New System.Drawing.Size(86, 29)
-        Me.Button_Examinar.TabIndex = 186
-        Me.Button_Examinar.Text = "Examinar"
-        Me.Button_Examinar.UseVisualStyleBackColor = True
+        Me.ComboBox_Genero.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.ComboBox_Genero.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.ComboBox_Genero.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ComboBox_Genero.FormattingEnabled = True
+        Me.ComboBox_Genero.Items.AddRange(New Object() {"Arte", "Ciencias", "Deportes y Juegos", "Filología", "Idiomas", "Juvenil", "Manialidades"})
+        Me.ComboBox_Genero.Location = New System.Drawing.Point(153, 117)
+        Me.ComboBox_Genero.Name = "ComboBox_Genero"
+        Me.ComboBox_Genero.Size = New System.Drawing.Size(197, 28)
+        Me.ComboBox_Genero.TabIndex = 184
         '
-        'PictureBoxProducto
+        'Label_Genero
         '
-        Me.PictureBoxProducto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBoxProducto.Location = New System.Drawing.Point(168, 314)
-        Me.PictureBoxProducto.Name = "PictureBoxProducto"
-        Me.PictureBoxProducto.Size = New System.Drawing.Size(136, 128)
-        Me.PictureBoxProducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBoxProducto.TabIndex = 185
-        Me.PictureBoxProducto.TabStop = False
+        Me.Label_Genero.AutoSize = True
+        Me.Label_Genero.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label_Genero.Location = New System.Drawing.Point(77, 120)
+        Me.Label_Genero.Name = "Label_Genero"
+        Me.Label_Genero.Size = New System.Drawing.Size(71, 20)
+        Me.Label_Genero.TabIndex = 183
+        Me.Label_Genero.Text = "Género :"
         '
         'GestionLibrosAltas
         '
@@ -526,13 +552,13 @@ Partial Class GestionLibrosAltas
         Me.Name = "GestionLibrosAltas"
         Me.Text = "Gestión de Libros (Altas)"
         Me.Panel2.ResumeLayout(False)
+        CType(Me.PictureBoxProducto, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GruopBox.ResumeLayout(False)
         Me.GruopBox.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.MenuStripPagPrin.ResumeLayout(False)
         Me.MenuStripPagPrin.PerformLayout()
-        CType(Me.PictureBoxProducto, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -579,4 +605,6 @@ Partial Class GestionLibrosAltas
     Friend WithEvents ComboBox_Formato As ComboBox
     Friend WithEvents Button_Examinar As Button
     Friend WithEvents PictureBoxProducto As PictureBox
+    Friend WithEvents ComboBox_Genero As ComboBox
+    Friend WithEvents Label_Genero As Label
 End Class

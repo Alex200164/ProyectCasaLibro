@@ -64,6 +64,7 @@ Public Class GestionLibrosModificaciones
         TextBox_ISBN.Clear()
         TextBox_Titulo.Clear()
         TextBox_Autor.Clear()
+        ComboBox_Genero.ResetText()
         TextBox_Numeropags.Clear()
         TextBox_Editorial.Clear()
         TextBox_Idioma.Clear()
@@ -103,6 +104,7 @@ Public Class GestionLibrosModificaciones
             Me.TextBox_ISBN.DataBindings.Add("text", midataset, "Libros.ISBN")
             Me.TextBox_Titulo.DataBindings.Add("text", midataset, "Libros.Titulo")
             Me.TextBox_Autor.DataBindings.Add("text", midataset, "Libros.Autor")
+            Me.ComboBox_Genero.DataBindings.Add("text", midataset, "Libros.Genero")
             Me.TextBox_Numeropags.DataBindings.Add("text", midataset, "Libros.Paginas")
             Me.TextBox_Editorial.DataBindings.Add("text", midataset, "Libros.Editorial")
             Me.TextBox_Idioma.DataBindings.Add("text", midataset, "Libros.Idioma")
@@ -163,7 +165,7 @@ Public Class GestionLibrosModificaciones
     ' Método que se ejecuta al pulsarse el botón "Modificar"
     ' Se encarga de modificar los datos ya existentes en la DB
     Private Sub Button_Modificar_Click(sender As Object, e As EventArgs) Handles Button_Modificar.Click
-        If TextBox_ISBN.Text = "" Or TextBox_Titulo.Text = "" Or TextBox_Autor.Text = "" Or TextBox_Numeropags.Text = "" Or
+        If TextBox_ISBN.Text = "" Or TextBox_Titulo.Text = "" Or TextBox_Autor.Text = "" Or ComboBox_Genero.Text = "" Or TextBox_Numeropags.Text = "" Or
             TextBox_Editorial.Text = "" Or TextBox_Idioma.Text = "" Or ComboBox_Encuadernacion.Text = "" Or TextBox_Annoedicion.Text = "" Or
             TextBox_Plazaedicion.Text = "" Or TextBox_Traductor.Text = "" Or ComboBox_Formato.Text = "" Or TextBox_Precio.Text = "" Or TextBox_Stock.Text = "" Then
             MsgBox("Debes seleccionar un registro para actualizarlo y si lo has seleccionado, no debe quedar ningún campo en blanco", MsgBoxStyle.OkOnly, "Error al dar de alta.")
@@ -194,39 +196,43 @@ Public Class GestionLibrosModificaciones
             If control = 0 Then
                 Try
                     ' Montamos una query parametrizada.
-                    Dim queryParametrizada As String = "UPDATE Libros SET ISBN=?, Titulo=?, Autor=?, Paginas=?, Editorial=?, Idioma=?, Encuadernacion=?, Anno_edicion=?, Plaza_edicion=?, Traductor=?, Formato=?, Precio=?, Stock=?, Foto=? WHERE ISBN=?"
+                    Dim queryParametrizada As String = "UPDATE Libros SET ISBN=?, Titulo=?, Autor=?, Genero=?, Paginas=?, Editorial=?, Idioma=?, Encuadernacion=?, Anno_edicion=?, Plaza_edicion=?, Traductor=?, Formato=?, Precio=?, Stock=?, Foto=? WHERE ISBN=?"
                     Using cmd = New OleDbCommand(queryParametrizada, conexion)
 
                         conexion.Open()
                         cmd.Parameters.AddWithValue("@p1", TextBox_ISBN.Text)
                         cmd.Parameters.AddWithValue("@p2", TextBox_Titulo.Text)
                         cmd.Parameters.AddWithValue("@p3", TextBox_Autor.Text)
-                        cmd.Parameters.AddWithValue("@p4", Convert.ToInt64(TextBox_Numeropags.Text))
-                        cmd.Parameters.AddWithValue("@p5", TextBox_Editorial.Text)
-                        cmd.Parameters.AddWithValue("@p6", TextBox_Idioma.Text)
-                        cmd.Parameters.AddWithValue("@p7", ComboBox_Encuadernacion.Text)
-                        cmd.Parameters.AddWithValue("@p8", Convert.ToInt64(TextBox_Annoedicion.Text))
-                        cmd.Parameters.AddWithValue("@p9", TextBox_Plazaedicion.Text)
-                        cmd.Parameters.AddWithValue("@p10", TextBox_Traductor.Text)
-                        cmd.Parameters.AddWithValue("@p11", ComboBox_Formato.Text)
-                        cmd.Parameters.AddWithValue("@p12", Convert.ToDouble(TextBox_Precio.Text))
-                        cmd.Parameters.AddWithValue("@p13", Convert.ToInt64(TextBox_Stock.Text))
-                        cmd.Parameters.AddWithValue("@p14", mstream.GetBuffer)
-                        cmd.Parameters.AddWithValue("@p15", (ISBNInicial))
+                        cmd.Parameters.AddWithValue("@p4", ComboBox_Genero.Text)
+                        cmd.Parameters.AddWithValue("@p5", Convert.ToInt64(TextBox_Numeropags.Text))
+                        cmd.Parameters.AddWithValue("@p6", TextBox_Editorial.Text)
+                        cmd.Parameters.AddWithValue("@p7", TextBox_Idioma.Text)
+                        cmd.Parameters.AddWithValue("@p8", ComboBox_Encuadernacion.Text)
+                        cmd.Parameters.AddWithValue("@p9", Convert.ToInt64(TextBox_Annoedicion.Text))
+                        cmd.Parameters.AddWithValue("@p10", TextBox_Plazaedicion.Text)
+                        cmd.Parameters.AddWithValue("@p11", TextBox_Traductor.Text)
+                        cmd.Parameters.AddWithValue("@p12", ComboBox_Formato.Text)
+                        cmd.Parameters.AddWithValue("@p13", Convert.ToDouble(TextBox_Precio.Text))
+                        cmd.Parameters.AddWithValue("@p14", Convert.ToInt64(TextBox_Stock.Text))
+                        cmd.Parameters.AddWithValue("@p15", mstream.GetBuffer)
+                        cmd.Parameters.AddWithValue("@p16", (ISBNInicial))
 
                         cmd.ExecuteNonQuery()
 
-                        ' System.FormatException montar try catch
-
                         conexion.Close()
                     End Using
-
 
                     Dim cb As New OleDbCommandBuilder(adaptador)
                     adaptador.UpdateCommand = cb.GetUpdateCommand
                 Catch ex As System.InvalidOperationException
                     ' Avisamos del error por mensaje
                     MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                Catch ex2 As System.Data.OleDb.OleDbException
+                    ' Avisamos del error por mensaje
+                    MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                Catch ex3 As System.FormatException
+                    ' Avisamos del error por mensaje
+                    MsgBox("Uno de los datos tiene un formato incorrecto, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
                 End Try
 
 
