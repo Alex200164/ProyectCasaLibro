@@ -234,5 +234,4 @@ Public Class GestionSociosAltas
     Private Sub VerLaAyudaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerLaAyudaToolStripMenuItem.Click
         Help.ShowHelp(Me, "CHM\LaCasaDelLibro.chm", "")
     End Sub
-
 End Class

@@ -1,12 +1,10 @@
-﻿' Necesitamos importar el módelo de base de datos que vamos a utilizar, este es de access.
+﻿' Necesitamos importar el módelo de base de datos que vamos a utilizar
 Imports System.Data.OleDb
 
 ' No hace falta hacer imports libValidaciones para instanciar sus clases porque está incluida en el proyecto.
 Imports System.IO
 
 Public Class GestionSocios
-
-
 
     ' Especificamos la base de datos a la que nos vamos a conectar.
     Public conexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=cas_lib_dib.accdb")
@@ -23,9 +21,7 @@ Public Class GestionSocios
 
     ' Número de control para controlar el dataBinding de los text boxes del formulario modificaciones, evitando que se relacionen dos veces.
     Public numeroDeControlBindingModificaciones As Long
-
     Public numeroDeControlBindingAltaSocios As Long
-
     Public posicionDataGridSeleccionada As Integer
 
     ' Método que se ejecuta al iniciarse el formulario
@@ -52,7 +48,6 @@ Public Class GestionSocios
 
         Catch ex As System.Data.OleDb.OleDbException
             MsgBox("Parece que algo ha salido mal. Revise que la base de datos no esté abierta durante la ejecución.", MsgBoxStyle.OkOnly, "Error - Base de datos")
-
 
             ' Mostramos el menú principal.
             MenuPrincipal.Show()
@@ -119,22 +114,24 @@ Public Class GestionSocios
 
     'Metodo evento que capta la puslación en la celda relativa al botón. 
     Private Sub DataGridView1_CellContentClick(sender As System.Object, e As DataGridViewCellEventArgs) Handles DataGridView_Socios.CellContentClick
+        Try
+            'Convierte el objeto en sender
+            Dim senderGrid = DirectCast(sender, DataGridView)
 
-        'Convierte el objeto en sender
-        Dim senderGrid = DirectCast(sender, DataGridView)
+            'Comprueba que es una columna del data gridview que tiene el evento y que tiene indice mayor que 0
+            'Si es correcto se ejecutará el comando de abrir GestionSociosModificaciones
+            If TypeOf senderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso e.RowIndex >= 0 Then
 
-        'Comprueba que es una columna del data gridview que tiene el evento y que tiene indice mayor que 0
-        'Si es correcto se ejecutará el comando de abrir GestionSociosModificaciones
-        If TypeOf senderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso e.RowIndex >= 0 Then
-            ' Posicionamos el formulario que vamos a mostrar.
-            posicionarGestionModificaciones()
-            ' Mostramos el formulario
-            GestionSociosModificaciones.ShowDialog()
+                ' Posicionamos el formulario que vamos a mostrar.
+                posicionarGestionModificaciones()
 
-            'System.ArgumentException hacer expecion try catch
+                ' Mostramos el formulario
+                GestionSociosModificaciones.ShowDialog()
+            End If
+        Catch ex As System.ArgumentException
+            MsgBox("Uno de los argumentos ha fallado, intentelo de nuevo.", MsgBoxStyle.OkOnly, "Error - Argumento")
+        End Try
 
-
-        End If
     End Sub
 
     'Metodo que pinta el Icono asociado al botón dinámico Modificar, el la ultima Columna del DataGridView
@@ -322,623 +319,632 @@ Public Class GestionSocios
     ' Buscará en la DB utilizando los datos introducidos por el usuario en los TextBoxes
     Private Sub Button_Buscar_Click(sender As Object, e As EventArgs) Handles Button_Buscar.Click
 
-        ' Comprobamos que haya datos en los textBoxes (por lo menos en uno de ellos)
-        If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text = "" Then
-            MsgBox("No se puede buscar , debe rellenar al menos una caja con datos.", MsgBoxStyle.OkOnly, "Error al buscar.")
-        Else
 
 
-            ' Si se ha introducido todo
-            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text <> "" Then
+        Try
 
-                ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+            ' Comprobamos que haya datos en los textBoxes (por lo menos en uno de ellos)
+            If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text = "" Then
+                MsgBox("No se puede buscar , debe rellenar al menos una caja con datos.", MsgBoxStyle.OkOnly, "Error al buscar.")
+            Else
 
-                Dim resultado1 As Boolean = validarNumeroSocio.validarNumeroSocio(TextBox_NumeroSocio.Text, 2)
-                Dim resultado2 As Boolean = validarNumeroSocio.validarTelefono(TextBox_Telefono.Text, 2)
-                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_Nombre.Text, 1)
-                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_Apellidos.Text, 2)
 
-                If resultado1 = False Then
-                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado2 = False Then
-                    'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado3 = False Then
-                    'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado4 = False Then
-                    'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
+                ' Si se ha introducido todo
+                If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text <> "" Then
+
+                    ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                    Dim resultado1 As Boolean = validarNumeroSocio.validarNumeroSocio(TextBox_NumeroSocio.Text, 2)
+                    Dim resultado2 As Boolean = validarNumeroSocio.validarTelefono(TextBox_Telefono.Text, 2)
+                    Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_Nombre.Text, 1)
+                    Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_Apellidos.Text, 2)
+
+                    If resultado1 = False Then
+                        Exit Sub
+                    ElseIf resultado2 = False Then
+                        Exit Sub
+                    ElseIf resultado3 = False Then
+                        Exit Sub
+                    ElseIf resultado4 = False Then
+                        Exit Sub
+                    End If
+
+                    Dim ds As New DataSet
+
+                    Dim cb As New OleDbDataAdapter
+
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Nombre LIKE? and Apellidos LIKE? and Telefono LIKE?", conexion)
+
+                    cb.SelectCommand = comando
+
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+                    comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
+                    comando.Parameters.Add("@var4", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
+
+                    midataset.Clear()
+
+                    cb.Fill(midataset, "Socios")
+
+                    DataGridView_Socios.DataSource = midataset
+
+                    DataGridView_Socios.DataMember = "Socios"
                 End If
 
-                Dim ds As New DataSet
+                ' Numero Nombre Apellido
+                If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text = "" Then
 
-                Dim cb As New OleDbDataAdapter
+                    ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Nombre LIKE? and Apellidos LIKE? and Telefono LIKE?", conexion)
+                    Dim resultado1 As Boolean = validarNumeroSocio.validarNumeroSocio(TextBox_NumeroSocio.Text, 2)
+                    Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_Nombre.Text, 1)
+                    Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_Apellidos.Text, 2)
 
-                cb.SelectCommand = comando
+                    If resultado1 = False Then
+                        'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
-                comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
-                comando.Parameters.Add("@var4", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
+                    ElseIf resultado3 = False Then
+                        'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    ElseIf resultado4 = False Then
+                        'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    End If
 
-                midataset.Clear()
+                    Dim ds As New DataSet
 
-                cb.Fill(midataset, "Socios")
+                    Dim cb As New OleDbDataAdapter
 
-                DataGridView_Socios.DataSource = midataset
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Nombre LIKE? and Apellidos LIKE? ", conexion)
 
-                DataGridView_Socios.DataMember = "Socios"
-            End If
+                    cb.SelectCommand = comando
 
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+                    comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
 
+                    midataset.Clear()
 
-            ' Numero Nombre Apellido
-            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text = "" Then
+                    cb.Fill(midataset, "Socios")
 
-                ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+                    DataGridView_Socios.DataSource = midataset
 
-                Dim resultado1 As Boolean = validarNumeroSocio.validarNumeroSocio(TextBox_NumeroSocio.Text, 2)
-                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_Nombre.Text, 1)
-                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_Apellidos.Text, 2)
-
-                If resultado1 = False Then
-                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-
-                ElseIf resultado3 = False Then
-                    'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado4 = False Then
-                    'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
+                    DataGridView_Socios.DataMember = "Socios"
                 End If
 
-                Dim ds As New DataSet
+                ' Nombre Apellidos Telefono
+                If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text <> "" Then
 
-                Dim cb As New OleDbDataAdapter
+                    ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Nombre LIKE? and Apellidos LIKE? ", conexion)
-
-                cb.SelectCommand = comando
-
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
-                comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
-
-                midataset.Clear()
-
-                cb.Fill(midataset, "Socios")
-
-                DataGridView_Socios.DataSource = midataset
-
-                DataGridView_Socios.DataMember = "Socios"
-            End If
-
-            ' Nombre Apellidos Telefono
-            If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text <> "" Then
-
-                ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
-
-                Dim resultado2 As Boolean = validarNumeroSocio.validarTelefono(TextBox_Telefono.Text, 2)
-                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_Nombre.Text, 1)
-                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_Apellidos.Text, 2)
+                    Dim resultado2 As Boolean = validarNumeroSocio.validarTelefono(TextBox_Telefono.Text, 2)
+                    Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_Nombre.Text, 1)
+                    Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_Apellidos.Text, 2)
 
 
-                If resultado2 = False Then
-                    'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado3 = False Then
-                    'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado4 = False Then
-                    'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
+                    If resultado2 = False Then
+                        'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    ElseIf resultado3 = False Then
+                        'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    ElseIf resultado4 = False Then
+                        'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    End If
+
+                    Dim ds As New DataSet
+
+                    Dim cb As New OleDbDataAdapter
+
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE Nombre LIKE? and Apellidos LIKE? and Telefono LIKE?", conexion)
+
+                    cb.SelectCommand = comando
+
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
+                    comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
+
+                    midataset.Clear()
+
+                    cb.Fill(midataset, "Socios")
+
+                    DataGridView_Socios.DataSource = midataset
+
+                    DataGridView_Socios.DataMember = "Socios"
                 End If
 
-                Dim ds As New DataSet
+                ' Numero Apellidos Telefono
+                If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text <> "" Then
 
-                Dim cb As New OleDbDataAdapter
+                    ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE Nombre LIKE? and Apellidos LIKE? and Telefono LIKE?", conexion)
+                    Dim resultado1 As Boolean = validarNumeroSocio.validarNumeroSocio(TextBox_NumeroSocio.Text, 2)
+                    Dim resultado2 As Boolean = validarNumeroSocio.validarTelefono(TextBox_Telefono.Text, 2)
 
-                cb.SelectCommand = comando
+                    Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_Apellidos.Text, 2)
 
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
-                comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
+                    If resultado1 = False Then
+                        'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    ElseIf resultado2 = False Then
+                        'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    ElseIf resultado4 = False Then
+                        'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    End If
 
-                midataset.Clear()
+                    Dim ds As New DataSet
 
-                cb.Fill(midataset, "Socios")
+                    Dim cb As New OleDbDataAdapter
 
-                DataGridView_Socios.DataSource = midataset
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Apellidos LIKE? and Telefono LIKE?", conexion)
 
-                DataGridView_Socios.DataMember = "Socios"
-            End If
+                    cb.SelectCommand = comando
 
-            ' Numero Apellidos Telefono
-            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text <> "" Then
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
+                    comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
 
-                ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+                    midataset.Clear()
 
-                Dim resultado1 As Boolean = validarNumeroSocio.validarNumeroSocio(TextBox_NumeroSocio.Text, 2)
-                Dim resultado2 As Boolean = validarNumeroSocio.validarTelefono(TextBox_Telefono.Text, 2)
+                    cb.Fill(midataset, "Socios")
 
-                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_Apellidos.Text, 2)
+                    DataGridView_Socios.DataSource = midataset
 
-                If resultado1 = False Then
-                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado2 = False Then
-                    'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado4 = False Then
-                    'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
+                    DataGridView_Socios.DataMember = "Socios"
                 End If
 
-                Dim ds As New DataSet
+                ' Numero Nombre Telefono
+                If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text <> "" Then
 
-                Dim cb As New OleDbDataAdapter
+                    ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Apellidos LIKE? and Telefono LIKE?", conexion)
-
-                cb.SelectCommand = comando
-
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
-                comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
-
-                midataset.Clear()
-
-                cb.Fill(midataset, "Socios")
-
-                DataGridView_Socios.DataSource = midataset
-
-                DataGridView_Socios.DataMember = "Socios"
-            End If
-
-            ' Numero Nombre Telefono
-            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text <> "" Then
-
-                ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
-
-                Dim resultado1 As Boolean = validarNumeroSocio.validarNumeroSocio(TextBox_NumeroSocio.Text, 2)
-                Dim resultado2 As Boolean = validarNumeroSocio.validarTelefono(TextBox_Telefono.Text, 2)
-                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_Nombre.Text, 1)
+                    Dim resultado1 As Boolean = validarNumeroSocio.validarNumeroSocio(TextBox_NumeroSocio.Text, 2)
+                    Dim resultado2 As Boolean = validarNumeroSocio.validarTelefono(TextBox_Telefono.Text, 2)
+                    Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_Nombre.Text, 1)
 
 
-                If resultado1 = False Then
-                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado2 = False Then
-                    'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado3 = False Then
-                    'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
+                    If resultado1 = False Then
+                        'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    ElseIf resultado2 = False Then
+                        'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    ElseIf resultado3 = False Then
+                        'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    End If
+
+                    Dim ds As New DataSet
+
+                    Dim cb As New OleDbDataAdapter
+
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Nombre LIKE? and Telefono LIKE?", conexion)
+
+                    cb.SelectCommand = comando
+
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+                    comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
+
+                    midataset.Clear()
+
+                    cb.Fill(midataset, "Socios")
+
+                    DataGridView_Socios.DataSource = midataset
+
+                    DataGridView_Socios.DataMember = "Socios"
                 End If
 
-                Dim ds As New DataSet
+                ' Numero Nombre
+                If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text = "" Then
 
-                Dim cb As New OleDbDataAdapter
+                    ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Nombre LIKE? and Telefono LIKE?", conexion)
+                    Dim resultado1 As Boolean = validarNumeroSocio.validarNumeroSocio(TextBox_NumeroSocio.Text, 2)
 
-                cb.SelectCommand = comando
+                    Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_Nombre.Text, 1)
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
-                comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
+                    If resultado1 = False Then
+                        'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
 
-                midataset.Clear()
+                    ElseIf resultado3 = False Then
+                        'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
 
-                cb.Fill(midataset, "Socios")
+                    End If
 
-                DataGridView_Socios.DataSource = midataset
+                    Dim ds As New DataSet
 
-                DataGridView_Socios.DataMember = "Socios"
-            End If
+                    Dim cb As New OleDbDataAdapter
 
-            ' Numero Nombre
-            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text = "" Then
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Nombre LIKE? ", conexion)
 
-                ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+                    cb.SelectCommand = comando
 
-                Dim resultado1 As Boolean = validarNumeroSocio.validarNumeroSocio(TextBox_NumeroSocio.Text, 2)
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
 
-                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_Nombre.Text, 1)
+                    midataset.Clear()
 
-                If resultado1 = False Then
-                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
+                    cb.Fill(midataset, "Socios")
 
-                ElseIf resultado3 = False Then
-                    'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
+                    DataGridView_Socios.DataSource = midataset
 
+                    DataGridView_Socios.DataMember = "Socios"
                 End If
 
-                Dim ds As New DataSet
+                ' Numero Apellidos
+                If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text = "" Then
 
-                Dim cb As New OleDbDataAdapter
+                    ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Nombre LIKE? ", conexion)
+                    Dim resultado1 As Boolean = validarNumeroSocio.validarNumeroSocio(TextBox_NumeroSocio.Text, 2)
 
-                cb.SelectCommand = comando
+                    Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_Apellidos.Text, 2)
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+                    If resultado1 = False Then
+                        'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
 
-                midataset.Clear()
+                    ElseIf resultado4 = False Then
+                        'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    End If
 
-                cb.Fill(midataset, "Socios")
+                    Dim ds As New DataSet
 
-                DataGridView_Socios.DataSource = midataset
+                    Dim cb As New OleDbDataAdapter
 
-                DataGridView_Socios.DataMember = "Socios"
-            End If
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Apellidos LIKE?", conexion)
 
-            ' Numero Apellidos
-            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text = "" Then
+                    cb.SelectCommand = comando
 
-                ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
 
-                Dim resultado1 As Boolean = validarNumeroSocio.validarNumeroSocio(TextBox_NumeroSocio.Text, 2)
+                    midataset.Clear()
 
-                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_Apellidos.Text, 2)
+                    cb.Fill(midataset, "Socios")
 
-                If resultado1 = False Then
-                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
+                    DataGridView_Socios.DataSource = midataset
 
-                ElseIf resultado4 = False Then
-                    'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
+                    DataGridView_Socios.DataMember = "Socios"
                 End If
 
-                Dim ds As New DataSet
+                ' Nombre Apellidos
+                If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text = "" Then
 
-                Dim cb As New OleDbDataAdapter
-
-                Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Apellidos LIKE?", conexion)
-
-                cb.SelectCommand = comando
-
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
-
-                midataset.Clear()
-
-                cb.Fill(midataset, "Socios")
-
-                DataGridView_Socios.DataSource = midataset
-
-                DataGridView_Socios.DataMember = "Socios"
-            End If
-
-            ' Nombre Apellidos
-            If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text = "" Then
-
-                ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+                    ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
 
-                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_Nombre.Text, 1)
-                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_Apellidos.Text, 2)
+                    Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_Nombre.Text, 1)
+                    Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_Apellidos.Text, 2)
 
 
-                If resultado3 = False Then
-                    'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado4 = False Then
-                    'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
+                    If resultado3 = False Then
+                        'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    ElseIf resultado4 = False Then
+                        'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    End If
+
+                    Dim ds As New DataSet
+
+                    Dim cb As New OleDbDataAdapter
+
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE Nombre LIKE? and Apellidos LIKE?", conexion)
+
+                    cb.SelectCommand = comando
+
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
+
+                    midataset.Clear()
+
+                    cb.Fill(midataset, "Socios")
+
+                    DataGridView_Socios.DataSource = midataset
+
+                    DataGridView_Socios.DataMember = "Socios"
                 End If
 
-                Dim ds As New DataSet
+                ' Apellidos Telefono
+                If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text <> "" Then
 
-                Dim cb As New OleDbDataAdapter
-
-                Dim comando As New OleDbCommand("Select * from Socios WHERE Nombre LIKE? and Apellidos LIKE?", conexion)
-
-                cb.SelectCommand = comando
-
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
-
-                midataset.Clear()
-
-                cb.Fill(midataset, "Socios")
-
-                DataGridView_Socios.DataSource = midataset
-
-                DataGridView_Socios.DataMember = "Socios"
-            End If
-
-            ' Apellidos Telefono
-            If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text <> "" Then
-
-                ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+                    ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
 
-                Dim resultado2 As Boolean = validarNumeroSocio.validarTelefono(TextBox_Telefono.Text, 2)
-                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_Apellidos.Text, 2)
+                    Dim resultado2 As Boolean = validarNumeroSocio.validarTelefono(TextBox_Telefono.Text, 2)
+                    Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_Apellidos.Text, 2)
 
 
-                If resultado2 = False Then
-                    'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado4 = False Then
-                    'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
+                    If resultado2 = False Then
+                        'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    ElseIf resultado4 = False Then
+                        'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    End If
+
+                    Dim ds As New DataSet
+
+                    Dim cb As New OleDbDataAdapter
+
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE Apellidos LIKE? and Telefono LIKE?", conexion)
+
+                    cb.SelectCommand = comando
+
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
+                    comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
+
+                    midataset.Clear()
+
+                    cb.Fill(midataset, "Socios")
+
+                    DataGridView_Socios.DataSource = midataset
+
+                    DataGridView_Socios.DataMember = "Socios"
                 End If
 
-                Dim ds As New DataSet
+                ' Numero telefono
+                If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text <> "" Then
 
-                Dim cb As New OleDbDataAdapter
+                    ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE Apellidos LIKE? and Telefono LIKE?", conexion)
-
-                cb.SelectCommand = comando
-
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
-                comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
-
-                midataset.Clear()
-
-                cb.Fill(midataset, "Socios")
-
-                DataGridView_Socios.DataSource = midataset
-
-                DataGridView_Socios.DataMember = "Socios"
-            End If
-
-            ' Numero telefono
-            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text <> "" Then
-
-                ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
-
-                Dim resultado1 As Boolean = validarNumeroSocio.validarNumeroSocio(TextBox_NumeroSocio.Text, 2)
-                Dim resultado2 As Boolean = validarNumeroSocio.validarTelefono(TextBox_Telefono.Text, 2)
+                    Dim resultado1 As Boolean = validarNumeroSocio.validarNumeroSocio(TextBox_NumeroSocio.Text, 2)
+                    Dim resultado2 As Boolean = validarNumeroSocio.validarTelefono(TextBox_Telefono.Text, 2)
 
 
-                If resultado1 = False Then
-                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado2 = False Then
-                    'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
+                    If resultado1 = False Then
+                        'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    ElseIf resultado2 = False Then
+                        'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
 
+                    End If
+
+                    Dim ds As New DataSet
+
+                    Dim cb As New OleDbDataAdapter
+
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Telefono LIKE?", conexion)
+
+                    cb.SelectCommand = comando
+
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
+                    comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
+
+                    midataset.Clear()
+
+                    cb.Fill(midataset, "Socios")
+
+                    DataGridView_Socios.DataSource = midataset
+
+                    DataGridView_Socios.DataMember = "Socios"
                 End If
 
-                Dim ds As New DataSet
+                ' Nombre Telefono
+                If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text <> "" Then
 
-                Dim cb As New OleDbDataAdapter
-
-                Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE? and Telefono LIKE?", conexion)
-
-                cb.SelectCommand = comando
-
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
-                comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
-
-                midataset.Clear()
-
-                cb.Fill(midataset, "Socios")
-
-                DataGridView_Socios.DataSource = midataset
-
-                DataGridView_Socios.DataMember = "Socios"
-            End If
-
-            ' Nombre Telefono
-            If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text <> "" Then
-
-                ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+                    ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
 
-                Dim resultado2 As Boolean = validarNumeroSocio.validarTelefono(TextBox_Telefono.Text, 2)
-                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_Nombre.Text, 1)
+                    Dim resultado2 As Boolean = validarNumeroSocio.validarTelefono(TextBox_Telefono.Text, 2)
+                    Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_Nombre.Text, 1)
 
 
 
-                If resultado2 = False Then
-                    'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado3 = False Then
-                    'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
+                    If resultado2 = False Then
+                        'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    ElseIf resultado3 = False Then
+                        'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
 
+                    End If
+
+                    Dim ds As New DataSet
+
+                    Dim cb As New OleDbDataAdapter
+
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE Nombre LIKE? and Telefono LIKE?", conexion)
+
+                    cb.SelectCommand = comando
+
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+                    comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
+
+                    midataset.Clear()
+
+                    cb.Fill(midataset, "Socios")
+
+                    DataGridView_Socios.DataSource = midataset
+
+                    DataGridView_Socios.DataMember = "Socios"
                 End If
 
-                Dim ds As New DataSet
+                ' Numero
+                If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text = "" Then
 
-                Dim cb As New OleDbDataAdapter
+                    ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE Nombre LIKE? and Telefono LIKE?", conexion)
-
-                cb.SelectCommand = comando
-
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
-                comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
-
-                midataset.Clear()
-
-                cb.Fill(midataset, "Socios")
-
-                DataGridView_Socios.DataSource = midataset
-
-                DataGridView_Socios.DataMember = "Socios"
-            End If
-
-            ' Numero
-            If TextBox_NumeroSocio.Text <> "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text = "" Then
-
-                ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
-
-                Dim resultado1 As Boolean = validarNumeroSocio.validarNumeroSocio(TextBox_NumeroSocio.Text, 2)
+                    Dim resultado1 As Boolean = validarNumeroSocio.validarNumeroSocio(TextBox_NumeroSocio.Text, 2)
 
 
-                If resultado1 = False Then
-                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
+                    If resultado1 = False Then
+                        'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
 
+                    End If
+
+                    Dim ds As New DataSet
+
+                    Dim cb As New OleDbDataAdapter
+
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE?", conexion)
+
+                    cb.SelectCommand = comando
+
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
+
+                    midataset.Clear()
+
+                    cb.Fill(midataset, "Socios")
+
+                    DataGridView_Socios.DataSource = midataset
+
+                    DataGridView_Socios.DataMember = "Socios"
                 End If
 
-                Dim ds As New DataSet
+                ' Nombre
+                If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text = "" Then
 
-                Dim cb As New OleDbDataAdapter
+                    ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE NumeroDeSocio LIKE?", conexion)
-
-                cb.SelectCommand = comando
-
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_NumeroSocio.Text)
-
-                midataset.Clear()
-
-                cb.Fill(midataset, "Socios")
-
-                DataGridView_Socios.DataSource = midataset
-
-                DataGridView_Socios.DataMember = "Socios"
-            End If
-
-            ' Nombre
-            If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text <> "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text = "" Then
-
-                ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
-
-                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_Nombre.Text, 1)
+                    Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_Nombre.Text, 1)
 
 
-                If resultado3 = False Then
-                    'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
+                    If resultado3 = False Then
+                        'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
 
+                    End If
+
+                    Dim ds As New DataSet
+
+                    Dim cb As New OleDbDataAdapter
+
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE Nombre LIKE?", conexion)
+
+                    cb.SelectCommand = comando
+
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
+
+                    midataset.Clear()
+
+                    cb.Fill(midataset, "Socios")
+
+                    DataGridView_Socios.DataSource = midataset
+
+                    DataGridView_Socios.DataMember = "Socios"
                 End If
 
-                Dim ds As New DataSet
+                ' Apellido
+                If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text = "" Then
 
-                Dim cb As New OleDbDataAdapter
+                    ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE Nombre LIKE?", conexion)
-
-                cb.SelectCommand = comando
-
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
-
-                midataset.Clear()
-
-                cb.Fill(midataset, "Socios")
-
-                DataGridView_Socios.DataSource = midataset
-
-                DataGridView_Socios.DataMember = "Socios"
-            End If
-
-            ' Apellido
-            If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text <> "" And TextBox_Telefono.Text = "" Then
-
-                ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
-
-                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_Apellidos.Text, 2)
+                    Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_Apellidos.Text, 2)
 
 
-                If resultado4 = False Then
-                    'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
+                    If resultado4 = False Then
+                        'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    End If
+
+                    Dim ds As New DataSet
+
+                    Dim cb As New OleDbDataAdapter
+
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE Apellidos LIKE?", conexion)
+
+                    cb.SelectCommand = comando
+
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
+
+                    midataset.Clear()
+
+                    cb.Fill(midataset, "Socios")
+
+                    DataGridView_Socios.DataSource = midataset
+
+                    DataGridView_Socios.DataMember = "Socios"
                 End If
 
-                Dim ds As New DataSet
+                ' Telefono
+                If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text <> "" Then
 
-                Dim cb As New OleDbDataAdapter
+                    ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
-                Dim comando As New OleDbCommand("Select * from Socios WHERE Apellidos LIKE?", conexion)
-
-                cb.SelectCommand = comando
-
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Apellidos.Text
-
-                midataset.Clear()
-
-                cb.Fill(midataset, "Socios")
-
-                DataGridView_Socios.DataSource = midataset
-
-                DataGridView_Socios.DataMember = "Socios"
-            End If
-
-            ' Telefono
-            If TextBox_NumeroSocio.Text = "" And TextBox_Nombre.Text = "" And TextBox_Apellidos.Text = "" And TextBox_Telefono.Text <> "" Then
-
-                ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
-
-                Dim resultado2 As Boolean = validarNumeroSocio.validarTelefono(TextBox_Telefono.Text, 2)
+                    Dim resultado2 As Boolean = validarNumeroSocio.validarTelefono(TextBox_Telefono.Text, 2)
 
 
-                If resultado2 = False Then
-                    'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
+                    If resultado2 = False Then
+                        'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
 
+                    End If
+
+                    Dim ds As New DataSet
+
+                    Dim cb As New OleDbDataAdapter
+
+                    Dim comando As New OleDbCommand("Select * from Socios WHERE Telefono LIKE?", conexion)
+
+                    cb.SelectCommand = comando
+
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
+
+                    midataset.Clear()
+
+                    cb.Fill(midataset, "Socios")
+
+                    DataGridView_Socios.DataSource = midataset
+
+                    DataGridView_Socios.DataMember = "Socios"
                 End If
-
-                Dim ds As New DataSet
-
-                Dim cb As New OleDbDataAdapter
-
-                Dim comando As New OleDbCommand("Select * from Socios WHERE Telefono LIKE?", conexion)
-
-                cb.SelectCommand = comando
-
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Telefono.Text)
-
-                midataset.Clear()
-
-                cb.Fill(midataset, "Socios")
-
-                DataGridView_Socios.DataSource = midataset
-
-                DataGridView_Socios.DataMember = "Socios"
             End If
 
-            ' MsgBox("Busqueda fallida...")
-
-        End If ' IF 1
+        Catch ex As System.InvalidOperationException
+            ' Avisamos del error por mensaje
+            MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+        Catch ex2 As System.FormatException
+            ' Avisamos del error por mensaje
+            MsgBox("El formato de los datos introducidos es incorrecto, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+        Catch ex3 As System.Data.OleDb.OleDbException
+            ' Avisamos del error por mensaje
+            MsgBox("Algo no ha ido bien, es la sintaxis correcta?, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+        Catch ex4 As System.NullReferenceException
+            ' Avisamos del error por mensaje
+            MsgBox("Algo no ha ido bien, intentalo de nuevo. Referencia a objeto no establecida como instancia de un objeto.", MsgBoxStyle.OkOnly, "Operación invalida")
+        End Try
 
     End Sub
 

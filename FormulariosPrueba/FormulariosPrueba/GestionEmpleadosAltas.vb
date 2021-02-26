@@ -159,44 +159,42 @@ Public Class GestionEmpleadosAltas
                 End If
             Next
 
-
             If control = 0 Then
+                Try
+                    ' ####################  1º Preparamos a la base de datos para recibir los datos. ##############################
+                    Dim cb As New OleDbCommandBuilder(adaptador)
+                    adaptador.InsertCommand = cb.GetInsertCommand
 
-                ' Try
-                ' ####################  1º Preparamos a la base de datos para recibir los datos. ##############################
-                Dim cb As New OleDbCommandBuilder(adaptador)
-                adaptador.InsertCommand = cb.GetInsertCommand
+                    ' ####################  2º Recogemos los datos y los introducimos ##############################
+                    Dim drc As DataRowCollection = midataset.Tables("Empleados").Rows
+                    drc.Add(TextBox_DNI.Text, TextBox_NOMBRE.Text, TextBox_APELLIDOS.Text, TextBox_CORREO.Text, TextBox_TELEFONO.Text, TextBox_USUARIO.Text, TextBox_CONTRASENNA.Text, TextBox_ROL.Text)
 
-                ' ####################  2º Recogemos los datos y los introducimos ##############################
-                Dim drc As DataRowCollection = midataset.Tables("Empleados").Rows
-                drc.Add(TextBox_DNI.Text, TextBox_NOMBRE.Text, TextBox_APELLIDOS.Text, TextBox_CORREO.Text, TextBox_TELEFONO.Text, TextBox_USUARIO.Text, TextBox_CONTRASENNA.Text, TextBox_ROL.Text)
+                    adaptador.Update(midataset.Tables("Empleados"))
+                    ' ####################  3º Actualizamos el middataset ##############################
+                    ' Actualizamos el dataGridView del formulario de gestión principal
+                    GestionEmpleados.midataset.Clear()
+                    GestionEmpleados.adaptador.Fill(GestionEmpleados.midataset, "Empleados")
 
-                adaptador.Update(midataset.Tables("Empleados"))
-                ' ####################  3º Actualizamos el middataset ##############################
-                ' Actualizamos el dataGridView del formulario de gestión principal
-                GestionEmpleados.midataset.Clear()
-                GestionEmpleados.adaptador.Fill(GestionEmpleados.midataset, "Empleados")
+                    ' Reiniciamos su valor para la proxima vez
+                    controlCalculadora = 0
 
+                    ' Cerramos la ventana
+                    Me.Close()
 
-                ' Catch ex As System.Data.OleDb.OleDbException
-                '    MsgBox("No puedes introducir un DNI que ya existe en la base de datos.", MsgBoxStyle.OkOnly, "Error, clave duplicada")
-                ' End Try
-
-                ' Reiniciamos su valor para la proxima vez
-                controlCalculadora = 0
-
-                ' Cerramos la ventana
-                Me.Close()
-
-                ' ####################  4º Cambiamos el estado de los botones del menuStrip ##############################
-                ' AltaToolStripMenuItem.Enabled = False
-                ' NuevoToolStripMenuItem.Enabled = True
-
-                'System.NullReferenceException: 'Referencia a objeto no establecida como instancia de un objeto.'
-                ' System.Data.OleDb.OleDbException: 'Error de sintaxis en la instrucción INSERT INTO.'
-
+                Catch ex As System.InvalidOperationException
+                    ' Avisamos del error por mensaje
+                    MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                Catch ex2 As System.FormatException
+                    ' Avisamos del error por mensaje
+                    MsgBox("El formato de los datos introducidos es incorrecto, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                Catch ex3 As System.Data.OleDb.OleDbException
+                    ' Avisamos del error por mensaje
+                    MsgBox("Algo no ha ido bien, es la sintaxis correcta?, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                Catch ex4 As System.NullReferenceException
+                    ' Avisamos del error por mensaje
+                    MsgBox("Algo no ha ido bien, intentalo de nuevo. Referencia a objeto no establecida como instancia de un objeto.", MsgBoxStyle.OkOnly, "Operación invalida")
+                End Try
             End If
-
         End If
     End Sub
 
@@ -275,5 +273,4 @@ Public Class GestionEmpleadosAltas
     Private Sub VerLaAyudaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerLaAyudaToolStripMenuItem.Click
         Help.ShowHelp(Me, "CHM\LaCasaDelLibro.chm", "")
     End Sub
-
 End Class

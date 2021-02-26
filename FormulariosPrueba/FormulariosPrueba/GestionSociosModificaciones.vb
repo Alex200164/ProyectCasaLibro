@@ -24,8 +24,6 @@ Public Class GestionSociosModificaciones
     ' Aquí alojaremos los datos de la DB
     Public midataset As New DataSet
 
-
-
     ' Método que se ejecuta cuando se pulsa el botón "Limpiar".
     ' "Limpia" todos los textBox, dejandolos vacios.
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click

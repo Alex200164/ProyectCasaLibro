@@ -77,7 +77,7 @@ Partial Class GestionSociosAltas
         Me.CalculadoraToolStripMenuItem.Image = CType(resources.GetObject("CalculadoraToolStripMenuItem.Image"), System.Drawing.Image)
         Me.CalculadoraToolStripMenuItem.Name = "CalculadoraToolStripMenuItem"
         Me.CalculadoraToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D1), System.Windows.Forms.Keys)
-        Me.CalculadoraToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CalculadoraToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.CalculadoraToolStripMenuItem.Text = "Calculadora"
         '
         'BlocNotasToolStripMenuItem
@@ -85,7 +85,7 @@ Partial Class GestionSociosAltas
         Me.BlocNotasToolStripMenuItem.Image = CType(resources.GetObject("BlocNotasToolStripMenuItem.Image"), System.Drawing.Image)
         Me.BlocNotasToolStripMenuItem.Name = "BlocNotasToolStripMenuItem"
         Me.BlocNotasToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D2), System.Windows.Forms.Keys)
-        Me.BlocNotasToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BlocNotasToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.BlocNotasToolStripMenuItem.Text = "Bloc Notas"
         '
         'SalirToolStripMenuItem
@@ -93,7 +93,7 @@ Partial Class GestionSociosAltas
         Me.SalirToolStripMenuItem.Image = CType(resources.GetObject("SalirToolStripMenuItem.Image"), System.Drawing.Image)
         Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
         Me.SalirToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
-        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.SalirToolStripMenuItem.Text = "Salir..."
         '
         'AyudaToolStripMenuItem

@@ -5,13 +5,9 @@ Imports System.Data.OleDb
 Imports System.IO
 
 Public Class GestionEmpleados
-
-
     ' Número de control para controlar el dataBinding de los text boxes del formulario modificaciones, evitando que se relacionen dos veces.
     Public numeroDeControlBindingModificacionesEmpleados As Long
-
     Public numeroDeControlBindingAltaEmpleados As Long
-
     Public posicionDataGridSeleccionada As Integer
 
     ' Especificamos la base de datos a la que nos vamos a conectar.
@@ -227,9 +223,7 @@ Public Class GestionEmpleados
 
     'Metodo evento que capta la puslación en la celda relativa al botón. 
     Private Sub DataGridView1_CellContentClick(sender As System.Object, e As DataGridViewCellEventArgs) Handles DataGridView_Empleados.CellContentClick
-
         Try
-
             'Convierte el objeto en sender
             Dim senderGrid = DirectCast(sender, DataGridView)
 
@@ -242,7 +236,6 @@ Public Class GestionEmpleados
                 GestionEmpleadosModificaciones.ShowDialog()
 
             End If
-
         Catch ex As System.ArgumentException
             ' MsgBox("Se ha producido un error al realizar la acción solicitada, intentelo de nuevo.", MsgBoxStyle.OkOnly, "Error del sistema")
         End Try
@@ -268,7 +261,6 @@ Public Class GestionEmpleados
 
     ' Método que se ejecuta cuando el botón "Salir..." del ToolStrip es pulsado y que nos lleva al formulario "MenuPrincipal"
     Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click
-
         ' Mostramos el menú principal.
         MenuPrincipal.Show()
 
@@ -343,621 +335,592 @@ Public Class GestionEmpleados
     ' Método que se ejecuta cuando el botón "Buscar" es pulsado.
     ' Se encarga de buscar en base a los contenidos de los textBoxes
     Private Sub Button_Buscar_Click(sender As Object, e As EventArgs) Handles Button_Buscar.Click
-
-        ' Comprobamos que haya datos en los textBoxes (por lo menos en uno de ellos)
-        If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text = "" Then
-            MsgBox("No se puede buscar , debe rellenar al menos una caja con datos.", MsgBoxStyle.OkOnly, "Error al buscar.")
-        Else
-
-            ' Si se ha introducido todo
-            If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text <> "" Then
-
-                ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
-
-                Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
-                Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
-                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
-                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
-
-                If resultado1 = False Then
-                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado2 = False Then
-                    'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado3 = False Then
-                    'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado4 = False Then
-                    'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                End If
-
-
-
-                Dim ds As New DataSet
-
-                Dim cb As New OleDbDataAdapter
-
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE? and Nombre LIKE? and Apellidos LIKE? and Correo LIKE?", conexion)
-
-                cb.SelectCommand = comando
-
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
-                comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
-                comando.Parameters.Add("@var4", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
-
-                midataset.Clear()
-
-                cb.Fill(midataset, "Empleados")
-
-                DataGridView_Empleados.DataSource = midataset
-
-                DataGridView_Empleados.DataMember = "Empleados"
-            End If
-
-
-
-            ' DNI Nombre Apellido
-            If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text = "" Then
-
-                ' Validamos.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
-
-                Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
-                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
-                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
-
-                If resultado1 = False Then
-                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado3 = False Then
-                    'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado4 = False Then
-                    'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                End If
-
-
-                Dim ds As New DataSet
-
-                Dim cb As New OleDbDataAdapter
-
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE? and Nombre LIKE? and Apellidos LIKE? ", conexion)
-
-                cb.SelectCommand = comando
-
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
-                comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
-
-                midataset.Clear()
-
-                cb.Fill(midataset, "Empleados")
-
-                DataGridView_Empleados.DataSource = midataset
-
-                DataGridView_Empleados.DataMember = "Empleados"
-            End If
-
-            ' Nombre Apellidos Correo
-            If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text <> "" Then
-
-                ' Validamos.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
-
-                Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
-                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
-                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
-
-                If resultado2 = False Then
-                    'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado3 = False Then
-                    'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado4 = False Then
-                    'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                End If
-
-                Dim ds As New DataSet
-
-                Dim cb As New OleDbDataAdapter
-
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE Nombre LIKE? and Apellidos LIKE? and Correo LIKE?", conexion)
-
-                cb.SelectCommand = comando
-
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
-                comando.Parameters.Add("@var3", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
-
-                midataset.Clear()
-
-                cb.Fill(midataset, "Empleados")
-
-                DataGridView_Empleados.DataSource = midataset
-
-                DataGridView_Empleados.DataMember = "Empleados"
-            End If
-
-            ' DNI Apellidos Correo
-            If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text <> "" Then
-
-                ' Validamos.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
-
-                Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
-                Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
-                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
-
-                If resultado1 = False Then
-                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado2 = False Then
-                    'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado4 = False Then
-                    'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                End If
-
-                Dim ds As New DataSet
-
-                Dim cb As New OleDbDataAdapter
-
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE? and Apellidos LIKE? and Correo LIKE?", conexion)
-
-                cb.SelectCommand = comando
-
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
-                comando.Parameters.Add("@var3", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
-
-                midataset.Clear()
-
-                cb.Fill(midataset, "Empleados")
-
-                DataGridView_Empleados.DataSource = midataset
-
-                DataGridView_Empleados.DataMember = "Empleados"
-            End If
-
-            ' DNI Nombre Correo
-            If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text <> "" Then
-
-                ' Validamos.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
-
-                Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
-                Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
-                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
-
-                If resultado1 = False Then
-                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado2 = False Then
-                    'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado3 = False Then
-                    'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                End If
-
-                Dim ds As New DataSet
-
-                Dim cb As New OleDbDataAdapter
-
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE? and Nombre LIKE? and Correo LIKE?", conexion)
-
-                cb.SelectCommand = comando
-
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
-                comando.Parameters.Add("@var3", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
-
-                midataset.Clear()
-
-                cb.Fill(midataset, "Empleados")
-
-                DataGridView_Empleados.DataSource = midataset
-
-                DataGridView_Empleados.DataMember = "Empleados"
-            End If
-
-            ' DNI Nombre
-            If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text = "" Then
-
-                ' Validamos.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
-
-                Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
-                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
-
-
-                If resultado1 = False Then
-                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-
-                ElseIf resultado3 = False Then
-                    'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-
-                End If
-
-                Dim ds As New DataSet
-
-                Dim cb As New OleDbDataAdapter
-
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE? and Nombre LIKE? ", conexion)
-
-                cb.SelectCommand = comando
-
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
-
-                midataset.Clear()
-
-                cb.Fill(midataset, "Empleados")
-
-                DataGridView_Empleados.DataSource = midataset
-
-                DataGridView_Empleados.DataMember = "Empleados"
-            End If
-
-            ' DNI Apellidos
-            If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text = "" Then
-
-                ' Validamos.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
-
-                Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
-                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
-
-                If resultado1 = False Then
-                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-
-                ElseIf resultado4 = False Then
-                    'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                End If
-
-                Dim ds As New DataSet
-
-                Dim cb As New OleDbDataAdapter
-
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE? and Apellidos LIKE?", conexion)
-
-                cb.SelectCommand = comando
-
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
-
-                midataset.Clear()
-
-                cb.Fill(midataset, "Empleados")
-
-                DataGridView_Empleados.DataSource = midataset
-
-                DataGridView_Empleados.DataMember = "Empleados"
-            End If
-
-            ' Nombre Apellidos
-            If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text = "" Then
-
-                ' Validamos.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
-
-                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
-                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
-
-
-                If resultado3 = False Then
-                        'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+        Try
+
+            ' Comprobamos que haya datos en los textBoxes (por lo menos en uno de ellos)
+            If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text = "" Then
+                MsgBox("No se puede buscar , debe rellenar al menos una caja con datos.", MsgBoxStyle.OkOnly, "Error al buscar.")
+            Else
+
+                ' Si se ha introducido todo
+                If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text <> "" Then
+
+                    ' Validamos todas las cajas y si alguna es incorrecta... salimos del metodo.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                    Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
+                    Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
+                    Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
+                    Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
+
+                    If resultado1 = False Then
+                        'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
                         Exit Sub
-                    ElseIf resultado4 = False Then
-                        'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                        Exit Sub
-                End If
-
-                Dim ds As New DataSet
-
-                Dim cb As New OleDbDataAdapter
-
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE Nombre LIKE? and Apellidos LIKE?", conexion)
-
-                cb.SelectCommand = comando
-
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
-
-                midataset.Clear()
-
-                cb.Fill(midataset, "Empleados")
-
-                DataGridView_Empleados.DataSource = midataset
-
-                DataGridView_Empleados.DataMember = "Empleados"
-            End If
-
-            ' Apellidos Correo
-            If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text <> "" Then
-
-                ' Validamos.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
-
-                Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
-                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
-
-
-                If resultado2 = False Then
-                    'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado4 = False Then
-                        'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                        Exit Sub
-                End If
-
-                Dim ds As New DataSet
-
-                Dim cb As New OleDbDataAdapter
-
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE Apellidos LIKE? and Correo LIKE?", conexion)
-
-                cb.SelectCommand = comando
-
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
-
-                midataset.Clear()
-
-                cb.Fill(midataset, "Empleados")
-
-                DataGridView_Empleados.DataSource = midataset
-
-                DataGridView_Empleados.DataMember = "Empleados"
-            End If
-
-            ' DNI Correo
-            If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text <> "" Then
-
-                ' Validamos.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
-
-                Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
-                Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
-
-
-                If resultado1 = False Then
-                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-                ElseIf resultado2 = False Then
-                    'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-
-                End If
-
-                Dim ds As New DataSet
-
-                Dim cb As New OleDbDataAdapter
-
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE? and Correo LIKE?", conexion)
-
-                cb.SelectCommand = comando
-
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
-
-                midataset.Clear()
-
-                cb.Fill(midataset, "Empleados")
-
-                DataGridView_Empleados.DataSource = midataset
-
-                DataGridView_Empleados.DataMember = "Empleados"
-            End If
-
-            ' Nombre Correo
-            If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text <> "" Then
-
-                ' Validamos.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
-
-                Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
-                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
-
-
-
-                If resultado2 = False Then
+                    ElseIf resultado2 = False Then
                         'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
                         Exit Sub
                     ElseIf resultado3 = False Then
                         'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
                         Exit Sub
+                    ElseIf resultado4 = False Then
+                        'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    End If
 
+                    Dim ds As New DataSet
+
+                    Dim cb As New OleDbDataAdapter
+
+                    Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE? and Nombre LIKE? and Apellidos LIKE? and Correo LIKE?", conexion)
+
+                    cb.SelectCommand = comando
+
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
+                    comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
+                    comando.Parameters.Add("@var4", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
+
+                    midataset.Clear()
+
+                    cb.Fill(midataset, "Empleados")
+
+                    DataGridView_Empleados.DataSource = midataset
+
+                    DataGridView_Empleados.DataMember = "Empleados"
                 End If
 
-                Dim ds As New DataSet
+                ' DNI Nombre Apellido
+                If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text = "" Then
 
-                Dim cb As New OleDbDataAdapter
+                    ' Validamos.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE Nombre LIKE? and Correo LIKE?", conexion)
+                    Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
+                    Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
+                    Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
 
-                cb.SelectCommand = comando
+                    If resultado1 = False Then
+                        'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    ElseIf resultado3 = False Then
+                        'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    ElseIf resultado4 = False Then
+                        'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    End If
 
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
 
-                midataset.Clear()
+                    Dim ds As New DataSet
 
-                cb.Fill(midataset, "Empleados")
+                    Dim cb As New OleDbDataAdapter
 
-                DataGridView_Empleados.DataSource = midataset
+                    Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE? and Nombre LIKE? and Apellidos LIKE? ", conexion)
 
-                DataGridView_Empleados.DataMember = "Empleados"
-            End If
+                    cb.SelectCommand = comando
 
-            ' DNI
-            If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text = "" Then
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
+                    comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
 
-                ' Validamos.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+                    midataset.Clear()
 
-                Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
+                    cb.Fill(midataset, "Empleados")
 
-                If resultado1 = False Then
-                    'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
+                    DataGridView_Empleados.DataSource = midataset
 
+                    DataGridView_Empleados.DataMember = "Empleados"
                 End If
 
-                Dim ds As New DataSet
+                ' Nombre Apellidos Correo
+                If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text <> "" Then
 
-                Dim cb As New OleDbDataAdapter
+                    ' Validamos.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE?", conexion)
+                    Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
+                    Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
+                    Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
 
-                cb.SelectCommand = comando
+                    If resultado2 = False Then
+                        Exit Sub
+                    ElseIf resultado3 = False Then
+                        Exit Sub
+                    ElseIf resultado4 = False Then
+                        Exit Sub
+                    End If
 
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
+                    Dim ds As New DataSet
 
-                midataset.Clear()
+                    Dim cb As New OleDbDataAdapter
 
-                cb.Fill(midataset, "Empleados")
+                    Dim comando As New OleDbCommand("Select * from Empleados WHERE Nombre LIKE? and Apellidos LIKE? and Correo LIKE?", conexion)
 
-                DataGridView_Empleados.DataSource = midataset
+                    cb.SelectCommand = comando
 
-                DataGridView_Empleados.DataMember = "Empleados"
-            End If
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
+                    comando.Parameters.Add("@var3", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
 
-            ' Nombre
-            If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text = "" Then
+                    midataset.Clear()
 
-                ' Validamos.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+                    cb.Fill(midataset, "Empleados")
 
-                Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
+                    DataGridView_Empleados.DataSource = midataset
 
-
-
-                If resultado3 = False Then
-                    'MsgBox(" El dato nombre, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-
+                    DataGridView_Empleados.DataMember = "Empleados"
                 End If
 
-                Dim ds As New DataSet
+                ' DNI Apellidos Correo
+                If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text <> "" Then
 
-                Dim cb As New OleDbDataAdapter
+                    ' Validamos.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE Nombre LIKE?", conexion)
+                    Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
+                    Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
+                    Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
 
-                cb.SelectCommand = comando
+                    If resultado1 = False Then
+                        Exit Sub
+                    ElseIf resultado2 = False Then
+                        Exit Sub
+                    ElseIf resultado4 = False Then
+                        Exit Sub
+                    End If
 
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
+                    Dim ds As New DataSet
 
-                midataset.Clear()
+                    Dim cb As New OleDbDataAdapter
 
-                cb.Fill(midataset, "Empleados")
+                    Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE? and Apellidos LIKE? and Correo LIKE?", conexion)
 
-                DataGridView_Empleados.DataSource = midataset
+                    cb.SelectCommand = comando
 
-                DataGridView_Empleados.DataMember = "Empleados"
-            End If
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
+                    comando.Parameters.Add("@var3", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
 
-            ' Apellido
-            If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text = "" Then
+                    midataset.Clear()
 
-                ' Validamos.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+                    cb.Fill(midataset, "Empleados")
 
+                    DataGridView_Empleados.DataSource = midataset
 
-                Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
-
-                If resultado4 = False Then
-                    'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
+                    DataGridView_Empleados.DataMember = "Empleados"
                 End If
 
-                Dim ds As New DataSet
+                ' DNI Nombre Correo
+                If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text <> "" Then
 
-                Dim cb As New OleDbDataAdapter
+                    ' Validamos.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE Apellidos LIKE?", conexion)
+                    Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
+                    Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
+                    Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
 
-                cb.SelectCommand = comando
+                    If resultado1 = False Then
+                        Exit Sub
+                    ElseIf resultado2 = False Then
+                        Exit Sub
+                    ElseIf resultado3 = False Then
+                        Exit Sub
+                    End If
 
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
+                    Dim ds As New DataSet
 
-                midataset.Clear()
+                    Dim cb As New OleDbDataAdapter
 
-                cb.Fill(midataset, "Empleados")
+                    Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE? and Nombre LIKE? and Correo LIKE?", conexion)
 
-                DataGridView_Empleados.DataSource = midataset
+                    cb.SelectCommand = comando
 
-                DataGridView_Empleados.DataMember = "Empleados"
-            End If
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
+                    comando.Parameters.Add("@var3", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
 
-            ' Correo
-            If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text <> "" Then
+                    midataset.Clear()
 
-                ' Validamos.
-                ' Instanciamos la clase
-                Dim validarNumeroSocio As New libreriaValidacion.Validacion
+                    cb.Fill(midataset, "Empleados")
 
+                    DataGridView_Empleados.DataSource = midataset
 
-                Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
-
-
-
-                If resultado2 = False Then
-                    'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
-                    Exit Sub
-
+                    DataGridView_Empleados.DataMember = "Empleados"
                 End If
 
-                Dim ds As New DataSet
+                ' DNI Nombre
+                If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text = "" Then
 
-                Dim cb As New OleDbDataAdapter
+                    ' Validamos.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
 
-                Dim comando As New OleDbCommand("Select * from Empleados WHERE Correo LIKE?", conexion)
+                    Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
+                    Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
 
-                cb.SelectCommand = comando
+                    If resultado1 = False Then
+                        Exit Sub
+                    ElseIf resultado3 = False Then
+                        Exit Sub
+                    End If
 
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
+                    Dim ds As New DataSet
 
-                midataset.Clear()
+                    Dim cb As New OleDbDataAdapter
 
-                cb.Fill(midataset, "Empleados")
+                    Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE? and Nombre LIKE? ", conexion)
 
-                DataGridView_Empleados.DataSource = midataset
+                    cb.SelectCommand = comando
 
-                DataGridView_Empleados.DataMember = "Empleados"
-            End If
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
 
-            ' MsgBox("Busqueda fallida...")
+                    midataset.Clear()
 
-        End If ' IF 1
+                    cb.Fill(midataset, "Empleados")
 
+                    DataGridView_Empleados.DataSource = midataset
+
+                    DataGridView_Empleados.DataMember = "Empleados"
+                End If
+
+                ' DNI Apellidos
+                If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text = "" Then
+
+                    ' Validamos.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                    Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
+                    Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
+
+                    If resultado1 = False Then
+                        Exit Sub
+                    ElseIf resultado4 = False Then
+                        Exit Sub
+                    End If
+
+                    Dim ds As New DataSet
+
+                    Dim cb As New OleDbDataAdapter
+
+                    Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE? and Apellidos LIKE?", conexion)
+
+                    cb.SelectCommand = comando
+
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
+
+                    midataset.Clear()
+
+                    cb.Fill(midataset, "Empleados")
+
+                    DataGridView_Empleados.DataSource = midataset
+
+                    DataGridView_Empleados.DataMember = "Empleados"
+                End If
+
+                ' Nombre Apellidos
+                If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text = "" Then
+
+                    ' Validamos.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                    Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
+                    Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
+
+                    If resultado3 = False Then
+                        Exit Sub
+                    ElseIf resultado4 = False Then
+                        Exit Sub
+                    End If
+
+                    Dim ds As New DataSet
+
+                    Dim cb As New OleDbDataAdapter
+
+                    Dim comando As New OleDbCommand("Select * from Empleados WHERE Nombre LIKE? and Apellidos LIKE?", conexion)
+
+                    cb.SelectCommand = comando
+
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
+
+                    midataset.Clear()
+
+                    cb.Fill(midataset, "Empleados")
+
+                    DataGridView_Empleados.DataSource = midataset
+
+                    DataGridView_Empleados.DataMember = "Empleados"
+                End If
+
+                ' Apellidos Correo
+                If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text <> "" Then
+
+                    ' Validamos.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                    Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
+                    Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
+
+                    If resultado2 = False Then
+                        'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    ElseIf resultado4 = False Then
+                        'MsgBox(" El dato apellidos, no puede contener caracteres que sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 50.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    End If
+
+                    Dim ds As New DataSet
+
+                    Dim cb As New OleDbDataAdapter
+
+                    Dim comando As New OleDbCommand("Select * from Empleados WHERE Apellidos LIKE? and Correo LIKE?", conexion)
+
+                    cb.SelectCommand = comando
+
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
+
+                    midataset.Clear()
+
+                    cb.Fill(midataset, "Empleados")
+
+                    DataGridView_Empleados.DataSource = midataset
+
+                    DataGridView_Empleados.DataMember = "Empleados"
+                End If
+
+                ' DNI Correo
+                If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text <> "" Then
+
+                    ' Validamos.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                    Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
+                    Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
+
+                    If resultado1 = False Then
+                        'MsgBox(" El dato numero socio, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 8.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+                    ElseIf resultado2 = False Then
+                        'MsgBox(" El dato telefono, no puede contener caracteres que no sean numéricos o símbolos no permitidos, tampoco puede tener una longitud mayor a 9.", MsgBoxStyle.OkOnly, "Error - Caracteres incorrectos")
+                        Exit Sub
+
+                    End If
+
+                    Dim ds As New DataSet
+
+                    Dim cb As New OleDbDataAdapter
+
+                    Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE? and Correo LIKE?", conexion)
+
+                    cb.SelectCommand = comando
+
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
+
+                    midataset.Clear()
+
+                    cb.Fill(midataset, "Empleados")
+
+                    DataGridView_Empleados.DataSource = midataset
+
+                    DataGridView_Empleados.DataMember = "Empleados"
+                End If
+
+                ' Nombre Correo
+                If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text <> "" Then
+
+                    ' Validamos.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                    Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
+                    Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
+
+                    If resultado2 = False Then
+                        Exit Sub
+                    ElseIf resultado3 = False Then
+                        Exit Sub
+
+                    End If
+
+                    Dim ds As New DataSet
+
+                    Dim cb As New OleDbDataAdapter
+
+                    Dim comando As New OleDbCommand("Select * from Empleados WHERE Nombre LIKE? and Correo LIKE?", conexion)
+
+                    cb.SelectCommand = comando
+
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
+
+                    midataset.Clear()
+
+                    cb.Fill(midataset, "Empleados")
+
+                    DataGridView_Empleados.DataSource = midataset
+
+                    DataGridView_Empleados.DataMember = "Empleados"
+                End If
+
+                ' DNI
+                If TextBox_DNI.Text <> "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text = "" Then
+
+                    ' Validamos.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                    Dim resultado1 As Boolean = validarNumeroSocio.validarDNI(TextBox_DNI.Text, 2)
+
+                    If resultado1 = False Then
+                        Exit Sub
+
+                    End If
+
+                    Dim ds As New DataSet
+
+                    Dim cb As New OleDbDataAdapter
+
+                    Dim comando As New OleDbCommand("Select * from Empleados WHERE DNI LIKE?", conexion)
+
+                    cb.SelectCommand = comando
+
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 9).Value = TextBox_DNI.Text
+
+                    midataset.Clear()
+
+                    cb.Fill(midataset, "Empleados")
+
+                    DataGridView_Empleados.DataSource = midataset
+
+                    DataGridView_Empleados.DataMember = "Empleados"
+                End If
+
+                ' Nombre
+                If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text <> "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text = "" Then
+
+                    ' Validamos.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                    Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
+
+                    If resultado3 = False Then
+                        Exit Sub
+
+                    End If
+
+                    Dim ds As New DataSet
+
+                    Dim cb As New OleDbDataAdapter
+
+                    Dim comando As New OleDbCommand("Select * from Empleados WHERE Nombre LIKE?", conexion)
+
+                    cb.SelectCommand = comando
+
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_NOMBRE.Text
+
+                    midataset.Clear()
+
+                    cb.Fill(midataset, "Empleados")
+
+                    DataGridView_Empleados.DataSource = midataset
+
+                    DataGridView_Empleados.DataMember = "Empleados"
+                End If
+
+                ' Apellido
+                If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text <> "" And TextBox_CORREO.Text = "" Then
+
+                    ' Validamos.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+                    Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
+
+                    If resultado4 = False Then
+                        Exit Sub
+                    End If
+
+                    Dim ds As New DataSet
+
+                    Dim cb As New OleDbDataAdapter
+
+                    Dim comando As New OleDbCommand("Select * from Empleados WHERE Apellidos LIKE?", conexion)
+
+                    cb.SelectCommand = comando
+
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_APELLIDOS.Text
+
+                    midataset.Clear()
+
+                    cb.Fill(midataset, "Empleados")
+
+                    DataGridView_Empleados.DataSource = midataset
+
+                    DataGridView_Empleados.DataMember = "Empleados"
+                End If
+
+                ' Correo
+                If TextBox_DNI.Text = "" And TextBox_NOMBRE.Text = "" And TextBox_APELLIDOS.Text = "" And TextBox_CORREO.Text <> "" Then
+
+                    ' Validamos.
+                    ' Instanciamos la clase
+                    Dim validarNumeroSocio As New libreriaValidacion.Validacion
+
+
+                    Dim resultado2 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
+
+                    If resultado2 = False Then
+                        Exit Sub
+
+                    End If
+
+                    Dim ds As New DataSet
+
+                    Dim cb As New OleDbDataAdapter
+
+                    Dim comando As New OleDbCommand("Select * from Empleados WHERE Correo LIKE?", conexion)
+
+                    cb.SelectCommand = comando
+
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 120).Value = TextBox_CORREO.Text
+
+                    midataset.Clear()
+
+                    cb.Fill(midataset, "Empleados")
+
+                    DataGridView_Empleados.DataSource = midataset
+
+                    DataGridView_Empleados.DataMember = "Empleados"
+                End If
+            End If ' IF 1
+        Catch ex As System.InvalidOperationException
+            ' Avisamos del error por mensaje
+            MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+        Catch ex2 As System.FormatException
+            ' Avisamos del error por mensaje
+            MsgBox("El formato de los datos introducidos es incorrecto, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+        Catch ex3 As System.Data.OleDb.OleDbException
+            ' Avisamos del error por mensaje
+            MsgBox("Algo no ha ido bien, es la sintaxis correcta?, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+        Catch ex4 As System.NullReferenceException
+            ' Avisamos del error por mensaje
+            MsgBox("Algo no ha ido bien, intentalo de nuevo. Referencia a objeto no establecida como instancia de un objeto.", MsgBoxStyle.OkOnly, "Operación invalida")
+        End Try
     End Sub
 
     ' Validamos este campo evitando que tenga caracteres que no sean númericos y que tenga una longitud de más de 8 caracteres.

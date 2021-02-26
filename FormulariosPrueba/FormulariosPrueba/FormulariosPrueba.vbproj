@@ -103,10 +103,16 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataSetLibros.Designer.vb">
+    <Compile Include="cas_lib_dibDataSetProductos.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetLibros.xsd</DependentUpon>
+      <DependentUpon>cas_lib_dibDataSetProductos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="GestionArticulos.Designer.vb">
       <DependentUpon>GestionArticulos.vb</DependentUpon>
@@ -154,12 +160,6 @@
       <DependentUpon>GestionLibrosAltas.vb</DependentUpon>
     </Compile>
     <Compile Include="GestionLibrosAltas.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GestionLibrosInforme.Designer.vb">
-      <DependentUpon>GestionLibrosInforme.vb</DependentUpon>
-    </Compile>
-    <Compile Include="GestionLibrosInforme.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GestionLibrosModificaciones.Designer.vb">
@@ -228,6 +228,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GestionArticulos.resx">
       <DependentUpon>GestionArticulos.vb</DependentUpon>
     </EmbeddedResource>
@@ -251,10 +254,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GestionLibrosAltas.resx">
       <DependentUpon>GestionLibrosAltas.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GestionLibrosInforme.rdlc" />
-    <EmbeddedResource Include="GestionLibrosInforme.resx">
-      <DependentUpon>GestionLibrosInforme.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GestionLibrosModificaciones.resx">
       <DependentUpon>GestionLibrosModificaciones.vb</DependentUpon>
@@ -288,18 +287,19 @@
     <EmbeddedResource Include="PruebaLayoutpanel.resx">
       <DependentUpon>PruebaLayoutpanel.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report1.rdlc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DataSetLibros.xsc">
-      <DependentUpon>DataSetLibros.xsd</DependentUpon>
+    <None Include="cas_lib_dibDataSetProductos.xsc">
+      <DependentUpon>cas_lib_dibDataSetProductos.xsd</DependentUpon>
     </None>
-    <None Include="DataSetLibros.xsd">
+    <None Include="cas_lib_dibDataSetProductos.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSetLibros.Designer.vb</LastGenOutput>
+      <LastGenOutput>cas_lib_dibDataSetProductos.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DataSetLibros.xss">
-      <DependentUpon>DataSetLibros.xsd</DependentUpon>
+    <None Include="cas_lib_dibDataSetProductos.xss">
+      <DependentUpon>cas_lib_dibDataSetProductos.xsd</DependentUpon>
     </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
