@@ -726,7 +726,7 @@ Public Class GestionArticulos
     End Sub
 
     Private Sub GenerarInformeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GenerarInformeToolStripMenuItem.Click
-        'GestionArticulosInformes.ShowDialog()
+        GestionLibrosInforme.ShowDialog()
     End Sub
 End Class
 

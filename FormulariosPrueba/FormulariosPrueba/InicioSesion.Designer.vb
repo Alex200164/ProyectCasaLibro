@@ -62,9 +62,10 @@ Partial Class InicioSesion
         Me.TextBox_Contraseña.Location = New System.Drawing.Point(43, 147)
         Me.TextBox_Contraseña.MaxLength = 4
         Me.TextBox_Contraseña.Name = "TextBox_Contraseña"
+        Me.TextBox_Contraseña.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TextBox_Contraseña.Size = New System.Drawing.Size(197, 22)
         Me.TextBox_Contraseña.TabIndex = 2
-        Me.TextBox_Contraseña.Text = "1234"
+        Me.TextBox_Contraseña.UseSystemPasswordChar = True
         '
         'TextBox_Usuario
         '
@@ -72,11 +73,10 @@ Partial Class InicioSesion
         Me.TextBox_Usuario.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Usuario.Font = New System.Drawing.Font("Gadugi", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox_Usuario.Location = New System.Drawing.Point(43, 59)
-        Me.TextBox_Usuario.MaxLength = 100
+        Me.TextBox_Usuario.MaxLength = 30
         Me.TextBox_Usuario.Name = "TextBox_Usuario"
         Me.TextBox_Usuario.Size = New System.Drawing.Size(197, 22)
         Me.TextBox_Usuario.TabIndex = 1
-        Me.TextBox_Usuario.Text = "alex"
         '
         'Label_Contraseña
         '

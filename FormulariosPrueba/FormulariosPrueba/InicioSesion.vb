@@ -1,5 +1,7 @@
 ﻿' Necesitamos importar el módelo de base de datos que vamos a utilizar, este es de access.
 Imports System.Data.OleDb
+Imports System.IO
+Imports libreriaAccesos
 
 Public Class InicioSesion
 
@@ -88,6 +90,17 @@ Public Class InicioSesion
 
             'Si existe algun resgistro que solo puede ser uno. Entonces se ha verificado el log in
             If reader.Read = True Then
+
+                'Para guardar en un fichero dentro del debug los accesos que hacemos, tenemos estas lineasde codigo
+                'En este caso el acceso escorrecto
+                Dim datosAcceso As New FileStream("logAcceso.txt", FileMode.Append, FileAccess.Write)
+                Dim sw As New StreamWriter(datosAcceso)
+                sw.WriteLine("Login Correcto. usuario:  " & TextBox_Usuario.Text & " contraseña: " & TextBox_Contraseña.Text & Now)
+
+                ' Cerramos los flujos para escribir en el log de acceso.
+                sw.Close()
+                datosAcceso.Close()
+
                 TextBox_Contraseña.Clear()
                 TextBox_Usuario.Clear()
 
@@ -157,8 +170,19 @@ Public Class InicioSesion
                 TextBox_Contraseña.Clear()
                 TextBox_Usuario.Clear()
 
-                ' Guardamos datos del acceso en el archivo
-                'accesosApp.AccesosApp("Login Erroneo. usuario: " & TBUsuario.Text & " contraseña: " & TBContrasenna.Text)
+                'Para guardar en un fichero dentro del debug los accesos que hacemos, tenemos estas lineasde codigo
+                'En este caso el acceso es ERRONEO
+                Dim datosAcceso As New FileStream("logAcceso.txt", FileMode.Append, FileAccess.Write)
+                Dim sw As New StreamWriter(datosAcceso)
+
+                'Guardamos datos del acceso en el archivo
+                sw.WriteLine("Login Erroneo. usuario:  " & TextBox_Usuario.Text & " contraseña: " & TextBox_Contraseña.Text & Now)
+
+                ' Cerramos los flujos para escribir en el log de acceso.
+                sw.Close()
+                datosAcceso.Close()
+
+                'Guardamos datos del acceso en el archivo
 
                 ' Mostramos mensaje de error
                 MsgBox("El usuario o contraseña introducido es incorrecto, por favor introduzca otro", MsgBoxStyle.Information, "Error en la verificación")
