@@ -2,113 +2,6 @@
 
 Public Class Validacion
 
-
-    ' Función para ver si los datos (String) introducidos por el usuario son válidos para lo que se exige en
-    ' el campo.
-    Public Function validarUsuario(stringRecibido As String, tipo As Integer) As Boolean
-        ' Si se recibe 0, se está recibiendo que se va a validar un usuario.
-        ' Si es 1, es nombre.
-        ' Si es 2 es apellido.
-        ' Si es 3 es dirección.
-
-        ' Entorno:
-        ' Creamos una lista de caracteres permitidos.
-        Dim charsPosibles As String = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
-        ' Se permiten espacios y otros caracteres en los nombres, apellidos y direcciones.
-        ' Para el nombre y apellidos es el mismo rango de caracteres posible.
-        Dim charsPosiblesNombre As String = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZáéíóúÁÉÍÓÚ "
-        Dim charsposiblesDireccion As String = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ ,'ªº\-0123456789"
-        ' Las variables donde guardaremos los caracteres para compararlos.
-        Dim chDeLista As Char
-        Dim chRecibido As Char
-        ' El buchón/chivato para ver si el número de aciertos (caracteres equivalentes) es el mismo al número
-        ' de caracteres del string pasado por parámetro.
-        Dim coincidencias As Integer = 0
-        ' Finalmente la variable boolean valido para que en el formulario se pueda saber si
-        ' el string es válido o no.
-        Dim valido As Boolean = False
-        Dim valorMaximo As Integer
-
-        If tipo = 0 Then
-            valorMaximo = 12
-        ElseIf tipo = 1 Then
-            valorMaximo = 12
-        ElseIf tipo = 2 Then
-            valorMaximo = 30
-        ElseIf tipo = 3 Then
-            valorMaximo = 50
-
-        End If
-
-
-
-        ' Inicio
-        ' Primero comprobamos el tamaño del string
-        If stringRecibido.Length > valorMaximo Then
-            MsgBox("No se permiten más de" & valorMaximo & " caracteres.", MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "Longitud incorrecta")
-        Else
-            ' Iteramos un número de veces igual al tamaño del string pasado por parámetro.
-            For i = 1 To stringRecibido.Length
-                ' Guardamos el carácter en chRecibido.
-                chRecibido = GetChar(stringRecibido, i)
-                ' Comprobamos si el carácter que acabamos de guardar es igual a los caracteres del string(charsPosibles).
-                ' Iteramos un número de veces igual al tamaño de charsPosibles (dos veces el abecedario, una en minúsculas y otra mayúsculas)
-
-                If tipo = 0 Then
-                    For j = 1 To charsPosibles.Length
-                        If chRecibido = GetChar(charsPosibles, j) Then
-                            ' Comparamos los caracteres. Si son iguales, se suma 1 al buchón
-                            coincidencias = coincidencias + 1
-                        Else
-                            ' MsgBox("No ha introducido un carácter válido.", MsgBoxStyle.Exclamation, "Error al introducir datos para el acceso.")
-                        End If
-                    Next j
-                ElseIf tipo = 1 Then
-                    For j = 1 To charsPosiblesNombre.Length
-                        If chRecibido = GetChar(charsPosiblesNombre, j) Then
-                            ' Comparamos los caracteres. Si son iguales, se suma 1 al buchón
-                            coincidencias = coincidencias + 1
-                        Else
-                            ' MsgBox("No ha introducido un carácter válido.", MsgBoxStyle.Exclamation, "Error al introducir datos para el acceso.")
-                        End If
-                    Next j
-                ElseIf tipo = 2 Then
-                    ' Con el apellido usamos el mismo rango de caracteres válidos que con el nombre.
-                    For j = 1 To charsPosiblesNombre.Length
-                        If chRecibido = GetChar(charsPosiblesNombre, j) Then
-                            ' Comparamos los caracteres. Si son iguales, se suma 1 al buchón
-                            coincidencias = coincidencias + 1
-                        Else
-                            ' MsgBox("No ha introducido un carácter válido.", MsgBoxStyle.Exclamation, "Error al introducir datos para el acceso.")
-                        End If
-                    Next j
-                ElseIf tipo = 3 Then
-                    For j = 1 To charsposiblesDireccion.Length
-                        If chRecibido = GetChar(charsposiblesDireccion, j) Then
-                            ' Comparamos los caracteres. Si son iguales, se suma 1 al buchón
-                            coincidencias = coincidencias + 1
-                        Else
-                            ' MsgBox("No ha introducido un carácter válido.", MsgBoxStyle.Exclamation, "Error al introducir datos para el acceso.")
-                        End If
-                    Next j
-                End If
-
-
-            Next i
-
-            ' Si el buchón tiene un valor igual al tamaño del string pasado, significa que todos los caracteres
-            ' son válidos, pues fueron comparados con los caracteres del String y fueron dados por buenos.
-            If coincidencias = stringRecibido.Length Then
-                valido = True
-            End If
-        End If
-
-        Return valido
-
-    End Function
-
-
-
     ' Validación de DNI
     Public Function validarDNI(codigo As String, tipo As Integer) As Boolean
 
@@ -741,7 +634,6 @@ Public Class Validacion
     ' Si se recibe el integer 0 = se valida el campo categoría
     ' si se recibe el integer 1 = se valida el campo nombre
     ' si se recibe el integer 2 = se valida el campo tamaño
-
     Public Function validarCampoProducto(stringRecibido As String, tipo As Integer) As Boolean
         ' Entorno:
         ' Creamos una lista de caracteres permitidos.
@@ -821,11 +713,6 @@ Public Class Validacion
         Return valido
 
     End Function
-
-
-
-
-
 
     'Validacion de ISBN
     Public Function ValidarISBN(codigo As String) As Boolean
