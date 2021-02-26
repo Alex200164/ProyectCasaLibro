@@ -719,4 +719,8 @@ Public Class GestionLibros
             TextBox_Titulo.SelectionStart = TextBox_Titulo.TextLength
         End If
     End Sub
+
+    Private Sub InformeToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles InformeToolStripMenuItem1.Click
+        GestionLibrosInforme2.ShowDialog()
+    End Sub
 End Class

@@ -108,6 +108,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>cas_lib_dibDataSetProductos.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataSetLibros1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetLibros1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Form1.Designer.vb">
       <DependentUpon>Form1.vb</DependentUpon>
     </Compile>
@@ -160,6 +165,12 @@
       <DependentUpon>GestionLibrosAltas.vb</DependentUpon>
     </Compile>
     <Compile Include="GestionLibrosAltas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionLibrosInforme2.Designer.vb">
+      <DependentUpon>GestionLibrosInforme2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionLibrosInforme2.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GestionLibrosModificaciones.Designer.vb">
@@ -255,6 +266,9 @@
     <EmbeddedResource Include="GestionLibrosAltas.resx">
       <DependentUpon>GestionLibrosAltas.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GestionLibrosInforme2.resx">
+      <DependentUpon>GestionLibrosInforme2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GestionLibrosModificaciones.resx">
       <DependentUpon>GestionLibrosModificaciones.vb</DependentUpon>
     </EmbeddedResource>
@@ -271,6 +285,7 @@
     <EmbeddedResource Include="GestionSociosModificaciones.resx">
       <DependentUpon>GestionSociosModificaciones.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InformeGestionLibros.rdlc" />
     <EmbeddedResource Include="InicioSesion.resx">
       <DependentUpon>InicioSesion.vb</DependentUpon>
     </EmbeddedResource>
@@ -300,6 +315,17 @@
     </None>
     <None Include="cas_lib_dibDataSetProductos.xss">
       <DependentUpon>cas_lib_dibDataSetProductos.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetLibros1.xsc">
+      <DependentUpon>DataSetLibros1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetLibros1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetLibros1.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSetLibros1.xss">
+      <DependentUpon>DataSetLibros1.xsd</DependentUpon>
     </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
