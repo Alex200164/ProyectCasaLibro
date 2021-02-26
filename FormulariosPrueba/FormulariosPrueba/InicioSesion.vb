@@ -18,7 +18,7 @@ Public Class InicioSesion
         inicializarPantalla()
 
         ' Especificamos los valores de nuestra barra de progreso
-        ToolStripProgressBar_InicioSesion.Step = 10 'Indicamos que vamos a aumentarlo de uno en uno
+        ToolStripProgressBar_InicioSesion.Step = 3 'Indicamos que vamos a aumentarlo de uno en uno
         ToolStripProgressBar_InicioSesion.Maximum = 100 ' Indicamos el máximo
         ToolStripProgressBar_InicioSesion.Minimum = 0 ' Indicamos el minimo
         ToolStripProgressBar_InicioSesion.Value = 0 ' Indicamos el valor inicial
