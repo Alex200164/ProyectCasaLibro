@@ -29,6 +29,7 @@ Partial Class GestionLibros
         Me.Button_Annadir = New System.Windows.Forms.Button()
         Me.DataGridView_Libros = New System.Windows.Forms.DataGridView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.ComboBox_Genero = New System.Windows.Forms.ComboBox()
         Me.TextBox_ISBN = New System.Windows.Forms.TextBox()
         Me.TextBox_ISBNOCULTO = New System.Windows.Forms.TextBox()
         Me.Label_Autor = New System.Windows.Forms.Label()
@@ -54,7 +55,6 @@ Partial Class GestionLibros
         Me.GestiónEmpleadosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VerLaAyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ComboBox_Genero = New System.Windows.Forms.ComboBox()
         Me.Panel1.SuspendLayout()
         CType(Me.DataGridView_Libros, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -127,6 +127,18 @@ Partial Class GestionLibros
         Me.GroupBox1.TabIndex = 24
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Filtro de Busqueda"
+        '
+        'ComboBox_Genero
+        '
+        Me.ComboBox_Genero.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.ComboBox_Genero.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.ComboBox_Genero.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ComboBox_Genero.FormattingEnabled = True
+        Me.ComboBox_Genero.Items.AddRange(New Object() {"Arte", "Ciencias", "Deportes y Juegos", "Filología", "Idiomas", "Juvenil", "Manialidades"})
+        Me.ComboBox_Genero.Location = New System.Drawing.Point(723, 32)
+        Me.ComboBox_Genero.Name = "ComboBox_Genero"
+        Me.ComboBox_Genero.Size = New System.Drawing.Size(197, 21)
+        Me.ComboBox_Genero.TabIndex = 182
         '
         'TextBox_ISBN
         '
@@ -352,17 +364,6 @@ Partial Class GestionLibros
         Me.VerLaAyudaToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.F1), System.Windows.Forms.Keys)
         Me.VerLaAyudaToolStripMenuItem.Size = New System.Drawing.Size(187, 22)
         Me.VerLaAyudaToolStripMenuItem.Text = "Ver la Ayuda"
-        '
-        'ComboBox_Genero
-        '
-        Me.ComboBox_Genero.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.ComboBox_Genero.Cursor = System.Windows.Forms.Cursors.Arrow
-        Me.ComboBox_Genero.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ComboBox_Genero.FormattingEnabled = True
-        Me.ComboBox_Genero.Location = New System.Drawing.Point(723, 32)
-        Me.ComboBox_Genero.Name = "ComboBox_Genero"
-        Me.ComboBox_Genero.Size = New System.Drawing.Size(197, 21)
-        Me.ComboBox_Genero.TabIndex = 182
         '
         'GestionLibros
         '

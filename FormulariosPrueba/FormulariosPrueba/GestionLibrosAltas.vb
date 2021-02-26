@@ -6,6 +6,10 @@ Imports System.IO
 
 Public Class GestionLibrosAltas
 
+    'Para poder jugar con las imagenes en la base de datos usamos estas variables 
+    Dim imgpath As String
+    Dim arrImage() As Byte
+
     ' Especificamos la base de datos a la que nos vamos a conectar.
     Public conexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=cas_lib_dib.accdb")
     ' Al adaptador le asignamos la conexion que acabamos de realizar y una consulta
@@ -72,11 +76,21 @@ Public Class GestionLibrosAltas
     ' Método que se ejecuta cuando el botón "Alta" es pulsado. 
     ' Introduce los datos escritos por el usuario en los textBox en la DB.
     Private Sub Button_Alta_Click(sender As Object, e As EventArgs) Handles Button_Alta.Click
+
         If TextBox_ISBN.Text = "" Or TextBox_Titulo.Text = "" Or TextBox_Autor.Text = "" Or TextBox_Numeropags.Text = "" Or
             TextBox_Editorial.Text = "" Or TextBox_Idioma.Text = "" Or ComboBox_Encuadernacion.Text = "" Or TextBox_Annoedicion.Text = "" Or
             TextBox_Plazaedicion.Text = "" Or TextBox_Traductor.Text = "" Or ComboBox_Formato.Text = "" Or TextBox_Precio.Text = "" Or TextBox_Stock.Text = "" Then
             MsgBox("No se puede dar de alta , debe rellenar todos los datos.", MsgBoxStyle.OkOnly, "Error al dar de alta.")
         Else
+
+            'Para subir la imagen lo que tenemos que hacer es 
+            Dim mstream As New System.IO.MemoryStream()
+            PictureBoxProducto.Image.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
+            arrImage = mstream.GetBuffer()
+            Dim FileSize As UInt64
+            FileSize = mstream.Length
+            mstream.Close()
+            'Acaba Método para meter las imagenes dentro de la base de datos de tipo Largo. 
 
 
             Dim valor As String
@@ -101,7 +115,7 @@ Public Class GestionLibrosAltas
                 ' ####################  2º Recogemos los datos y los introducimos ##############################
                 Dim drc As DataRowCollection = midataset.Tables("Libros").Rows
                 drc.Add(TextBox_ISBN.Text, TextBox_Titulo.Text, TextBox_Autor.Text, TextBox_Numeropags.Text, TextBox_Editorial.Text, TextBox_Idioma.Text, ComboBox_Encuadernacion.Text,
-                    TextBox_Annoedicion.Text, TextBox_Plazaedicion.Text, TextBox_Traductor.Text, ComboBox_Formato.Text, TextBox_Precio.Text, TextBox_Stock.Text)
+                    TextBox_Annoedicion.Text, TextBox_Plazaedicion.Text, TextBox_Traductor.Text, ComboBox_Formato.Text, TextBox_Precio.Text, TextBox_Stock.Text, arrImage)
 
                 adaptador.Update(midataset.Tables("Libros"))
                 ' ####################  3º Actualizamos el middataset ##############################
@@ -112,6 +126,20 @@ Public Class GestionLibrosAltas
                 ' Reiniciamos su valor para la próxima vez
                 controlCalculadora = 0
 
+                ' Vaciamos cada textBox de forma individual
+                TextBox_ISBN.Clear()
+                TextBox_Titulo.Clear()
+                TextBox_Autor.Clear()
+                TextBox_Numeropags.Clear()
+                TextBox_Editorial.Clear()
+                TextBox_Idioma.Clear()
+                ComboBox_Encuadernacion.ResetText()
+                TextBox_Annoedicion.Clear()
+                TextBox_Plazaedicion.Clear()
+                TextBox_Traductor.Clear()
+                ComboBox_Formato.ResetText()
+                TextBox_Precio.Clear()
+                TextBox_Stock.Clear()
                 ' Cerramos la ventana
                 Me.Close()
 
@@ -128,8 +156,44 @@ Public Class GestionLibrosAltas
 
     '  Método que se ejecuta al iniciarse el formulario.
     Private Sub GestionLibrosAltas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'Se quita todo*******************************************************************************************
+        ' Cargar la memoria del cache con datos.
+        adaptador.Fill(midataset, "Libros")
 
+        ' Relacionar los campos de la tabla con los textbox
+        If GestionArticulos.numeroDeControlBindingAltaArticulos = 0 Then
+
+            Me.TextBox_ISBN.DataBindings.Add("text", midataset, "Libros.ISBN")
+            Me.TextBox_Titulo.DataBindings.Add("text", midataset, "Libros.Titulo")
+            Me.TextBox_Autor.DataBindings.Add("text", midataset, "Libros.Autor")
+            Me.TextBox_Numeropags.DataBindings.Add("text", midataset, "Libros.Paginas")
+            Me.TextBox_Editorial.DataBindings.Add("text", midataset, "Libros.Editorial")
+            Me.TextBox_Idioma.DataBindings.Add("text", midataset, "Libros.Idioma")
+            Me.ComboBox_Encuadernacion.DataBindings.Add("text", midataset, "Libros.Encuadernacion")
+            Me.TextBox_Annoedicion.DataBindings.Add("text", midataset, "Libros.Anno_edicion")
+            Me.TextBox_Plazaedicion.DataBindings.Add("text", midataset, "Libros.Plaza_de_edicion")
+            Me.TextBox_Traductor.DataBindings.Add("text", midataset, "Libros.Traductor")
+            Me.ComboBox_Formato.DataBindings.Add("text", midataset, "Libros.Formato")
+            Me.TextBox_Precio.DataBindings.Add("text", midataset, "Libros.Precio")
+            Me.TextBox_Stock.DataBindings.Add("text", midataset, "Libros.Stock")
+
+            GestionArticulos.numeroDeControlBindingAltaArticulos = 1
+        End If
+
+
+        ' Vaciamos cada textBox de forma individual
+        TextBox_ISBN.Clear()
+        TextBox_Titulo.Clear()
+        TextBox_Autor.Clear()
+        TextBox_Numeropags.Clear()
+        TextBox_Editorial.Clear()
+        TextBox_Idioma.Clear()
+        ComboBox_Encuadernacion.ResetText()
+        TextBox_Annoedicion.Clear()
+        TextBox_Plazaedicion.Clear()
+        TextBox_Traductor.Clear()
+        ComboBox_Formato.ResetText()
+        TextBox_Precio.Clear()
+        TextBox_Stock.Clear()
 
 
         ' Inicializamos la variable de control
@@ -261,5 +325,43 @@ Public Class GestionLibrosAltas
         Help.ShowHelp(Me, "CHM\LaCasaDelLibro.chm", "")
     End Sub
 
+    Private Sub Button_Examinar_Click(sender As Object, e As EventArgs) Handles Button_Examinar.Click
+        Try
+            'objeto de openfiledialog
+            Dim odf As New OpenFileDialog()
+            odf.Title = "Seleccione una imagen del producto"
+            'tipo de fichiero
+            odf.Filter = "JPG Files|*.jpg"
+            'inicio de la ruta
+            odf.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
 
+            If odf.ShowDialog() = DialogResult.OK Then
+                imgpath = odf.FileName
+                PictureBoxProducto.ImageLocation = imgpath
+
+                'Abremos fichiero
+                'Dim fs As FileStream = File.Open(odf.FileName, FileMode.Open)
+                'cogemos el imagen obj bmp
+                '  Dim bmp As New Bitmap()
+                'fs.Close()
+                'cargamos la foto en el picturebox
+                'PictureBoxProducto.Image = Image.FromFile(odf.FileName)
+            End If
+            odf = Nothing
+
+
+        Catch ex As Exception
+            'aqui buscamos el Error en GestionErrores
+            '  Dim buscarError As Boolean = gestionError.mostrarError(Err.Number)
+
+            'guardamos el Exception
+            ' errores.guardarError("Excepción nº" & Err.Number & " : " & ex.Message)
+
+            'si no ecuentramos el error mostrar mensaje del exepcion capturada
+            ' If buscarError = False Then
+            'MsgBox("Error : " & ex.Message, MsgBoxStyle.Exclamation)
+            '  End If
+
+        End Try
+    End Sub
 End Class

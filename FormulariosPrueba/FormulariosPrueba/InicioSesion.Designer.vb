@@ -62,10 +62,9 @@ Partial Class InicioSesion
         Me.TextBox_Contraseña.Location = New System.Drawing.Point(43, 147)
         Me.TextBox_Contraseña.MaxLength = 4
         Me.TextBox_Contraseña.Name = "TextBox_Contraseña"
-        Me.TextBox_Contraseña.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TextBox_Contraseña.Size = New System.Drawing.Size(197, 22)
         Me.TextBox_Contraseña.TabIndex = 2
-        Me.TextBox_Contraseña.UseSystemPasswordChar = True
+        Me.TextBox_Contraseña.Text = "1234"
         '
         'TextBox_Usuario
         '
@@ -77,6 +76,7 @@ Partial Class InicioSesion
         Me.TextBox_Usuario.Name = "TextBox_Usuario"
         Me.TextBox_Usuario.Size = New System.Drawing.Size(197, 22)
         Me.TextBox_Usuario.TabIndex = 1
+        Me.TextBox_Usuario.Text = "alex"
         '
         'Label_Contraseña
         '
@@ -187,7 +187,7 @@ Partial Class InicioSesion
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "InicioSesion"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "InicioSesion"
+        Me.Text = "Inicio Sesión"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.PictureBox_Logo, System.ComponentModel.ISupportInitialize).EndInit()

@@ -62,11 +62,14 @@ Partial Class GestionLibrosModificaciones
         Me.ComboBox_Encuadernacion = New System.Windows.Forms.ComboBox()
         Me.TextBox_ISBN = New System.Windows.Forms.TextBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Button_Examinar = New System.Windows.Forms.Button()
+        Me.PictureBoxProducto = New System.Windows.Forms.PictureBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.MenuStripPagPrin.SuspendLayout()
         Me.GruopBox.SuspendLayout()
         Me.Panel2.SuspendLayout()
+        CType(Me.PictureBoxProducto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PictureBox1
@@ -229,7 +232,7 @@ Partial Class GestionLibrosModificaciones
         Me.TextBox_Titulo.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Titulo.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Titulo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Titulo.Location = New System.Drawing.Point(139, 64)
+        Me.TextBox_Titulo.Location = New System.Drawing.Point(155, 67)
         Me.TextBox_Titulo.MaxLength = 100
         Me.TextBox_Titulo.Name = "TextBox_Titulo"
         Me.TextBox_Titulo.Size = New System.Drawing.Size(197, 19)
@@ -240,7 +243,7 @@ Partial Class GestionLibrosModificaciones
         Me.TextBox_Numeropags.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Numeropags.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Numeropags.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Numeropags.Location = New System.Drawing.Point(139, 120)
+        Me.TextBox_Numeropags.Location = New System.Drawing.Point(155, 123)
         Me.TextBox_Numeropags.MaxLength = 4
         Me.TextBox_Numeropags.Name = "TextBox_Numeropags"
         Me.TextBox_Numeropags.Size = New System.Drawing.Size(197, 19)
@@ -251,7 +254,7 @@ Partial Class GestionLibrosModificaciones
         Me.TextBox_Editorial.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Editorial.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Editorial.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Editorial.Location = New System.Drawing.Point(139, 148)
+        Me.TextBox_Editorial.Location = New System.Drawing.Point(155, 151)
         Me.TextBox_Editorial.MaxLength = 50
         Me.TextBox_Editorial.Name = "TextBox_Editorial"
         Me.TextBox_Editorial.Size = New System.Drawing.Size(197, 19)
@@ -279,7 +282,7 @@ Partial Class GestionLibrosModificaciones
         Me.TextBox_Autor.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Autor.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Autor.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Autor.Location = New System.Drawing.Point(139, 92)
+        Me.TextBox_Autor.Location = New System.Drawing.Point(155, 95)
         Me.TextBox_Autor.MaxLength = 50
         Me.TextBox_Autor.Name = "TextBox_Autor"
         Me.TextBox_Autor.Size = New System.Drawing.Size(197, 19)
@@ -310,7 +313,7 @@ Partial Class GestionLibrosModificaciones
         Me.TextBox_Idioma.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_Idioma.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_Idioma.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_Idioma.Location = New System.Drawing.Point(139, 176)
+        Me.TextBox_Idioma.Location = New System.Drawing.Point(155, 179)
         Me.TextBox_Idioma.MaxLength = 50
         Me.TextBox_Idioma.Name = "TextBox_Idioma"
         Me.TextBox_Idioma.Size = New System.Drawing.Size(197, 19)
@@ -320,7 +323,7 @@ Partial Class GestionLibrosModificaciones
         '
         Me.Label24.AutoSize = True
         Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label24.Location = New System.Drawing.Point(69, 179)
+        Me.Label24.Location = New System.Drawing.Point(79, 182)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(65, 20)
         Me.Label24.TabIndex = 158
@@ -330,7 +333,7 @@ Partial Class GestionLibrosModificaciones
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(78, 67)
+        Me.Label5.Location = New System.Drawing.Point(88, 70)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(55, 20)
         Me.Label5.TabIndex = 157
@@ -361,7 +364,7 @@ Partial Class GestionLibrosModificaciones
         '
         Me.ISBN.AutoSize = True
         Me.ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ISBN.Location = New System.Drawing.Point(83, 36)
+        Me.ISBN.Location = New System.Drawing.Point(93, 39)
         Me.ISBN.Name = "ISBN"
         Me.ISBN.Size = New System.Drawing.Size(55, 20)
         Me.ISBN.TabIndex = 149
@@ -371,7 +374,7 @@ Partial Class GestionLibrosModificaciones
         '
         Me.Label21.AutoSize = True
         Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label21.Location = New System.Drawing.Point(51, 92)
+        Me.Label21.Location = New System.Drawing.Point(61, 95)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(82, 20)
         Me.Label21.TabIndex = 151
@@ -381,7 +384,7 @@ Partial Class GestionLibrosModificaciones
         '
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.Location = New System.Drawing.Point(40, 123)
+        Me.Label20.Location = New System.Drawing.Point(50, 126)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(95, 20)
         Me.Label20.TabIndex = 152
@@ -391,7 +394,7 @@ Partial Class GestionLibrosModificaciones
         '
         Me.Label19.AutoSize = True
         Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(60, 151)
+        Me.Label19.Location = New System.Drawing.Point(70, 154)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(74, 20)
         Me.Label19.TabIndex = 153
@@ -402,7 +405,7 @@ Partial Class GestionLibrosModificaciones
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(0, 204)
+        Me.Label6.Location = New System.Drawing.Point(10, 207)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(133, 20)
         Me.Label6.TabIndex = 154
@@ -410,7 +413,9 @@ Partial Class GestionLibrosModificaciones
         '
         'GruopBox
         '
+        Me.GruopBox.Controls.Add(Me.Button_Examinar)
         Me.GruopBox.Controls.Add(Me.ComboBox_Formato)
+        Me.GruopBox.Controls.Add(Me.PictureBoxProducto)
         Me.GruopBox.Controls.Add(Me.ComboBox_Encuadernacion)
         Me.GruopBox.Controls.Add(Me.Button_Modificar)
         Me.GruopBox.Controls.Add(Me.Button1)
@@ -442,7 +447,7 @@ Partial Class GestionLibrosModificaciones
         Me.GruopBox.ForeColor = System.Drawing.Color.Black
         Me.GruopBox.Location = New System.Drawing.Point(15, 16)
         Me.GruopBox.Name = "GruopBox"
-        Me.GruopBox.Size = New System.Drawing.Size(700, 292)
+        Me.GruopBox.Size = New System.Drawing.Size(700, 415)
         Me.GruopBox.TabIndex = 124
         Me.GruopBox.TabStop = False
         Me.GruopBox.Text = "Gestión de artículos"
@@ -464,7 +469,7 @@ Partial Class GestionLibrosModificaciones
         Me.ComboBox_Encuadernacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ComboBox_Encuadernacion.FormattingEnabled = True
         Me.ComboBox_Encuadernacion.Items.AddRange(New Object() {"Tapa Blanda", "Tapa Dura", "Bolsillo", "Otros formatos"})
-        Me.ComboBox_Encuadernacion.Location = New System.Drawing.Point(139, 201)
+        Me.ComboBox_Encuadernacion.Location = New System.Drawing.Point(155, 204)
         Me.ComboBox_Encuadernacion.Name = "ComboBox_Encuadernacion"
         Me.ComboBox_Encuadernacion.Size = New System.Drawing.Size(197, 28)
         Me.ComboBox_Encuadernacion.TabIndex = 179
@@ -474,7 +479,7 @@ Partial Class GestionLibrosModificaciones
         Me.TextBox_ISBN.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.TextBox_ISBN.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox_ISBN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_ISBN.Location = New System.Drawing.Point(139, 33)
+        Me.TextBox_ISBN.Location = New System.Drawing.Point(155, 36)
         Me.TextBox_ISBN.MaxLength = 13
         Me.TextBox_ISBN.Name = "TextBox_ISBN"
         Me.TextBox_ISBN.Size = New System.Drawing.Size(197, 19)
@@ -485,15 +490,34 @@ Partial Class GestionLibrosModificaciones
         Me.Panel2.Controls.Add(Me.GruopBox)
         Me.Panel2.Location = New System.Drawing.Point(12, 136)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(730, 324)
+        Me.Panel2.Size = New System.Drawing.Size(730, 445)
         Me.Panel2.TabIndex = 49
+        '
+        'Button_Examinar
+        '
+        Me.Button_Examinar.Location = New System.Drawing.Point(313, 340)
+        Me.Button_Examinar.Name = "Button_Examinar"
+        Me.Button_Examinar.Size = New System.Drawing.Size(86, 29)
+        Me.Button_Examinar.TabIndex = 188
+        Me.Button_Examinar.Text = "Examinar"
+        Me.Button_Examinar.UseVisualStyleBackColor = True
+        '
+        'PictureBoxProducto
+        '
+        Me.PictureBoxProducto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBoxProducto.Location = New System.Drawing.Point(155, 241)
+        Me.PictureBoxProducto.Name = "PictureBoxProducto"
+        Me.PictureBoxProducto.Size = New System.Drawing.Size(136, 128)
+        Me.PictureBoxProducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBoxProducto.TabIndex = 187
+        Me.PictureBoxProducto.TabStop = False
         '
         'GestionLibrosModificaciones
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(754, 461)
+        Me.ClientSize = New System.Drawing.Size(754, 593)
         Me.ControlBox = False
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.MenuStripPagPrin)
@@ -508,6 +532,7 @@ Partial Class GestionLibrosModificaciones
         Me.GruopBox.ResumeLayout(False)
         Me.GruopBox.PerformLayout()
         Me.Panel2.ResumeLayout(False)
+        CType(Me.PictureBoxProducto, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -552,4 +577,6 @@ Partial Class GestionLibrosModificaciones
     Friend WithEvents Panel2 As Panel
     Friend WithEvents ComboBox_Encuadernacion As ComboBox
     Friend WithEvents ComboBox_Formato As ComboBox
+    Friend WithEvents Button_Examinar As Button
+    Friend WithEvents PictureBoxProducto As PictureBox
 End Class

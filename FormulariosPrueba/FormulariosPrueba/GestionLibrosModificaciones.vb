@@ -1,7 +1,12 @@
 ﻿' Necesitamos importar el módelo de base de datos que vamos a utilizar, este es de access.
+Imports System.ComponentModel
 Imports System.Data.OleDb
 
 Public Class GestionLibrosModificaciones
+    'Para poder jugar con las imagenes en la base de datos usamos estas variables 
+    Dim imgpath As String
+    Dim arrImage() As Byte
+
 
     ' Variable para almacenar el ISBN inicial con el que se identificará el registro a modificar.
     Dim ISBNInicial As String
@@ -88,6 +93,10 @@ Public Class GestionLibrosModificaciones
         'Asociamos el nuevo adaptador con el nuevo comando al midataset de la tabla Libros
         adaptador.Fill(midataset, "Libros")
 
+        'Create a new object (Which has a bitmap property). Normally this would be
+        'some kind of data structure
+        tObject = New TestObject
+
         If GestionLibros.numeroDeControlBindingModificaciones = 0 Then
 
             'Se relacionan los campos de la tabla con los textbox y se muestran los datos del registro que queremos modificar.
@@ -104,6 +113,7 @@ Public Class GestionLibrosModificaciones
             Me.ComboBox_Formato.DataBindings.Add("text", midataset, "Libros.Formato")
             Me.TextBox_Precio.DataBindings.Add("text", midataset, "Libros.Precio")
             Me.TextBox_Stock.DataBindings.Add("text", midataset, "Libros.Stock")
+            Me.PictureBoxProducto.DataBindings.Add("Image", midataset, "Libros.Foto", True)
 
             GestionLibros.numeroDeControlBindingModificaciones = 1
         End If
@@ -116,6 +126,40 @@ Public Class GestionLibrosModificaciones
 
     End Sub
 
+    '*********************
+    Private tObject As TestObject
+
+    'Your test object that has a bitmap as a property
+    Public Class TestObject
+
+        'Implement the INotifyPropertyChanged Interface
+        Implements INotifyPropertyChanged
+
+        'Create a property changed event
+        Private Event PropertyChanged As PropertyChangedEventHandler _
+            Implements INotifyPropertyChanged.PropertyChanged
+
+        'Create the routine to call the property changed event
+        Protected Sub OnPropertyChanged(ByVal name As String)
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(name))
+        End Sub
+
+        'Create a property which holds your bitmap
+        Private _TestImage As Bitmap
+        Public Property TestImage As Bitmap
+            Get
+                Return _TestImage
+            End Get
+            Set(value As Bitmap)
+                _TestImage = value
+
+                'call the routine which raises the propertychanged event
+                OnPropertyChanged("TestImage")
+            End Set
+        End Property
+
+    End Class
+
     ' Método que se ejecuta al pulsarse el botón "Modificar"
     ' Se encarga de modificar los datos ya existentes en la DB
     Private Sub Button_Modificar_Click(sender As Object, e As EventArgs) Handles Button_Modificar.Click
@@ -124,6 +168,15 @@ Public Class GestionLibrosModificaciones
             TextBox_Plazaedicion.Text = "" Or TextBox_Traductor.Text = "" Or ComboBox_Formato.Text = "" Or TextBox_Precio.Text = "" Or TextBox_Stock.Text = "" Then
             MsgBox("Debes seleccionar un registro para actualizarlo y si lo has seleccionado, no debe quedar ningún campo en blanco", MsgBoxStyle.OkOnly, "Error al dar de alta.")
         Else
+
+            Dim mstream As New System.IO.MemoryStream()
+            'Para subir la imagen lo que tenemos que hacer es 
+            PictureBoxProducto.Image.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
+            arrImage = mstream.GetBuffer()
+            Dim FileSize As UInt64
+            FileSize = mstream.Length
+            mstream.Close()
+            'Acaba Método para meter las imagenes dentro de la base de datos de tipo Largo. 
 
             Dim valor As String
             Dim control As Integer = 0
@@ -141,11 +194,11 @@ Public Class GestionLibrosModificaciones
             If control = 0 Then
                 Try
                     ' Montamos una query parametrizada.
-                    Dim queryParametrizada As String = "UPDATE Libros SET ISBN=?, Titulo=?, Autor=?, Paginas=?, Editorial=?, Idioma=?, Encuadernacion=?, Anno_edicion=?, Plaza_edicion=?, Traductor=?, Formato=?, Precio=?, Stock=?,  WHERE ISBN=?"
+                    Dim queryParametrizada As String = "UPDATE Libros SET ISBN=?, Titulo=?, Autor=?, Paginas=?, Editorial=?, Idioma=?, Encuadernacion=?, Anno_edicion=?, Plaza_edicion=?, Traductor=?, Formato=?, Precio=?, Stock=?, Foto=? WHERE ISBN=?"
                     Using cmd = New OleDbCommand(queryParametrizada, conexion)
 
                         conexion.Open()
-                        cmd.Parameters.AddWithValue("@p1", (TextBox_ISBN.Text))
+                        cmd.Parameters.AddWithValue("@p1", TextBox_ISBN.Text)
                         cmd.Parameters.AddWithValue("@p2", TextBox_Titulo.Text)
                         cmd.Parameters.AddWithValue("@p3", TextBox_Autor.Text)
                         cmd.Parameters.AddWithValue("@p4", Convert.ToInt64(TextBox_Numeropags.Text))
@@ -158,7 +211,8 @@ Public Class GestionLibrosModificaciones
                         cmd.Parameters.AddWithValue("@p11", ComboBox_Formato.Text)
                         cmd.Parameters.AddWithValue("@p12", Convert.ToDouble(TextBox_Precio.Text))
                         cmd.Parameters.AddWithValue("@p13", Convert.ToInt64(TextBox_Stock.Text))
-                        cmd.Parameters.AddWithValue("@p14", (ISBNInicial))
+                        cmd.Parameters.AddWithValue("@p14", mstream.GetBuffer)
+                        cmd.Parameters.AddWithValue("@p15", (ISBNInicial))
 
                         cmd.ExecuteNonQuery()
 
@@ -168,41 +222,13 @@ Public Class GestionLibrosModificaciones
                     End Using
 
 
-                    ' Dim cb As New OleDbCommandBuilder(adaptador)
-                    ' adaptador.UpdateCommand = cb.GetUpdateCommand
+                    Dim cb As New OleDbCommandBuilder(adaptador)
+                    adaptador.UpdateCommand = cb.GetUpdateCommand
                 Catch ex As System.InvalidOperationException
                     ' Avisamos del error por mensaje
                     MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
                 End Try
 
-
-                'Dim cb As New OleDbCommandBuilder(adaptador)
-                'adaptador.UpdateCommand = cb.GetUpdateCommand
-
-                'Dim a As Integer = GestionLibros.posicionDataGridSeleccionada
-
-                'Dim fila As DataRow = GestionLibros.midataset.Tables("Libros").Rows(a)
-
-                '' Comenzamos la edición
-                'fila.BeginEdit()
-                'fila("ISBN") = TextBox_ISBN.Text
-                'fila("Titulo") = TextBox_Titulo.Text
-                'fila("Autor") = TextBox_Autor.Text
-                'fila("Paginas") = TextBox_Numeropags.Text
-                'fila("Editorial") = TextBox_Editorial.Text
-                'fila("Idioma") = TextBox_Idioma.Text
-                'fila("Encuadernacion") = TextBox_Encuadernacion.Text
-                'fila("Anno_edicion") = TextBox_Annoedicion.Text
-                'fila("Plaza_de_edicion") = TextBox_Plazaedicion.Text
-                'fila("Traductor") = TextBox_Traductor.Text
-                'fila("Formato") = TextBox_Formato.Text
-                'fila("Precio") = TextBox_Precio.Text
-                'fila("Stock") = TextBox_Stock.Text
-                'fila.EndEdit()
-                '' Finalizamos la edición
-
-                '' Ejecutamos la sentencia
-                'adaptador.Update(GestionLibros.midataset.Tables("Libros"))
 
                 ' Actualizamos el dataGridView del formulario de gestión principal
                 GestionLibros.midataset.Clear()
@@ -343,5 +369,36 @@ Public Class GestionLibrosModificaciones
         Help.ShowHelp(Me, "CHM\LaCasaDelLibro.chm", "")
     End Sub
 
+    Private Sub Button_Examinar_Click(sender As Object, e As EventArgs) Handles Button_Examinar.Click
+        Try
+            'objeto de openfiledialog
+            Dim odf As New OpenFileDialog()
+            odf.Title = "Seleccione una imagen del producto"
+            'tipo de fichiero
+            odf.Filter = "JPG Files|*.jpg"
+            'inicio de la ruta
+            odf.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
 
+            If odf.ShowDialog() = DialogResult.OK Then
+                imgpath = odf.FileName
+                PictureBoxProducto.ImageLocation = imgpath
+
+            End If
+            odf = Nothing
+
+
+        Catch ex As Exception
+            'aqui buscamos el Error en GestionErrores
+            '  Dim buscarError As Boolean = gestionError.mostrarError(Err.Number)
+
+            'guardamos el Exception
+            ' errores.guardarError("Excepción nº" & Err.Number & " : " & ex.Message)
+
+            'si no ecuentramos el error mostrar mensaje del exepcion capturada
+            ' If buscarError = False Then
+            'MsgBox("Error : " & ex.Message, MsgBoxStyle.Exclamation)
+            '  End If
+
+        End Try
+    End Sub
 End Class

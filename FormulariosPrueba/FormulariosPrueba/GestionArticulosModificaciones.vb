@@ -6,7 +6,7 @@ Public Class GestionArticulosModificaciones
     'Para poder jugar con las imagenes en la base de datos usamos estas variables 
     Dim imgpath As String
     Dim arrImage() As Byte
-    Dim mstream As New System.IO.MemoryStream()
+
 
     ' Variable para almacenar el ISBN inicial con el que se identificará el registro a modificar.
     Dim ISBNInicial As String
@@ -117,15 +117,15 @@ Public Class GestionArticulosModificaciones
             MsgBox("Debes seleccionar un registro para actualizarlo y si lo has seleccionado, no debe quedar ningún campo en blanco", MsgBoxStyle.OkOnly, "Error al dar de alta.")
         Else
 
-            ' If arrImage IsNot Nothing AndAlso arrImage.Length > 0 Then
+            Dim mstream As New System.IO.MemoryStream()
             'Para subir la imagen lo que tenemos que hacer es 
             PictureBoxProducto.Image.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
-                arrImage = mstream.GetBuffer()
-                Dim FileSize As UInt64
-                FileSize = mstream.Length
-                mstream.Close()
+            arrImage = mstream.GetBuffer()
+            Dim FileSize As UInt64
+            FileSize = mstream.Length
+            mstream.Close()
             'Acaba Método para meter las imagenes dentro de la base de datos de tipo Largo. 
-            ' End If
+
 
 
             Dim valor As String
@@ -133,18 +133,18 @@ Public Class GestionArticulosModificaciones
 
             ' Comprobamos que la clave primaria no se encuentra ya registrada.
             For contador As Integer = 0 To GestionArticulos.DataGridView_Articulos.RowCount - 1
-                valor = GestionArticulos.DataGridView_Articulos.Item(0, contador).Value
+                    valor = GestionArticulos.DataGridView_Articulos.Item(0, contador).Value
 
-                If valor = TextBox_ISBN.Text And valor <> ISBNInicial Then
-                    MsgBox("No puedes introducir un ISBN que ya existe en la base de datos.", MsgBoxStyle.OkOnly, "Error, clave duplicada")
-                    control = 1
-                End If
-            Next
+                    If valor = TextBox_ISBN.Text And valor <> ISBNInicial Then
+                        MsgBox("No puedes introducir un ISBN que ya existe en la base de datos.", MsgBoxStyle.OkOnly, "Error, clave duplicada")
+                        control = 1
+                    End If
+                Next
 
 
             If control = 0 Then
                 Try
- 
+
                     Dim queryParametrizada As String = "UPDATE Productos SET ISBN=?, Nombre=?, Categoria=?, Precio=?, Stock=?, Foto=? WHERE ISBN=?"
                     Using cmd = New OleDbCommand(queryParametrizada, conexion)
 
@@ -171,7 +171,6 @@ Public Class GestionArticulosModificaciones
                     ' Avisamos del error por mensaje
                     ' MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
                 End Try
-
                 ' Actualizamos el dataGridView del formulario de gestión principal
                 GestionArticulos.midataset.Clear()
                 GestionArticulos.adaptador.Fill(GestionArticulos.midataset, "Productos")
@@ -232,13 +231,6 @@ Public Class GestionArticulosModificaciones
                 imgpath = odf.FileName
                 PictureBoxProducto.ImageLocation = imgpath
 
-                'Abremos fichiero
-                'Dim fs As FileStream = File.Open(odf.FileName, FileMode.Open)
-                'cogemos el imagen obj bmp
-                '  Dim bmp As New Bitmap()
-                'fs.Close()
-                'cargamos la foto en el picturebox
-                'PictureBoxProducto.Image = Image.FromFile(odf.FileName)
             End If
             odf = Nothing
 
@@ -273,35 +265,53 @@ Public Class GestionArticulosModificaciones
         ' Instanciamos la clase        
         Dim validarISBN As New libreriaValidacion.Validacion
 
-        validarISBN.ValidarISBN(TextBox_ISBN.Text)
+        If (validarISBN.ValidarISBN(TextBox_ISBN.Text) = False) Then
+            TextBox_ISBN.Text = TextBox_ISBN.Text.Substring(0, TextBox_ISBN.Text.Length - 1)
+            TextBox_ISBN.SelectionStart = TextBox_ISBN.TextLength
+        End If
     End Sub
 
     Private Sub TextBox_Nombre_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Nombre.TextChanged
         ' Instanciamos la clase        
         Dim validarNombre As New libreriaValidacion.Validacion
 
-        validarNombre.validarNombreProducto(TextBox_Nombre.Text)
+        If (validarNombre.validarNombreProducto(TextBox_Nombre.Text) = False) Then
+            TextBox_Nombre.Text = TextBox_Nombre.Text.Substring(0, TextBox_Nombre.Text.Length - 1)
+            TextBox_Nombre.SelectionStart = TextBox_Nombre.TextLength
+        End If
     End Sub
 
     Private Sub TextBox_Categoria_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Categoria.TextChanged
         ' Instanciamos la clase        
         Dim validarCategoria As New libreriaValidacion.Validacion
 
-        validarCategoria.validarCategoria(TextBox_Categoria.Text)
+        If validarCategoria.validarCategoria(TextBox_Categoria.Text) = False Then
+            TextBox_Categoria.Text = TextBox_Categoria.Text.Substring(0, TextBox_Categoria.Text.Length - 1)
+            TextBox_Categoria.SelectionStart = TextBox_Categoria.TextLength
+        End If
     End Sub
 
     Private Sub TextBox_Precio_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Precio.TextChanged
         ' Instanciamos la clase        
         Dim validarPrecio As New libreriaValidacion.Validacion
 
-        validarPrecio.validarPrecio(TextBox_Precio.Text)
+
+        If (validarPrecio.validarPrecio(TextBox_Precio.Text) = False) Then
+            TextBox_Precio.Text = TextBox_Precio.Text.Substring(0, TextBox_Precio.Text.Length - 1)
+            TextBox_Precio.SelectionStart = TextBox_Precio.TextLength
+        End If
     End Sub
 
     Private Sub TextBox_Stock_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Stock.TextChanged
         ' Instanciamos la clase        
         Dim validarStock As New libreriaValidacion.Validacion
 
-        validarStock.validar4digitos(TextBox_Stock.Text)
+
+        If (validarStock.validar4digitos(TextBox_Stock.Text) = False) Then
+            TextBox_Stock.Text = TextBox_Stock.Text.Substring(0, TextBox_Stock.Text.Length - 1)
+            TextBox_Stock.SelectionStart = TextBox_Stock.TextLength
+        End If
     End Sub
+
 
 End Class

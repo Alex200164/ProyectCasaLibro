@@ -40,7 +40,7 @@ Public Class GestionArticulos
             DataGridView_Articulos.DataSource = midataset
             DataGridView_Articulos.DataMember = "Productos"
 
-            ' DataGridView_Articulos.Columns(5).Visible = False
+            DataGridView_Articulos.Columns(5).Visible = False
 
 
 
@@ -246,7 +246,7 @@ Public Class GestionArticulos
             controlCalculadora = controlCalculadora + 1
 
         Else
-            MsgBox("Solo se pueden iniciar dos calculadoras por sesión.", MsgBoxStyle.OkOnly , "Aviso")
+            MsgBox("Solo se pueden iniciar dos calculadoras por sesión.", MsgBoxStyle.OkOnly, "Aviso")
         End If
     End Sub
 
@@ -343,10 +343,10 @@ Public Class GestionArticulos
 
                 cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 13).Value = TextBox_ISBN.Text
                 comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
                 comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = TextBox_Categoria.Text
-                comando.Parameters.Add("@var4", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Precio.Text)
+                comando.Parameters.Add("@var4", OleDbType.Double, 6).Value = TextBox_Precio.Text
 
                 midataset.Clear()
 
@@ -369,7 +369,7 @@ Public Class GestionArticulos
 
                 cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 13).Value = TextBox_ISBN.Text
                 comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
                 comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = TextBox_Categoria.Text
 
@@ -394,7 +394,7 @@ Public Class GestionArticulos
 
                 comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
                 comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Categoria.Text
-                comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Precio.Text)
+                comando.Parameters.Add("@var3", OleDbType.Double, 6).Value = TextBox_Precio.Text
 
                 midataset.Clear()
 
@@ -415,9 +415,9 @@ Public Class GestionArticulos
 
                 cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 13).Value = TextBox_ISBN.Text
                 comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Categoria.Text
-                comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Precio.Text)
+                comando.Parameters.Add("@var3", OleDbType.Double, 6).Value = TextBox_Precio.Text
 
                 midataset.Clear()
 
@@ -438,9 +438,9 @@ Public Class GestionArticulos
 
                 cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 13).Value = TextBox_ISBN.Text
                 comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
-                comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Precio.Text)
+                comando.Parameters.Add("@var3", OleDbType.Double, 6).Value = TextBox_Precio.Text
 
                 midataset.Clear()
 
@@ -461,7 +461,7 @@ Public Class GestionArticulos
 
                 cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 13).Value = TextBox_ISBN.Text
                 comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
 
                 midataset.Clear()
@@ -483,7 +483,7 @@ Public Class GestionArticulos
 
                 cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 13).Value = TextBox_ISBN.Text
                 comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Categoria.Text
 
                 midataset.Clear()
@@ -528,7 +528,7 @@ Public Class GestionArticulos
                 cb.SelectCommand = comando
 
                 comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Categoria.Text
-                comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Precio.Text)
+                comando.Parameters.Add("@var2", OleDbType.Double, 6).Value = TextBox_Precio.Text
 
                 midataset.Clear()
 
@@ -549,8 +549,8 @@ Public Class GestionArticulos
 
                 cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
-                comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Precio.Text)
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 13).Value = TextBox_ISBN.Text
+                comando.Parameters.Add("@var2", OleDbType.Double, 6).Value = TextBox_Precio.Text
 
                 midataset.Clear()
 
@@ -572,7 +572,7 @@ Public Class GestionArticulos
                 cb.SelectCommand = comando
 
                 comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Nombre.Text
-                comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Precio.Text)
+                comando.Parameters.Add("@var2", OleDbType.Double, 6).Value = TextBox_Precio.Text
 
                 midataset.Clear()
 
@@ -593,7 +593,7 @@ Public Class GestionArticulos
 
                 cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                comando.Parameters.Add("@var1", OleDbType.VarChar, 13).Value = TextBox_ISBN.Text
 
                 midataset.Clear()
 
@@ -656,7 +656,7 @@ Public Class GestionArticulos
 
                 cb.SelectCommand = comando
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Precio.Text)
+                comando.Parameters.Add("@var1", OleDbType.Double, 6).Value = TextBox_Precio.Text
 
                 midataset.Clear()
 
@@ -688,28 +688,41 @@ Public Class GestionArticulos
         ' Instanciamos la clase        
         Dim validarISBN As New libreriaValidacion.Validacion
 
-        validarISBN.ValidarISBN(TextBox_ISBN.Text)
+        If (validarISBN.ValidarISBN(TextBox_ISBN.Text) = False) Then
+            TextBox_ISBN.Text = TextBox_ISBN.Text.Substring(0, TextBox_ISBN.Text.Length - 1)
+            TextBox_ISBN.SelectionStart = TextBox_ISBN.TextLength
+        End If
     End Sub
 
     Private Sub TextBox_Nombre_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Nombre.TextChanged
         ' Instanciamos la clase        
         Dim validarNombre As New libreriaValidacion.Validacion
 
-        validarNombre.validarNombreProducto(TextBox_Nombre.Text)
+        If (validarNombre.validarNombreProducto(TextBox_Nombre.Text) = False) Then
+            TextBox_Nombre.Text = TextBox_Nombre.Text.Substring(0, TextBox_Nombre.Text.Length - 1)
+            TextBox_Nombre.SelectionStart = TextBox_Nombre.TextLength
+        End If
     End Sub
 
     Private Sub TextBox_Categoria_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Categoria.TextChanged
         ' Instanciamos la clase        
         Dim validarCategoria As New libreriaValidacion.Validacion
 
-        validarCategoria.validarCategoria(TextBox_Categoria.Text)
+        If validarCategoria.validarCategoria(TextBox_Categoria.Text) = False Then
+            TextBox_Categoria.Text = TextBox_Categoria.Text.Substring(0, TextBox_Categoria.Text.Length - 1)
+            TextBox_Categoria.SelectionStart = TextBox_Categoria.TextLength
+        End If
     End Sub
 
     Private Sub TextBox_Precio_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Precio.TextChanged
         ' Instanciamos la clase        
         Dim validarPrecio As New libreriaValidacion.Validacion
 
-        validarPrecio.validarPrecio(TextBox_Precio.Text)
+
+        If (validarPrecio.validarPrecio(TextBox_Precio.Text) = False) Then
+            TextBox_Precio.Text = TextBox_Precio.Text.Substring(0, TextBox_Precio.Text.Length - 1)
+            TextBox_Precio.SelectionStart = TextBox_Precio.TextLength
+        End If
     End Sub
 End Class
 

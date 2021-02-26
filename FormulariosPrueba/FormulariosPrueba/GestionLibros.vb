@@ -137,7 +137,7 @@ Public Class GestionLibros
 
     'Metodo que pinta el Icono asociado al botón dinámico Modificar, el la ultima Columna del DataGridView
     Private Sub DataGridView1_CellPainting(ByVal sender As Object, ByVal e As DataGridViewCellPaintingEventArgs) Handles DataGridView_Libros.CellPainting
-        If e.ColumnIndex = 13 AndAlso e.RowIndex >= 0 Then
+        If e.ColumnIndex = 14 AndAlso e.RowIndex >= 0 Then
             e.Paint(e.CellBounds, DataGridViewPaintParts.All)
             'Liena de código que calcula la posicion de el dibujo en concreto.
             e.Graphics.DrawImage(My.Resources.modificar_ico, CInt((e.CellBounds.Width / 2) - (My.Resources.modificar_ico.Width / 2)) + e.CellBounds.X, CInt((e.CellBounds.Height / 2) - (My.Resources.modificar_ico.Height / 2)) + e.CellBounds.Y)
@@ -677,4 +677,33 @@ Public Class GestionLibros
         Help.ShowHelp(Me, "CHM\LaCasaDelLibro.chm", "")
     End Sub
 
+    Private Sub TextBox_ISBN_TextChanged(sender As Object, e As EventArgs) Handles TextBox_ISBN.TextChanged
+        ' Instanciamos la clase        
+        Dim validarISBN As New libreriaValidacion.Validacion
+
+        If (validarISBN.ValidarISBN(TextBox_ISBN.Text) = False) Then
+            TextBox_ISBN.Text = TextBox_ISBN.Text.Substring(0, TextBox_ISBN.Text.Length - 1)
+            TextBox_ISBN.SelectionStart = TextBox_ISBN.TextLength
+        End If
+    End Sub
+
+    Private Sub TextBox_Autor_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Autor.TextChanged
+        ' Instanciamos la clase        
+        Dim validarAutor As New libreriaValidacion.Validacion
+
+        If (validarAutor.validarAutor(TextBox_Autor.Text) = False) Then
+            TextBox_Autor.Text = TextBox_Autor.Text.Substring(0, TextBox_Autor.Text.Length - 1)
+            TextBox_Autor.SelectionStart = TextBox_Autor.TextLength
+        End If
+    End Sub
+
+    Private Sub TextBox_Titulo_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Titulo.TextChanged
+        ' Instanciamos la clase        
+        Dim validarTitulo As New libreriaValidacion.Validacion
+
+        If (validarTitulo.validarTitulolibro(TextBox_Titulo.Text) = False) Then
+            TextBox_Titulo.Text = TextBox_Titulo.Text.Substring(0, TextBox_Titulo.Text.Length - 1)
+            TextBox_Titulo.SelectionStart = TextBox_Titulo.TextLength
+        End If
+    End Sub
 End Class

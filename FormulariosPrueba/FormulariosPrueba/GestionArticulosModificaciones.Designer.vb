@@ -48,7 +48,6 @@ Partial Class GestionArticulosModificaciones
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Button_Examinar = New System.Windows.Forms.Button()
         Me.PictureBoxProducto = New System.Windows.Forms.PictureBox()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.Panel2.SuspendLayout()
         Me.GruopBox.SuspendLayout()
         Me.MenuStripPagPrin.SuspendLayout()
@@ -294,7 +293,7 @@ Partial Class GestionArticulosModificaciones
         '
         'Button_Examinar
         '
-        Me.Button_Examinar.Location = New System.Drawing.Point(224, 408)
+        Me.Button_Examinar.Location = New System.Drawing.Point(214, 422)
         Me.Button_Examinar.Name = "Button_Examinar"
         Me.Button_Examinar.Size = New System.Drawing.Size(86, 29)
         Me.Button_Examinar.TabIndex = 186
@@ -304,21 +303,12 @@ Partial Class GestionArticulosModificaciones
         'PictureBoxProducto
         '
         Me.PictureBoxProducto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBoxProducto.Location = New System.Drawing.Point(82, 355)
+        Me.PictureBoxProducto.Location = New System.Drawing.Point(72, 369)
         Me.PictureBoxProducto.Name = "PictureBoxProducto"
         Me.PictureBoxProducto.Size = New System.Drawing.Size(136, 128)
         Me.PictureBoxProducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBoxProducto.TabIndex = 185
         Me.PictureBoxProducto.TabStop = False
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(390, 414)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 23)
-        Me.Button3.TabIndex = 188
-        Me.Button3.Text = "Button3"
-        Me.Button3.UseVisualStyleBackColor = True
         '
         'GestionArticulosModificaciones
         '
@@ -327,7 +317,6 @@ Partial Class GestionArticulosModificaciones
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(754, 540)
         Me.ControlBox = False
-        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button_Examinar)
         Me.Controls.Add(Me.PictureBoxProducto)
         Me.Controls.Add(Me.Panel3)
@@ -374,5 +363,4 @@ Partial Class GestionArticulosModificaciones
     Friend WithEvents Label_Precio As Label
     Friend WithEvents Button_Examinar As Button
     Friend WithEvents PictureBoxProducto As PictureBox
-    Friend WithEvents Button3 As Button
 End Class

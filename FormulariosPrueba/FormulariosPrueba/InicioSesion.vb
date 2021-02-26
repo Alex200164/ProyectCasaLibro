@@ -56,22 +56,25 @@ Public Class InicioSesion
     ' nos lleva al menu principal.
     Private Sub Button_InicioSesion_Click(sender As Object, e As EventArgs) Handles Button_InicioSesion.Click
         If TextBox_Usuario.Text = "" Or TextBox_Contraseña.Text = "" Then
-            MsgBox("Porfavor rellene los campos de entrada. ", 64, "Mensajes del Sistema")
+            MsgBox("Por favor rellene los campos de entrada. ", 64, "Mensajes del Sistema")
 
         Else
-            'Donde confirmaremos la veracidad de los datos de inicio de sesion 
+            'Método que Verifica si los el usuario y contraseña coinciden y existen para un registro dentro de la base de datos.
             VerificarLogIn(TextBox_Usuario.Text.Trim, TextBox_Contraseña.Text.Trim)
         End If
     End Sub
 
     Private Sub VerificarLogIn(ByVal user As String, ByVal contrasena As String)
         Try
+            'Usamos un comando para poder acceder a la base de datos y verificar si algun registro coincide con las datos que le hemos pasado
+            'por parametros.
             Dim ds As New DataSet
 
             Dim cb As New OleDbDataAdapter
 
             Dim comando As New OleDbCommand("Select * from Empleados WHERE Usuario=@usu AND Contrasenna=@contra", conexion)
 
+            'Abrimos la conexion que nos permitira usar metodos para reocger datos de la Query
             conexion.Open()
             cb.SelectCommand = comando
             comando.Parameters.Add("@usu", OleDbType.VarChar, 30).Value = user
@@ -79,11 +82,14 @@ Public Class InicioSesion
 
             cb.Fill(ds, "Empleados")
 
+            'Variable que ejecutara el metodo ExecuteReader.
             Dim reader As OleDbDataReader = comando.ExecuteReader()
             Dim meta As Object() = New Object(8) {}
 
+            'Si existe algun resgistro que solo puede ser uno. Entonces se ha verificado el log in
             If reader.Read = True Then
-                'MsgBox(reader.GetValue(7) & reader.GetValue(6) & reader.GetValue(5))
+                TextBox_Contraseña.Clear()
+                TextBox_Usuario.Clear()
 
                 ' Damos comienzo al timer
                 Timer_BarraProgreso.Start()
@@ -91,10 +97,13 @@ Public Class InicioSesion
                 ToolStripStatusLabel.Text = "Status: iniciando sesión"
 
                 If (reader.GetValue(7).ToString = "Admin") Then
+
+                    'Mostramos la notificacion como que hemos accedido como  Admin
                     MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipIcon = ToolTipIcon.Info
                     MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipTitle = "Bienvenido " & reader.GetValue(5) & "!!"
-                    MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipText = " Tienes a todas las gestiones del programa "
+                    MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipText = " Tienes acceso a todas las Gestiones del programa "
                     MenuPrincipal.NotifyIcon_Bienvenida.ShowBalloonTip(5)
+
                     Me.Hide()
                     MenuPrincipal.Show()
 
@@ -102,6 +111,12 @@ Public Class InicioSesion
                 ElseIf (reader.GetValue(7).ToString = "Encargado") Then
                     MenuPrincipal.Button_GestionEmpleados.Enabled = False
 
+                    'Restricciones para el ususairo empleado en el Menu principal
+                    GestionArticulos.GestiónEmpleadosToolStripMenuItem1.Enabled = False
+                    GestionLibros.GestiónEmpleadosToolStripMenuItem1.Enabled = False
+                    GestionSocios.GestiónEmpleadosToolStripMenuItem1.Enabled = False
+
+                    'Mostramos la notificacion como que hemos accedido como Encargado
                     MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipIcon = ToolTipIcon.Info
                     MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipTitle = "Bienvenido " & reader.GetValue(5) & "!!"
                     MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipText = " Tienes acceso a Gestion de Libros, Gestion de Articulos y Gestion de Socios "
@@ -112,24 +127,35 @@ Public Class InicioSesion
 
 
                 ElseIf (reader.GetValue(7).ToString = "Empleado") Then
+                    'Restricciones para el ususairo empleado
                     MenuPrincipal.Button_GestionEmpleados.Enabled = False
                     MenuPrincipal.Button_GestionSocios.Enabled = False
+
                     GestionArticulos.Button_Annadir.Enabled = False
                     GestionArticulos.Button_Eliminar.Enabled = False
                     GestionArticulosModificaciones.Enabled = False
+                    GestionArticulos.GestiónEmpleadosToolStripMenuItem1.Enabled = False
+                    GestionArticulos.GestiónSociosToolStripMenuItem1.Enabled = False
+
+                    GestionLibros.Button_Annadir.Enabled = False
+                    GestionLibros.Button_Eliminar.Enabled = False
+                    GestionLibros.GestiónEmpleadosToolStripMenuItem1.Enabled = False
+                    GestionLibros.GestiónSociosToolStripMenuItem1.Enabled = False
 
                     MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipIcon = ToolTipIcon.Info
                     MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipTitle = "Bienvenido " & reader.GetValue(5) & "!!"
-                    MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipText = " Tienes acceso a Gestion de Libros, Gestion de Articulos y Gestion de Socios "
+                    MenuPrincipal.NotifyIcon_Bienvenida.BalloonTipText = " Tienes acceso a Busquedas  de Libros, Busquedas de Articulos y Gestion de Socios "
                     MenuPrincipal.NotifyIcon_Bienvenida.ShowBalloonTip(5)
 
-                    'Me.Hide()
+                    Me.Hide()
                     MenuPrincipal.Show()
 
 
                 End If
 
             Else
+                TextBox_Contraseña.Clear()
+                TextBox_Usuario.Clear()
 
                 ' Guardamos datos del acceso en el archivo
                 'accesosApp.AccesosApp("Login Erroneo. usuario: " & TBUsuario.Text & " contraseña: " & TBContrasenna.Text)
@@ -137,6 +163,7 @@ Public Class InicioSesion
                 ' Mostramos mensaje de error
                 MsgBox("El usuario o contraseña introducido es incorrecto, por favor introduzca otro", MsgBoxStyle.Information, "Error en la verificación")
             End If
+
             conexion.Close()
 
         Catch ex As Exception
@@ -163,13 +190,6 @@ Public Class InicioSesion
             ' Paramos el progreso del timer
             Timer_BarraProgreso.Stop()
 
-            ' Ocultamos este formulario (se queda en segundo plano).
-            Me.Hide()
-
-            ' Especificamos la posición en la que queremos que se coloque en pantalla el formualario "MenuPricipal"
-            posicionarFormularioMenuPrincipal()
-            ' Mostramos al usuario el menu principal.
-            MenuPrincipal.Show()
 
             ' ###### Reiniciamos la barra de progreso ######
 
@@ -184,16 +204,7 @@ Public Class InicioSesion
         End If
     End Sub
 
-    ' Método que permite posicionar la ventana en la posición especificada del formulario "MenuPrincipal".
-    ' En este caso para evitar que quede encima del formulario anterior.
-    Private Shared Sub posicionarFormularioMenuPrincipal()
-        MenuPrincipal.StartPosition = FormStartPosition.Manual
-        Dim a As Integer
-        a = My.Computer.Screen.Bounds.Size.Width - (My.Computer.Screen.Bounds.Size.Width * 0.97)
-        Dim b As Integer
-        b = My.Computer.Screen.Bounds.Size.Height - (My.Computer.Screen.Bounds.Size.Height * 0.97)
-        MenuPrincipal.Location = New Point(a, b)
-    End Sub
+
 
     ' Método que limpia los Textbox
     Private Sub limpiarPantalla()
@@ -201,5 +212,14 @@ Public Class InicioSesion
         TextBox_Usuario.Clear()
     End Sub
 
+    Private Sub TextBox_Usuario_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Usuario.TextChanged
+        ' Instanciamos la clase        
+        Dim validarUsuario As New libreriaValidacion.Validacion
+
+        If validarUsuario.validarUsuario(TextBox_Usuario.Text) = False Then
+            TextBox_Usuario.Text = TextBox_Usuario.Text.Substring(0, TextBox_Usuario.Text.Length - 1)
+            TextBox_Usuario.SelectionStart = TextBox_Usuario.TextLength
+        End If
+    End Sub
 
 End Class

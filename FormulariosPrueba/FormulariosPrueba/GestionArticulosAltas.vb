@@ -2,7 +2,9 @@
 Imports System.Data.OleDb
 
 Public Class GestionArticulosAltas
-
+    'Para poder jugar con las imagenes en la base de datos usamos estas variables 
+    Dim imgpath As String
+    Dim arrImage() As Byte
     ' Especificamos la base de datos a la que nos vamos a conectar.
     Public conexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=cas_lib_dib.accdb")
     ' Al adaptador le asignamos la conexion que acabamos de realizar y una consulta
@@ -59,9 +61,6 @@ Public Class GestionArticulosAltas
     ' Introduce los datos escritos por el usuario en los textBox en la DB.
     Private Sub Button_Alta_Click(sender As Object, e As EventArgs) Handles Button_Alta.Click
 
-
-
-
         If TextBox_ISBN.Text = "" Or TextBox_Nombre.Text = "" Or TextBox_Categoria.Text = "" Or TextBox_Precio.Text = "" Or TextBox_Stock.Text = "" Then
             MsgBox("No se puede dar de alta , debe rellenar todos los datos.", MsgBoxStyle.OkOnly, "Error al dar de alta.")
         Else
@@ -94,16 +93,30 @@ Public Class GestionArticulosAltas
 
 
             If control = 0 Then
-                ' ####################  1º Preparamos a la base de datos para recibir los datos. ##############################
-                Dim cb As New OleDbCommandBuilder(adaptador)
-                adaptador.InsertCommand = cb.GetInsertCommand
+                Try
+                    ' ####################  1º Preparamos a la base de datos para recibir los datos. ##############################
+                    Dim cb As New OleDbCommandBuilder(adaptador)
+                    adaptador.InsertCommand = cb.GetInsertCommand
 
-                ' ####################  2º Recogemos los datos y los introducimos ##############################
-                Dim drc As DataRowCollection = midataset.Tables("Productos").Rows
-                drc.Add(TextBox_ISBN.Text, TextBox_Nombre.Text, TextBox_Categoria.Text, TextBox_Precio.Text, TextBox_Stock.Text, arrImage)
+                    ' ####################  2º Recogemos los datos y los introducimos ##############################
+                    Dim drc As DataRowCollection = midataset.Tables("Productos").Rows
+                    drc.Add(TextBox_ISBN.Text, TextBox_Nombre.Text, TextBox_Categoria.Text, TextBox_Precio.Text, TextBox_Stock.Text, arrImage)
 
 
-                adaptador.Update(midataset.Tables("Productos"))
+                    adaptador.Update(midataset.Tables("Productos"))
+                Catch ex As System.InvalidOperationException
+                    ' Avisamos del error por mensaje
+                    MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                Catch ex2 As System.FormatException
+                    ' Avisamos del error por mensaje
+                    MsgBox("El formato de los datos introducidos es incorrecto, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                Catch ex3 As System.Data.OleDb.OleDbException
+                    ' Avisamos del error por mensaje
+                    MsgBox("Algo no ha ido bien, es la sintaxis correcta?, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                Catch ex4 As System.NullReferenceException
+                    ' Avisamos del error por mensaje
+                    MsgBox("Algo no ha ido bien, intentalo de nuevo. Referencia a objeto no establecida como instancia de un objeto.", MsgBoxStyle.OkOnly, "Operación invalida")
+                End Try
                 ' ####################  3º Actualizamos el middataset ##############################
                 ' Actualizamos el dataGridView del formulario de gestión principal
                 GestionArticulos.midataset.Clear()
@@ -152,8 +165,6 @@ Public Class GestionArticulosAltas
 
     End Sub
 
-    Dim imgpath As String
-    Dim arrImage() As Byte
 
     Private Sub Button_Examinar_Click(sender As Object, e As EventArgs) Handles Button_Examinar.Click
         Try
@@ -210,34 +221,51 @@ Public Class GestionArticulosAltas
         ' Instanciamos la clase        
         Dim validarISBN As New libreriaValidacion.Validacion
 
-        validarISBN.ValidarISBN(TextBox_ISBN.Text)
+        If (validarISBN.ValidarISBN(TextBox_ISBN.Text) = False) Then
+            TextBox_ISBN.Text = TextBox_ISBN.Text.Substring(0, TextBox_ISBN.Text.Length - 1)
+            TextBox_ISBN.SelectionStart = TextBox_ISBN.TextLength
+        End If
     End Sub
 
     Private Sub TextBox_Nombre_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Nombre.TextChanged
         ' Instanciamos la clase        
         Dim validarNombre As New libreriaValidacion.Validacion
 
-        validarNombre.validarNombreProducto(TextBox_Nombre.Text)
+        If (validarNombre.validarNombreProducto(TextBox_Nombre.Text) = False) Then
+            TextBox_Nombre.Text = TextBox_Nombre.Text.Substring(0, TextBox_Nombre.Text.Length - 1)
+            TextBox_Nombre.SelectionStart = TextBox_Nombre.TextLength
+        End If
     End Sub
 
     Private Sub TextBox_Categoria_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Categoria.TextChanged
         ' Instanciamos la clase        
         Dim validarCategoria As New libreriaValidacion.Validacion
 
-        validarCategoria.validarCategoria(TextBox_Categoria.Text)
+        If validarCategoria.validarCategoria(TextBox_Categoria.Text) = False Then
+            TextBox_Categoria.Text = TextBox_Categoria.Text.Substring(0, TextBox_Categoria.Text.Length - 1)
+            TextBox_Categoria.SelectionStart = TextBox_Categoria.TextLength
+        End If
     End Sub
 
     Private Sub TextBox_Precio_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Precio.TextChanged
         ' Instanciamos la clase        
         Dim validarPrecio As New libreriaValidacion.Validacion
 
-        validarPrecio.validarPrecio(TextBox_Precio.Text)
+
+        If (validarPrecio.validarPrecio(TextBox_Precio.Text) = False) Then
+            TextBox_Precio.Text = TextBox_Precio.Text.Substring(0, TextBox_Precio.Text.Length - 1)
+            TextBox_Precio.SelectionStart = TextBox_Precio.TextLength
+        End If
     End Sub
 
     Private Sub TextBox_Stock_TextChanged(sender As Object, e As EventArgs) Handles TextBox_Stock.TextChanged
         ' Instanciamos la clase        
         Dim validarStock As New libreriaValidacion.Validacion
 
-        validarStock.validar4digitos(TextBox_Stock.Text)
+
+        If (validarStock.validar4digitos(TextBox_Stock.Text) = False) Then
+            TextBox_Stock.Text = TextBox_Stock.Text.Substring(0, TextBox_Stock.Text.Length - 1)
+            TextBox_Stock.SelectionStart = TextBox_Stock.TextLength
+        End If
     End Sub
 End Class
