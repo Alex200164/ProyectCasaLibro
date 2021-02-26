@@ -419,7 +419,6 @@ Public Class Validacion
         End If
     End Function
 
-
     ' Validación de correo electrónico
     Public Function validarCorreo(codigo As String, tipo As Integer) As Boolean
 
@@ -554,7 +553,6 @@ Public Class Validacion
         Return valido
     End Function
 
-
     ' Método para comprobar que usuario y contraseña introducidos en la pantalla de inicio
     ' coinciden con datos guardados en el fichero secuencial usuarios.txt
     Public Function comprobarDatosSecuencial(file As String, usuario As String, contrasena As Integer) As Integer
@@ -628,7 +626,6 @@ Public Class Validacion
         MsgBox("Error en la comprobación de datos." & Chr(13) & "Detalle: " & Err.Description & Chr(13) & "Número de error: " & Err.Number)
         errorLogWrite()
     End Function
-
 
     ' Método usado para validar diversos campos
     ' Si se recibe el integer 0 = se valida el campo categoría
@@ -1082,7 +1079,6 @@ Public Class Validacion
         End If
         Return valido
     End Function
-
 
     'Validar Nombre productos
     Public Function validarNombreProducto(codigo As String) As Boolean

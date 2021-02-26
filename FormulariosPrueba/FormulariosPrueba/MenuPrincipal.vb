@@ -2,7 +2,6 @@
 Imports System.Data.OleDb
 
 Public Class MenuPrincipal
-
     ' Especificamos la base de datos a la que nos vamos a conectar.
     Public conexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=cas_lib_dib.accdb")
     ' Al adaptador le asignamos la conexion que acabamos de realizar y una consulta
@@ -10,7 +9,6 @@ Public Class MenuPrincipal
 
     ' Aquí alojaremos los datos de la DB
     Public midataset As New DataSet
-
 
     'Metodo que detecta que botón se ha pulsado y envia la orden  de posicionar a: 
     'GestionArticulos/GestionLibros/GestionEmpleados/GestionSocios

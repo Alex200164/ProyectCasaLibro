@@ -6,8 +6,6 @@ Imports System.IO
 
 Public Class GestionEmpleadosModificaciones
 
-    ' ##################################   Variables para bases de datos   ####################################################
-
     ' Especificamos la base de datos a la que nos vamos a conectar.
     Public conexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=cas_lib_dib.accdb")
     ' Al adaptador le asignamos la conexion que acabamos de realizar y una consulta
@@ -46,7 +44,6 @@ Public Class GestionEmpleadosModificaciones
             Me.TextBox_CONTRASENNA.DataBindings.Add("text", midataset, "Empleados.Contrasenna")
             Me.TextBox_ROL.DataBindings.Add("text", midataset, "Empleados.Rol")
 
-
             GestionEmpleados.numeroDeControlBindingModificacionesEmpleados = 1
         End If
 
@@ -57,16 +54,11 @@ Public Class GestionEmpleadosModificaciones
         numDniInicial = GestionEmpleados.DataGridView_Empleados.Item(0, GestionEmpleados.DataGridView_Empleados.CurrentRow.Index).Value
 
         Try
-
         Catch ex As System.FormatException
             MsgBox("Se ha producido un error, intentelo de nuevo", MsgBoxStyle.OkOnly, "Error - Operación abortada")
         End Try
 
     End Sub
-
-
-    ' #####################################################    Métodos varios    ##########################################################################
-
 
     ' Método que se ejecuta cuando se pulsa el botón "Limpiar".
     ' "Limpia" todos los textBox, dejandolos vacios.
@@ -226,7 +218,7 @@ Public Class GestionEmpleadosModificaciones
 
                 ' Actualizamos el dataGridView del formulario de gestión principal
                 GestionEmpleados.midataset.Clear()
-                    GestionEmpleados.adaptador.Fill(GestionEmpleados.midataset, "Empleados")
+                GestionEmpleados.adaptador.Fill(GestionEmpleados.midataset, "Empleados")
 
                 ' Reiniciamos su valor para la próxima vez
                 controlCalculadora = 0
@@ -234,9 +226,9 @@ Public Class GestionEmpleadosModificaciones
                 ' Cerramos la ventana
                 Me.Close()
 
-                    ' Hacer try-catch
-                End If
+                ' Hacer try-catch
             End If
+        End If
     End Sub
 
     ' Validamos este campo evitando que tenga caracteres que no sean númericos y que tenga una longitud de más de 8 caracteres.
