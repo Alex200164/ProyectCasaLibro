@@ -259,3 +259,4 @@ D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPr
 D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\RdlCompile.cache
 D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\RdlCompile.compiled
 E:\REPO\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.Form1.resources
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.Form1.resources

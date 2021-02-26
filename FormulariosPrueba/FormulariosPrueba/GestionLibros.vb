@@ -320,349 +320,362 @@ Public Class GestionLibros
     ' Método que se ejecuta cuando el botón "Buscar" es pulsado
     ' Buscará en la DB utilizando los datos introducidos por el usuario en los TextBoxes
     Private Sub Button_Buscar_Click(sender As Object, e As EventArgs) Handles Button_Buscar.Click
+        Try
+            ' Comprobamos que haya datos en los textBoxes (por lo menos en uno de ellos)
+            If TextBox_ISBN.Text = "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text = "" Then
+                MsgBox("No se puede buscar , debe rellenar al menos una caja con datos.", MsgBoxStyle.OkOnly, "Error al buscar.")
+            Else
 
-        ' Comprobamos que haya datos en los textBoxes (por lo menos en uno de ellos)
-        If TextBox_ISBN.Text = "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text = "" Then
-            MsgBox("No se puede buscar , debe rellenar al menos una caja con datos.", MsgBoxStyle.OkOnly, "Error al buscar.")
-        Else
+                ' Si se ha introducido todo
+                If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text <> "" Then
+                    Dim ds As New DataSet
 
-            ' Si se ha introducido todo
-            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text <> "" Then
-                Dim ds As New DataSet
+                    Dim cb As New OleDbDataAdapter
 
-                Dim cb As New OleDbDataAdapter
+                    Dim comando As New OleDbCommand("Select * from Libros WHERE ISBN LIKE? and Titulo LIKE? and Genero LIKE? and Autor LIKE?", conexion)
 
-                Dim comando As New OleDbCommand("Select * from Libros WHERE NumeroDeSocio LIKE? and Titulo LIKE? and Genero LIKE? and Autor LIKE?", conexion)
+                    cb.SelectCommand = comando
 
-                cb.SelectCommand = comando
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
+                    comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
+                    comando.Parameters.Add("@var4", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
-                comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
-                comando.Parameters.Add("@var4", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
+                    midataset.Clear()
 
-                midataset.Clear()
+                    cb.Fill(midataset, "Libros")
 
-                cb.Fill(midataset, "Libros")
+                    DataGridView_Libros.DataSource = midataset
 
-                DataGridView_Libros.DataSource = midataset
+                    DataGridView_Libros.DataMember = "Libros"
+                End If
 
-                DataGridView_Libros.DataMember = "Libros"
-            End If
 
 
+                ' Numero Titulo Genero
+                If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text = "" Then
+                    Dim ds As New DataSet
 
-            ' Numero Titulo Genero
-            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text = "" Then
-                Dim ds As New DataSet
+                    Dim cb As New OleDbDataAdapter
 
-                Dim cb As New OleDbDataAdapter
+                    Dim comando As New OleDbCommand("Select * from Libros WHERE ISBN LIKE? and Titulo LIKE? and Genero LIKE? ", conexion)
 
-                Dim comando As New OleDbCommand("Select * from Libros WHERE NumeroDeSocio LIKE? and Titulo LIKE? and Genero LIKE? ", conexion)
+                    cb.SelectCommand = comando
 
-                cb.SelectCommand = comando
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
+                    comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
-                comando.Parameters.Add("@var3", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
+                    midataset.Clear()
 
-                midataset.Clear()
+                    cb.Fill(midataset, "Libros")
 
-                cb.Fill(midataset, "Libros")
+                    DataGridView_Libros.DataSource = midataset
 
-                DataGridView_Libros.DataSource = midataset
+                    DataGridView_Libros.DataMember = "Libros"
+                End If
 
-                DataGridView_Libros.DataMember = "Libros"
-            End If
+                ' Titulo Genero Autor
+                If TextBox_ISBN.Text = "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text <> "" Then
+                    Dim ds As New DataSet
 
-            ' Titulo Genero Autor
-            If TextBox_ISBN.Text = "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text <> "" Then
-                Dim ds As New DataSet
+                    Dim cb As New OleDbDataAdapter
 
-                Dim cb As New OleDbDataAdapter
+                    Dim comando As New OleDbCommand("Select * from Libros WHERE Titulo LIKE? and Genero LIKE? and Autor LIKE?", conexion)
 
-                Dim comando As New OleDbCommand("Select * from Libros WHERE Titulo LIKE? and Genero LIKE? and Autor LIKE?", conexion)
+                    cb.SelectCommand = comando
 
-                cb.SelectCommand = comando
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
+                    comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
 
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
-                comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
+                    midataset.Clear()
 
-                midataset.Clear()
+                    cb.Fill(midataset, "Libros")
 
-                cb.Fill(midataset, "Libros")
+                    DataGridView_Libros.DataSource = midataset
 
-                DataGridView_Libros.DataSource = midataset
+                    DataGridView_Libros.DataMember = "Libros"
+                End If
 
-                DataGridView_Libros.DataMember = "Libros"
-            End If
+                ' Numero Genero Autor
+                If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text <> "" Then
+                    Dim ds As New DataSet
 
-            ' Numero Genero Autor
-            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text <> "" Then
-                Dim ds As New DataSet
+                    Dim cb As New OleDbDataAdapter
 
-                Dim cb As New OleDbDataAdapter
+                    Dim comando As New OleDbCommand("Select * from Libros WHERE ISBN LIKE? and Genero LIKE? and Autor LIKE?", conexion)
 
-                Dim comando As New OleDbCommand("Select * from Libros WHERE NumeroDeSocio LIKE? and Genero LIKE? and Autor LIKE?", conexion)
+                    cb.SelectCommand = comando
 
-                cb.SelectCommand = comando
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
+                    comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
-                comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
+                    midataset.Clear()
 
-                midataset.Clear()
+                    cb.Fill(midataset, "Libros")
 
-                cb.Fill(midataset, "Libros")
+                    DataGridView_Libros.DataSource = midataset
 
-                DataGridView_Libros.DataSource = midataset
+                    DataGridView_Libros.DataMember = "Libros"
+                End If
 
-                DataGridView_Libros.DataMember = "Libros"
-            End If
+                ' Numero Titulo Autor
+                If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text <> "" Then
+                    Dim ds As New DataSet
 
-            ' Numero Titulo Autor
-            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text <> "" Then
-                Dim ds As New DataSet
+                    Dim cb As New OleDbDataAdapter
 
-                Dim cb As New OleDbDataAdapter
+                    Dim comando As New OleDbCommand("Select * from Libros WHERE ISBN LIKE? and Titulo LIKE? and Autor LIKE?", conexion)
 
-                Dim comando As New OleDbCommand("Select * from Libros WHERE NumeroDeSocio LIKE? and Titulo LIKE? and Autor LIKE?", conexion)
+                    cb.SelectCommand = comando
 
-                cb.SelectCommand = comando
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
+                    comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
-                comando.Parameters.Add("@var3", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
+                    midataset.Clear()
 
-                midataset.Clear()
+                    cb.Fill(midataset, "Libros")
 
-                cb.Fill(midataset, "Libros")
+                    DataGridView_Libros.DataSource = midataset
 
-                DataGridView_Libros.DataSource = midataset
+                    DataGridView_Libros.DataMember = "Libros"
+                End If
 
-                DataGridView_Libros.DataMember = "Libros"
-            End If
+                ' Numero Titulo
+                If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text = "" Then
+                    Dim ds As New DataSet
 
-            ' Numero Titulo
-            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text = "" Then
-                Dim ds As New DataSet
+                    Dim cb As New OleDbDataAdapter
 
-                Dim cb As New OleDbDataAdapter
+                    Dim comando As New OleDbCommand("Select * from Libros WHERE ISBN LIKE? and Titulo LIKE? ", conexion)
 
-                Dim comando As New OleDbCommand("Select * from Libros WHERE NumeroDeSocio LIKE? and Titulo LIKE? ", conexion)
+                    cb.SelectCommand = comando
 
-                cb.SelectCommand = comando
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
+                    midataset.Clear()
 
-                midataset.Clear()
+                    cb.Fill(midataset, "Libros")
 
-                cb.Fill(midataset, "Libros")
+                    DataGridView_Libros.DataSource = midataset
 
-                DataGridView_Libros.DataSource = midataset
+                    DataGridView_Libros.DataMember = "Libros"
+                End If
 
-                DataGridView_Libros.DataMember = "Libros"
-            End If
+                ' Numero Genero
+                If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text = "" Then
+                    Dim ds As New DataSet
 
-            ' Numero Genero
-            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text = "" Then
-                Dim ds As New DataSet
+                    Dim cb As New OleDbDataAdapter
 
-                Dim cb As New OleDbDataAdapter
+                    Dim comando As New OleDbCommand("Select * from Libros WHERE ISBN LIKE? and Genero LIKE?", conexion)
 
-                Dim comando As New OleDbCommand("Select * from Libros WHERE NumeroDeSocio LIKE? and Genero LIKE?", conexion)
+                    cb.SelectCommand = comando
 
-                cb.SelectCommand = comando
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
+                    midataset.Clear()
 
-                midataset.Clear()
+                    cb.Fill(midataset, "Libros")
 
-                cb.Fill(midataset, "Libros")
+                    DataGridView_Libros.DataSource = midataset
 
-                DataGridView_Libros.DataSource = midataset
+                    DataGridView_Libros.DataMember = "Libros"
+                End If
 
-                DataGridView_Libros.DataMember = "Libros"
-            End If
+                ' Titulo Genero
+                If TextBox_ISBN.Text = "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text = "" Then
+                    Dim ds As New DataSet
 
-            ' Titulo Genero
-            If TextBox_ISBN.Text = "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text = "" Then
-                Dim ds As New DataSet
+                    Dim cb As New OleDbDataAdapter
 
-                Dim cb As New OleDbDataAdapter
+                    Dim comando As New OleDbCommand("Select * from Libros WHERE Titulo LIKE? and Genero LIKE?", conexion)
 
-                Dim comando As New OleDbCommand("Select * from Libros WHERE Titulo LIKE? and Genero LIKE?", conexion)
+                    cb.SelectCommand = comando
 
-                cb.SelectCommand = comando
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
+                    comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
 
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
-                comando.Parameters.Add("@var2", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
+                    midataset.Clear()
 
-                midataset.Clear()
+                    cb.Fill(midataset, "Libros")
 
-                cb.Fill(midataset, "Libros")
+                    DataGridView_Libros.DataSource = midataset
 
-                DataGridView_Libros.DataSource = midataset
+                    DataGridView_Libros.DataMember = "Libros"
+                End If
 
-                DataGridView_Libros.DataMember = "Libros"
-            End If
+                ' Genero Autor
+                If TextBox_ISBN.Text = "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text <> "" Then
+                    Dim ds As New DataSet
 
-            ' Genero Autor
-            If TextBox_ISBN.Text = "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text <> "" Then
-                Dim ds As New DataSet
+                    Dim cb As New OleDbDataAdapter
 
-                Dim cb As New OleDbDataAdapter
+                    Dim comando As New OleDbCommand("Select * from Libros WHERE Genero LIKE? and Autor LIKE?", conexion)
 
-                Dim comando As New OleDbCommand("Select * from Libros WHERE Genero LIKE? and Autor LIKE?", conexion)
+                    cb.SelectCommand = comando
 
-                cb.SelectCommand = comando
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
+                    comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
 
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
-                comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
+                    midataset.Clear()
 
-                midataset.Clear()
+                    cb.Fill(midataset, "Libros")
 
-                cb.Fill(midataset, "Libros")
+                    DataGridView_Libros.DataSource = midataset
 
-                DataGridView_Libros.DataSource = midataset
+                    DataGridView_Libros.DataMember = "Libros"
+                End If
 
-                DataGridView_Libros.DataMember = "Libros"
-            End If
+                ' Numero Autor
+                If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text <> "" Then
+                    Dim ds As New DataSet
 
-            ' Numero Autor
-            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text <> "" Then
-                Dim ds As New DataSet
+                    Dim cb As New OleDbDataAdapter
 
-                Dim cb As New OleDbDataAdapter
+                    Dim comando As New OleDbCommand("Select * from Libros WHERE ISBN LIKE? and Autor LIKE?", conexion)
 
-                Dim comando As New OleDbCommand("Select * from Libros WHERE NumeroDeSocio LIKE? and Autor LIKE?", conexion)
+                    cb.SelectCommand = comando
 
-                cb.SelectCommand = comando
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                    comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
-                comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
+                    midataset.Clear()
 
-                midataset.Clear()
+                    cb.Fill(midataset, "Libros")
 
-                cb.Fill(midataset, "Libros")
+                    DataGridView_Libros.DataSource = midataset
 
-                DataGridView_Libros.DataSource = midataset
+                    DataGridView_Libros.DataMember = "Libros"
+                End If
 
-                DataGridView_Libros.DataMember = "Libros"
-            End If
+                ' Titulo Autor
+                If TextBox_ISBN.Text = "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text <> "" Then
+                    Dim ds As New DataSet
 
-            ' Titulo Autor
-            If TextBox_ISBN.Text = "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text <> "" Then
-                Dim ds As New DataSet
+                    Dim cb As New OleDbDataAdapter
 
-                Dim cb As New OleDbDataAdapter
+                    Dim comando As New OleDbCommand("Select * from Libros WHERE Titulo LIKE? and Autor LIKE?", conexion)
 
-                Dim comando As New OleDbCommand("Select * from Libros WHERE Titulo LIKE? and Autor LIKE?", conexion)
+                    cb.SelectCommand = comando
 
-                cb.SelectCommand = comando
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
+                    comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
 
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
-                comando.Parameters.Add("@var2", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
+                    midataset.Clear()
 
-                midataset.Clear()
+                    cb.Fill(midataset, "Libros")
 
-                cb.Fill(midataset, "Libros")
+                    DataGridView_Libros.DataSource = midataset
 
-                DataGridView_Libros.DataSource = midataset
+                    DataGridView_Libros.DataMember = "Libros"
+                End If
 
-                DataGridView_Libros.DataMember = "Libros"
-            End If
+                ' Numero
+                If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text = "" Then
+                    Dim ds As New DataSet
 
-            ' Numero
-            If TextBox_ISBN.Text <> "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text = "" Then
-                Dim ds As New DataSet
+                    Dim cb As New OleDbDataAdapter
 
-                Dim cb As New OleDbDataAdapter
+                    Dim comando As New OleDbCommand("Select * from Libros WHERE ISBN LIKE?", conexion)
 
-                Dim comando As New OleDbCommand("Select * from Libros WHERE NumeroDeSocio LIKE?", conexion)
+                    cb.SelectCommand = comando
 
-                cb.SelectCommand = comando
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_ISBN.Text)
+                    midataset.Clear()
 
-                midataset.Clear()
+                    cb.Fill(midataset, "Libros")
 
-                cb.Fill(midataset, "Libros")
+                    DataGridView_Libros.DataSource = midataset
 
-                DataGridView_Libros.DataSource = midataset
+                    DataGridView_Libros.DataMember = "Libros"
+                End If
 
-                DataGridView_Libros.DataMember = "Libros"
-            End If
+                ' Titulo
+                If TextBox_ISBN.Text = "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text = "" Then
+                    Dim ds As New DataSet
 
-            ' Titulo
-            If TextBox_ISBN.Text = "" And TextBox_Titulo.Text <> "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text = "" Then
-                Dim ds As New DataSet
+                    Dim cb As New OleDbDataAdapter
 
-                Dim cb As New OleDbDataAdapter
+                    Dim comando As New OleDbCommand("Select * from Libros WHERE Titulo LIKE?", conexion)
 
-                Dim comando As New OleDbCommand("Select * from Libros WHERE Titulo LIKE?", conexion)
+                    cb.SelectCommand = comando
 
-                cb.SelectCommand = comando
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
 
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = TextBox_Titulo.Text
+                    midataset.Clear()
 
-                midataset.Clear()
+                    cb.Fill(midataset, "Libros")
 
-                cb.Fill(midataset, "Libros")
+                    DataGridView_Libros.DataSource = midataset
 
-                DataGridView_Libros.DataSource = midataset
+                    DataGridView_Libros.DataMember = "Libros"
+                End If
 
-                DataGridView_Libros.DataMember = "Libros"
-            End If
+                ' Genero
+                If TextBox_ISBN.Text = "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text = "" Then
+                    Dim ds As New DataSet
 
-            ' Genero
-            If TextBox_ISBN.Text = "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text <> "" And TextBox_Autor.Text = "" Then
-                Dim ds As New DataSet
+                    Dim cb As New OleDbDataAdapter
 
-                Dim cb As New OleDbDataAdapter
+                    Dim comando As New OleDbCommand("Select * from Libros WHERE Genero LIKE?", conexion)
 
-                Dim comando As New OleDbCommand("Select * from Libros WHERE Genero LIKE?", conexion)
+                    cb.SelectCommand = comando
 
-                cb.SelectCommand = comando
+                    comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
 
-                comando.Parameters.Add("@var1", OleDbType.VarChar, 50).Value = ComboBox_Genero.Text
+                    midataset.Clear()
 
-                midataset.Clear()
+                    cb.Fill(midataset, "Libros")
 
-                cb.Fill(midataset, "Libros")
+                    DataGridView_Libros.DataSource = midataset
 
-                DataGridView_Libros.DataSource = midataset
+                    DataGridView_Libros.DataMember = "Libros"
+                End If
 
-                DataGridView_Libros.DataMember = "Libros"
-            End If
+                ' Autor
+                If TextBox_ISBN.Text = "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text <> "" Then
+                    Dim ds As New DataSet
 
-            ' Autor
-            If TextBox_ISBN.Text = "" And TextBox_Titulo.Text = "" And ComboBox_Genero.Text = "" And TextBox_Autor.Text <> "" Then
-                Dim ds As New DataSet
+                    Dim cb As New OleDbDataAdapter
 
-                Dim cb As New OleDbDataAdapter
+                    Dim comando As New OleDbCommand("Select * from Libros WHERE Autor LIKE?", conexion)
 
-                Dim comando As New OleDbCommand("Select * from Libros WHERE Autor LIKE?", conexion)
+                    cb.SelectCommand = comando
 
-                cb.SelectCommand = comando
+                    comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
 
-                comando.Parameters.Add("@var1", OleDbType.Integer, 15).Value = Convert.ToInt64(TextBox_Autor.Text)
+                    midataset.Clear()
 
-                midataset.Clear()
+                    cb.Fill(midataset, "Libros")
 
-                cb.Fill(midataset, "Libros")
+                    DataGridView_Libros.DataSource = midataset
 
-                DataGridView_Libros.DataSource = midataset
+                    DataGridView_Libros.DataMember = "Libros"
+                End If
 
-                DataGridView_Libros.DataMember = "Libros"
-            End If
+                ' MsgBox("Busqueda fallida...")
 
-            ' MsgBox("Busqueda fallida...")
-
-        End If ' IF 1
+            End If ' IF 1
+        Catch ex As System.InvalidOperationException
+            ' Avisamos del error por mensaje
+            MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+        Catch ex2 As System.FormatException
+            ' Avisamos del error por mensaje
+            MsgBox("El formato de los datos introducidos es incorrecto, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+        Catch ex3 As System.Data.OleDb.OleDbException
+            ' Avisamos del error por mensaje
+            MsgBox("Algo no ha ido bien, es la sintaxis correcta?, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+        Catch ex4 As System.NullReferenceException
+            ' Avisamos del error por mensaje
+            MsgBox("Algo no ha ido bien, intentalo de nuevo. Referencia a objeto no establecida como instancia de un objeto.", MsgBoxStyle.OkOnly, "Operación invalida")
+        End Try
 
     End Sub
 
