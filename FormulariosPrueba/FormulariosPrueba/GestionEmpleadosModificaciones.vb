@@ -130,7 +130,7 @@ Public Class GestionEmpleadosModificaciones
             Dim resultado3 As Boolean = validarNumeroSocio.validarNombre(TextBox_NOMBRE.Text, 1)
             Dim resultado4 As Boolean = validarNumeroSocio.validarNombre(TextBox_APELLIDOS.Text, 2)
             Dim resultado5 As Boolean = validarNumeroSocio.validarCorreo(TextBox_CORREO.Text, 1)
-            Dim resultado6 As Boolean = validarNumeroSocio.validarUsuario(TextBox_USUARIO.Text, 1)
+            Dim resultado6 As Boolean = validarNumeroSocio.validarUsuario(TextBox_USUARIO.Text)
             Dim resultado7 As Boolean = validarNumeroSocio.validarContra(TextBox_CONTRASENNA.Text, 2)
             Dim resultado8 As Boolean = validarNumeroSocio.validarROL(TextBox_ROL.Text, 1)
 
