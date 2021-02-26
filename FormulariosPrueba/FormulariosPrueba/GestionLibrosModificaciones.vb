@@ -170,15 +170,18 @@ Public Class GestionLibrosModificaciones
             TextBox_Plazaedicion.Text = "" Or TextBox_Traductor.Text = "" Or ComboBox_Formato.Text = "" Or TextBox_Precio.Text = "" Or TextBox_Stock.Text = "" Then
             MsgBox("Debes seleccionar un registro para actualizarlo y si lo has seleccionado, no debe quedar ningún campo en blanco", MsgBoxStyle.OkOnly, "Error al dar de alta.")
         Else
-
-            Dim mstream As New System.IO.MemoryStream()
-            'Para subir la imagen lo que tenemos que hacer es 
-            PictureBoxProducto.Image.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
-            arrImage = mstream.GetBuffer()
-            Dim FileSize As UInt64
-            FileSize = mstream.Length
-            mstream.Close()
-            'Acaba Método para meter las imagenes dentro de la base de datos de tipo Largo. 
+            Try
+                Dim mstream As New System.IO.MemoryStream()
+                'Para subir la imagen lo que tenemos que hacer es 
+                PictureBoxProducto.Image.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
+                arrImage = mstream.GetBuffer()
+                Dim FileSize As UInt64
+                FileSize = mstream.Length
+                mstream.Close()
+                'Acaba Método para meter las imagenes dentro de la base de datos de tipo Largo. 
+            Catch ex As System.NullReferenceException
+                MsgBox("Ha ocurrido un error, no se pudo iniciar la calculadora.", MsgBoxStyle.OkOnly, "Error (proceso calculadora)")
+            End Try
 
             Dim valor As String
             Dim control As Integer = 0
