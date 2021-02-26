@@ -55,6 +55,8 @@ Partial Class GestionArticulos
         Me.GestiónEmpleadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestiónEmpleadosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.InformeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GenerarInformeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView_Articulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -310,7 +312,7 @@ Partial Class GestionArticulos
         'MenuStripPagPrin
         '
         Me.MenuStripPagPrin.BackColor = System.Drawing.Color.Transparent
-        Me.MenuStripPagPrin.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HerramientasToolStripMenuItem, Me.GestiónLibrosToolStripMenuItem, Me.GestiónSociosToolStripMenuItem, Me.GestiónEmpleadosToolStripMenuItem, Me.AyudaToolStripMenuItem})
+        Me.MenuStripPagPrin.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HerramientasToolStripMenuItem, Me.GestiónLibrosToolStripMenuItem, Me.GestiónSociosToolStripMenuItem, Me.GestiónEmpleadosToolStripMenuItem, Me.AyudaToolStripMenuItem, Me.InformeToolStripMenuItem})
         Me.MenuStripPagPrin.Location = New System.Drawing.Point(0, 0)
         Me.MenuStripPagPrin.Name = "MenuStripPagPrin"
         Me.MenuStripPagPrin.Size = New System.Drawing.Size(984, 24)
@@ -359,6 +361,20 @@ Partial Class GestionArticulos
         Me.GestiónEmpleadosToolStripMenuItem1.Name = "GestiónEmpleadosToolStripMenuItem1"
         Me.GestiónEmpleadosToolStripMenuItem1.Size = New System.Drawing.Size(191, 22)
         Me.GestiónEmpleadosToolStripMenuItem1.Text = "Gestión de Empleados"
+        '
+        'InformeToolStripMenuItem
+        '
+        Me.InformeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GenerarInformeToolStripMenuItem})
+        Me.InformeToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.InformeToolStripMenuItem.Name = "InformeToolStripMenuItem"
+        Me.InformeToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
+        Me.InformeToolStripMenuItem.Text = "Informe"
+        '
+        'GenerarInformeToolStripMenuItem
+        '
+        Me.GenerarInformeToolStripMenuItem.Name = "GenerarInformeToolStripMenuItem"
+        Me.GenerarInformeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.GenerarInformeToolStripMenuItem.Text = "Generar Informe"
         '
         'GestionArticulos
         '
@@ -418,4 +434,6 @@ Partial Class GestionArticulos
     Friend WithEvents TextBox_Categoria As TextBox
     Friend WithEvents TextBox_Nombre As TextBox
     Friend WithEvents TextBox_ISBNOCULTO As TextBox
+    Friend WithEvents InformeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GenerarInformeToolStripMenuItem As ToolStripMenuItem
 End Class
