@@ -200,14 +200,9 @@ Public Class InicioSesion
 
 
         Catch ex As Exception
-
-            '  erroresApp.ErroresApp("Excepción controlada nº" & Err.Number & " : " & ex.Message & " generada en el formulario de Gestión de Empleados")
-
-            ' Dim encontradoError As Boolean = errores.MensajeError(Err.Number, "Por favor, revise la base de datos. ", False)
-
-            'If encontradoError = False Then
+            Dim validacion As New libreriaValidacion.Validacion
+            validacion.errorLogWrite()
             MsgBox("Error nº: " & Err.Number & ". " & ex.Message & " Por favor, revise la base de datos. ", MsgBoxStyle.Exclamation, ex.Message)
-            ' End If
             conexion.Close()
 
         End Try

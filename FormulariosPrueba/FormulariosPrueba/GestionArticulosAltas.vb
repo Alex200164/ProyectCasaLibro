@@ -37,6 +37,8 @@ Public Class GestionArticulosAltas
                 Process.Start(program)
             Catch ex As System.ComponentModel.Win32Exception '
                 MsgBox("Ha ocurrido un error, no se pudo iniciar la calculadora.", MsgBoxStyle.OkOnly, "Error (proceso calculadora)")
+                Dim validacion As New libreriaValidacion.Validacion
+                validacion.errorLogWrite()
             End Try
 
             controlCalculadora = controlCalculadora + 1
@@ -106,18 +108,26 @@ Public Class GestionArticulosAltas
 
                         adaptador.Update(midataset.Tables("Productos"))
                     Catch ex As System.InvalidOperationException
-                        ' Avisamos del error por mensaje
-                        MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
-                    Catch ex2 As System.FormatException
-                        ' Avisamos del error por mensaje
-                        MsgBox("El formato de los datos introducidos es incorrecto, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
-                    Catch ex3 As System.Data.OleDb.OleDbException
-                        ' Avisamos del error por mensaje
-                        MsgBox("Algo no ha ido bien, es la sintaxis correcta?, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
-                    Catch ex4 As System.NullReferenceException
-                        ' Avisamos del error por mensaje
-                        MsgBox("Algo no ha ido bien, intentalo de nuevo. Referencia a objeto no establecida como instancia de un objeto.", MsgBoxStyle.OkOnly, "Operación invalida")
-                    End Try
+                    ' Avisamos del error por mensaje
+                    MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                    Dim validacion As New libreriaValidacion.Validacion
+                    validacion.errorLogWrite()
+                Catch ex2 As System.FormatException
+                    ' Avisamos del error por mensaje
+                    MsgBox("El formato de los datos introducidos es incorrecto, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                    Dim validacion As New libreriaValidacion.Validacion
+                    validacion.errorLogWrite()
+                Catch ex3 As System.Data.OleDb.OleDbException
+                    ' Avisamos del error por mensaje
+                    MsgBox("Algo no ha ido bien, es la sintaxis correcta?, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                    Dim validacion As New libreriaValidacion.Validacion
+                    validacion.errorLogWrite()
+                Catch ex4 As System.NullReferenceException
+                    ' Avisamos del error por mensaje
+                    MsgBox("Algo no ha ido bien, intentalo de nuevo. Referencia a objeto no establecida como instancia de un objeto.", MsgBoxStyle.OkOnly, "Operación invalida")
+                    Dim validacion As New libreriaValidacion.Validacion
+                    validacion.errorLogWrite()
+                End Try
                     ' ####################  3º Actualizamos el middataset ##############################
                     ' Actualizamos el dataGridView del formulario de gestión principal
                     GestionArticulos.midataset.Clear()
@@ -195,17 +205,8 @@ Public Class GestionArticulosAltas
 
 
         Catch ex As Exception
-            'aqui buscamos el Error en GestionErrores
-            '  Dim buscarError As Boolean = gestionError.mostrarError(Err.Number)
-
-            'guardamos el Exception
-            ' errores.guardarError("Excepción nº" & Err.Number & " : " & ex.Message)
-
-            'si no ecuentramos el error mostrar mensaje del exepcion capturada
-            ' If buscarError = False Then
-            'MsgBox("Error : " & ex.Message, MsgBoxStyle.Exclamation)
-            '  End If
-
+            Dim validacion As New libreriaValidacion.Validacion
+            validacion.errorLogWrite()
         End Try
     End Sub
 

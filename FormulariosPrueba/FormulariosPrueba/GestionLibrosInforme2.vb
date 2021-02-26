@@ -2,12 +2,8 @@
 Imports System.Data.OleDb
 
 Public Class GestionLibrosInforme2
-
-
     'TODO: esta línea de código carga datos en la tabla 'DataSetLibros.Libros' Puede moverla o quitarla según sea necesario.
     ' Me.LibrosTableAdapter.Fill(Me.DataSetLibros.Libros)
-
-
 
     Private Sub GestionLibrosInforme2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -29,13 +25,6 @@ Public Class GestionLibrosInforme2
             .ReportPath = "InformeGestionLibros.rdlc"
             .DataSources.Add(New Microsoft.Reporting.WinForms.ReportDataSource("DataSetLibros", dt))
         End With
-        Me.ReportViewer1.RefreshReport()
-
-
-
-
-
-
         Me.ReportViewer1.RefreshReport()
     End Sub
 End Class

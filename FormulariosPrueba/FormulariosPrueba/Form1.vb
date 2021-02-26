@@ -27,6 +27,5 @@ Public Class Form1
             .DataSources.Add(New Microsoft.Reporting.WinForms.ReportDataSource("cas_lib_dibDataSetProductos", dt))
         End With
         Me.ReportViewer1.RefreshReport()
-
     End Sub
 End Class

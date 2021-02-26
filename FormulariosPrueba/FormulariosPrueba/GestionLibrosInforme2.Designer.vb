@@ -24,13 +24,23 @@ Partial Class GestionLibrosInforme2
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim ReportDataSource1 As Microsoft.Reporting.WinForms.ReportDataSource = New Microsoft.Reporting.WinForms.ReportDataSource()
-        Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
-        Me.DataSetLibros = New FormulariosPrueba.DataSetLibros()
         Me.LibrosBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DataSetLibros = New FormulariosPrueba.DataSetLibros()
+        Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.LibrosTableAdapter = New FormulariosPrueba.DataSetLibrosTableAdapters.LibrosTableAdapter()
-        CType(Me.DataSetLibros, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LibrosBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataSetLibros, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'LibrosBindingSource
+        '
+        Me.LibrosBindingSource.DataMember = "Libros"
+        Me.LibrosBindingSource.DataSource = Me.DataSetLibros
+        '
+        'DataSetLibros
+        '
+        Me.DataSetLibros.DataSetName = "DataSetLibros"
+        Me.DataSetLibros.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'ReportViewer1
         '
@@ -45,16 +55,6 @@ Partial Class GestionLibrosInforme2
         Me.ReportViewer1.Size = New System.Drawing.Size(800, 450)
         Me.ReportViewer1.TabIndex = 0
         '
-        'DataSetLibros
-        '
-        Me.DataSetLibros.DataSetName = "DataSetLibros"
-        Me.DataSetLibros.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'LibrosBindingSource
-        '
-        Me.LibrosBindingSource.DataMember = "Libros"
-        Me.LibrosBindingSource.DataSource = Me.DataSetLibros
-        '
         'LibrosTableAdapter
         '
         Me.LibrosTableAdapter.ClearBeforeFill = True
@@ -67,8 +67,8 @@ Partial Class GestionLibrosInforme2
         Me.Controls.Add(Me.ReportViewer1)
         Me.Name = "GestionLibrosInforme2"
         Me.Text = "GestionLibrosInforme2"
-        CType(Me.DataSetLibros, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LibrosBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataSetLibros, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

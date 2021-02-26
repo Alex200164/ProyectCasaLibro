@@ -56,7 +56,8 @@ Public Class GestionArticulos
 
         Catch ex As System.Data.OleDb.OleDbException
             MsgBox("Parece que algo ha salido mal. Revise que la base de datos no esté abierta durante la ejecución.", MsgBoxStyle.OkOnly, "Error - Base de datos")
-
+            Dim validacion As New libreriaValidacion.Validacion
+            validacion.errorLogWrite()
 
             ' Mostramos el menú principal.
             MenuPrincipal.Show()
@@ -125,22 +126,25 @@ Public Class GestionArticulos
 
     'Metodo evento que capta la puslación en la celda relativa al botón. 
     Private Sub DataGridView1_CellContentClick(sender As System.Object, e As DataGridViewCellEventArgs) Handles DataGridView_Articulos.CellContentClick
+        Try
+            'Convierte el objeto en sender
+            Dim senderGrid = DirectCast(sender, DataGridView)
 
-        'Convierte el objeto en sender
-        Dim senderGrid = DirectCast(sender, DataGridView)
-
-        'Comprueba que es una columna del data gridview que tiene el evento y que tiene indice mayor que 0
-        'Si es correcto se ejecutará el comando de abrir GestionArticulosModificaciones
-        If TypeOf senderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso e.RowIndex >= 0 Then
-            ' Posicionamos el formulario que vamos a mostrar.
-            posicionarGestionModificaciones()
-            ' Mostramos el formulario
-            GestionArticulosModificaciones.ShowDialog()
-
-            'System.ArgumentException hacer expecion try catch***************************
+            'Comprueba que es una columna del data gridview que tiene el evento y que tiene indice mayor que 0
+            'Si es correcto se ejecutará el comando de abrir GestionArticulosModificaciones
+            If TypeOf senderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso e.RowIndex >= 0 Then
+                ' Posicionamos el formulario que vamos a mostrar.
+                posicionarGestionModificaciones()
+                ' Mostramos el formulario
+                GestionArticulosModificaciones.ShowDialog()
 
 
-        End If
+            End If
+        Catch ex As System.ArgumentException
+            MsgBox("Se ha producido un error al realizar la acción solicitada, intentelo de nuevo.", MsgBoxStyle.OkOnly, "Error del sistema")
+            Dim validacion As New libreriaValidacion.Validacion
+            validacion.errorLogWrite()
+        End Try
     End Sub
 
     'Metodo que pinta el Icono asociado al botón dinámico Modificar, el la ultima Columna del DataGridView
@@ -241,6 +245,8 @@ Public Class GestionArticulos
                 Process.Start(program)
             Catch ex As System.ComponentModel.Win32Exception '
                 MsgBox("Ha ocurrido un error, no se pudo iniciar la calculadora.", MsgBoxStyle.OkOnly, "Error (proceso calculadora)")
+                Dim validacion As New libreriaValidacion.Validacion
+                validacion.errorLogWrite()
             End Try
 
             controlCalculadora = controlCalculadora + 1
@@ -301,6 +307,8 @@ Public Class GestionArticulos
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
+            Dim validacion As New libreriaValidacion.Validacion
+            validacion.errorLogWrite()
         End Try
     End Sub
 

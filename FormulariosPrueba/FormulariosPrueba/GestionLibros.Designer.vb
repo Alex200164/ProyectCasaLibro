@@ -55,11 +55,7 @@ Partial Class GestionLibros
         Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VerLaAyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.InformeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-<<<<<<< Updated upstream
         Me.GenerarInformeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-=======
-        Me.InformeToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
->>>>>>> Stashed changes
         Me.Panel1.SuspendLayout()
         CType(Me.DataGridView_Libros, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -364,29 +360,17 @@ Partial Class GestionLibros
         '
         'InformeToolStripMenuItem
         '
-<<<<<<< Updated upstream
         Me.InformeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GenerarInformeToolStripMenuItem})
         Me.InformeToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
-=======
-        Me.InformeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InformeToolStripMenuItem1})
->>>>>>> Stashed changes
         Me.InformeToolStripMenuItem.Name = "InformeToolStripMenuItem"
         Me.InformeToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
         Me.InformeToolStripMenuItem.Text = "Informe"
         '
-<<<<<<< Updated upstream
         'GenerarInformeToolStripMenuItem
         '
         Me.GenerarInformeToolStripMenuItem.Name = "GenerarInformeToolStripMenuItem"
         Me.GenerarInformeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.GenerarInformeToolStripMenuItem.Text = "Generar Informe"
-=======
-        'InformeToolStripMenuItem1
-        '
-        Me.InformeToolStripMenuItem1.Name = "InformeToolStripMenuItem1"
-        Me.InformeToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
-        Me.InformeToolStripMenuItem1.Text = "Informe"
->>>>>>> Stashed changes
         '
         'GestionLibros
         '
@@ -446,9 +430,8 @@ Partial Class GestionLibros
     Friend WithEvents TextBox_ISBNOCULTO As TextBox
     Friend WithEvents ComboBox_Genero As ComboBox
     Friend WithEvents InformeToolStripMenuItem As ToolStripMenuItem
-<<<<<<< Updated upstream
+
     Friend WithEvents GenerarInformeToolStripMenuItem As ToolStripMenuItem
-=======
-    Friend WithEvents InformeToolStripMenuItem1 As ToolStripMenuItem
->>>>>>> Stashed changes
+
+
 End Class

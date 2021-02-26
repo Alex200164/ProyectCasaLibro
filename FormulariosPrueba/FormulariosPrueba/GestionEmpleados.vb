@@ -50,6 +50,8 @@ Public Class GestionEmpleados
 
         Catch ex As System.Data.OleDb.OleDbException
             MsgBox("Parece que algo ha salido mal. Revise que la base de datos no esté abierta durante la ejecución.", MsgBoxStyle.OkOnly, "Error - Base de datos")
+            Dim validacion As New libreriaValidacion.Validacion
+            validacion.errorLogWrite()
 
             ' Mostramos el menú principal.
             MenuPrincipal.Show()
@@ -206,6 +208,8 @@ Public Class GestionEmpleados
                 Process.Start(program)
             Catch ex As System.ComponentModel.Win32Exception '
                 MsgBox("Ha ocurrido un error, no se pudo iniciar la calculadora.", MsgBoxStyle.OkOnly, "Error (proceso calculadora)")
+                Dim validacion As New libreriaValidacion.Validacion
+                validacion.errorLogWrite()
             End Try
 
             controlCalculadora = controlCalculadora + 1
@@ -238,6 +242,8 @@ Public Class GestionEmpleados
             End If
         Catch ex As System.ArgumentException
             ' MsgBox("Se ha producido un error al realizar la acción solicitada, intentelo de nuevo.", MsgBoxStyle.OkOnly, "Error del sistema")
+            Dim validacion As New libreriaValidacion.Validacion
+            validacion.errorLogWrite()
         End Try
     End Sub
 
@@ -309,6 +315,8 @@ Public Class GestionEmpleados
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
+            Dim validacion As New libreriaValidacion.Validacion
+            validacion.errorLogWrite()
         End Try
     End Sub
 
@@ -911,15 +919,23 @@ Public Class GestionEmpleados
         Catch ex As System.InvalidOperationException
             ' Avisamos del error por mensaje
             MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+            Dim validacion As New libreriaValidacion.Validacion
+            validacion.errorLogWrite()
         Catch ex2 As System.FormatException
             ' Avisamos del error por mensaje
             MsgBox("El formato de los datos introducidos es incorrecto, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+            Dim validacion As New libreriaValidacion.Validacion
+            validacion.errorLogWrite()
         Catch ex3 As System.Data.OleDb.OleDbException
             ' Avisamos del error por mensaje
             MsgBox("Algo no ha ido bien, es la sintaxis correcta?, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+            Dim validacion As New libreriaValidacion.Validacion
+            validacion.errorLogWrite()
         Catch ex4 As System.NullReferenceException
             ' Avisamos del error por mensaje
             MsgBox("Algo no ha ido bien, intentalo de nuevo. Referencia a objeto no establecida como instancia de un objeto.", MsgBoxStyle.OkOnly, "Operación invalida")
+            Dim validacion As New libreriaValidacion.Validacion
+            validacion.errorLogWrite()
         End Try
     End Sub
 

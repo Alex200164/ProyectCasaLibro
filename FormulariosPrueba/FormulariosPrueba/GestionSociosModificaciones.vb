@@ -145,12 +145,18 @@ Public Class GestionSociosModificaciones
                 Catch ex As System.InvalidOperationException
                     ' Avisamos del error por mensaje
                     MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                    Dim validacion As New libreriaValidacion.Validacion
+                    validacion.errorLogWrite()
                 Catch ex2 As System.Data.OleDb.OleDbException
                     ' Avisamos del error por mensaje
                     MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                    Dim validacion As New libreriaValidacion.Validacion
+                    validacion.errorLogWrite()
                 Catch ex3 As System.FormatException
                     ' Avisamos del error por mensaje
                     MsgBox("Uno de los datos tiene un formato incorrecto, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                    Dim validacion As New libreriaValidacion.Validacion
+                    validacion.errorLogWrite()
                 End Try
 
                 ' Actualizamos el dataGridView del formulario de gestión principal
@@ -194,6 +200,8 @@ Public Class GestionSociosModificaciones
                 Process.Start(program)
             Catch ex As System.ComponentModel.Win32Exception '
                 MsgBox("Ha ocurrido un error, no se pudo iniciar la calculadora.", MsgBoxStyle.OkOnly, "Error (proceso calculadora)")
+                Dim validacion As New libreriaValidacion.Validacion
+                validacion.errorLogWrite()
             End Try
 
             controlCalculadora = controlCalculadora + 1

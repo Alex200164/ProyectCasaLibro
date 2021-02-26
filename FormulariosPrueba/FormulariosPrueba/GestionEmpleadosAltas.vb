@@ -38,6 +38,8 @@ Public Class GestionEmpleadosAltas
                 Process.Start(program)
             Catch ex As System.ComponentModel.Win32Exception '
                 MsgBox("Ha ocurrido un error, no se pudo iniciar la calculadora.", MsgBoxStyle.OkOnly, "Error (proceso calculadora)")
+                Dim validacion As New libreriaValidacion.Validacion
+                validacion.errorLogWrite()
             End Try
 
             controlCalculadora = controlCalculadora + 1
@@ -184,15 +186,23 @@ Public Class GestionEmpleadosAltas
                 Catch ex As System.InvalidOperationException
                     ' Avisamos del error por mensaje
                     MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                    Dim validacion As New libreriaValidacion.Validacion
+                    validacion.errorLogWrite()
                 Catch ex2 As System.FormatException
                     ' Avisamos del error por mensaje
                     MsgBox("El formato de los datos introducidos es incorrecto, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                    Dim validacion As New libreriaValidacion.Validacion
+                    validacion.errorLogWrite()
                 Catch ex3 As System.Data.OleDb.OleDbException
                     ' Avisamos del error por mensaje
                     MsgBox("Algo no ha ido bien, es la sintaxis correcta?, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                    Dim validacion As New libreriaValidacion.Validacion
+                    validacion.errorLogWrite()
                 Catch ex4 As System.NullReferenceException
                     ' Avisamos del error por mensaje
                     MsgBox("Algo no ha ido bien, intentalo de nuevo. Referencia a objeto no establecida como instancia de un objeto.", MsgBoxStyle.OkOnly, "Operación invalida")
+                    Dim validacion As New libreriaValidacion.Validacion
+                    validacion.errorLogWrite()
                 End Try
             End If
         End If

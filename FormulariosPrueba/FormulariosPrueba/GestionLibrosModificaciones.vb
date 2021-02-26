@@ -48,6 +48,8 @@ Public Class GestionLibrosModificaciones
                 Process.Start(program)
             Catch ex As System.ComponentModel.Win32Exception '
                 MsgBox("Ha ocurrido un error, no se pudo iniciar la calculadora.", MsgBoxStyle.OkOnly, "Error (proceso calculadora)")
+                Dim validacion As New libreriaValidacion.Validacion
+                validacion.errorLogWrite()
             End Try
 
             controlCalculadora = controlCalculadora + 1
@@ -181,6 +183,8 @@ Public Class GestionLibrosModificaciones
                 'Acaba Método para meter las imagenes dentro de la base de datos de tipo Largo. 
             Catch ex As System.NullReferenceException
                 MsgBox("Ha ocurrido un error, al cargar la imagen.", MsgBoxStyle.OkOnly, "Error (proceso Formato de imagen )")
+                Dim validacion As New libreriaValidacion.Validacion
+                validacion.errorLogWrite()
             End Try
 
             Dim valor As String
@@ -230,12 +234,18 @@ Public Class GestionLibrosModificaciones
                 Catch ex As System.InvalidOperationException
                     ' Avisamos del error por mensaje
                     MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                    Dim validacion As New libreriaValidacion.Validacion
+                    validacion.errorLogWrite()
                 Catch ex2 As System.Data.OleDb.OleDbException
                     ' Avisamos del error por mensaje
                     MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                    Dim validacion As New libreriaValidacion.Validacion
+                    validacion.errorLogWrite()
                 Catch ex3 As System.FormatException
                     ' Avisamos del error por mensaje
                     MsgBox("Uno de los datos tiene un formato incorrecto, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+                    Dim validacion As New libreriaValidacion.Validacion
+                    validacion.errorLogWrite()
                 End Try
 
 
@@ -397,17 +407,9 @@ Public Class GestionLibrosModificaciones
 
 
         Catch ex As Exception
-            'aqui buscamos el Error en GestionErrores
-            '  Dim buscarError As Boolean = gestionError.mostrarError(Err.Number)
-
-            'guardamos el Exception
-            ' errores.guardarError("Excepción nº" & Err.Number & " : " & ex.Message)
-
-            'si no ecuentramos el error mostrar mensaje del exepcion capturada
-            ' If buscarError = False Then
+            Dim validacion As New libreriaValidacion.Validacion
+            validacion.errorLogWrite()
             'MsgBox("Error : " & ex.Message, MsgBoxStyle.Exclamation)
-            '  End If
-
         End Try
     End Sub
 End Class

@@ -261,3 +261,4 @@ D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPr
 E:\REPO\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.Form1.resources
 D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.Form1.resources
 E:\REPO\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionLibrosInforme2.resources
+D:\Users\erick\Documents\GitHub\ProyectCasaLibro\FormulariosPrueba\FormulariosPrueba\obj\Debug\FormulariosPrueba.GestionLibrosInforme2.resources

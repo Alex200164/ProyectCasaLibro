@@ -615,8 +615,11 @@ Public Class Validacion
         ' Escribir en errorLog
         Dim fichero = "Errorlog.txt"
         Dim fich As New FileStream(fichero, FileMode.Append, FileAccess.Write)
+        Dim contenedorError As String
         Dim rs As New StreamWriter(fich)
-        rs.WriteLine(Now & "---> " & "Error en la comprobación de datos." & Chr(13) & "Detalle: " & Err.Description & Chr(13) & "Número de error: " & Err.Number)
+        contenedorError = Format(Now, "dd-mm-yyyy - ") & TimeString & " || " & "Detalle: " & Err.Description & Chr(13) & "Número de error: " & Err.Number
+
+        rs.WriteLine(contenedorError)
 
         rs.Close()
         fich.Close()

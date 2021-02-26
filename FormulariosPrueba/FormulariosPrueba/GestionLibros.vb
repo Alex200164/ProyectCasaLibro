@@ -1,5 +1,6 @@
 ﻿' Necesitamos importar el módelo de base de datos que vamos a utilizar, este es de access.
 Imports System.Data.OleDb
+Imports libreriaValidacion
 
 Public Class GestionLibros
 
@@ -48,7 +49,8 @@ Public Class GestionLibros
 
         Catch ex As System.Data.OleDb.OleDbException
             MsgBox("Parece que algo ha salido mal. Revise que la base de datos no esté abierta durante la ejecución.", MsgBoxStyle.OkOnly, "Error - Base de datos")
-
+            Dim validacion As New libreriaValidacion.Validacion
+            validacion.errorLogWrite()
 
             ' Mostramos el menú principal.
             MenuPrincipal.Show()
@@ -117,22 +119,25 @@ Public Class GestionLibros
 
     'Metodo evento que capta la puslación en la celda relativa al botón. 
     Private Sub DataGridView1_CellContentClick(sender As System.Object, e As DataGridViewCellEventArgs) Handles DataGridView_Libros.CellContentClick
+        Try
+            'Convierte el objeto en sender
+            Dim senderGrid = DirectCast(sender, DataGridView)
 
-        'Convierte el objeto en sender
-        Dim senderGrid = DirectCast(sender, DataGridView)
-
-        'Comprueba que es una columna del data gridview que tiene el evento y que tiene indice mayor que 0
-        'Si es correcto se ejecutará el comando de abrir GestionLibrosModificaciones
-        If TypeOf senderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso e.RowIndex >= 0 Then
-            ' Posicionamos el formulario que vamos a mostrar.
-            posicionarGestionModificaciones()
-            ' Mostramos el formulario
-            GestionLibrosModificaciones.ShowDialog()
-
-            'System.ArgumentException hacer expecion try catch*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/**/*/*/*/*/*/*/*/*/*/*/*/*/
+            'Comprueba que es una columna del data gridview que tiene el evento y que tiene indice mayor que 0
+            'Si es correcto se ejecutará el comando de abrir GestionLibrosModificaciones
+            If TypeOf senderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso e.RowIndex >= 0 Then
+                ' Posicionamos el formulario que vamos a mostrar.
+                posicionarGestionModificaciones()
+                ' Mostramos el formulario
+                GestionLibrosModificaciones.ShowDialog()
 
 
-        End If
+            End If
+        Catch ex As System.ArgumentException
+            ' MsgBox("Se ha producido un error al realizar la acción solicitada, intentelo de nuevo.", MsgBoxStyle.OkOnly, "Error del sistema")
+            Dim validacion As New libreriaValidacion.Validacion
+        validacion.errorLogWrite()
+        End Try
     End Sub
 
     'Metodo que pinta el Icono asociado al botón dinámico Modificar, el la ultima Columna del DataGridView
@@ -233,6 +238,8 @@ Public Class GestionLibros
                 Process.Start(program)
             Catch ex As System.ComponentModel.Win32Exception '
                 MsgBox("Ha ocurrido un error, no se pudo iniciar la calculadora.", MsgBoxStyle.OkOnly, "Error (proceso calculadora)")
+                Dim validacion As New libreriaValidacion.Validacion
+                validacion.errorLogWrite()
             End Try
 
             controlCalculadora = controlCalculadora + 1
@@ -294,6 +301,8 @@ Public Class GestionLibros
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
+            Dim validacion As New libreriaValidacion.Validacion
+            validacion.errorLogWrite()
         End Try
     End Sub
 
@@ -666,15 +675,24 @@ Public Class GestionLibros
         Catch ex As System.InvalidOperationException
             ' Avisamos del error por mensaje
             MsgBox("Algo no ha ido bien, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+            Dim validacion As New libreriaValidacion.Validacion
+            validacion.errorLogWrite()
         Catch ex2 As System.FormatException
             ' Avisamos del error por mensaje
             MsgBox("El formato de los datos introducidos es incorrecto, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+            Dim validacion As New libreriaValidacion.Validacion
+            validacion.errorLogWrite()
         Catch ex3 As System.Data.OleDb.OleDbException
             ' Avisamos del error por mensaje
             MsgBox("Algo no ha ido bien, es la sintaxis correcta?, intentalo de nuevo", MsgBoxStyle.OkOnly, "Operación invalida")
+            Dim validacion As New libreriaValidacion.Validacion
+            validacion.errorLogWrite()
         Catch ex4 As System.NullReferenceException
             ' Avisamos del error por mensaje
             MsgBox("Algo no ha ido bien, intentalo de nuevo. Referencia a objeto no establecida como instancia de un objeto.", MsgBoxStyle.OkOnly, "Operación invalida")
+            Dim validacion As New libreriaValidacion.Validacion
+            validacion.mensajeErrorDatos()
+            validacion.errorLogWrite()
         End Try
 
     End Sub
@@ -720,7 +738,8 @@ Public Class GestionLibros
         End If
     End Sub
 
-    Private Sub InformeToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles InformeToolStripMenuItem1.Click
+
+    Private Sub GenerarInformeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GenerarInformeToolStripMenuItem.Click
         GestionLibrosInforme2.ShowDialog()
     End Sub
 End Class
